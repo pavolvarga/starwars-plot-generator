@@ -51,7 +51,7 @@ class InputForm extends Component {
                                     id="input-person"
                                     name="input-person"
                                     placeholder="Please enter a character"
-                                    size="lg"
+                                    bsSize="lg"
                                     onChange={e => this.handleOnPersonInputChange(e.target.value)} />
                             </FormGroup>
                         </Col>
@@ -62,7 +62,7 @@ class InputForm extends Component {
                                     id="input-planet"
                                     name="input-planet"
                                     placeholder="Please enter a planet"
-                                    size="lg"
+                                    bsSize="lg"
                                     onChange={e => this.handleOnPlanetInputChange(e.target.value)} />
                             </FormGroup>
                         </Col>

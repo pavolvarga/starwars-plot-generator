@@ -49,11 +49,11 @@ exports[`HomePage should render correctly in "debug" mode 1`] = `
             Character
           </Label>
           <Input
+            bsSize="lg"
             id="input-person"
             name="input-person"
             onChange={[Function]}
             placeholder="Please enter a character"
-            size="lg"
             type="text"
           />
         </FormGroup>
@@ -92,11 +92,11 @@ exports[`HomePage should render correctly in "debug" mode 1`] = `
             Planet
           </Label>
           <Input
+            bsSize="lg"
             id="input-planet"
             name="input-planet"
             onChange={[Function]}
             placeholder="Please enter a planet"
-            size="lg"
             type="text"
           />
         </FormGroup>
