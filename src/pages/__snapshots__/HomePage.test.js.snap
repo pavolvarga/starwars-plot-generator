@@ -2,13 +2,6 @@
 
 exports[`HomePage should render correctly in "debug" mode 1`] = `
 <div>
-  <div
-    className="text-center"
-  >
-    <h1>
-      Star Wars Plot Generator
-    </h1>
-  </div>
   <Container
     tag="div"
   >
