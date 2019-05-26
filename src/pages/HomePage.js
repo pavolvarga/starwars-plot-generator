@@ -1,7 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Component } from 'react';
 import { Col, FormGroup, Label, Input, Form, Button, Container } from 'reactstrap';
-import { withRouter } from 'react-router-dom';
 
 class InputForm extends Component {
 
@@ -18,6 +17,7 @@ class InputForm extends Component {
 
         this.handleOnPersonInputChange = this.handleOnPersonInputChange.bind(this);
         this.handleOnPlanetInputChange = this.handleOnPlanetInputChange.bind(this);
+        this.handleOnGenerateBntClick = this.handleOnGenerateBntClick.bind(this);
     }
 
     handleOnPersonInputChange(person) {
@@ -34,6 +34,17 @@ class InputForm extends Component {
 
     isGenerateBntDisabled() {
         return !(!!this.state.selected.person && !!this.state.selected.planet);
+    }
+
+    handleOnGenerateBntClick() {
+        const state = {
+            person: this.state.selected.person,
+            planet: this.state.selected.planet
+        };
+        this.props.history.push({
+            pathname: '/plot',
+            state
+        });
     }
 
     render() {
@@ -71,7 +82,7 @@ class InputForm extends Component {
                                 <Button
                                     color="primary"
                                     size="lg"
-                                    onClick={e => this.props.history.push('/plot')}
+                                    onClick={e => this.handleOnGenerateBntClick()}
                                     disabled={this.isGenerateBntDisabled()}>
                                     Generate Plot
                                 </Button>
