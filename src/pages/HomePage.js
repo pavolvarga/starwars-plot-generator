@@ -50,9 +50,6 @@ class InputForm extends Component {
     render() {
         return (
             <div>
-                <div className="text-center">
-                    <h1>Star Wars Plot Generator</h1>
-                </div>
                 <Container>
                     <Form>
                         <Col>
