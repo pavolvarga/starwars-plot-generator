@@ -1,0 +1,133 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HomePage should render correctly in "debug" mode 1`] = `
+<div>
+  <div
+    className="text-center"
+  >
+    <h1>
+      Star Wars Plot Generator
+    </h1>
+  </div>
+  <Container
+    tag="div"
+  >
+    <Form
+      tag="form"
+    >
+      <Col
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <FormGroup
+          row={true}
+          size="lg"
+          tag="div"
+        >
+          <Label
+            for="input-person"
+            size="lg"
+            tag="label"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
+          >
+            Character
+          </Label>
+          <Input
+            id="input-person"
+            name="input-person"
+            onChange={[Function]}
+            placeholder="Please enter a character"
+            size="lg"
+            type="text"
+          />
+        </FormGroup>
+      </Col>
+      <Col
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <FormGroup
+          row={true}
+          size="lg"
+          tag="div"
+        >
+          <Label
+            for="input-planet"
+            size="lg"
+            tag="label"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
+          >
+            Planet
+          </Label>
+          <Input
+            id="input-planet"
+            name="input-planet"
+            onChange={[Function]}
+            placeholder="Please enter a planet"
+            size="lg"
+            type="text"
+          />
+        </FormGroup>
+      </Col>
+      <Col
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <div
+          className="text-center"
+        >
+          <Button
+            color="primary"
+            disabled={true}
+            onClick={[Function]}
+            size="lg"
+            tag="button"
+          >
+            Generate Plot
+          </Button>
+        </div>
+      </Col>
+    </Form>
+  </Container>
+</div>
+`;

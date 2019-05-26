@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Col, Form, Button, Container } from 'reactstrap';
-import { withRouter } from 'react-router-dom';
 
 class Plot extends Component {
     render() {
@@ -30,6 +29,4 @@ class Plot extends Component {
     }
 }
 
-const StarWarsPlot = withRouter(Plot);
-
-export { StarWarsPlot };
+export { Plot };

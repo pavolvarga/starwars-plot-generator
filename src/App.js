@@ -1,7 +1,10 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import { StarWarsForm } from './pages/HomePage';
-import { StarWarsPlot } from './pages/ResultPage';
+import { BrowserRouter as Router, Route, withRouter } from "react-router-dom";
+import { InputForm } from './pages/HomePage';
+import { Plot } from './pages/ResultPage';
+
+const StarWarsForm = withRouter(InputForm);
+const StarWarsPlot = withRouter(Plot);
 
 class App extends Component {
 

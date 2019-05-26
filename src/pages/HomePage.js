@@ -84,6 +84,4 @@ class InputForm extends Component {
     }
 }
 
-const StarWarsForm = withRouter(InputForm);
-
-export { StarWarsForm };
+export { InputForm };
