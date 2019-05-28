@@ -19,6 +19,7 @@ class StarWarsInput extends Component {
             this.setState(() => {
                 return {selectedFromData: false}
             });
+            setFn(undefined);
             return;
         }
 
@@ -32,6 +33,7 @@ class StarWarsInput extends Component {
             this.setState(() => {
                 return {selectedFromData: false}
             });
+            setFn(undefined);
         }
     }
 
@@ -73,7 +75,6 @@ class InputForm extends Component {
     }
 
     setPerson(person) {
-        console.log(person);
         this.setState((state) => ({
             selected: {...state.selected, person}
         }));
