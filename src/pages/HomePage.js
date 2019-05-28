@@ -4,8 +4,39 @@ import { Col, FormGroup, Label, Input, Form, Button, Container } from 'reactstra
 
 class StarWarsInput extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            selectedFromData: false
+        };
+        this.handleOnChange = this.handleOnChange.bind(this);
+    }
+
+    handleOnChange(value, data, setFn) {
+
+        //ignore empty or too short text
+        if (!value || value.length < 3) {
+            this.setState(() => {
+                return {selectedFromData: false}
+            });
+            return;
+        }
+
+        if (data.find(x => x === value)) {
+            this.setState(() => {
+                return {selectedFromData: true}
+            });
+            setFn(value);
+        }
+        else {
+            this.setState(() => {
+                return {selectedFromData: false}
+            });
+        }
+    }
+
     render() {
-        const {id, name, label, placeholder} = this.props;
+        const {id, name, label, placeholder, data, setFn} = this.props;
         return (
             <Col>
                 <FormGroup size="lg" row>
@@ -15,7 +46,8 @@ class StarWarsInput extends Component {
                         name={name}
                         placeholder={placeholder}
                         bsSize="lg"
-                        onChange={e => this.handleOnPersonInputChange(e.target.value)} />
+                        valid={this.state.selectedFromData ? true : undefined}
+                        onChange={e => this.handleOnChange(e.target.value, data, setFn)} />
                 </FormGroup>
             </Col>
         );
@@ -35,18 +67,19 @@ class InputForm extends Component {
            }
         };
 
-        this.handleOnPersonInputChange = this.handleOnPersonInputChange.bind(this);
-        this.handleOnPlanetInputChange = this.handleOnPlanetInputChange.bind(this);
+        this.setPerson = this.setPerson.bind(this);
+        this.setPlanet = this.setPlanet.bind(this);
         this.handleOnGenerateBntClick = this.handleOnGenerateBntClick.bind(this);
     }
 
-    handleOnPersonInputChange(person) {
+    setPerson(person) {
+        console.log(person);
         this.setState((state) => ({
             selected: {...state.selected, person}
         }));
     }
 
-    handleOnPlanetInputChange(planet) {
+    setPlanet(planet) {
         this.setState((state) => ({
             selected: {...state.selected, planet}
         }));
@@ -69,17 +102,22 @@ class InputForm extends Component {
 
     render() {
 
+        const {people, planets} = this.props.customProps;
         const personProps = {
             id: "input-person",
             name: "input-person",
             label: "Character",
-            placeholder: "Please enter a character"
+            placeholder: "Please enter a character",
+            data: people,
+            setFn: this.setPerson
         };
         const planetProps = {
             id: "input-planet",
             name: "input-planet",
             label: "Planet",
-            placeholder: "Please enter a planet"
+            placeholder: "Please enter a planet",
+            data: planets,
+            setFn: this.setPlanet
         };
 
         return (

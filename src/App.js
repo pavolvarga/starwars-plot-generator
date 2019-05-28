@@ -74,11 +74,13 @@ class App extends Component {
             );
         }
 
+        const customProps = {...this.state.data};
+
         return (
             <div>
                 <Header/>
                 <Router>
-                    <Route exact path="/" component={StarWarsForm}/>
+                    <Route exact path="/" render={(props) => <StarWarsForm {...props} customProps={customProps}/>} />
                     <Route path="/plot" component={StarWarsPlot}/>
                 </Router>
             </div>
