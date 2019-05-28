@@ -2,6 +2,26 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Component } from 'react';
 import { Col, FormGroup, Label, Input, Form, Button, Container } from 'reactstrap';
 
+class StarWarsInput extends Component {
+
+    render() {
+        const {id, name, label, placeholder} = this.props;
+        return (
+            <Col>
+                <FormGroup size="lg" row>
+                    <Label for="input-person" size="lg">{label}</Label>
+                    <Input
+                        id={id}
+                        name={name}
+                        placeholder={placeholder}
+                        bsSize="lg"
+                        onChange={e => this.handleOnPersonInputChange(e.target.value)} />
+                </FormGroup>
+            </Col>
+        );
+    }
+}
+
 class InputForm extends Component {
 
     constructor(props) {
@@ -48,32 +68,26 @@ class InputForm extends Component {
     }
 
     render() {
+
+        const personProps = {
+            id: "input-person",
+            name: "input-person",
+            label: "Character",
+            placeholder: "Please enter a character"
+        };
+        const planetProps = {
+            id: "input-planet",
+            name: "input-planet",
+            label: "Planet",
+            placeholder: "Please enter a planet"
+        };
+
         return (
             <div>
                 <Container>
                     <Form>
-                        <Col>
-                            <FormGroup size="lg" row>
-                                <Label for="input-person" size="lg">Character</Label>
-                                <Input
-                                    id="input-person"
-                                    name="input-person"
-                                    placeholder="Please enter a character"
-                                    bsSize="lg"
-                                    onChange={e => this.handleOnPersonInputChange(e.target.value)} />
-                            </FormGroup>
-                        </Col>
-                        <Col>
-                            <FormGroup size="lg" row>
-                                <Label for="input-planet" size="lg">Planet</Label>
-                                <Input
-                                    id="input-planet"
-                                    name="input-planet"
-                                    placeholder="Please enter a planet"
-                                    bsSize="lg"
-                                    onChange={e => this.handleOnPlanetInputChange(e.target.value)} />
-                            </FormGroup>
-                        </Col>
+                        <StarWarsInput {...personProps} />
+                        <StarWarsInput {...planetProps} />
                         <Col>
                             <div className="text-center">
                                 <Button
