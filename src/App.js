@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, withRouter } from "react-router-dom";
+import { Spinner } from 'reactstrap';
 import { InputForm } from './pages/HomePage';
 import { Plot } from './pages/ResultPage';
 import { loadStarWarsData } from './common/util';
@@ -12,6 +13,15 @@ function Header() {
     return (
         <div className="text-center">
             <h1>Star Wars Plot Generator</h1>
+        </div>
+    );
+}
+
+function Loader() {
+    return (
+        <div className="text-center">
+            <h3>Please wait while star wars data are being loaded</h3>
+            <Spinner style={{ width: '5rem', height: '5rem' }} />{' '}
         </div>
     );
 }
@@ -59,9 +69,7 @@ class App extends Component {
             return (
                 <div>
                     <Header/>
-                    <div className="text-center">
-                        <h3>Please wait while star wars data are being loaded</h3>
-                    </div>
+                    <Loader/>
                 </div>
             );
         }
