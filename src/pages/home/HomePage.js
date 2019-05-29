@@ -40,7 +40,7 @@ class InputForm extends Component {
 
     generatePlot() {
         const state = {};
-        Object.keys(this.state).map(key => {
+        Object.keys(this.state).forEach(key => {
             state[key] = {visible: this.state[key].visible, selected: this.state[key].selected};
         });
         this.props.history.push({
