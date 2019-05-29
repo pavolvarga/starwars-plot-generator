@@ -56,6 +56,32 @@ class StarWarsInput extends Component {
     }
 }
 
+class GenerateBnt extends Component {
+
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+
+        const {isGenerateBntDisabled, handleOnGenerateBntClick} = this.props;
+
+        return (
+            <Col>
+                <div className="text-center">
+                    <Button
+                        color="primary"
+                        size="lg"
+                        onClick={e => handleOnGenerateBntClick()}
+                        disabled={isGenerateBntDisabled()}>
+                        Generate Plot
+                    </Button>
+                </div>
+            </Col>
+        );
+    }
+}
+
 class InputForm extends Component {
 
     constructor(props) {
@@ -71,6 +97,7 @@ class InputForm extends Component {
 
         this.setPerson = this.setPerson.bind(this);
         this.setPlanet = this.setPlanet.bind(this);
+        this.isGenerateBntDisabled = this.isGenerateBntDisabled.bind(this);
         this.handleOnGenerateBntClick = this.handleOnGenerateBntClick.bind(this);
     }
 
@@ -120,6 +147,10 @@ class InputForm extends Component {
             data: planets,
             setFn: this.setPlanet
         };
+        const generateBntProps = {
+            isGenerateBntDisabled: this.isGenerateBntDisabled,
+            handleOnGenerateBntClick: this.handleOnGenerateBntClick
+        };
 
         return (
             <div>
@@ -127,17 +158,7 @@ class InputForm extends Component {
                     <Form>
                         <StarWarsInput {...personProps} />
                         <StarWarsInput {...planetProps} />
-                        <Col>
-                            <div className="text-center">
-                                <Button
-                                    color="primary"
-                                    size="lg"
-                                    onClick={e => this.handleOnGenerateBntClick()}
-                                    disabled={this.isGenerateBntDisabled()}>
-                                    Generate Plot
-                                </Button>
-                            </div>
-                        </Col>
+                        <GenerateBnt {...generateBntProps} />
                     </Form>
                 </Container>
             </div>

@@ -173,44 +173,49 @@ exports[`HomePage should render correctly in "debug" mode 1`] = `
                 </div>
               </Col>
             </StarWarsInput>
-            <Col
-              tag="div"
-              widths={
-                Array [
-                  "xs",
-                  "sm",
-                  "md",
-                  "lg",
-                  "xl",
-                ]
-              }
+            <GenerateBnt
+              handleOnGenerateBntClick={[Function]}
+              isGenerateBntDisabled={[Function]}
             >
-              <div
-                className="col"
+              <Col
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
               >
                 <div
-                  className="text-center"
+                  className="col"
                 >
-                  <Button
-                    color="primary"
-                    disabled={true}
-                    onClick={[Function]}
-                    size="lg"
-                    tag="button"
+                  <div
+                    className="text-center"
                   >
-                    <button
-                      aria-label={null}
-                      className="btn btn-primary btn-lg disabled"
+                    <Button
+                      color="primary"
                       disabled={true}
                       onClick={[Function]}
-                      type="button"
+                      size="lg"
+                      tag="button"
                     >
-                      Generate Plot
-                    </button>
-                  </Button>
+                      <button
+                        aria-label={null}
+                        className="btn btn-primary btn-lg disabled"
+                        disabled={true}
+                        onClick={[Function]}
+                        type="button"
+                      >
+                        Generate Plot
+                      </button>
+                    </Button>
+                  </div>
                 </div>
-              </div>
-            </Col>
+              </Col>
+            </GenerateBnt>
           </form>
         </Form>
       </div>
