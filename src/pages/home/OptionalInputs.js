@@ -5,11 +5,6 @@ import { OPTIONAL_RESOURCES } from './../../common/const';
 const OPTIONAL_RESOURCES_SINGULAR = OPTIONAL_RESOURCES.map(r => r.singular);
 
 class OptionalInputs extends Component {
-
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         const {visibles, toggleVisibilityFn} = this.props;
         return (
@@ -30,11 +25,6 @@ class OptionalInputs extends Component {
 }
 
 class OptionalInputBnt extends Component {
-
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         const
             {name, toggleVisibilityFn, visible} = this.props,
