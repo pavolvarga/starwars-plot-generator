@@ -1,148 +1,16 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Component } from 'react';
-import { Col, FormGroup, Label, Input, Form, Button, Container } from 'reactstrap';
-import { OPTIONAL_RESOURCES } from './../common/const';
-import { loadStarWarsData } from './../common/util';
+import { Form, Container } from 'reactstrap';
+import { loadStarWarsData } from './../../common/util';
+import { StarWarsInput } from "./StarWarsInput";
+import { GenerateBnt } from "./GenerateBnt";
+import { OptionalInputs } from "./OptionalInputs";
+import { OPTIONAL_RESOURCES } from './../../common/const';
 
 const OPTIONAL_RESOURCES_SINGULAR = OPTIONAL_RESOURCES.map(r => r.singular);
 
 function getPluralName(singularName) {
     return OPTIONAL_RESOURCES.filter(r => r.singular === singularName)[0].plural;
-}
-
-class StarWarsInput extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            selectedFromData: false
-        };
-        this.handleOnChange = this.handleOnChange.bind(this);
-    }
-
-    handleOnChange(value, data, setFn) {
-
-        //ignore empty or too short text
-        if (!value || value.length < 3) {
-            this.setState(() => {
-                return {selectedFromData: false}
-            });
-            setFn(undefined);
-            return;
-        }
-
-        if (data.find(x => x === value)) {
-            this.setState(() => {
-                return {selectedFromData: true}
-            });
-            setFn(value);
-        }
-        else {
-            this.setState(() => {
-                return {selectedFromData: false}
-            });
-            setFn(undefined);
-        }
-    }
-
-    render() {
-        const {id, name, label, placeholder, data, setFn, visible} = this.props;
-
-        if (!visible) {
-            return null;
-        }
-
-        return (
-            <Col>
-                <FormGroup size="lg" row>
-                    <Label for="input-person" size="lg">{label}</Label>
-                    <Input
-                        id={id}
-                        name={name}
-                        placeholder={placeholder}
-                        bsSize="lg"
-                        valid={this.state.selectedFromData ? true : undefined}
-                        onChange={e => this.handleOnChange(e.target.value, data, setFn)}
-                        disabled={data.length === 0} />
-                </FormGroup>
-            </Col>
-        );
-    }
-}
-
-class GenerateBnt extends Component {
-
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-
-        const {isGenerateBntDisabled, handleOnGenerateBntClick} = this.props;
-
-        return (
-            <Col>
-                <div className="text-center">
-                    <Button
-                        color="primary"
-                        size="lg"
-                        onClick={e => handleOnGenerateBntClick()}
-                        disabled={isGenerateBntDisabled()}>
-                        Generate Plot
-                    </Button>
-                </div>
-            </Col>
-        );
-    }
-}
-
-class OptionalInputs extends Component {
-
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        const {visibles, toggleVisibilityFn} = this.props;
-        return (
-            <Col>
-                <div className="row add-space button-row-space">
-                    { OPTIONAL_RESOURCES_SINGULAR.map(
-                        (resource, idx) => <OptionalInputBnt
-                            key={idx}
-                            name={resource}
-                            toggleVisibilityFn={toggleVisibilityFn}
-                            visible={visibles[idx]}
-                        />
-                    )}
-                </div>
-            </Col>
-        )
-    }
-}
-
-class OptionalInputBnt extends Component {
-
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        const
-            {name, toggleVisibilityFn, visible} = this.props,
-            text = visible ? `Remove ${name}` : `Add ${name}`;
-        return (
-            <div className="col-sm-4">
-                <Button
-                    color="secondary"
-                    size="lg"
-                    onClick={e => toggleVisibilityFn(name)}
-                >
-                    {text}
-                </Button>
-            </div>
-        );
-    }
 }
 
 class InputForm extends Component {

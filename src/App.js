@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, withRouter } from "react-router-dom";
 import { Spinner } from 'reactstrap';
-import { InputForm } from './pages/HomePage';
+import { InputForm } from './pages/home/HomePage';
 import { Plot } from './pages/ResultPage';
 import { loadStarWarsData } from './common/util';
 import { RESOURCES } from './common/const';
