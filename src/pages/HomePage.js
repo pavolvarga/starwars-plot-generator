@@ -183,8 +183,11 @@ class InputForm extends Component {
     setSelectedValue(name, value) {
         const
             resource = this.state[name],
-            updated = Object.assign(resource, {selected: value});
-        this.setState(state => Object.assign(state, updated));
+            updated = Object.assign(resource, {selected: value}),
+            obj = {};
+
+        obj[name] = updated;
+        this.setState(state => Object.assign(state, obj));
     }
 
     loadResourceData(name) {
