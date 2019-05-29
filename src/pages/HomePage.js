@@ -171,10 +171,10 @@ class InputForm extends Component {
     }
 
     handleOnGenerateBntClick() {
-        const state = {
-            person: this.state.selected.person,
-            planet: this.state.selected.planet
-        };
+        const state = {};
+        Object.keys(this.state).map(key => {
+            state[key] = {visible: this.state[key].visible, selected: this.state[key].selected};
+        });
         this.props.history.push({
             pathname: '/plot',
             state

@@ -9,7 +9,7 @@ class Plot extends Component {
 
     render() {
 
-        const {person, planet} = this.props.history.location.state;
+        const {person, planet, starship, vehicle, species} = this.props.history.location.state;
 
         return (
             <div>
@@ -18,7 +18,7 @@ class Plot extends Component {
                         <Col>
                             <div className="text-center">
                                 <h2>Header</h2>
-                                <h4>{`${person} and ${planet}`}</h4>
+                                <h4>{`${person.selected} and ${planet.selected} and ${starship.selected} and ${vehicle.selected} and ${species.selected}`}</h4>
                             </div>
                         </Col>
                         <Col>
