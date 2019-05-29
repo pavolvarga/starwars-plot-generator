@@ -38,7 +38,12 @@ class StarWarsInput extends Component {
     }
 
     render() {
-        const {id, name, label, placeholder, data, setFn} = this.props;
+        const {id, name, label, placeholder, data, setFn, visible} = this.props;
+
+        if (!visible) {
+            return null;
+        }
+
         return (
             <Col>
                 <FormGroup size="lg" row>
@@ -89,16 +94,21 @@ class InputForm extends Component {
         super(props);
 
         this.state = {
-           selected: {
-               person: undefined,
-               planet: undefined
-           }
+            person: {visible: true, selected: undefined},
+            planet: {visible: true, selected: undefined},
+            starship: {visible: false, selected: undefined},
+            vehicle: {visible: false, selected: undefined},
+            species: {visible: false, selected: undefined}
         };
 
         this.setPerson = this.setPerson.bind(this);
         this.setPlanet = this.setPlanet.bind(this);
+        this.setStarship = this.setStarship.bind(this);
+        this.setVehicle = this.setVehicle.bind(this);
+        this.setSpecies = this.setSpecies.bind(this);
         this.isGenerateBntDisabled = this.isGenerateBntDisabled.bind(this);
         this.handleOnGenerateBntClick = this.handleOnGenerateBntClick.bind(this);
+        this.toggleVisibility = this.toggleVisibility.bind(this);
     }
 
     setPerson(person) {
@@ -113,8 +123,26 @@ class InputForm extends Component {
         }));
     }
 
+    setStarship(starship) {
+        this.setState((state) => ({
+            selected: {...state.selected, starship}
+        }));
+    }
+
+    setVehicle(vehicle) {
+        this.setState((state) => ({
+            selected: {...state.selected, vehicle}
+        }));
+    }
+
+    setSpecies(species) {
+        this.setState((state) => ({
+            selected: {...state.selected, species}
+        }));
+    }
+
     isGenerateBntDisabled() {
-        return !(!!this.state.selected.person && !!this.state.selected.planet);
+        return !(!!this.state.person.selected && !!this.state.planet.selected);
     }
 
     handleOnGenerateBntClick() {
@@ -128,6 +156,13 @@ class InputForm extends Component {
         });
     }
 
+    toggleVisibility(name) {
+        const
+            resource = this.state[name],
+            toggled = Object.assign(resource, {visible: !resource.visible});
+        this.setState(state => Object.assign(state, toggled));
+    }
+
     render() {
 
         const {people, planets} = this.props.customProps;
@@ -137,7 +172,8 @@ class InputForm extends Component {
             label: "Character",
             placeholder: "Please enter a character",
             data: people,
-            setFn: this.setPerson
+            setFn: this.setPerson,
+            visible: this.state.person.visible
         };
         const planetProps = {
             id: "input-planet",
@@ -145,8 +181,37 @@ class InputForm extends Component {
             label: "Planet",
             placeholder: "Please enter a planet",
             data: planets,
-            setFn: this.setPlanet
+            setFn: this.setPlanet,
+            visible: this.state.planet.visible
         };
+        const starshipProps = {
+            id: "input-starship",
+            name: "input-starship",
+            label: "Starship",
+            placeholder: "Please enter a starship",
+            data: [],
+            setFn: this.setStarship,
+            visible: this.state.starship.visible
+        };
+        const vehicleProps = {
+            id: "input-vehicle",
+            name: "input-vehicle",
+            label: "Vehicle",
+            placeholder: "Please enter a vehicle",
+            data: [],
+            setFn: this.setVehicle,
+            visible: this.state.vehicle.visible
+        };
+        const speciesProps = {
+            id: "input-species",
+            name: "input-species",
+            label: "Species",
+            placeholder: "Please enter a species",
+            data: [],
+            setFn: this.setSpecies,
+            visible: this.state.species.visible
+        };
+
         const generateBntProps = {
             isGenerateBntDisabled: this.isGenerateBntDisabled,
             handleOnGenerateBntClick: this.handleOnGenerateBntClick
@@ -158,6 +223,40 @@ class InputForm extends Component {
                     <Form>
                         <StarWarsInput {...personProps} />
                         <StarWarsInput {...planetProps} />
+                        <StarWarsInput {...starshipProps} />
+                        <StarWarsInput {...vehicleProps} />
+                        <StarWarsInput {...speciesProps} />
+                        <Col>
+                            <div className="row add-space button-row-space">
+                                <div className="col-sm-4">
+                                    <Button
+                                        color="secondary"
+                                        size="lg"
+                                        onClick={e => this.toggleVisibility('starship')}
+                                    >
+                                        Add Starship
+                                    </Button>
+                                </div>
+                                <div className="col-sm-4">
+                                    <Button
+                                        color="secondary"
+                                        size="lg"
+                                        onClick={e => this.toggleVisibility('vehicle')}
+                                    >
+                                        Add Vehicle
+                                    </Button>
+                                </div>
+                                <div className="col-sm-4">
+                                    <Button
+                                        color="secondary"
+                                        size="lg"
+                                        onClick={e => this.toggleVisibility('species')}
+                                    >
+                                        Add Species
+                                    </Button>
+                                </div>
+                            </div>
+                        </Col>
                         <GenerateBnt {...generateBntProps} />
                     </Form>
                 </Container>
