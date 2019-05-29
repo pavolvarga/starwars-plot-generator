@@ -2,6 +2,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Component } from 'react';
 import { Col, FormGroup, Label, Input, Form, Button, Container } from 'reactstrap';
 
+const OPTIONAL_RESOURCES = ['starship', 'vehicle', 'species'];
+
 class StarWarsInput extends Component {
 
     constructor(props) {
@@ -83,6 +85,48 @@ class GenerateBnt extends Component {
                     </Button>
                 </div>
             </Col>
+        );
+    }
+}
+
+class OptionalInputs extends Component {
+
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        const {toggleVisibilityFn} = this.props;
+        return (
+            <Col>
+                <div className="row add-space button-row-space">
+                    { OPTIONAL_RESOURCES.map(
+                        name => <OptionalInputBnt name={name} toggleVisibilityFn={toggleVisibilityFn}/>
+                    )}
+                </div>
+            </Col>
+        )
+    }
+}
+
+class OptionalInputBnt extends Component {
+
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        const {name, toggleVisibilityFn} = this.props;
+        return (
+            <div className="col-sm-4">
+                <Button
+                    color="secondary"
+                    size="lg"
+                    onClick={e => toggleVisibilityFn(name)}
+                >
+                    Add Starship
+                </Button>
+            </div>
         );
     }
 }
@@ -209,37 +253,7 @@ class InputForm extends Component {
                         <StarWarsInput {...starshipProps} />
                         <StarWarsInput {...vehicleProps} />
                         <StarWarsInput {...speciesProps} />
-                        <Col>
-                            <div className="row add-space button-row-space">
-                                <div className="col-sm-4">
-                                    <Button
-                                        color="secondary"
-                                        size="lg"
-                                        onClick={e => this.toggleVisibility('starship')}
-                                    >
-                                        Add Starship
-                                    </Button>
-                                </div>
-                                <div className="col-sm-4">
-                                    <Button
-                                        color="secondary"
-                                        size="lg"
-                                        onClick={e => this.toggleVisibility('vehicle')}
-                                    >
-                                        Add Vehicle
-                                    </Button>
-                                </div>
-                                <div className="col-sm-4">
-                                    <Button
-                                        color="secondary"
-                                        size="lg"
-                                        onClick={e => this.toggleVisibility('species')}
-                                    >
-                                        Add Species
-                                    </Button>
-                                </div>
-                            </div>
-                        </Col>
+                        <OptionalInputs toggleVisibilityFn={this.toggleVisibility} />
                         <GenerateBnt {...generateBntProps} />
                     </Form>
                 </Container>
