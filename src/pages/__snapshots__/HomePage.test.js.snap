@@ -30,6 +30,7 @@ exports[`HomePage should render correctly in "debug" mode 1`] = `
               name="input-person"
               placeholder="Please enter a character"
               setFn={[Function]}
+              visible={true}
             >
               <Col
                 tag="div"
@@ -78,6 +79,7 @@ exports[`HomePage should render correctly in "debug" mode 1`] = `
                       </Label>
                       <Input
                         bsSize="lg"
+                        disabled={true}
                         id="input-person"
                         name="input-person"
                         onChange={[Function]}
@@ -86,6 +88,7 @@ exports[`HomePage should render correctly in "debug" mode 1`] = `
                       >
                         <input
                           className="form-control-lg form-control"
+                          disabled={true}
                           id="input-person"
                           name="input-person"
                           onChange={[Function]}
@@ -105,6 +108,7 @@ exports[`HomePage should render correctly in "debug" mode 1`] = `
               name="input-planet"
               placeholder="Please enter a planet"
               setFn={[Function]}
+              visible={true}
             >
               <Col
                 tag="div"
@@ -153,6 +157,7 @@ exports[`HomePage should render correctly in "debug" mode 1`] = `
                       </Label>
                       <Input
                         bsSize="lg"
+                        disabled={true}
                         id="input-planet"
                         name="input-planet"
                         onChange={[Function]}
@@ -161,6 +166,7 @@ exports[`HomePage should render correctly in "debug" mode 1`] = `
                       >
                         <input
                           className="form-control-lg form-control"
+                          disabled={true}
                           id="input-planet"
                           name="input-planet"
                           onChange={[Function]}
@@ -173,6 +179,143 @@ exports[`HomePage should render correctly in "debug" mode 1`] = `
                 </div>
               </Col>
             </StarWarsInput>
+            <StarWarsInput
+              data={Array []}
+              id="input-starship"
+              label="Starship"
+              name="input-starship"
+              placeholder="Please enter a starship"
+              setFn={[Function]}
+              visible={false}
+            />
+            <StarWarsInput
+              data={Array []}
+              id="input-vehicle"
+              label="Vehicle"
+              name="input-vehicle"
+              placeholder="Please enter a vehicle"
+              setFn={[Function]}
+              visible={false}
+            />
+            <StarWarsInput
+              data={Array []}
+              id="input-species"
+              label="Species"
+              name="input-species"
+              placeholder="Please enter a species"
+              setFn={[Function]}
+              visible={false}
+            />
+            <OptionalInputs
+              toggleVisibilityFn={[Function]}
+              visibles={
+                Array [
+                  false,
+                  false,
+                  false,
+                ]
+              }
+            >
+              <Col
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <div
+                  className="col"
+                >
+                  <div
+                    className="row add-space button-row-space"
+                  >
+                    <OptionalInputBnt
+                      key="0"
+                      name="starship"
+                      toggleVisibilityFn={[Function]}
+                      visible={false}
+                    >
+                      <div
+                        className="col-sm-4"
+                      >
+                        <Button
+                          color="secondary"
+                          onClick={[Function]}
+                          size="lg"
+                          tag="button"
+                        >
+                          <button
+                            aria-label={null}
+                            className="btn btn-secondary btn-lg"
+                            onClick={[Function]}
+                            type="button"
+                          >
+                            Add starship
+                          </button>
+                        </Button>
+                      </div>
+                    </OptionalInputBnt>
+                    <OptionalInputBnt
+                      key="1"
+                      name="vehicle"
+                      toggleVisibilityFn={[Function]}
+                      visible={false}
+                    >
+                      <div
+                        className="col-sm-4"
+                      >
+                        <Button
+                          color="secondary"
+                          onClick={[Function]}
+                          size="lg"
+                          tag="button"
+                        >
+                          <button
+                            aria-label={null}
+                            className="btn btn-secondary btn-lg"
+                            onClick={[Function]}
+                            type="button"
+                          >
+                            Add vehicle
+                          </button>
+                        </Button>
+                      </div>
+                    </OptionalInputBnt>
+                    <OptionalInputBnt
+                      key="2"
+                      name="species"
+                      toggleVisibilityFn={[Function]}
+                      visible={false}
+                    >
+                      <div
+                        className="col-sm-4"
+                      >
+                        <Button
+                          color="secondary"
+                          onClick={[Function]}
+                          size="lg"
+                          tag="button"
+                        >
+                          <button
+                            aria-label={null}
+                            className="btn btn-secondary btn-lg"
+                            onClick={[Function]}
+                            type="button"
+                          >
+                            Add species
+                          </button>
+                        </Button>
+                      </div>
+                    </OptionalInputBnt>
+                  </div>
+                </div>
+              </Col>
+            </OptionalInputs>
             <GenerateBnt
               handleOnGenerateBntClick={[Function]}
               isGenerateBntDisabled={[Function]}

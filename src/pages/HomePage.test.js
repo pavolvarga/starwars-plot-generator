@@ -16,15 +16,13 @@ describe('HomePage', () => {
         expect(component).toMatchSnapshot();
     });
 
-    describe('generate button dissabled propery', () => {
+    describe('generate button disabled property', () => {
        it('should be false if input values are set', () => {
 
            const component = createInputForm();
            component.setState({
-               selected: {
-                   person: 'Luke Skywalker',
-                   planet: 'Tatooine'
-               }
+               person: {selected: 'Luke Skywalker'},
+               planet: {selected: 'Tatooine'}
            });
 
            const result = component.instance().isGenerateBntDisabled();
@@ -35,23 +33,21 @@ describe('HomePage', () => {
 
            const component = createInputForm();
            component.setState({
-               selected: {
-                   person: undefined,
-                   planet: 'Tatooine'
-               }
+               person: {selected: 'Luke Skywalker'},
+               planet: {selected: undefined}
            });
 
            const result = component.instance().isGenerateBntDisabled();
 
            expect(result).toEqual(true);
        });
-        it('should be true if one input value is an empty string', () => {
+       it('should be true if one input value is an empty string', () => {
 
             const component = createInputForm();
             component.setState({
                 selected: {
-                    person: '',
-                    planet: 'Tatooine'
+                    person: {selected: 'Luke Skywalker'},
+                    planet: {selected: ''}
                 }
             });
 
