@@ -20,7 +20,7 @@ function Header() {
 function Loader() {
     return (
         <div className="text-center">
-            <h3>Please wait while star wars data are being loaded</h3>
+            <h3>Please wait while star wars data is being loaded</h3>
             <Spinner style={{ width: '5rem', height: '5rem' }} />{' '}
         </div>
     );
