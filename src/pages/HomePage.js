@@ -1,8 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Component } from 'react';
 import { Col, FormGroup, Label, Input, Form, Button, Container } from 'reactstrap';
-
-const OPTIONAL_RESOURCES = ['starship', 'vehicle', 'species'];
+import { OPTIONAL_RESOURCES_SINGULAR } from './../common/const';
 
 class StarWarsInput extends Component {
 
@@ -100,9 +99,9 @@ class OptionalInputs extends Component {
         return (
             <Col>
                 <div className="row add-space button-row-space">
-                    { OPTIONAL_RESOURCES.map(
-                        (name, idx) => <OptionalInputBnt
-                            name={name}
+                    { OPTIONAL_RESOURCES_SINGULAR.map(
+                        (resource, idx) => <OptionalInputBnt
+                            name={resource}
                             toggleVisibilityFn={toggleVisibilityFn}
                             visible={visibles[idx]}
                         />
@@ -253,7 +252,7 @@ class InputForm extends Component {
         const optionalInputsProps = {
             toggleVisibilityFn: this.toggleVisibility,
             //an array with boolean values representing weather an input for an optional resource is visible or not
-            visibles: OPTIONAL_RESOURCES.map(x => this.state[x].visible)
+            visibles: OPTIONAL_RESOURCES_SINGULAR.map(x => this.state[x].visible)
         };
 
         return (

@@ -4,7 +4,7 @@ import { Spinner } from 'reactstrap';
 import { InputForm } from './pages/HomePage';
 import { Plot } from './pages/ResultPage';
 import { loadStarWarsData } from './common/util';
-import { RESOURCE_PEOPLE, RESOURCE_PLANETS } from './common/const';
+import { RESOURCES } from './common/const';
 
 const StarWarsForm = withRouter(InputForm);
 const StarWarsPlot = withRouter(Plot);
@@ -56,8 +56,8 @@ class App extends Component {
     componentDidMount() {
         const reject = (err) => console.error(err);
 
-        loadStarWarsData(RESOURCE_PEOPLE, this.setPeople, reject);
-        loadStarWarsData(RESOURCE_PLANETS, this.setPlanets, reject);
+        loadStarWarsData(RESOURCES.PEOPLE.plural, this.setPeople, reject);
+        loadStarWarsData(RESOURCES.PLANETS.plural, this.setPlanets, reject);
     }
 
     loadedInitialData() {
