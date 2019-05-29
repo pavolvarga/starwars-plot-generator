@@ -143,11 +143,11 @@ class InputForm extends Component {
         super(props);
 
         this.state = {
-            person: {visible: true, selected: undefined},
-            planet: {visible: true, selected: undefined},
-            starship: {visible: false, selected: undefined},
-            vehicle: {visible: false, selected: undefined},
-            species: {visible: false, selected: undefined}
+            person: {visible: true, selected: undefined, data: props.customProps.people},
+            planet: {visible: true, selected: undefined, data: props.customProps.planets},
+            starship: {visible: false, selected: undefined, data: []},
+            vehicle: {visible: false, selected: undefined, data: []},
+            species: {visible: false, selected: undefined, data: []}
         };
 
         this.setSelectedValue = this.setSelectedValue.bind(this);
@@ -187,13 +187,12 @@ class InputForm extends Component {
 
     render() {
 
-        const {people, planets} = this.props.customProps;
         const personProps = {
             id: "input-person",
             name: "input-person",
             label: "Character",
             placeholder: "Please enter a character",
-            data: people,
+            data: this.state.person.data,
             setFn: (function setPerson(value) {
                 this.setSelectedValue('person', value);
             }).bind(this),
@@ -204,7 +203,7 @@ class InputForm extends Component {
             name: "input-planet",
             label: "Planet",
             placeholder: "Please enter a planet",
-            data: planets,
+            data: this.state.planet.data,
             setFn: (function setPlanet(value) {
                 this.setSelectedValue('planet', value);
             }).bind(this),
