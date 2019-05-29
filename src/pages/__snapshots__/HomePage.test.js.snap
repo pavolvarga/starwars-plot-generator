@@ -1,126 +1,220 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`HomePage should render correctly in "debug" mode 1`] = `
-<div>
-  <Container
-    tag="div"
-  >
-    <Form
-      tag="form"
+<InputForm
+  customProps={
+    Object {
+      "people": Array [],
+      "planets": Array [],
+    }
+  }
+  debug={true}
+>
+  <div>
+    <Container
+      tag="div"
     >
-      <Col
-        tag="div"
-        widths={
-          Array [
-            "xs",
-            "sm",
-            "md",
-            "lg",
-            "xl",
-          ]
-        }
+      <div
+        className="container"
       >
-        <FormGroup
-          row={true}
-          size="lg"
-          tag="div"
+        <Form
+          tag="form"
         >
-          <Label
-            for="input-person"
-            size="lg"
-            tag="label"
-            widths={
-              Array [
-                "xs",
-                "sm",
-                "md",
-                "lg",
-                "xl",
-              ]
-            }
+          <form
+            className=""
           >
-            Character
-          </Label>
-          <Input
-            bsSize="lg"
-            id="input-person"
-            name="input-person"
-            onChange={[Function]}
-            placeholder="Please enter a character"
-            type="text"
-          />
-        </FormGroup>
-      </Col>
-      <Col
-        tag="div"
-        widths={
-          Array [
-            "xs",
-            "sm",
-            "md",
-            "lg",
-            "xl",
-          ]
-        }
-      >
-        <FormGroup
-          row={true}
-          size="lg"
-          tag="div"
-        >
-          <Label
-            for="input-planet"
-            size="lg"
-            tag="label"
-            widths={
-              Array [
-                "xs",
-                "sm",
-                "md",
-                "lg",
-                "xl",
-              ]
-            }
-          >
-            Planet
-          </Label>
-          <Input
-            bsSize="lg"
-            id="input-planet"
-            name="input-planet"
-            onChange={[Function]}
-            placeholder="Please enter a planet"
-            type="text"
-          />
-        </FormGroup>
-      </Col>
-      <Col
-        tag="div"
-        widths={
-          Array [
-            "xs",
-            "sm",
-            "md",
-            "lg",
-            "xl",
-          ]
-        }
-      >
-        <div
-          className="text-center"
-        >
-          <Button
-            color="primary"
-            disabled={true}
-            onClick={[Function]}
-            size="lg"
-            tag="button"
-          >
-            Generate Plot
-          </Button>
-        </div>
-      </Col>
-    </Form>
-  </Container>
-</div>
+            <StarWarsInput
+              data={Array []}
+              id="input-person"
+              label="Character"
+              name="input-person"
+              placeholder="Please enter a character"
+              setFn={[Function]}
+            >
+              <Col
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <div
+                  className="col"
+                >
+                  <FormGroup
+                    row={true}
+                    size="lg"
+                    tag="div"
+                  >
+                    <div
+                      className="row form-group"
+                      size="lg"
+                    >
+                      <Label
+                        for="input-person"
+                        size="lg"
+                        tag="label"
+                        widths={
+                          Array [
+                            "xs",
+                            "sm",
+                            "md",
+                            "lg",
+                            "xl",
+                          ]
+                        }
+                      >
+                        <label
+                          className="col-form-label-lg"
+                          htmlFor="input-person"
+                        >
+                          Character
+                        </label>
+                      </Label>
+                      <Input
+                        bsSize="lg"
+                        id="input-person"
+                        name="input-person"
+                        onChange={[Function]}
+                        placeholder="Please enter a character"
+                        type="text"
+                      >
+                        <input
+                          className="form-control-lg form-control"
+                          id="input-person"
+                          name="input-person"
+                          onChange={[Function]}
+                          placeholder="Please enter a character"
+                          type="text"
+                        />
+                      </Input>
+                    </div>
+                  </FormGroup>
+                </div>
+              </Col>
+            </StarWarsInput>
+            <StarWarsInput
+              data={Array []}
+              id="input-planet"
+              label="Planet"
+              name="input-planet"
+              placeholder="Please enter a planet"
+              setFn={[Function]}
+            >
+              <Col
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <div
+                  className="col"
+                >
+                  <FormGroup
+                    row={true}
+                    size="lg"
+                    tag="div"
+                  >
+                    <div
+                      className="row form-group"
+                      size="lg"
+                    >
+                      <Label
+                        for="input-person"
+                        size="lg"
+                        tag="label"
+                        widths={
+                          Array [
+                            "xs",
+                            "sm",
+                            "md",
+                            "lg",
+                            "xl",
+                          ]
+                        }
+                      >
+                        <label
+                          className="col-form-label-lg"
+                          htmlFor="input-person"
+                        >
+                          Planet
+                        </label>
+                      </Label>
+                      <Input
+                        bsSize="lg"
+                        id="input-planet"
+                        name="input-planet"
+                        onChange={[Function]}
+                        placeholder="Please enter a planet"
+                        type="text"
+                      >
+                        <input
+                          className="form-control-lg form-control"
+                          id="input-planet"
+                          name="input-planet"
+                          onChange={[Function]}
+                          placeholder="Please enter a planet"
+                          type="text"
+                        />
+                      </Input>
+                    </div>
+                  </FormGroup>
+                </div>
+              </Col>
+            </StarWarsInput>
+            <Col
+              tag="div"
+              widths={
+                Array [
+                  "xs",
+                  "sm",
+                  "md",
+                  "lg",
+                  "xl",
+                ]
+              }
+            >
+              <div
+                className="col"
+              >
+                <div
+                  className="text-center"
+                >
+                  <Button
+                    color="primary"
+                    disabled={true}
+                    onClick={[Function]}
+                    size="lg"
+                    tag="button"
+                  >
+                    <button
+                      aria-label={null}
+                      className="btn btn-primary btn-lg disabled"
+                      disabled={true}
+                      onClick={[Function]}
+                      type="button"
+                    >
+                      Generate Plot
+                    </button>
+                  </Button>
+                </div>
+              </div>
+            </Col>
+          </form>
+        </Form>
+      </div>
+    </Container>
+  </div>
+</InputForm>
 `;
