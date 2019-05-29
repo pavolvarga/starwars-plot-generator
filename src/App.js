@@ -54,6 +54,7 @@ class App extends Component {
     }
 
     componentDidMount() {
+        //TODO: in case of an error show some info also to a user
         const reject = (err) => console.error(err);
 
         loadStarWarsData(RESOURCES.PEOPLE.plural, this.setPeople, reject);
