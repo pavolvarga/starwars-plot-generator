@@ -5,7 +5,7 @@ class GenerateBnt extends Component {
 
     render() {
 
-        const {isGenerateBntDisabled, handleOnGenerateBntClick} = this.props;
+        const {isGenerateBntDisabled, generatePlot} = this.props;
 
         return (
             <Col>
@@ -13,7 +13,7 @@ class GenerateBnt extends Component {
                     <Button
                         color="primary"
                         size="lg"
-                        onClick={e => handleOnGenerateBntClick()}
+                        onClick={e => generatePlot()}
                         disabled={isGenerateBntDisabled()}>
                         Generate Plot
                     </Button>

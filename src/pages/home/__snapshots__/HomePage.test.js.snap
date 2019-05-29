@@ -317,7 +317,7 @@ exports[`HomePage should render correctly in "debug" mode 1`] = `
               </Col>
             </OptionalInputs>
             <GenerateBnt
-              handleOnGenerateBntClick={[Function]}
+              generatePlot={[Function]}
               isGenerateBntDisabled={[Function]}
             >
               <Col

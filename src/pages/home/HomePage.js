@@ -30,7 +30,7 @@ class InputForm extends Component {
         this.setSelectedValue = this.setSelectedValue.bind(this);
         this.toggleVisibility = this.toggleVisibility.bind(this);
         this.isGenerateBntDisabled = this.isGenerateBntDisabled.bind(this);
-        this.handleOnGenerateBntClick = this.handleOnGenerateBntClick.bind(this);
+        this.generatePlot = this.generatePlot.bind(this);
         this.loadResourceData = this.loadResourceData.bind(this);
     }
 
@@ -38,7 +38,7 @@ class InputForm extends Component {
         return !(!!this.state.person.selected && !!this.state.planet.selected);
     }
 
-    handleOnGenerateBntClick() {
+    generatePlot() {
         const state = {};
         Object.keys(this.state).map(key => {
             state[key] = {visible: this.state[key].visible, selected: this.state[key].selected};
@@ -160,7 +160,7 @@ class InputForm extends Component {
 
         const generateBntProps = {
             isGenerateBntDisabled: this.isGenerateBntDisabled,
-            handleOnGenerateBntClick: this.handleOnGenerateBntClick
+            generatePlot: this.generatePlot
         };
 
         const optionalInputsProps = {
