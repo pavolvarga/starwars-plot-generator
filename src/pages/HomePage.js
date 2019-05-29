@@ -96,12 +96,16 @@ class OptionalInputs extends Component {
     }
 
     render() {
-        const {toggleVisibilityFn} = this.props;
+        const {visibles, toggleVisibilityFn} = this.props;
         return (
             <Col>
                 <div className="row add-space button-row-space">
                     { OPTIONAL_RESOURCES.map(
-                        name => <OptionalInputBnt name={name} toggleVisibilityFn={toggleVisibilityFn}/>
+                        (name, idx) => <OptionalInputBnt
+                            name={name}
+                            toggleVisibilityFn={toggleVisibilityFn}
+                            visible={visibles[idx]}
+                        />
                     )}
                 </div>
             </Col>
@@ -116,7 +120,9 @@ class OptionalInputBnt extends Component {
     }
 
     render() {
-        const {name, toggleVisibilityFn} = this.props;
+        const
+            {name, toggleVisibilityFn, visible} = this.props,
+            text = visible ? `Remove ${name}` : `Add ${name}`;
         return (
             <div className="col-sm-4">
                 <Button
@@ -124,7 +130,7 @@ class OptionalInputBnt extends Component {
                     size="lg"
                     onClick={e => toggleVisibilityFn(name)}
                 >
-                    Add Starship
+                    {text}
                 </Button>
             </div>
         );
@@ -244,6 +250,12 @@ class InputForm extends Component {
             handleOnGenerateBntClick: this.handleOnGenerateBntClick
         };
 
+        const optionalInputsProps = {
+            toggleVisibilityFn: this.toggleVisibility,
+            //an array with boolean values representing weather an input for an optional resource is visible or not
+            visibles: OPTIONAL_RESOURCES.map(x => this.state[x].visible)
+        };
+
         return (
             <div>
                 <Container>
@@ -253,7 +265,7 @@ class InputForm extends Component {
                         <StarWarsInput {...starshipProps} />
                         <StarWarsInput {...vehicleProps} />
                         <StarWarsInput {...speciesProps} />
-                        <OptionalInputs toggleVisibilityFn={this.toggleVisibility} />
+                        <OptionalInputs {...optionalInputsProps} />
                         <GenerateBnt {...generateBntProps} />
                     </Form>
                 </Container>
