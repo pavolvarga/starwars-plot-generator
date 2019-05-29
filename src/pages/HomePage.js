@@ -109,6 +109,7 @@ class OptionalInputs extends Component {
                 <div className="row add-space button-row-space">
                     { OPTIONAL_RESOURCES_SINGULAR.map(
                         (resource, idx) => <OptionalInputBnt
+                            key={idx}
                             name={resource}
                             toggleVisibilityFn={toggleVisibilityFn}
                             visible={visibles[idx]}
