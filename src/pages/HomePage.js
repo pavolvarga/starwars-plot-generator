@@ -101,44 +101,10 @@ class InputForm extends Component {
             species: {visible: false, selected: undefined}
         };
 
-        this.setPerson = this.setPerson.bind(this);
-        this.setPlanet = this.setPlanet.bind(this);
-        this.setStarship = this.setStarship.bind(this);
-        this.setVehicle = this.setVehicle.bind(this);
-        this.setSpecies = this.setSpecies.bind(this);
+        this.setSelectedValue = this.setSelectedValue.bind(this);
+        this.toggleVisibility = this.toggleVisibility.bind(this);
         this.isGenerateBntDisabled = this.isGenerateBntDisabled.bind(this);
         this.handleOnGenerateBntClick = this.handleOnGenerateBntClick.bind(this);
-        this.toggleVisibility = this.toggleVisibility.bind(this);
-    }
-
-    setPerson(person) {
-        this.setState((state) => ({
-            selected: {...state.selected, person}
-        }));
-    }
-
-    setPlanet(planet) {
-        this.setState((state) => ({
-            selected: {...state.selected, planet}
-        }));
-    }
-
-    setStarship(starship) {
-        this.setState((state) => ({
-            selected: {...state.selected, starship}
-        }));
-    }
-
-    setVehicle(vehicle) {
-        this.setState((state) => ({
-            selected: {...state.selected, vehicle}
-        }));
-    }
-
-    setSpecies(species) {
-        this.setState((state) => ({
-            selected: {...state.selected, species}
-        }));
     }
 
     isGenerateBntDisabled() {
@@ -154,6 +120,13 @@ class InputForm extends Component {
             pathname: '/plot',
             state
         });
+    }
+
+    setSelectedValue(name, value) {
+        const
+            resource = this.state[name],
+            updated = Object.assign(resource, {selected: value});
+        this.setState(state => Object.assign(state, updated));
     }
 
     toggleVisibility(name) {
@@ -172,7 +145,9 @@ class InputForm extends Component {
             label: "Character",
             placeholder: "Please enter a character",
             data: people,
-            setFn: this.setPerson,
+            setFn: (function setPerson(value) {
+                this.setSelectedValue('person', value);
+            }).bind(this),
             visible: this.state.person.visible
         };
         const planetProps = {
@@ -181,7 +156,9 @@ class InputForm extends Component {
             label: "Planet",
             placeholder: "Please enter a planet",
             data: planets,
-            setFn: this.setPlanet,
+            setFn: (function setPlanet(value) {
+                this.setSelectedValue('planet', value);
+            }).bind(this),
             visible: this.state.planet.visible
         };
         const starshipProps = {
@@ -190,7 +167,9 @@ class InputForm extends Component {
             label: "Starship",
             placeholder: "Please enter a starship",
             data: [],
-            setFn: this.setStarship,
+            setFn: (function setStarship(value) {
+                this.setSelectedValue('starship', value);
+            }).bind(this),
             visible: this.state.starship.visible
         };
         const vehicleProps = {
@@ -199,7 +178,9 @@ class InputForm extends Component {
             label: "Vehicle",
             placeholder: "Please enter a vehicle",
             data: [],
-            setFn: this.setVehicle,
+            setFn: (function setVehicle(value) {
+                this.setSelectedValue('vehicle', value);
+            }).bind(this),
             visible: this.state.vehicle.visible
         };
         const speciesProps = {
@@ -208,7 +189,9 @@ class InputForm extends Component {
             label: "Species",
             placeholder: "Please enter a species",
             data: [],
-            setFn: this.setSpecies,
+            setFn: (function setSpecies(value) {
+                this.setSelectedValue('species', value);
+            }).bind(this),
             visible: this.state.species.visible
         };
 
