@@ -63,8 +63,9 @@ function loadStarWarsResource(resource, resolve, reject) {
             return data;
         })
         .then(data => [].concat.apply([], data))
-        //TODO: will all objects have an attribute name ?
-        .then(data => data.map(obj => obj.name))
+        .then(data => data.map(obj => {
+            return {name: obj.name, url: obj.url};
+        }))
         .then(names => names.sort())
         .then(resolve)
         .catch(reject);

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Form, Button, Container } from 'reactstrap';
-import FormGroup from "reactstrap/es/FormGroup";
+import { Col, Form, FormGroup, Button, Container } from 'reactstrap';
 import { generatePlot } from "./PlogGenerator";
 
 class GenerateNewPlotBnt extends Component {
@@ -39,6 +38,27 @@ const Title = (props) => {
     );
 };
 
+const ResourceLink = (props) => {
+    return (
+        <li key={props.key}>
+            <a href={props.url}>{props.url}</a>
+        </li>
+    );
+};
+
+const Resources = (props) => {
+    return (
+        <Col>
+            <div className="text-center result-space">
+                <h3>Used resources</h3>
+                <ul className="used-resources">
+                    {props.resources.map((url, idx) => <ResourceLink key={idx} url={url}/>)}
+                </ul>
+            </div>
+        </Col>
+    );
+};
+
 class Plot extends Component {
 
     constructor(props) {
@@ -52,7 +72,16 @@ class Plot extends Component {
 
     render() {
 
-        const {title, description} = generatePlot({...this.props.history.location.state});
+        const
+            inputs = this.props.history.location.state,
+            data = Object
+                .values(inputs)
+                .map(r => r.selected)
+                .filter(x => x),
+            names = data.map(x => x.name),
+            resources = data.map(x => x.url);
+
+        const {title, description} = generatePlot({...names});
 
         return (
             <div>
@@ -61,6 +90,7 @@ class Plot extends Component {
                         <FormGroup>
                             <Title title={title} />
                             <Description description={description}/>
+                            <Resources resources={resources} />
                             <GenerateNewPlotBnt generateNewPlot={this.generateNewPlot} />
                         </FormGroup>
                     </Form>
@@ -69,7 +99,5 @@ class Plot extends Component {
         )
     }
 }
-
-//TODO: list used resources
 
 export { Plot };

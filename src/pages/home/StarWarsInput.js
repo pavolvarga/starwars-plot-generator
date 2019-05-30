@@ -22,11 +22,12 @@ class StarWarsInput extends Component {
             return;
         }
 
-        if (data.find(x => x === value)) {
+        const foundIdx = data.findIndex(el => el.name === value);
+        if (foundIdx !== -1) {
             this.setState(() => {
                 return {selectedFromData: true}
             });
-            setFn(value);
+            setFn(data[foundIdx]);
         }
         else {
             this.setState(() => {
