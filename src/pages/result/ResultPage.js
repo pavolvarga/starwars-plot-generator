@@ -40,7 +40,7 @@ const Title = (props) => {
 
 const ResourceLink = (props) => {
     return (
-        <li key={props.key}>
+        <li key={props}>
             <a href={props.url}>{props.url}</a>
         </li>
     );
@@ -100,4 +100,4 @@ class Plot extends Component {
     }
 }
 
-export { Plot };
+export { Description, Title, ResourceLink, Resources, Plot };
