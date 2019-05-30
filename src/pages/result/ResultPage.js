@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Col, Form, Button, Container } from 'reactstrap';
+import FormGroup from "reactstrap/es/FormGroup";
+import { generatePlot } from "./PlogGenerator";
 
 class GenerateNewPlotBnt extends Component {
 
@@ -9,7 +11,7 @@ class GenerateNewPlotBnt extends Component {
 
         return (
             <Col>
-                <div className="text-center">
+                <div className="text-center result-space">
                     <Button color="primary" size="lg" onClick={e => generateNewPlot()}>Generate New Plot</Button>
                 </div>
             </Col>
@@ -17,32 +19,25 @@ class GenerateNewPlotBnt extends Component {
     }
 }
 
-class Summary extends Component {
+const Description = (props) => {
+    return (
+        <Col>
+            <div className="text-center result-space">
+                <h4>{props.description}</h4>
+            </div>
+        </Col>
+    );
+};
 
-    render() {
-        return (
-            <Col>
-                <div className="text-center">
-                    <h2>Summary</h2>
-                </div>
-            </Col>
-        );
-    }
-}
-
-class Header extends Component {
-    render() {
-        const {person, planet, starship, vehicle, species} = this.props;
-        return (
-            <Col>
-                <div className="text-center">
-                    <h2>Header</h2>
-                    <h4>{`${person.selected} and ${planet.selected} and ${starship.selected} and ${vehicle.selected} and ${species.selected}`}</h4>
-                </div>
-            </Col>
-        );
-    }
-}
+const Title = (props) => {
+    return (
+        <Col>
+            <div className="text-center result-space">
+                <h2>{props.title}</h2>
+            </div>
+        </Col>
+    );
+};
 
 class Plot extends Component {
 
@@ -56,18 +51,25 @@ class Plot extends Component {
     }
 
     render() {
+
+        const {title, description} = generatePlot({...this.props.history.location.state});
+
         return (
             <div>
                 <Container>
                     <Form>
-                        <Header {...this.props.history.location.state} />
-                        <Summary />
-                        <GenerateNewPlotBnt generateNewPlot={this.generateNewPlot} />
+                        <FormGroup>
+                            <Title title={title} />
+                            <Description description={description}/>
+                            <GenerateNewPlotBnt generateNewPlot={this.generateNewPlot} />
+                        </FormGroup>
                     </Form>
                 </Container>
             </div>
         )
     }
 }
+
+//TODO: list used resources
 
 export { Plot };
