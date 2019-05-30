@@ -26,3 +26,12 @@ code {
   font-size: larger;
   list-style: none;
 }
+
+.plot-text {
+  font-size: large;
+  font-family: 'Comic Sans, Comic Sans MS, cursive;', serif;
+  color: yellow;
+  background: black;
+  text-align: justify;
+  padding: 10px;
+}

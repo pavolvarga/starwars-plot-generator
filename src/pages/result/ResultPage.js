@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Col, Form, FormGroup, Button, Container } from 'reactstrap';
-import { generatePlot } from "./PlogGenerator";
+import { generatePlot } from "./PlotGenerator";
 
 class GenerateNewPlotBnt extends Component {
 
@@ -22,7 +22,7 @@ const Description = (props) => {
     return (
         <Col>
             <div className="text-center result-space">
-                <h4>{props.description}</h4>
+                <p className="plot-text">{props.description}</p>
             </div>
         </Col>
     );
@@ -76,12 +76,11 @@ class Plot extends Component {
             inputs = this.props.history.location.state,
             data = Object
                 .values(inputs)
-                .map(r => r.selected)
-                .filter(x => x),
-            names = data.map(x => x.name),
-            resources = data.map(x => x.url);
+                .map(r => r.selected),
+            names = data.map(x => x ? x.name : undefined),
+            resources = data.map(x => x ? x.url : undefined).filter(x => x);
 
-        const {title, description} = generatePlot({...names});
+        const {title, description} = generatePlot(...names);
 
         return (
             <div>
