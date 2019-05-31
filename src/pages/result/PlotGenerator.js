@@ -132,8 +132,6 @@ function generatePlot08(person, planet, starship, vehicle, species) {
  */
 function generatePlot(person, planet, starship, vehicle, species) {
 
-    console.log('generatePlot', person, planet, starship, vehicle, species);
-
     if (!starship && !vehicle && !species) {
         return generatePlot01(person, planet);
     }
@@ -150,7 +148,7 @@ function generatePlot(person, planet, starship, vehicle, species) {
         return generatePlot05(person, planet, starship, vehicle);
     }
     else if(starship && !vehicle && species) {
-        return generatePlot06(person, planet, starship, vehicle);
+        return generatePlot06(person, planet, starship, species);
     }
     else if(!starship && vehicle && species) {
         return generatePlot07(person, planet, vehicle, species);
