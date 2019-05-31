@@ -1,5 +1,12 @@
 import { STAR_WARS_API } from "./const";
 
+/**
+ * In a response for the first call, we are given both results and paging data.
+ * Data from this first call are stored into this global variable.
+ * It is easier than to pass them through promise chain, while waiting for paged calls responses.
+ */
+let firstPageResponse;
+
 function starWarsResource(name) {
     return `${STAR_WARS_API}/${name}/`;
 }
@@ -34,6 +41,55 @@ function createPages(resource, totalCount, retrievedItemsCount) {
 }
 
 /**
+ * Given list of urls, fetch data from all urls
+ */
+function readAllPages(pages) {
+    return Promise.all(pages.map(page => fetch(page)));
+}
+
+/**
+ * Extract json from all responses
+ */
+function convertAllResponsesToJson(responses) {
+    return Promise.all(responses.map(res => res.json()));
+}
+
+/**
+ * Reads paging data from the first response.
+ * From the paging data it creates a list of urls to fetch all available data form the resource.
+ * <br/>
+ * The first response also contains data for the first request.
+ * This response is cached in a global variable.
+ *
+ * @param firstRequestResponse - a response to the first request
+ * @param resource - a resource's url to page through
+ * @returns {Array} - a list of urls to fetch from
+ */
+function createRequestUrlsAndSaveFirstResults(firstRequestResponse, resource) {
+    const {results, count} = firstRequestResponse;
+    firstPageResponse = results;
+    return createPages(resource, count, results.length);
+}
+
+function addFirstPageResults(responses) {
+    responses.unshift(firstPageResponse);
+    return responses;
+}
+
+function extractValues(data) {
+    return data.map(obj => {
+        return {name: obj.name, url: obj.url};
+    });
+}
+
+/**
+ * Flat an array of arrays into an array.
+ */
+function flat(data) {
+    return [].concat.apply([], data);
+}
+
+/**
  * Fetches all data for a resource.
  *
  * @param resource - resource
@@ -42,30 +98,18 @@ function createPages(resource, totalCount, retrievedItemsCount) {
  */
 function loadStarWarsResource(resource, resolve, reject) {
 
-    let firstPage;
-
-    //TODO: Promise.all rejects when first promise rejects - find better solution
-
-    //TODO: Refactor into smaller helper functions
+    //reset the global variable, at each call
+    firstPageResponse = undefined;
 
     fetch(resource)
         .then(response => response.json())
-        .then(data => {
-            const {results, count} = data;
-            firstPage = results;
-            return createPages(resource, count, results.length);
-        })
-        .then(pages => Promise.all(pages.map(page => fetch(page))))
-        .then(responses => Promise.all(responses.map(res => res.json())))
+        .then(firstRequestResponse => createRequestUrlsAndSaveFirstResults(firstRequestResponse, resource))
+        .then(readAllPages)
+        .then(convertAllResponsesToJson)
         .then(data => data.map(value => value.results))
-        .then(data => {
-            data.unshift(firstPage);
-            return data;
-        })
-        .then(data => [].concat.apply([], data))
-        .then(data => data.map(obj => {
-            return {name: obj.name, url: obj.url};
-        }))
+        .then(addFirstPageResults)
+        .then(flat)
+        .then(extractValues)
         .then(names => names.sort())
         .then(resolve)
         .catch(reject);
@@ -76,4 +120,3 @@ function loadStarWarsData(name, loadedFn) {
 }
 
 export { starWarsResource, createPages, loadStarWarsData };
-
