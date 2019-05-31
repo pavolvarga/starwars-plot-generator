@@ -22,7 +22,9 @@ exports[`Description should render correctly in "debug" mode 1`] = `
       <div
         className="text-center result-space"
       >
-        <h4 />
+        <p
+          className="plot-text"
+        />
       </div>
     </div>
   </Col>
@@ -102,7 +104,14 @@ exports[`Plot should render correctly in "debug" mode 1`] = `
                   </Col>
                 </Title>
                 <Description
-                  description="01"
+                  description="
+            Our hero undefined does not have a minute of a rest.
+            One would think, that after saving the galaxy second time a moment of rest will be available, but no such luck.
+            After spending just one night on a planet undefined, considered by many to be an embodiment of a paradise,
+            our hero realized that not everything is all right.
+            Against own will, our hero is dragend into a rescue mission of unique organism, which is on the brink of destruction.
+            Its destruction could start a chain reaction, which unimaginable consequences.  
+        "
                 >
                   <Col
                     tag="div"
@@ -122,9 +131,18 @@ exports[`Plot should render correctly in "debug" mode 1`] = `
                       <div
                         className="text-center result-space"
                       >
-                        <h4>
-                          01
-                        </h4>
+                        <p
+                          className="plot-text"
+                        >
+                          
+            Our hero undefined does not have a minute of a rest.
+            One would think, that after saving the galaxy second time a moment of rest will be available, but no such luck.
+            After spending just one night on a planet undefined, considered by many to be an embodiment of a paradise,
+            our hero realized that not everything is all right.
+            Against own will, our hero is dragend into a rescue mission of unique organism, which is on the brink of destruction.
+            Its destruction could start a chain reaction, which unimaginable consequences.  
+        
+                        </p>
                       </div>
                     </div>
                   </Col>
