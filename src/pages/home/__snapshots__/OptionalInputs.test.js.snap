@@ -30,6 +30,7 @@ exports[`OptionalInputBnt should render correctly in "debug" mode 1`] = `
 
 exports[`OptionalInputs should render correctly in "debug" mode 1`] = `
 <OptionalInputs
+  disabled={false}
   toggleVisibilityFn={[Function]}
   visibles={Array []}
 >

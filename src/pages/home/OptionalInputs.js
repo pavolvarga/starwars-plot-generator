@@ -6,7 +6,7 @@ const OPTIONAL_RESOURCES_SINGULAR = OPTIONAL_RESOURCES.map(r => r.singular);
 
 class OptionalInputs extends Component {
     render() {
-        const {visibles, toggleVisibilityFn} = this.props;
+        const {visibles, toggleVisibilityFn, disabled} = this.props;
         return (
             <Col>
                 <div className="row add-space button-row-space">
@@ -16,6 +16,7 @@ class OptionalInputs extends Component {
                             name={resource}
                             toggleVisibilityFn={toggleVisibilityFn}
                             visible={visibles[idx]}
+                            disabled={disabled[idx]}
                         />
                     )}
                 </div>
@@ -27,7 +28,7 @@ class OptionalInputs extends Component {
 class OptionalInputBnt extends Component {
     render() {
         const
-            {name, toggleVisibilityFn, visible} = this.props,
+            {name, toggleVisibilityFn, visible, disabled} = this.props,
             text = visible ? `Remove ${name}` : `Add ${name}`;
         return (
             <div className="col-sm-4">
@@ -35,6 +36,7 @@ class OptionalInputBnt extends Component {
                     color="secondary"
                     size="lg"
                     onClick={e => toggleVisibilityFn(name)}
+                    disabled={disabled}
                 >
                     {text}
                 </Button>

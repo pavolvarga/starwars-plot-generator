@@ -207,6 +207,13 @@ exports[`HomePage should render correctly in "debug" mode 1`] = `
               visible={false}
             />
             <OptionalInputs
+              disabled={
+                Array [
+                  false,
+                  false,
+                  false,
+                ]
+              }
               toggleVisibilityFn={[Function]}
               visibles={
                 Array [
@@ -235,6 +242,7 @@ exports[`HomePage should render correctly in "debug" mode 1`] = `
                     className="row add-space button-row-space"
                   >
                     <OptionalInputBnt
+                      disabled={false}
                       key="0"
                       name="starship"
                       toggleVisibilityFn={[Function]}
@@ -245,6 +253,7 @@ exports[`HomePage should render correctly in "debug" mode 1`] = `
                       >
                         <Button
                           color="secondary"
+                          disabled={false}
                           onClick={[Function]}
                           size="lg"
                           tag="button"
@@ -252,6 +261,7 @@ exports[`HomePage should render correctly in "debug" mode 1`] = `
                           <button
                             aria-label={null}
                             className="btn btn-secondary btn-lg"
+                            disabled={false}
                             onClick={[Function]}
                             type="button"
                           >
@@ -261,6 +271,7 @@ exports[`HomePage should render correctly in "debug" mode 1`] = `
                       </div>
                     </OptionalInputBnt>
                     <OptionalInputBnt
+                      disabled={false}
                       key="1"
                       name="vehicle"
                       toggleVisibilityFn={[Function]}
@@ -271,6 +282,7 @@ exports[`HomePage should render correctly in "debug" mode 1`] = `
                       >
                         <Button
                           color="secondary"
+                          disabled={false}
                           onClick={[Function]}
                           size="lg"
                           tag="button"
@@ -278,6 +290,7 @@ exports[`HomePage should render correctly in "debug" mode 1`] = `
                           <button
                             aria-label={null}
                             className="btn btn-secondary btn-lg"
+                            disabled={false}
                             onClick={[Function]}
                             type="button"
                           >
@@ -287,6 +300,7 @@ exports[`HomePage should render correctly in "debug" mode 1`] = `
                       </div>
                     </OptionalInputBnt>
                     <OptionalInputBnt
+                      disabled={false}
                       key="2"
                       name="species"
                       toggleVisibilityFn={[Function]}
@@ -297,6 +311,7 @@ exports[`HomePage should render correctly in "debug" mode 1`] = `
                       >
                         <Button
                           color="secondary"
+                          disabled={false}
                           onClick={[Function]}
                           size="lg"
                           tag="button"
@@ -304,6 +319,7 @@ exports[`HomePage should render correctly in "debug" mode 1`] = `
                           <button
                             aria-label={null}
                             className="btn btn-secondary btn-lg"
+                            disabled={false}
                             onClick={[Function]}
                             type="button"
                           >
@@ -316,6 +332,52 @@ exports[`HomePage should render correctly in "debug" mode 1`] = `
                 </div>
               </Col>
             </OptionalInputs>
+            <LoadFailedAlerts
+              visibles={
+                Array [
+                  false,
+                  false,
+                  false,
+                ]
+              }
+            >
+              <Col
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <div
+                  className="col"
+                >
+                  <div
+                    className="row"
+                  >
+                    <LoadFailedAlert
+                      key="0"
+                      name="starship"
+                      visible={false}
+                    />
+                    <LoadFailedAlert
+                      key="1"
+                      name="vehicle"
+                      visible={false}
+                    />
+                    <LoadFailedAlert
+                      key="2"
+                      name="species"
+                      visible={false}
+                    />
+                  </div>
+                </div>
+              </Col>
+            </LoadFailedAlerts>
             <GenerateBnt
               generatePlot={[Function]}
               isGenerateBntDisabled={[Function]}

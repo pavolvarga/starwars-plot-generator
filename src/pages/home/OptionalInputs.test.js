@@ -6,7 +6,7 @@ const NOOP = () => {};
 
 describe('OptionalInputs', () => {
     function createOptionalInputs() {
-        return mount(<OptionalInputs visibles={[]} toggleVisibilityFn={NOOP} />);
+        return mount(<OptionalInputs visibles={[]} toggleVisibilityFn={NOOP} disabled={false} />);
     }
     it('should render correctly in "debug" mode', () => {
         const component = createOptionalInputs();

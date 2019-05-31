@@ -17,4 +17,9 @@ const RESOURCES = {
 
 const OPTIONAL_RESOURCES = Object.values(RESOURCES).filter(r => !r.mandatory);
 
-export { STAR_WARS_API, RESOURCES, OPTIONAL_RESOURCES };
+/**
+ * If load of an optional resource fails, prevent user from trying again util specific amount of seconds.
+ */
+const FAILED_LOAD_COOL_DOWN = 5;
+
+export { STAR_WARS_API, RESOURCES, OPTIONAL_RESOURCES, FAILED_LOAD_COOL_DOWN };

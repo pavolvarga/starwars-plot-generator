@@ -5,7 +5,8 @@ import { loadStarWarsData } from './../../common/util';
 import { StarWarsInput } from "./StarWarsInput";
 import { GenerateBnt } from "./GenerateBnt";
 import { OptionalInputs } from "./OptionalInputs";
-import { OPTIONAL_RESOURCES } from './../../common/const';
+import { OPTIONAL_RESOURCES, FAILED_LOAD_COOL_DOWN } from './../../common/const';
+import { LoadFailedAlerts } from './LoadFailedAlerts';
 
 const OPTIONAL_RESOURCES_SINGULAR = OPTIONAL_RESOURCES.map(r => r.singular);
 
@@ -20,11 +21,11 @@ class InputForm extends Component {
         super(props);
 
         this.state = {
-            person: {visible: true, selected: undefined, data: props.customProps.people, loadingInProgress: false},
-            planet: {visible: true, selected: undefined, data: props.customProps.planets, loadingInProgress: false},
-            starship: {visible: false, selected: undefined, data: [], loadingInProgress: false},
-            vehicle: {visible: false, selected: undefined, data: [], loadingInProgress: false},
-            species: {visible: false, selected: undefined, data: [], loadingInProgress: false}
+            person: {visible: true, selected: undefined, data: props.customProps.people, loadingInProgress: false, loadFailed: false},
+            planet: {visible: true, selected: undefined, data: props.customProps.planets, loadingInProgress: false, loadFailed: false},
+            starship: {visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false},
+            vehicle: {visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false},
+            species: {visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false}
         };
 
         this.setSelectedValue = this.setSelectedValue.bind(this);
@@ -62,7 +63,7 @@ class InputForm extends Component {
     loadResourceData(name) {
         const
             resourcePlural = getPluralName(name),
-            resolveFn = (function storeOptionalResourceData(value) {
+            resolve = (function storeOptionalResourceData(value) {
 
                 const
                     resource = this.state[name],
@@ -73,12 +74,25 @@ class InputForm extends Component {
                 this.setState(state => Object.assign(state, obj));
 
             }).bind(this),
-            rejectFn = (err) => console.log(err);
+            reject = (function updateLoadFailed (err) {
+                const
+                    resource = this.state[name],
+                    obj = {},
+                    updated = Object.assign(resource, {loadFailed: true, loadingInProgress: false});
 
-        //TODO: improve redability of .bind(this) methods
-        //TODO: in case of an error show some info also to user
+                obj[name] = updated;
+                this.setState(state => Object.assign(state, obj));
 
-        loadStarWarsData(resourcePlural, resolveFn, rejectFn);
+                //clear alert after specified time, and allow user to try it again
+                setTimeout(function clearLoadFailed() {
+                    const cleared = Object.assign(resource, {visible: false, loadFailed: false});
+                    obj[name] = cleared;
+                    this.setState(state => Object.assign(state, obj));
+                }.bind(this), FAILED_LOAD_COOL_DOWN * 1000);
+
+            }).bind(this);
+
+        loadStarWarsData(resourcePlural, resolve, reject);
     }
 
     toggleVisibility(name) {
@@ -166,7 +180,13 @@ class InputForm extends Component {
         const optionalInputsProps = {
             toggleVisibilityFn: this.toggleVisibility,
             //an array with boolean values representing weather an input for an optional resource is visible or not
-            visibles: OPTIONAL_RESOURCES_SINGULAR.map(x => this.state[x].visible)
+            visibles: OPTIONAL_RESOURCES_SINGULAR.map(x => this.state[x].visible),
+            //an array with boolean values representing weather the load button is disabled
+            disabled: OPTIONAL_RESOURCES_SINGULAR.map(x => this.state[x].loadFailed)
+        };
+
+        const alertsProps = {
+            visibles: OPTIONAL_RESOURCES_SINGULAR.map(x => this.state[x].loadFailed)
         };
 
         return (
@@ -179,6 +199,7 @@ class InputForm extends Component {
                         <StarWarsInput {...vehicleProps} />
                         <StarWarsInput {...speciesProps} />
                         <OptionalInputs {...optionalInputsProps} />
+                        <LoadFailedAlerts {...alertsProps} />
                         <GenerateBnt {...generateBntProps} />
                     </Form>
                 </Container>
