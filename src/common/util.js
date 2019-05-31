@@ -115,8 +115,8 @@ function loadStarWarsResource(resource, resolve, reject) {
         .catch(reject);
 }
 
-function loadStarWarsData(name, loadedFn) {
-    loadStarWarsResource(starWarsResource(name), loadedFn);
+function loadStarWarsData(name, resolve, reject) {
+    loadStarWarsResource(starWarsResource(name), resolve, reject);
 }
 
 export { starWarsResource, createPages, loadStarWarsData };
