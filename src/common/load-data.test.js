@@ -1,4 +1,4 @@
-import { starWarsResource, createPages } from './util';
+import { starWarsResource, createPages } from './load-data';
 
 describe('star wars resource', () => {
     it('should create correct url', () => {

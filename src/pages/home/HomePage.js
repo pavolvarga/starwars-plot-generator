@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Component } from 'react';
 import { Form, Container } from 'reactstrap';
-import { loadStarWarsData } from './../../common/util';
+import { loadStarWarsData } from '../../common/load-data';
 import { StarWarsInput } from "./StarWarsInput";
 import { GenerateBnt } from "./GenerateBnt";
 import { OptionalInputs } from "./OptionalInputs";
