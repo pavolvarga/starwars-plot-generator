@@ -47,7 +47,7 @@ class InputForm extends Component {
     generatePlot() {
         const state = {};
         Object.keys(this.state).forEach(key => {
-            state[key] = {visible: this.state[key].visible, selected: this.state[key].selected};
+            state[key] = {selected: this.state[key].selected};
         });
         this.props.history.push({
             pathname: '/plot',
