@@ -1,12 +1,5 @@
 import { STAR_WARS_API } from "./const";
 
-/**
- * In a response for the first call, we are given both results and paging data.
- * Data from this first call are stored into this global variable.
- * It is easier than to pass them through promise chain, while waiting for paged calls responses.
- */
-let firstPageResponse;
-
 function starWarsResource(name) {
     return `${STAR_WARS_API}/${name}/`;
 }
@@ -30,7 +23,7 @@ function createPages(resource, totalCount, retrievedItemsCount) {
         pages = [],
         pagesCount = Math.floor(totalCount / retrievedItemsCount) + 1;
 
-    let i = 2;
+    let i = 1;
 
     while( i <= pagesCount) {
         pages.push(`${resource}?page=${i}`);
@@ -57,9 +50,6 @@ function convertAllResponsesToJson(responses) {
 /**
  * Reads paging data from the first response.
  * From the paging data it creates a list of urls to fetch all available data form the resource.
- * <br/>
- * The first response also contains data for the first request.
- * This response is cached in a global variable.
  *
  * @param firstRequestResponse - a response to the first request
  * @param resource - a resource's url to page through
@@ -67,13 +57,7 @@ function convertAllResponsesToJson(responses) {
  */
 function createRequestUrlsAndSaveFirstResults(firstRequestResponse, resource) {
     const {results, count} = firstRequestResponse;
-    firstPageResponse = results;
     return createPages(resource, count, results.length);
-}
-
-function addFirstPageResults(responses) {
-    responses.unshift(firstPageResponse);
-    return responses;
 }
 
 function extractValues(data) {
@@ -98,16 +82,12 @@ function flat(data) {
  */
 function loadStarWarsResource(resource, resolve, reject) {
 
-    //reset the global variable, at each call
-    firstPageResponse = undefined;
-
     fetch(resource)
         .then(response => response.json())
         .then(firstRequestResponse => createRequestUrlsAndSaveFirstResults(firstRequestResponse, resource))
         .then(readAllPages)
         .then(convertAllResponsesToJson)
         .then(data => data.map(value => value.results))
-        .then(addFirstPageResults)
         .then(flat)
         .then(extractValues)
         .then(names => names.sort())
