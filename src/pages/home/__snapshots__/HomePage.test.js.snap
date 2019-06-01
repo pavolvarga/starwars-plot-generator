@@ -23,7 +23,7 @@ exports[`HomePage should render correctly in "debug" mode 1`] = `
           <form
             className=""
           >
-            <StarWarsInput
+            <StarWarsSearch
               data={Array []}
               id="input-person"
               label="Character"
@@ -48,13 +48,10 @@ exports[`HomePage should render correctly in "debug" mode 1`] = `
                   className="col"
                 >
                   <FormGroup
-                    row={true}
-                    size="lg"
                     tag="div"
                   >
                     <div
-                      className="row form-group"
-                      size="lg"
+                      className="form-group"
                     >
                       <Label
                         for="input-person"
@@ -77,31 +74,136 @@ exports[`HomePage should render correctly in "debug" mode 1`] = `
                           Character
                         </label>
                       </Label>
-                      <Input
-                        bsSize="lg"
-                        disabled={true}
+                      <Autosuggest
+                        alwaysRenderSuggestions={false}
+                        focusInputOnSuggestionClick={true}
+                        getSuggestionValue={[Function]}
+                        highlightFirstSuggestion={false}
                         id="input-person"
+                        inputProps={
+                          Object {
+                            "onChange": [Function],
+                            "placeholder": "Please enter a character",
+                            "value": "",
+                          }
+                        }
+                        multiSection={false}
                         name="input-person"
-                        onChange={[Function]}
-                        placeholder="Please enter a character"
-                        type="text"
+                        onSuggestionsClearRequested={[Function]}
+                        onSuggestionsFetchRequested={[Function]}
+                        renderInputComponent={[Function]}
+                        renderSuggestion={[Function]}
+                        renderSuggestionsContainer={[Function]}
+                        shouldRenderSuggestions={[Function]}
+                        suggestions={Array []}
+                        theme={
+                          Object {
+                            "container": "autosuggest",
+                            "input": "form-control",
+                            "suggestionHighlighted": "starwars-search__suggestion-highlighted",
+                            "suggestionsContainer": "dropdown",
+                            "suggestionsList": "dropdown-menu ",
+                          }
+                        }
                       >
-                        <input
-                          className="form-control-lg form-control"
-                          disabled={true}
+                        <Autowhatever
+                          containerProps={Object {}}
+                          getSectionItems={[Function]}
+                          highlightedItemIndex={null}
+                          highlightedSectionIndex={null}
                           id="input-person"
-                          name="input-person"
-                          onChange={[Function]}
-                          placeholder="Please enter a character"
-                          type="text"
-                        />
-                      </Input>
+                          inputProps={
+                            Object {
+                              "onBlur": [Function],
+                              "onChange": [Function],
+                              "onFocus": [Function],
+                              "onKeyDown": [Function],
+                              "placeholder": "Please enter a character",
+                              "value": "",
+                            }
+                          }
+                          itemProps={[Function]}
+                          items={Array []}
+                          multiSection={false}
+                          renderInputComponent={[Function]}
+                          renderItem={[Function]}
+                          renderItemData={
+                            Object {
+                              "query": "",
+                            }
+                          }
+                          renderItemsContainer={[Function]}
+                          renderSectionTitle={[Function]}
+                          theme={
+                            Object {
+                              "container": "autosuggest",
+                              "input": "form-control",
+                              "itemHighlighted": "starwars-search__suggestion-highlighted",
+                              "itemsContainer": "dropdown",
+                              "itemsList": "dropdown-menu ",
+                            }
+                          }
+                        >
+                          <div
+                            aria-expanded={false}
+                            aria-haspopup="listbox"
+                            aria-owns="react-autowhatever-input-person"
+                            className="autosuggest"
+                            key="react-autowhatever-input-person-container"
+                            role="combobox"
+                          >
+                            <Input
+                              aria-activedescendant={null}
+                              aria-autocomplete="list"
+                              aria-controls="react-autowhatever-input-person"
+                              autoComplete="off"
+                              bsSize="lg"
+                              className="form-control"
+                              disabled={true}
+                              id="input-person"
+                              key="react-autowhatever-input-person-input"
+                              name="input-person"
+                              onBlur={[Function]}
+                              onChange={[Function]}
+                              onFocus={[Function]}
+                              onKeyDown={[Function]}
+                              placeholder="Please enter a character"
+                              type="text"
+                              value=""
+                            >
+                              <input
+                                aria-activedescendant={null}
+                                aria-autocomplete="list"
+                                aria-controls="react-autowhatever-input-person"
+                                autoComplete="off"
+                                className="form-control form-control-lg form-control"
+                                disabled={true}
+                                id="input-person"
+                                name="input-person"
+                                onBlur={[Function]}
+                                onChange={[Function]}
+                                onFocus={[Function]}
+                                onKeyDown={[Function]}
+                                placeholder="Please enter a character"
+                                type="text"
+                                value=""
+                              />
+                            </Input>
+                            <div
+                              className="dropdown"
+                              id="react-autowhatever-input-person"
+                              key="react-autowhatever-input-person-items-container"
+                              role="listbox"
+                            />
+                          </div>
+                        </Autowhatever>
+                      </Autosuggest>
                     </div>
                   </FormGroup>
                 </div>
               </Col>
-            </StarWarsInput>
-            <StarWarsInput
+            </StarWarsSearch>
+            <StarWarsSearch
               data={Array []}
               id="input-planet"
               label="Planet"
@@ -126,13 +228,10 @@ exports[`HomePage should render correctly in "debug" mode 1`] = `
                   className="col"
                 >
                   <FormGroup
-                    row={true}
-                    size="lg"
                     tag="div"
                   >
                     <div
-                      className="row form-group"
-                      size="lg"
+                      className="form-group"
                     >
                       <Label
                         for="input-person"
@@ -155,31 +254,136 @@ exports[`HomePage should render correctly in "debug" mode 1`] = `
                           Planet
                         </label>
                       </Label>
-                      <Input
-                        bsSize="lg"
-                        disabled={true}
+                      <Autosuggest
+                        alwaysRenderSuggestions={false}
+                        focusInputOnSuggestionClick={true}
+                        getSuggestionValue={[Function]}
+                        highlightFirstSuggestion={false}
                         id="input-planet"
+                        inputProps={
+                          Object {
+                            "onChange": [Function],
+                            "placeholder": "Please enter a planet",
+                            "value": "",
+                          }
+                        }
+                        multiSection={false}
                         name="input-planet"
-                        onChange={[Function]}
-                        placeholder="Please enter a planet"
-                        type="text"
+                        onSuggestionsClearRequested={[Function]}
+                        onSuggestionsFetchRequested={[Function]}
+                        renderInputComponent={[Function]}
+                        renderSuggestion={[Function]}
+                        renderSuggestionsContainer={[Function]}
+                        shouldRenderSuggestions={[Function]}
+                        suggestions={Array []}
+                        theme={
+                          Object {
+                            "container": "autosuggest",
+                            "input": "form-control",
+                            "suggestionHighlighted": "starwars-search__suggestion-highlighted",
+                            "suggestionsContainer": "dropdown",
+                            "suggestionsList": "dropdown-menu ",
+                          }
+                        }
                       >
-                        <input
-                          className="form-control-lg form-control"
-                          disabled={true}
+                        <Autowhatever
+                          containerProps={Object {}}
+                          getSectionItems={[Function]}
+                          highlightedItemIndex={null}
+                          highlightedSectionIndex={null}
                           id="input-planet"
-                          name="input-planet"
-                          onChange={[Function]}
-                          placeholder="Please enter a planet"
-                          type="text"
-                        />
-                      </Input>
+                          inputProps={
+                            Object {
+                              "onBlur": [Function],
+                              "onChange": [Function],
+                              "onFocus": [Function],
+                              "onKeyDown": [Function],
+                              "placeholder": "Please enter a planet",
+                              "value": "",
+                            }
+                          }
+                          itemProps={[Function]}
+                          items={Array []}
+                          multiSection={false}
+                          renderInputComponent={[Function]}
+                          renderItem={[Function]}
+                          renderItemData={
+                            Object {
+                              "query": "",
+                            }
+                          }
+                          renderItemsContainer={[Function]}
+                          renderSectionTitle={[Function]}
+                          theme={
+                            Object {
+                              "container": "autosuggest",
+                              "input": "form-control",
+                              "itemHighlighted": "starwars-search__suggestion-highlighted",
+                              "itemsContainer": "dropdown",
+                              "itemsList": "dropdown-menu ",
+                            }
+                          }
+                        >
+                          <div
+                            aria-expanded={false}
+                            aria-haspopup="listbox"
+                            aria-owns="react-autowhatever-input-planet"
+                            className="autosuggest"
+                            key="react-autowhatever-input-planet-container"
+                            role="combobox"
+                          >
+                            <Input
+                              aria-activedescendant={null}
+                              aria-autocomplete="list"
+                              aria-controls="react-autowhatever-input-planet"
+                              autoComplete="off"
+                              bsSize="lg"
+                              className="form-control"
+                              disabled={true}
+                              id="input-planet"
+                              key="react-autowhatever-input-planet-input"
+                              name="input-planet"
+                              onBlur={[Function]}
+                              onChange={[Function]}
+                              onFocus={[Function]}
+                              onKeyDown={[Function]}
+                              placeholder="Please enter a planet"
+                              type="text"
+                              value=""
+                            >
+                              <input
+                                aria-activedescendant={null}
+                                aria-autocomplete="list"
+                                aria-controls="react-autowhatever-input-planet"
+                                autoComplete="off"
+                                className="form-control form-control-lg form-control"
+                                disabled={true}
+                                id="input-planet"
+                                name="input-planet"
+                                onBlur={[Function]}
+                                onChange={[Function]}
+                                onFocus={[Function]}
+                                onKeyDown={[Function]}
+                                placeholder="Please enter a planet"
+                                type="text"
+                                value=""
+                              />
+                            </Input>
+                            <div
+                              className="dropdown"
+                              id="react-autowhatever-input-planet"
+                              key="react-autowhatever-input-planet-items-container"
+                              role="listbox"
+                            />
+                          </div>
+                        </Autowhatever>
+                      </Autosuggest>
                     </div>
                   </FormGroup>
                 </div>
               </Col>
-            </StarWarsInput>
-            <StarWarsInput
+            </StarWarsSearch>
+            <StarWarsSearch
               data={Array []}
               id="input-starship"
               label="Starship"
@@ -188,7 +392,7 @@ exports[`HomePage should render correctly in "debug" mode 1`] = `
               setFn={[Function]}
               visible={false}
             />
-            <StarWarsInput
+            <StarWarsSearch
               data={Array []}
               id="input-vehicle"
               label="Vehicle"
@@ -197,7 +401,7 @@ exports[`HomePage should render correctly in "debug" mode 1`] = `
               setFn={[Function]}
               visible={false}
             />
-            <StarWarsInput
+            <StarWarsSearch
               data={Array []}
               id="input-species"
               label="Species"

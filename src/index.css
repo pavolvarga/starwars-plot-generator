@@ -35,3 +35,7 @@ code {
   text-align: justify;
   padding: 10px;
 }
+
+.starwars-search__suggestion-highlighted {
+  background-color: lightskyblue;
+}

@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Component } from 'react';
 import { Form, Container } from 'reactstrap';
 import { loadStarWarsData } from '../../common/load-data';
-import { StarWarsInput } from "./StarWarsInput";
+import { StarWarsSearch } from "./StarWarsSearch";
 import { GenerateBnt } from "./GenerateBnt";
 import { OptionalInputs } from "./OptionalInputs";
 import { OPTIONAL_RESOURCES, FAILED_LOAD_COOL_DOWN } from './../../common/const';
@@ -168,11 +168,11 @@ class InputForm extends Component {
             <div>
                 <Container>
                     <Form>
-                        <StarWarsInput {...personProps} />
-                        <StarWarsInput {...planetProps} />
-                        <StarWarsInput {...starshipProps} />
-                        <StarWarsInput {...vehicleProps} />
-                        <StarWarsInput {...speciesProps} />
+                        <StarWarsSearch {...personProps} />
+                        <StarWarsSearch {...planetProps} />
+                        <StarWarsSearch {...starshipProps} />
+                        <StarWarsSearch {...vehicleProps} />
+                        <StarWarsSearch {...speciesProps} />
                         <OptionalInputs {...optionalInputsProps} />
                         <LoadFailedAlerts {...alertsProps} />
                         <GenerateBnt {...generateBntProps} />
