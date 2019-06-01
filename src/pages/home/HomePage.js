@@ -14,6 +14,10 @@ function getPluralName(singularName) {
     return OPTIONAL_RESOURCES.filter(r => r.singular === singularName)[0].plural;
 }
 
+function upperCase(text) {
+    return text.charAt(0).toUpperCase() + text.slice(1);
+}
+
 class InputForm extends Component {
 
     constructor(props) {
@@ -33,6 +37,7 @@ class InputForm extends Component {
         this.isGenerateBntDisabled = this.isGenerateBntDisabled.bind(this);
         this.generatePlot = this.generatePlot.bind(this);
         this.loadResourceData = this.loadResourceData.bind(this);
+        this.createInputProps = this.createInputProps.bind(this);
     }
 
     isGenerateBntDisabled() {
@@ -114,63 +119,33 @@ class InputForm extends Component {
         this.setState(state => Object.assign(state, obj));
     }
 
+    createInputProps(name, label) {
+
+        const
+            normalizedLabel = label ? label : name,
+            upperCasedLabel = upperCase(normalizedLabel);
+
+        return {
+            id: `input-${name}`,
+            name: `input-${name}`,
+            label: upperCasedLabel,
+            placeholder: `Please enter a ${normalizedLabel}`,
+            data: this.state[name].data,
+            setFn: (function setEnteredValue(value) {
+                this.setSelectedValue(name, value);
+            }).bind(this),
+            visible: this.state[name].visible
+        };
+    }
+
     render() {
 
-        const personProps = {
-            id: "input-person",
-            name: "input-person",
-            label: "Character",
-            placeholder: "Please enter a character",
-            data: this.state.person.data,
-            setFn: (function setPerson(value) {
-                this.setSelectedValue('person', value);
-            }).bind(this),
-            visible: this.state.person.visible
-        };
-        const planetProps = {
-            id: "input-planet",
-            name: "input-planet",
-            label: "Planet",
-            placeholder: "Please enter a planet",
-            data: this.state.planet.data,
-            setFn: (function setPlanet(value) {
-                this.setSelectedValue('planet', value);
-            }).bind(this),
-            visible: this.state.planet.visible
-        };
-        const starshipProps = {
-            id: "input-starship",
-            name: "input-starship",
-            label: "Starship",
-            placeholder: "Please enter a starship",
-            data: this.state.starship.data,
-            setFn: (function setStarship(value) {
-                this.setSelectedValue('starship', value);
-            }).bind(this),
-            visible: this.state.starship.visible
-        };
-        const vehicleProps = {
-            id: "input-vehicle",
-            name: "input-vehicle",
-            label: "Vehicle",
-            placeholder: "Please enter a vehicle",
-            data: this.state.vehicle.data,
-            setFn: (function setVehicle(value) {
-                this.setSelectedValue('vehicle', value);
-            }).bind(this),
-            visible: this.state.vehicle.visible
-        };
-        const speciesProps = {
-            id: "input-species",
-            name: "input-species",
-            label: "Species",
-            placeholder: "Please enter a species",
-            data: this.state.species.data,
-            setFn: (function setSpecies(value) {
-                this.setSelectedValue('species', value);
-            }).bind(this),
-            visible: this.state.species.visible
-        };
+        const
+            personProps = this.createInputProps('person', 'character'),
+            planetProps = this.createInputProps('planet'),
+            starshipProps = this.createInputProps('starship'),
+            vehicleProps = this.createInputProps('vehicle'),
+            speciesProps = this.createInputProps('species');
 
         const generateBntProps = {
             isGenerateBntDisabled: this.isGenerateBntDisabled,
