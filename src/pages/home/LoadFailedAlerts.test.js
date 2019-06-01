@@ -9,5 +9,6 @@ describe('LoadFailedAlerts', () => {
     });
     it('should render correctly in debug mode', () => {
         const component = mount(<LoadFailedAlerts visibles={[]}/>);
+        expect(component).toMatchSnapshot();
     });
 });

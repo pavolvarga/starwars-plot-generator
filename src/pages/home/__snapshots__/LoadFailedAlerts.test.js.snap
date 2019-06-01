@@ -6,3 +6,43 @@ exports[`LoadFailedAlerts should render correctly in debug mode 1`] = `
   visible={false}
 />
 `;
+
+exports[`LoadFailedAlerts should render correctly in debug mode 2`] = `
+<LoadFailedAlerts
+  visibles={Array []}
+>
+  <Col
+    tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    <div
+      className="col"
+    >
+      <div
+        className="row"
+      >
+        <LoadFailedAlert
+          key="0"
+          name="starship"
+        />
+        <LoadFailedAlert
+          key="1"
+          name="vehicle"
+        />
+        <LoadFailedAlert
+          key="2"
+          name="species"
+        />
+      </div>
+    </div>
+  </Col>
+</LoadFailedAlerts>
+`;
