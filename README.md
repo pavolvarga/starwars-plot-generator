@@ -15,3 +15,11 @@ Build it
 ```sh
 npm run build
 ```
+Run it
+```sh
+node ./node_modules/serve/bin/serve.js -s build
+```
+Type into browser's address bar:
+```
+http://localhost:5000
+```
