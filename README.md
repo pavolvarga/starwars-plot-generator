@@ -23,3 +23,19 @@ Type into browser's address bar:
 ```
 http://localhost:5000
 ```
+
+## How to run via docker
+Pull the image
+```sh
+docker pull pavolvarga1024/starwars-plot-generator
+```
+
+Run the image
+```sh
+docker run -p 5000:5000 pavolvarga1024/starwars-plot-generator:latest
+```
+
+Type into browser's address bar:
+```
+http://localhost:5000
+```
