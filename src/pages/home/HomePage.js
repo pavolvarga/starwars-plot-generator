@@ -106,7 +106,7 @@ class InputForm extends Component {
             resource = this.state[name],
             obj = {};
 
-        let updated = Object.assign(resource, {visible: !resource.visible});
+        let updated = Object.assign(resource, {visible: !resource.visible, selected: undefined});
 
         //load data for the input in other function, after the input became visible
         //if it wasn't already loaded
