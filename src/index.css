@@ -43,3 +43,7 @@ code {
 .starwars-search__suggestion-highlighted {
   background-color: lightskyblue;
 }
+
+.highlight-word {
+  color: orangered;
+}

@@ -124,6 +124,10 @@ function generatePlot08(person, planet, starship, vehicle, species) {
     };
 }
 
+function highlight(value) {
+    return value ? `<span class="highlight-word">${value}</span>` : value;
+}
+
 /**
  * Dummy star wars plot generator.
  * Depending on used inputs (resources from the star wars universe), it will
@@ -131,6 +135,18 @@ function generatePlot08(person, planet, starship, vehicle, species) {
  * @returns {{description: string, title: string}}
  */
 function generatePlot(person, planet, starship, vehicle, species) {
+
+    const
+        highlightedPerson = highlight(person),
+        highlightedPlanet = highlight(planet),
+        highlightedStarship = highlight(starship),
+        highlightedVehicle = highlight(vehicle),
+        highlightedSpecies = highlight(species);
+
+    return generate(highlightedPerson, highlightedPlanet, highlightedStarship, highlightedVehicle, highlightedSpecies);
+}
+
+function generate(person, planet, starship, vehicle, species) {
 
     if (!starship && !vehicle && !species) {
         return generatePlot01(person, planet);
@@ -156,7 +172,6 @@ function generatePlot(person, planet, starship, vehicle, species) {
     else {
         return generatePlot08(person, planet, starship, vehicle, species);
     }
-
 }
 
 export { generatePlot }

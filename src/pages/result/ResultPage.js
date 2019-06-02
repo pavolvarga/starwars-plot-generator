@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Col, Form, FormGroup, Button, Container } from 'reactstrap';
 import { generatePlot } from "./PlotGenerator";
+import dompurify from 'dompurify';
 
 class GenerateNewPlotBnt extends Component {
 
@@ -19,10 +20,16 @@ class GenerateNewPlotBnt extends Component {
 }
 
 const Description = (props) => {
+    const
+        sanitizer = dompurify.sanitize,
+        sanitizedMarkup = sanitizer(props.description),
+        markup = {__html: sanitizedMarkup};
     return (
         <Col>
             <div className="text-center result-space">
-                <p className="plot-text">{props.description}</p>
+                <p className="plot-text">
+                    <span dangerouslySetInnerHTML={markup}/>
+                </p>
             </div>
         </Col>
     );
