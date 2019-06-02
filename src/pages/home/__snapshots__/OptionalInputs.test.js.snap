@@ -9,21 +9,25 @@ exports[`OptionalInputBnt should render correctly in "debug" mode 1`] = `
   <div
     className="col-sm-4"
   >
-    <Button
-      color="secondary"
-      onClick={[Function]}
-      size="lg"
-      tag="button"
+    <div
+      className="text-center"
     >
-      <button
-        aria-label={null}
-        className="btn btn-secondary btn-lg"
+      <Button
+        color="secondary"
         onClick={[Function]}
-        type="button"
+        size="lg"
+        tag="button"
       >
-        Add 
-      </button>
-    </Button>
+        <button
+          aria-label={null}
+          className="btn btn-secondary btn-lg"
+          onClick={[Function]}
+          type="button"
+        >
+          Add 
+        </button>
+      </Button>
+    </div>
   </div>
 </OptionalInputBnt>
 `;
@@ -60,21 +64,25 @@ exports[`OptionalInputs should render correctly in "debug" mode 1`] = `
           <div
             className="col-sm-4"
           >
-            <Button
-              color="secondary"
-              onClick={[Function]}
-              size="lg"
-              tag="button"
+            <div
+              className="text-center"
             >
-              <button
-                aria-label={null}
-                className="btn btn-secondary btn-lg"
+              <Button
+                color="secondary"
                 onClick={[Function]}
-                type="button"
+                size="lg"
+                tag="button"
               >
-                Add starship
-              </button>
-            </Button>
+                <button
+                  aria-label={null}
+                  className="btn btn-secondary btn-lg"
+                  onClick={[Function]}
+                  type="button"
+                >
+                  Add starship
+                </button>
+              </Button>
+            </div>
           </div>
         </OptionalInputBnt>
         <OptionalInputBnt
@@ -85,21 +93,25 @@ exports[`OptionalInputs should render correctly in "debug" mode 1`] = `
           <div
             className="col-sm-4"
           >
-            <Button
-              color="secondary"
-              onClick={[Function]}
-              size="lg"
-              tag="button"
+            <div
+              className="text-center"
             >
-              <button
-                aria-label={null}
-                className="btn btn-secondary btn-lg"
+              <Button
+                color="secondary"
                 onClick={[Function]}
-                type="button"
+                size="lg"
+                tag="button"
               >
-                Add vehicle
-              </button>
-            </Button>
+                <button
+                  aria-label={null}
+                  className="btn btn-secondary btn-lg"
+                  onClick={[Function]}
+                  type="button"
+                >
+                  Add vehicle
+                </button>
+              </Button>
+            </div>
           </div>
         </OptionalInputBnt>
         <OptionalInputBnt
@@ -110,21 +122,25 @@ exports[`OptionalInputs should render correctly in "debug" mode 1`] = `
           <div
             className="col-sm-4"
           >
-            <Button
-              color="secondary"
-              onClick={[Function]}
-              size="lg"
-              tag="button"
+            <div
+              className="text-center"
             >
-              <button
-                aria-label={null}
-                className="btn btn-secondary btn-lg"
+              <Button
+                color="secondary"
                 onClick={[Function]}
-                type="button"
+                size="lg"
+                tag="button"
               >
-                Add species
-              </button>
-            </Button>
+                <button
+                  aria-label={null}
+                  className="btn btn-secondary btn-lg"
+                  onClick={[Function]}
+                  type="button"
+                >
+                  Add species
+                </button>
+              </Button>
+            </div>
           </div>
         </OptionalInputBnt>
       </div>

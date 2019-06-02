@@ -32,14 +32,16 @@ class OptionalInputBnt extends Component {
             text = visible ? `Remove ${name}` : `Add ${name}`;
         return (
             <div className="col-sm-4">
-                <Button
-                    color="secondary"
-                    size="lg"
-                    onClick={e => toggleVisibilityFn(name)}
-                    disabled={disabled}
-                >
-                    {text}
-                </Button>
+                <div className="text-center">
+                    <Button
+                        color="secondary"
+                        size="lg"
+                        onClick={e => toggleVisibilityFn(name)}
+                        disabled={disabled}
+                    >
+                        {text}
+                    </Button>
+                </div>
             </div>
         );
     }
