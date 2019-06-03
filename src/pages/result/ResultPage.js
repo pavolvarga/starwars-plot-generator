@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Col, Form, FormGroup, Button, Container } from 'reactstrap';
 import { generatePlot } from "./PlotGenerator";
 import dompurify from 'dompurify';
+import { Redirect } from "react-router-dom";
 
 class GenerateNewPlotBnt extends Component {
 
@@ -78,6 +79,11 @@ class Plot extends Component {
     }
 
     render() {
+
+        //user has directly entered /plot in address bar - redirect him / her back to home page
+        if (!this.props.history.location.state) {
+            return <Redirect to={{pathname: '/'}} />
+        }
 
         const
             inputs = this.props.history.location.state,
