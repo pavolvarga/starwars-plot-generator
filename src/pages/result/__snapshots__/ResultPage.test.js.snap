@@ -116,9 +116,9 @@ exports[`Plot should render correctly in "debug" mode 1`] = `
             Our hero undefined does not have a minute of a rest.
             One would think, that after saving the galaxy second time a moment of rest will be available, but no such luck.
             After spending just one night on a planet undefined, considered by many to be an embodiment of a paradise,
-            our hero realized that not everything is all right.
-            Against own will, our hero is dragend into a rescue mission of unique organism, which is on the brink of destruction.
-            Its destruction could start a chain reaction, which unimaginable consequences.  
+            our hero has realized that not everything is all right.
+            Against own will, our hero is dragend into a rescue mission of an unique organism, which is on the brink of destruction.
+            Its destruction could start a chain reaction with unimaginable consequences.
         "
                 >
                   <Col
@@ -149,9 +149,9 @@ exports[`Plot should render correctly in "debug" mode 1`] = `
             Our hero undefined does not have a minute of a rest.
             One would think, that after saving the galaxy second time a moment of rest will be available, but no such luck.
             After spending just one night on a planet undefined, considered by many to be an embodiment of a paradise,
-            our hero realized that not everything is all right.
-            Against own will, our hero is dragend into a rescue mission of unique organism, which is on the brink of destruction.
-            Its destruction could start a chain reaction, which unimaginable consequences.  
+            our hero has realized that not everything is all right.
+            Against own will, our hero is dragend into a rescue mission of an unique organism, which is on the brink of destruction.
+            Its destruction could start a chain reaction with unimaginable consequences.
         ",
                               }
                             }
