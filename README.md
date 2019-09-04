@@ -12,3 +12,6 @@ learn from it.
   * javascript (ES5)
   * react (no state management library)
   * reactstrap (for using bootstrap)
+* version-B
+  * typescript
+  * react (no state management library)
