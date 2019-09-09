@@ -1,5 +1,17 @@
 import { STAR_WARS_API } from "./const";
 
+type SWAResourceResp = {
+    previous?: string,
+    next?: string,
+    results: SWAResult[],
+    count: number
+};
+type SWAResult = {
+    name: string,
+    url: string,
+    [key: string]: any
+}
+
 function starWarsResource(name: string): string {
     return `${STAR_WARS_API}/${name}/`;
 }
@@ -43,7 +55,7 @@ function readAllPages(pages: string[]): Promise<any> {
 /**
  * Extract json from all responses
  */
-function convertAllResponsesToJson(responses: any[]): Promise<any> {
+function convertAllResponsesToJson(responses: any[]): Promise<SWAResourceResp[]> {
     return Promise.all(responses.map(res => res.json()));
 }
 
@@ -55,13 +67,13 @@ function convertAllResponsesToJson(responses: any[]): Promise<any> {
  * @param resource - a resource's url to page through
  * @returns {Array} - a list of urls to fetch from
  */
-function createRequestUrlsAndSaveFirstResults(firstRequestResponse: any, resource: any) {
+function createRequestUrlsAndSaveFirstResults(firstRequestResponse: SWAResourceResp, resource: string): string[] {
     const {results, count} = firstRequestResponse;
     return createPages(resource, count, results.length);
 }
 
-function extractValues(data: any) {
-    return data.map((obj: any) => {
+function extractValues(data: SWAResult[]) {
+    return data.map((obj: SWAResult) => {
         return {name: obj.name, url: obj.url};
     });
 }
@@ -69,8 +81,8 @@ function extractValues(data: any) {
 /**
  * Flat an array of arrays into an array.
  */
-function flat(data: any) {
-    return [].concat.apply([], data);
+function flat(data: SWAResult[][]): SWAResult[] {
+    return ([] as SWAResult[]).concat.apply([], data);
 }
 
 /**
@@ -80,14 +92,14 @@ function flat(data: any) {
  * @param resolve - resolve function
  * @param reject - reject function
  */
-function loadStarWarsResource(resource: string, resolve: any, reject: any) {
+function loadStarWarsResource(resource: string, resolve: any, reject: any): void {
 
     fetch(resource)
         .then(response => response.json())
         .then(firstRequestResponse => createRequestUrlsAndSaveFirstResults(firstRequestResponse, resource))
         .then(readAllPages)
         .then(convertAllResponsesToJson)
-        .then(data => data.map((value: any) => value.results))
+        .then(data => data.map((value: SWAResourceResp) => value.results))
         .then(flat)
         .then(extractValues)
         .then(names => names.sort())
@@ -95,7 +107,7 @@ function loadStarWarsResource(resource: string, resolve: any, reject: any) {
         .catch(reject);
 }
 
-function loadStarWarsData(name: string, resolve: any, reject: any) {
+function loadStarWarsData(name: string, resolve: any, reject: any): void {
     loadStarWarsResource(starWarsResource(name), resolve, reject);
 }
 
