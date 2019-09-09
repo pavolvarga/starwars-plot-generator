@@ -8,6 +8,7 @@
     ]
   },
   "dependencies": {
+    "@types/jest": "^24.0.18",
     "bootstrap": "4.3.1",
     "dompurify": "1.0.10",
     "react": "16.8.6",

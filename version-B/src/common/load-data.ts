@@ -1,6 +1,6 @@
 import { STAR_WARS_API } from "./const";
 
-function starWarsResource(name) {
+function starWarsResource(name: string): string {
     return `${STAR_WARS_API}/${name}/`;
 }
 
@@ -13,17 +13,17 @@ function starWarsResource(name) {
  *                              (we are assuming that all subsequent calls but the last one will retrieve same amout)
  * @returns {Array} - arrays of urls for fetching all items
  */
-function createPages(resource, totalCount, retrievedItemsCount) {
+function createPages(resource: string, totalCount: number, retrievedItemsCount: number): string[] {
 
     if (totalCount === retrievedItemsCount) {
         return [];
     }
 
     const
-        pages = [],
-        pagesCount = Math.floor(totalCount / retrievedItemsCount) + 1;
+        pages: string[] = [],
+        pagesCount: number = Math.floor(totalCount / retrievedItemsCount) + 1;
 
-    let i = 1;
+    let i: number = 1;
 
     while( i <= pagesCount) {
         pages.push(`${resource}?page=${i}`);
@@ -36,14 +36,14 @@ function createPages(resource, totalCount, retrievedItemsCount) {
 /**
  * Given list of urls, fetch data from all urls
  */
-function readAllPages(pages) {
+function readAllPages(pages: string[]): Promise<any> {
     return Promise.all(pages.map(page => fetch(page)));
 }
 
 /**
  * Extract json from all responses
  */
-function convertAllResponsesToJson(responses) {
+function convertAllResponsesToJson(responses: any[]): Promise<any> {
     return Promise.all(responses.map(res => res.json()));
 }
 
@@ -55,13 +55,13 @@ function convertAllResponsesToJson(responses) {
  * @param resource - a resource's url to page through
  * @returns {Array} - a list of urls to fetch from
  */
-function createRequestUrlsAndSaveFirstResults(firstRequestResponse, resource) {
+function createRequestUrlsAndSaveFirstResults(firstRequestResponse: any, resource: any) {
     const {results, count} = firstRequestResponse;
     return createPages(resource, count, results.length);
 }
 
-function extractValues(data) {
-    return data.map(obj => {
+function extractValues(data: any) {
+    return data.map((obj: any) => {
         return {name: obj.name, url: obj.url};
     });
 }
@@ -69,7 +69,7 @@ function extractValues(data) {
 /**
  * Flat an array of arrays into an array.
  */
-function flat(data) {
+function flat(data: any) {
     return [].concat.apply([], data);
 }
 
@@ -80,14 +80,14 @@ function flat(data) {
  * @param resolve - resolve function
  * @param reject - reject function
  */
-function loadStarWarsResource(resource, resolve, reject) {
+function loadStarWarsResource(resource: string, resolve: any, reject: any) {
 
     fetch(resource)
         .then(response => response.json())
         .then(firstRequestResponse => createRequestUrlsAndSaveFirstResults(firstRequestResponse, resource))
         .then(readAllPages)
         .then(convertAllResponsesToJson)
-        .then(data => data.map(value => value.results))
+        .then(data => data.map((value: any) => value.results))
         .then(flat)
         .then(extractValues)
         .then(names => names.sort())
@@ -95,7 +95,7 @@ function loadStarWarsResource(resource, resolve, reject) {
         .catch(reject);
 }
 
-function loadStarWarsData(name, resolve, reject) {
+function loadStarWarsData(name: string, resolve: any, reject: any) {
     loadStarWarsResource(starWarsResource(name), resolve, reject);
 }
 
