@@ -19,7 +19,7 @@ describe('Title', () => {
 
 describe('ResourceLink', () => {
     it('should render correctly in "debug" mode', () => {
-        const component = mount(<ResourceLink key='0' url='http://...'/>);
+        const component = mount(<ResourceLink key={0} url='http://...'/>);
         expect(component).toMatchSnapshot();
     });
 });
@@ -36,11 +36,17 @@ describe('Plot', () => {
     it('should render correctly in "debug" mode', () => {
         const
             history = createBrowserHistory(),
-            location = history.location;
+            location = history.location,
+            match = {
+                isExact: false,
+                path: '/',
+                url: '/',
+                params: {}
+            };
 
         location.state = {state: {}};
 
-        const component = mount(<Plot history={history} />);
+        const component = mount(<Plot history={history} location={location} match={match} />);
         expect(component).toMatchSnapshot();
     });
 });

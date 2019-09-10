@@ -63,6 +63,24 @@ exports[`Plot should render correctly in "debug" mode 1`] = `
       "replace": [Function],
     }
   }
+  location={
+    Object {
+      "hash": "",
+      "pathname": "/",
+      "search": "",
+      "state": Object {
+        "state": Object {},
+      },
+    }
+  }
+  match={
+    Object {
+      "isExact": false,
+      "params": Object {},
+      "path": "/",
+      "url": "/",
+    }
+  }
 >
   <div>
     <Container
@@ -246,9 +264,7 @@ exports[`ResourceLink should render correctly in "debug" mode 1`] = `
 <ResourceLink
   url="http://..."
 >
-  <li
-    key="[object Object]"
-  >
+  <li>
     <a
       href="http://..."
     >
@@ -295,9 +311,7 @@ exports[`Resources should render correctly in "debug" mode 1`] = `
             key="0"
             url="http://0..."
           >
-            <li
-              key="[object Object]"
-            >
+            <li>
               <a
                 href="http://0..."
               >
@@ -309,9 +323,7 @@ exports[`Resources should render correctly in "debug" mode 1`] = `
             key="1"
             url="http://1..."
           >
-            <li
-              key="[object Object]"
-            >
+            <li>
               <a
                 href="http://1..."
               >
