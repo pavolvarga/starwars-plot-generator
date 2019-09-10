@@ -20,7 +20,10 @@ class GenerateNewPlotBnt extends React.Component<any,any> {
     }
 }
 
-const Description = (props) => {
+type DescriptionProps = {
+   description: string
+};
+const Description: React.FunctionComponent<DescriptionProps> = (props: DescriptionProps) => {
     const
         sanitizer = dompurify.sanitize,
         sanitizedMarkup = sanitizer(props.description),
@@ -36,7 +39,10 @@ const Description = (props) => {
     );
 };
 
-const Title = (props) => {
+type TitleProps = {
+    title: string
+};
+const Title: React.FunctionComponent<TitleProps> = (props: TitleProps) => {
     return (
         <Col>
             <div className="text-center result-space">
@@ -46,15 +52,22 @@ const Title = (props) => {
     );
 };
 
-const ResourceLink = (props) => {
+type ResourceLinkProps = {
+    key: number,
+    url: string
+};
+const ResourceLink: React.FunctionComponent<ResourceLinkProps> = (props: ResourceLinkProps) => {
     return (
-        <li key={props}>
+        <li key={props.key}>
             <a href={props.url}>{props.url}</a>
         </li>
     );
 };
 
-const Resources = (props) => {
+type ResourcesProps = {
+   resources: string[]
+};
+const Resources: React.FunctionComponent<ResourcesProps> = (props: ResourcesProps) => {
     return (
         <Col>
             <div className="text-center result-space">
