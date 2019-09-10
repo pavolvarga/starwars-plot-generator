@@ -57,12 +57,11 @@ const Title: React.FunctionComponent<TitleProps> = (props: TitleProps) => {
 };
 
 type ResourceLinkProps = {
-    key: number,
     url: string
 };
 const ResourceLink: React.FunctionComponent<ResourceLinkProps> = (props: ResourceLinkProps) => {
     return (
-        <li key={props.key}>
+        <li>
             <a href={props.url}>{props.url}</a>
         </li>
     );
