@@ -3,8 +3,12 @@ import { Col, Form, FormGroup, Button, Container } from 'reactstrap';
 import { generatePlot } from "./plotGenerator";
 import dompurify from 'dompurify';
 import { Redirect } from "react-router-dom";
+import {RouteComponentProps} from "react-router";
 
-class GenerateNewPlotBnt extends React.Component<any,any> {
+type GenerateNewPlotBntProps = {
+    generateNewPlot: () => void
+};
+class GenerateNewPlotBnt extends React.Component<GenerateNewPlotBntProps, {}> {
 
     render() {
 
@@ -80,7 +84,7 @@ const Resources: React.FunctionComponent<ResourcesProps> = (props: ResourcesProp
     );
 };
 
-class Plot extends React.Component<any, any> {
+class Plot extends React.Component<RouteComponentProps, {}> {
 
     constructor(props) {
         super(props);
