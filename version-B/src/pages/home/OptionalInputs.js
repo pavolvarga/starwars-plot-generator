@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Button, Col} from "reactstrap";
-import { OPTIONAL_RESOURCES } from './../../common/const';
+import { OPTIONAL_RESOURCES } from '../../common/const';
 
 const OPTIONAL_RESOURCES_SINGULAR = OPTIONAL_RESOURCES.map(r => r.singular);
 

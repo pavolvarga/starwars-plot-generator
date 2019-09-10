@@ -5,7 +5,7 @@ import { loadStarWarsData } from '../../common/load-data';
 import { StarWarsSearch } from "./StarWarsSearch";
 import { GenerateBnt } from "./GenerateBnt";
 import { OptionalInputs } from "./OptionalInputs";
-import { OPTIONAL_RESOURCES, FAILED_LOAD_COOL_DOWN } from './../../common/const';
+import { OPTIONAL_RESOURCES, FAILED_LOAD_COOL_DOWN } from '../../common/const';
 import { LoadFailedAlerts } from './LoadFailedAlerts';
 
 const OPTIONAL_RESOURCES_SINGULAR = OPTIONAL_RESOURCES.map(r => r.singular);
