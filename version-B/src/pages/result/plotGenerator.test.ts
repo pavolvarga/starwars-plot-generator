@@ -1,7 +1,7 @@
-import { generatePlot } from "./PlotGenerator";
+import { generatePlot, Plot } from "./plotGenerator";
 
 describe('generate plot', () => {
-    function baseTest(result) {
+    function baseTest(result: Plot) {
         expect(result).toBeDefined();
         expect(result).toHaveProperty('title');
         expect(result).toHaveProperty('description');

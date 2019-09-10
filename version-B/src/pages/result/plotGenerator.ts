@@ -1,5 +1,10 @@
 
-function generatePlot01(person, planet) {
+export type Plot = {
+    title: string,
+    description: string
+};
+
+function generatePlot01(person: string, planet: string): Plot {
     return {
         title: 'Hero on the rescue mission again',
         description: `
@@ -13,7 +18,7 @@ function generatePlot01(person, planet) {
     };
 }
 
-function generatePlot02(person, planet, starship) {
+function generatePlot02(person: string, planet: string, starship: string): Plot {
     return {
         title: 'Hero has crashed on a remote planet',
         description: `
@@ -26,7 +31,7 @@ function generatePlot02(person, planet, starship) {
     };
 }
 
-function generatePlot03(person, planet, vehicle) {
+function generatePlot03(person: string, planet: string, vehicle: string): Plot {
     return {
         title: 'Hero is in trouble again',
         description: `
@@ -37,7 +42,7 @@ function generatePlot03(person, planet, vehicle) {
     };
 }
 
-function generatePlot04(person, planet, species) {
+function generatePlot04(person: string, planet: string, species: string): Plot {
     return {
         title: 'Hero and new terrible danger',
         description: `
@@ -51,7 +56,7 @@ function generatePlot04(person, planet, species) {
     };
 }
 
-function generatePlot05(person, planet, starship, vehicle) {
+function generatePlot05(person: string, planet: string, starship: string, vehicle: string): Plot {
     return {
         title: 'Death comes from above',
         description: `
@@ -69,7 +74,7 @@ function generatePlot05(person, planet, starship, vehicle) {
     };
 }
 
-function generatePlot06(person, planet, starship, species) {
+function generatePlot06(person: string, planet: string, starship: string, species: string): Plot {
     return {
         title: 'Hero and a terrible discovery',
         description: `
@@ -84,7 +89,7 @@ function generatePlot06(person, planet, starship, species) {
     };
 }
 
-function generatePlot07(person, planet, vehicle, species) {
+function generatePlot07(person: string, planet: string, vehicle: string, species: string): Plot {
     return {
         title: 'New threat rises',
         description: `
@@ -105,7 +110,7 @@ function generatePlot07(person, planet, vehicle, species) {
     };
 }
 
-function generatePlot08(person, planet, starship, vehicle, species) {
+function generatePlot08(person: string, planet: string, starship: string, vehicle: string, species: string): Plot {
     return {
         title: 'Enemy has return',
         description: `
@@ -124,7 +129,7 @@ function generatePlot08(person, planet, starship, vehicle, species) {
     };
 }
 
-function highlight(value) {
+function highlight(value: string | undefined): string | undefined {
     return value ? `<span class="highlight-word">${value}</span>` : value;
 }
 
@@ -134,11 +139,11 @@ function highlight(value) {
  * generate hardcoded plot with substituted plots.
  * @returns {{description: string, title: string}}
  */
-function generatePlot(person, planet, starship, vehicle, species) {
+function generatePlot(person: string, planet: string, starship?: string, vehicle?: string, species?: string): Plot {
 
     const
-        highlightedPerson = highlight(person),
-        highlightedPlanet = highlight(planet),
+        highlightedPerson = (highlight(person) as string),
+        highlightedPlanet = (highlight(planet) as string),
         highlightedStarship = highlight(starship),
         highlightedVehicle = highlight(vehicle),
         highlightedSpecies = highlight(species);
@@ -146,7 +151,7 @@ function generatePlot(person, planet, starship, vehicle, species) {
     return generate(highlightedPerson, highlightedPlanet, highlightedStarship, highlightedVehicle, highlightedSpecies);
 }
 
-function generate(person, planet, starship, vehicle, species) {
+function generate(person: string, planet: string, starship?: string, vehicle?: string, species?: string): Plot {
 
     if (!starship && !vehicle && !species) {
         return generatePlot01(person, planet);
@@ -170,8 +175,8 @@ function generate(person, planet, starship, vehicle, species) {
         return generatePlot07(person, planet, vehicle, species);
     }
     else {
-        return generatePlot08(person, planet, starship, vehicle, species);
+        return generatePlot08(person, planet, (starship as string), (vehicle as string), (species as string));
     }
 }
 
-export { generatePlot }
+export { generatePlot };

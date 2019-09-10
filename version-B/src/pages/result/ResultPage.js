@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Col, Form, FormGroup, Button, Container } from 'reactstrap';
-import { generatePlot } from "./PlotGenerator";
+import { generatePlot } from "./plotGenerator";
 import dompurify from 'dompurify';
 import { Redirect } from "react-router-dom";
 
