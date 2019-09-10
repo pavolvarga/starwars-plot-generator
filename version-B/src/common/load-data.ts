@@ -72,7 +72,8 @@ function createRequestUrlsAndSaveFirstResults(firstRequestResponse: SWAResourceR
     return createPages(resource, count, results.length);
 }
 
-function extractValues(data: SWAResult[]) {
+type ResourceData = {name: string, url: string};
+function extractValues(data: SWAResult[]): ResourceData[] {
     return data.map((obj: SWAResult) => {
         return {name: obj.name, url: obj.url};
     });
@@ -107,7 +108,9 @@ function loadStarWarsResource(resource: string, resolve: any, reject: any): void
         .catch(reject);
 }
 
-function loadStarWarsData(name: string, resolve: any, reject: any): void {
+type ResolveFn = (data: ResourceData ) => void;
+type RejectFn = (err: Error) => void;
+function loadStarWarsData(name: string, resolve: ResolveFn, reject: RejectFn): void {
     loadStarWarsResource(starWarsResource(name), resolve, reject);
 }
 
