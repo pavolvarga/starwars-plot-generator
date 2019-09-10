@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { Col, Form, FormGroup, Button, Container } from 'reactstrap';
 import { generatePlot } from "./plotGenerator";
 import dompurify from 'dompurify';
 import { Redirect } from "react-router-dom";
 
-class GenerateNewPlotBnt extends Component {
+class GenerateNewPlotBnt extends React.Component<any,any> {
 
     render() {
 
@@ -67,7 +67,7 @@ const Resources = (props) => {
     );
 };
 
-class Plot extends Component {
+class Plot extends React.Component<any, any> {
 
     constructor(props) {
         super(props);
@@ -89,11 +89,11 @@ class Plot extends Component {
             inputs = this.props.history.location.state,
             data = Object
                 .values(inputs)
-                .map(r => r.selected),
+                .map((r: any) => r.selected),
             names = data.map(x => x ? x.name : undefined),
             resources = data.map(x => x ? x.url : undefined).filter(x => x);
 
-        const {title, description} = generatePlot(...names);
+        const {title, description} = generatePlot(...(names as [string, string, string?, string?, string?]));
 
         return (
             <div>
