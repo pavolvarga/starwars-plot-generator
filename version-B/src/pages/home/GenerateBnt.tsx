@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import {Button, Col} from "reactstrap";
 
-class GenerateBnt extends Component {
+type GenerateBntProps = {
+    generatePlot: () => undefined,
+    isGenerateBntDisabled: () => boolean
+};
+class GenerateBnt extends Component<GenerateBntProps, {}> {
 
     render() {
 
