@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {Button, Col} from "reactstrap";
 import { OPTIONAL_RESOURCES } from '../../common/const';
 
