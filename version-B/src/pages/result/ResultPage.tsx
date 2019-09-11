@@ -8,21 +8,16 @@ import {RouteComponentProps} from "react-router";
 type GenerateNewPlotBntProps = {
     generateNewPlot: () => void
 };
-class GenerateNewPlotBnt extends React.Component<GenerateNewPlotBntProps, {}> {
-
-    render() {
-
-        const {generateNewPlot} = this.props;
-
-        return (
-            <Col>
-                <div className="text-center result-space">
-                    <Button color="primary" size="lg" onClick={e => generateNewPlot()}>Generate New Plot</Button>
-                </div>
-            </Col>
-        );
-    }
-}
+const GenerateNewPlotBnt: React.FunctionComponent<GenerateNewPlotBntProps> = (props: GenerateNewPlotBntProps) => {
+    const {generateNewPlot} = props;
+    return (
+        <Col>
+            <div className="text-center result-space">
+                <Button color="primary" size="lg" onClick={e => generateNewPlot()}>Generate New Plot</Button>
+            </div>
+        </Col>
+    );
+};
 
 type DescriptionProps = {
    description: string
