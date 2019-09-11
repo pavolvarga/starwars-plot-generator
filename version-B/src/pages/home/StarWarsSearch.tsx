@@ -1,8 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Autosuggest from 'react-autosuggest';
 import {Col, FormGroup, Label, Input} from "reactstrap";
 
-function createTheme(count) {
+//todo: what type does a jsx element have ?
+//todo: what type is a suggestion ?
+
+type Theme = {
+    container: string,
+    input: string,
+    suggestionsContainer: string,
+    suggestionsList: string,
+    suggestionHighlighted: string
+};
+function createTheme(count: number): Theme {
     return {
         container: 'autosuggest',
         input: 'form-control',
@@ -12,23 +22,29 @@ function createTheme(count) {
     };
 }
 
-// https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions#Using_Special_Characters
-function escapeRegexCharacters(str) {
+// https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions#Using_Special_Character
+function escapeRegexCharacters(str: string): string {
     return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-function getSuggestionValue(suggestion) {
+function getSuggestionValue(suggestion: any): string {
     return suggestion.name;
 }
 
-function renderSuggestion(suggestion) {
+function renderSuggestion(suggestion: any): any {
     return (
         <span>{suggestion.name}</span>
     );
 }
 
-function renderInputComponent(inputProps, id, name, disabled, valid) {
-    return (inputProps) => (
+type InputPropsType = {
+    placeholder: string
+    value: any,
+    onChange: any
+
+};
+function renderInputComponent(inputProps: InputPropsType, id: string, name: string, disabled: boolean, valid: boolean | undefined): any {
+    return (inputProps: InputPropsType) => (
         <Input
             {...inputProps}
             id={id}
@@ -40,7 +56,23 @@ function renderInputComponent(inputProps, id, name, disabled, valid) {
     );
 }
 
-class StarWarsSearch extends Component {
+type StarWarsSearchState = {
+    value: string,
+    suggestions: any[],
+    selectedFromData: boolean
+};
+type StarWarsSearchProps = {
+    id: string,
+    name: string,
+    label: string,
+    placeholder: string,
+    data: any,
+    setFn: any,
+    visible: boolean
+};
+class StarWarsSearch extends React.Component<StarWarsSearchProps, StarWarsSearchState> {
+    private data: any[];
+    private setFn: (data: any | undefined) => void;
 
     constructor(props) {
         super(props);
@@ -111,7 +143,7 @@ class StarWarsSearch extends Component {
             return null;
         }
 
-        const inputProps = {
+        const inputProps: InputPropsType = {
             placeholder,
             value: this.state.value,
             onChange: this.onChange
