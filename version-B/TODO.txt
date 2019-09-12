@@ -1,5 +1,4 @@
 TODO:
-- do not use Promise<any> when fetching data
 - add @types/reactstrap and fix StarWarsSearch / Input errors with onChange callback
 - tsconfig noImplicitAny set to true and fix compilation errors
 - HomePage - find a way how to specify type for customProps
