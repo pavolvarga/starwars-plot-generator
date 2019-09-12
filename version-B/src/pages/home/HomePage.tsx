@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Component } from 'react';
 import { Form, Container } from 'reactstrap';
-import { loadStarWarsData } from '../../common/load-data';
+import { loadStarWarsData, ResourceData } from '../../common/load-data';
 import { StarWarsSearch, Suggestion, StarWarsSearchProps } from "./StarWarsSearch";
 import { GenerateBnt } from "./GenerateBnt";
 import { OptionalInputs } from "./OptionalInputs";
@@ -18,7 +18,21 @@ function upperCase(text: string): string {
     return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
-class InputForm extends Component<any, any> {
+type InputState = {
+    visible: boolean,
+    selected: Suggestion | undefined,
+    data: ResourceData[],
+    loadingInProgress?: boolean,
+    loadFailed: boolean
+};
+type InputFormState = {
+    person: InputState,
+    planet: InputState,
+    starship: InputState,
+    vehicle: InputState,
+    species: InputState,
+};
+class InputForm extends Component<any, InputFormState> {
 
     constructor(props) {
 

@@ -12,7 +12,7 @@ type SWAResult = {
     [key: string]: any
 }
 
-function starWarsResource(name: string): string {
+export function starWarsResource(name: string): string {
     return `${STAR_WARS_API}/${name}/`;
 }
 
@@ -25,7 +25,7 @@ function starWarsResource(name: string): string {
  *                              (we are assuming that all subsequent calls but the last one will retrieve same amout)
  * @returns {Array} - arrays of urls for fetching all items
  */
-function createPages(resource: string, totalCount: number, retrievedItemsCount: number): string[] {
+export function createPages(resource: string, totalCount: number, retrievedItemsCount: number): string[] {
 
     if (totalCount === retrievedItemsCount) {
         return [];
@@ -73,7 +73,7 @@ function createRequestUrlsAndSaveFirstResults(firstRequestResponse: SWAResourceR
     return createPages(resource, count, results.length);
 }
 
-type ResourceData = {name: string, url: string};
+export type ResourceData = {name: string, url: string};
 function extractValues(data: SWAResult[]): ResourceData[] {
     return data.map((obj: SWAResult) => {
         return {name: obj.name, url: obj.url};
@@ -111,8 +111,6 @@ function loadStarWarsResource(resource: string, resolve: any, reject: any): void
 
 type ResolveFn = (data: ResourceData ) => void;
 type RejectFn = (err: Error) => void;
-function loadStarWarsData(name: string, resolve: ResolveFn, reject: RejectFn): void {
+export function loadStarWarsData(name: string, resolve: ResolveFn, reject: RejectFn): void {
     loadStarWarsResource(starWarsResource(name), resolve, reject);
 }
-
-export { starWarsResource, createPages, loadStarWarsData };
