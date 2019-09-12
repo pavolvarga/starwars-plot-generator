@@ -42,23 +42,27 @@ type OnChangePayload = {
     newValue: string
     type: string
 }
-type InputPropsType = {
+type AutosuggestProps = {
     placeholder: string
     value: string,
     onChange: (e: SyntheticEvent, p: OnChangePayload) => void
 
 };
-function renderInputComponent(inputProps: InputPropsType, id: string, name: string, disabled: boolean, valid: boolean | undefined): (ip: InputPropsType) => ReactElement {
-    return (inputProps: InputPropsType) => (
-        <Input
-            {...inputProps}
-            id={id}
-            name={name}
-            disabled={disabled}
-            valid={valid}
-            bsSize="lg"
-        />
-    );
+function renderInputComponent(id: string, name: string, disabled: boolean, valid: boolean | undefined): (ip: any) => ReactElement {
+    //inputProps is provided by the Autosuggest component
+    //see: https://github.com/moroshko/react-autosuggest#render-input-component-prop
+    return (inputProps: any) => {
+        return (
+            <Input
+                {...inputProps}
+                id={id}
+                name={name}
+                disabled={disabled}
+                valid={valid}
+                bsSize="lg"
+            />
+        );
+    }
 }
 
 type StarWarsSearchState = {
@@ -152,7 +156,7 @@ export class StarWarsSearch extends Component<StarWarsSearchProps, StarWarsSearc
             return null;
         }
 
-        const inputProps: InputPropsType = {
+        const autosuggestInputProps: AutosuggestProps = {
             placeholder,
             value: this.state.value,
             onChange: this.onChange
@@ -174,9 +178,9 @@ export class StarWarsSearch extends Component<StarWarsSearchProps, StarWarsSearc
                         onSuggestionsClearRequested={this.onSuggestionsClearRequested}
                         getSuggestionValue={getSuggestionValue}
                         renderSuggestion={renderSuggestion}
-                        inputProps={inputProps}
+                        inputProps={autosuggestInputProps}
                         theme={createTheme(this.data.length)}
-                        renderInputComponent={renderInputComponent(inputProps, id, name, disabled, valid)}
+                        renderInputComponent={renderInputComponent(id, name, disabled, valid)}
                     />
                 </FormGroup>
             </Col>

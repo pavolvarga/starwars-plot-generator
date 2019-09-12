@@ -27,7 +27,9 @@ function renderSuggestion(suggestion) {
     );
 }
 
-function renderInputComponent(inputProps, id, name, disabled, valid) {
+function renderInputComponent(id, name, disabled, valid) {
+    //inputProps is provided by the Autosuggest component
+    //see: https://github.com/moroshko/react-autosuggest#render-input-component-prop
     return (inputProps) => (
         <Input
             {...inputProps}
@@ -111,7 +113,7 @@ class StarWarsSearch extends Component {
             return null;
         }
 
-        const inputProps = {
+        const autosuggestInputProps = {
             placeholder,
             value: this.state.value,
             onChange: this.onChange
@@ -133,9 +135,9 @@ class StarWarsSearch extends Component {
                         onSuggestionsClearRequested={this.onSuggestionsClearRequested}
                         getSuggestionValue={getSuggestionValue}
                         renderSuggestion={renderSuggestion}
-                        inputProps={inputProps}
+                        inputProps={autosuggestInputProps}
                         theme={createTheme(this.data.length)}
-                        renderInputComponent={renderInputComponent(inputProps, id, name, disabled, valid)}
+                        renderInputComponent={renderInputComponent(id, name, disabled, valid)}
                     />
                 </FormGroup>
             </Col>
