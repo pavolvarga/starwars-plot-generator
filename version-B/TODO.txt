@@ -1,0 +1,3 @@
+TODO:
+- do not use Promise<any> when fetching data
+- tsconfig noImplicitAny set to true and fix compilation errors

@@ -19,5 +19,3 @@ describe('create pages', () => {
        expect(result).toEqual([]);
    });
 });
-
-//TODO: write tests for fetching all data
