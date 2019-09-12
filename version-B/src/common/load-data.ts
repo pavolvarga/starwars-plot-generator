@@ -109,8 +109,8 @@ function loadStarWarsResource(resource: string, resolve: any, reject: any): void
         .catch(reject);
 }
 
-type ResolveFn = (data: ResourceData ) => void;
-type RejectFn = (err: Error) => void;
-export function loadStarWarsData(name: string, resolve: ResolveFn, reject: RejectFn): void {
+export type LoadSWDataResolveFn = (data: ResourceData ) => void;
+export type LoadSWDataRejectFn = (err: Error) => void;
+export function loadStarWarsData(name: string, resolve: LoadSWDataResolveFn, reject: LoadSWDataRejectFn): void {
     loadStarWarsResource(starWarsResource(name), resolve, reject);
 }

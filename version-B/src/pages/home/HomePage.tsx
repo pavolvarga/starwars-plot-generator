@@ -1,12 +1,13 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Component } from 'react';
 import { Form, Container } from 'reactstrap';
-import { loadStarWarsData, ResourceData } from '../../common/load-data';
+import { loadStarWarsData, ResourceData, LoadSWDataResolveFn, LoadSWDataRejectFn } from '../../common/load-data';
 import { StarWarsSearch, Suggestion, StarWarsSearchProps } from "./StarWarsSearch";
 import { GenerateBnt } from "./GenerateBnt";
 import { OptionalInputs } from "./OptionalInputs";
 import { OPTIONAL_RESOURCES, FAILED_LOAD_COOL_DOWN } from '../../common/const';
 import { LoadFailedAlerts } from './LoadFailedAlerts';
+import { RouteComponentProps } from "react-router";
 
 const OPTIONAL_RESOURCES_SINGULAR: string[] = OPTIONAL_RESOURCES.map(r => r.singular);
 
@@ -32,7 +33,8 @@ type InputFormState = {
     vehicle: InputState,
     species: InputState,
 };
-class InputForm extends Component<any, InputFormState> {
+//todo: find a way how to specify type for customProps
+class InputForm extends Component<RouteComponentProps, InputFormState> {
 
     constructor(props) {
 
@@ -86,7 +88,7 @@ class InputForm extends Component<any, InputFormState> {
     loadResourceData(name): void {
         const
             resourcePlural = getPluralName(name),
-            resolve = (function storeOptionalResourceData(this: InputForm, value) {
+            resolve: LoadSWDataResolveFn = (function storeOptionalResourceData(this: InputForm, value: ResourceData): void {
 
                 const
                     resource = this.state[name],
@@ -97,7 +99,7 @@ class InputForm extends Component<any, InputFormState> {
                 this.setState(state => Object.assign(state, obj));
 
             }).bind(this),
-            reject = (function updateLoadFailed (this: InputForm, err) {
+            reject: LoadSWDataRejectFn = (function updateLoadFailed (this: InputForm, err): void {
                 const
                     resource = this.state[name],
                     obj = {},
