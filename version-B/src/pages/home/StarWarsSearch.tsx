@@ -3,7 +3,6 @@ import Autosuggest from 'react-autosuggest';
 import {Col, FormGroup, Label, Input} from "reactstrap";
 
 //todo: what type does a jsx element have ?
-//todo: what type is a suggestion ?
 
 type Theme = {
     container: string,
@@ -27,7 +26,11 @@ function escapeRegexCharacters(str: string): string {
     return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-function getSuggestionValue(suggestion: any): string {
+type Suggestion = {
+    name: string,
+    type: string
+}
+function getSuggestionValue(suggestion: Suggestion): string {
     return suggestion.name;
 }
 
@@ -58,7 +61,7 @@ function renderInputComponent(inputProps: InputPropsType, id: string, name: stri
 
 type StarWarsSearchState = {
     value: string,
-    suggestions: any[],
+    suggestions: Suggestion[],
     selectedFromData: boolean
 };
 type StarWarsSearchProps = {
@@ -66,13 +69,13 @@ type StarWarsSearchProps = {
     name: string,
     label: string,
     placeholder: string,
-    data: any,
-    setFn: any,
+    data: Suggestion[],
+    setFn: (suggestion: Suggestion | undefined) => void,
     visible: boolean
 };
 class StarWarsSearch extends React.Component<StarWarsSearchProps, StarWarsSearchState> {
-    private data: any[];
-    private setFn: (data: any | undefined) => void;
+    private data: Suggestion[];
+    private setFn: (suggestion: Suggestion | undefined) => void;
 
     constructor(props) {
         super(props);

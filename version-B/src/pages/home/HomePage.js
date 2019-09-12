@@ -55,10 +55,15 @@ class InputForm extends Component {
         });
     }
 
-    setSelectedValue(name, value) {
+    /**
+     * @param name - the name of input (person, planet, ...)
+     * @param suggestion - either undefined (if not selected) or a selected suggestion value
+     */
+    setSelectedValue(name, suggestion) {
+        console.log(name, suggestion);
         const
             resource = this.state[name],
-            updated = Object.assign(resource, {selected: value}),
+            updated = Object.assign(resource, {selected: suggestion}),
             obj = {};
 
         obj[name] = updated;
@@ -131,8 +136,8 @@ class InputForm extends Component {
             label: upperCasedLabel,
             placeholder: `Please enter a ${normalizedLabel}`,
             data: this.state[name].data,
-            setFn: (function setEnteredValue(value) {
-                this.setSelectedValue(name, value);
+            setFn: (function setEnteredValue(selectedSuggestion) {
+                this.setSelectedValue(name, selectedSuggestion);
             }).bind(this),
             visible: this.state[name].visible
         };
