@@ -48,6 +48,7 @@ function createPages(resource: string, totalCount: number, retrievedItemsCount: 
 /**
  * Given list of urls, fetch data from all urls
  */
+//TODO: replace the <any> type with a proper type
 function readAllPages(pages: string[]): Promise<any> {
     return Promise.all(pages.map(page => fetch(page)));
 }
