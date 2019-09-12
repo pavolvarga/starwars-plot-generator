@@ -2,19 +2,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Component } from 'react';
 import { Form, Container } from 'reactstrap';
 import { loadStarWarsData } from '../../common/load-data';
-import { StarWarsSearch } from "./StarWarsSearch";
+import { StarWarsSearch, Suggestion, StarWarsSearchProps } from "./StarWarsSearch";
 import { GenerateBnt } from "./GenerateBnt";
 import { OptionalInputs } from "./OptionalInputs";
 import { OPTIONAL_RESOURCES, FAILED_LOAD_COOL_DOWN } from '../../common/const';
 import { LoadFailedAlerts } from './LoadFailedAlerts';
 
-const OPTIONAL_RESOURCES_SINGULAR = OPTIONAL_RESOURCES.map(r => r.singular);
+const OPTIONAL_RESOURCES_SINGULAR: string[] = OPTIONAL_RESOURCES.map(r => r.singular);
 
-function getPluralName(singularName) {
+function getPluralName(singularName: string): string {
     return OPTIONAL_RESOURCES.filter(r => r.singular === singularName)[0].plural;
 }
 
-function upperCase(text) {
+function upperCase(text: string): string {
     return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
@@ -37,7 +37,7 @@ class InputForm extends Component<any, any> {
         this.isGenerateBntDisabled = this.isGenerateBntDisabled.bind(this);
         this.generatePlot = this.generatePlot.bind(this);
         this.loadResourceData = this.loadResourceData.bind(this);
-        this.createInputProps = this.createInputProps.bind(this);
+        this.createSearchInputProps = this.createSearchInputProps.bind(this);
     }
 
     isGenerateBntDisabled(): boolean {
@@ -59,8 +59,7 @@ class InputForm extends Component<any, any> {
      * @param name - the name of input (person, planet, ...)
      * @param suggestion - either undefined (if not selected) or a selected suggestion value
      */
-    setSelectedValue(name, suggestion) {
-        console.log(name, suggestion);
+    setSelectedValue(name: string, suggestion: Suggestion | undefined): void {
         const
             resource = this.state[name],
             updated = Object.assign(resource, {selected: suggestion}),
@@ -70,7 +69,7 @@ class InputForm extends Component<any, any> {
         this.setState(state => Object.assign(state, obj));
     }
 
-    loadResourceData(name) {
+    loadResourceData(name): void {
         const
             resourcePlural = getPluralName(name),
             resolve = (function storeOptionalResourceData(this: InputForm, value) {
@@ -124,7 +123,7 @@ class InputForm extends Component<any, any> {
         this.setState(state => Object.assign(state, obj));
     }
 
-    createInputProps(name: string, label?: string) {
+    createSearchInputProps(name: string, label?: string): StarWarsSearchProps {
 
         const
             normalizedLabel = label ? label : name,
@@ -136,7 +135,7 @@ class InputForm extends Component<any, any> {
             label: upperCasedLabel,
             placeholder: `Please enter a ${normalizedLabel}`,
             data: this.state[name].data,
-            setFn: (function setEnteredValue(this: InputForm, selectedSuggestion) {
+            setFn: (function setEnteredValue(this: InputForm, selectedSuggestion: Suggestion | undefined) {
                 this.setSelectedValue(name, selectedSuggestion);
             }).bind(this),
             visible: this.state[name].visible
@@ -146,11 +145,11 @@ class InputForm extends Component<any, any> {
     render() {
 
         const
-            personProps = this.createInputProps('person', 'character'),
-            planetProps = this.createInputProps('planet'),
-            starshipProps = this.createInputProps('starship'),
-            vehicleProps = this.createInputProps('vehicle'),
-            speciesProps = this.createInputProps('species');
+            personProps = this.createSearchInputProps('person', 'character'),
+            planetProps = this.createSearchInputProps('planet'),
+            starshipProps = this.createSearchInputProps('starship'),
+            vehicleProps = this.createSearchInputProps('vehicle'),
+            speciesProps = this.createSearchInputProps('species');
 
         const generateBntProps = {
             isGenerateBntDisabled: this.isGenerateBntDisabled,

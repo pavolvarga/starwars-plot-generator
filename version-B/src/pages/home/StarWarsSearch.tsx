@@ -24,7 +24,7 @@ function escapeRegexCharacters(str: string): string {
     return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-type Suggestion = {
+export type Suggestion = {
     name: string,
     type: string
 }
@@ -66,7 +66,7 @@ type StarWarsSearchState = {
     suggestions: Suggestion[],
     selectedFromData: boolean
 };
-type StarWarsSearchProps = {
+export type StarWarsSearchProps = {
     id: string,
     name: string,
     label: string,
@@ -79,7 +79,7 @@ type SuggestionFetchRequest = {
     value: string,
     reason: string
 };
-class StarWarsSearch extends Component<StarWarsSearchProps, StarWarsSearchState> {
+export class StarWarsSearch extends Component<StarWarsSearchProps, StarWarsSearchState> {
     private data: Suggestion[];
     private setFn: (suggestion: Suggestion | undefined) => void;
 
@@ -183,5 +183,3 @@ class StarWarsSearch extends Component<StarWarsSearchProps, StarWarsSearchState>
         );
     }
 }
-
-export { StarWarsSearch };
