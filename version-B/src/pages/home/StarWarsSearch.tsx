@@ -1,8 +1,6 @@
-import React, {ReactElement} from 'react';
+import React, {ReactElement, SyntheticEvent, Component} from 'react';
 import Autosuggest from 'react-autosuggest';
 import {Col, FormGroup, Label, Input} from "reactstrap";
-
-//todo: what type does a jsx element have ?
 
 type Theme = {
     container: string,
@@ -40,10 +38,14 @@ function renderSuggestion(suggestion: Suggestion): ReactElement {
     );
 }
 
+type OnChangePayload = {
+    newValue: string
+    type: string
+}
 type InputPropsType = {
     placeholder: string
-    value: any,
-    onChange: any
+    value: string,
+    onChange: (e: SyntheticEvent, p: OnChangePayload) => void
 
 };
 function renderInputComponent(inputProps: InputPropsType, id: string, name: string, disabled: boolean, valid: boolean | undefined): (ip: InputPropsType) => ReactElement {
@@ -73,7 +75,11 @@ type StarWarsSearchProps = {
     setFn: (suggestion: Suggestion | undefined) => void,
     visible: boolean
 };
-class StarWarsSearch extends React.Component<StarWarsSearchProps, StarWarsSearchState> {
+type SuggestionFetchRequest = {
+    value: string,
+    reason: string
+};
+class StarWarsSearch extends Component<StarWarsSearchProps, StarWarsSearchState> {
     private data: Suggestion[];
     private setFn: (suggestion: Suggestion | undefined) => void;
 
@@ -92,7 +98,7 @@ class StarWarsSearch extends React.Component<StarWarsSearchProps, StarWarsSearch
         this.setFn = () => {};
     }
 
-    onChange(event, {newValue}) {
+    onChange(event: SyntheticEvent, {newValue}: OnChangePayload): void {
         this.setState({
             value: newValue
         });
@@ -111,19 +117,19 @@ class StarWarsSearch extends React.Component<StarWarsSearchProps, StarWarsSearch
         }
     }
 
-    onSuggestionsFetchRequested(value) {
+    onSuggestionsFetchRequested(fetchReq: SuggestionFetchRequest): void {
         this.setState({
-            suggestions: this.getSuggestions(value)
+            suggestions: this.getSuggestions(fetchReq)
         });
     }
 
-    onSuggestionsClearRequested() {
+    onSuggestionsClearRequested(): void {
         this.setState({
             suggestions: []
         });
     }
 
-    getSuggestions({value}) {
+    getSuggestions({value}: SuggestionFetchRequest): Suggestion[] {
         const escapedValue = escapeRegexCharacters(value.trim());
 
         if (escapedValue === '') {
