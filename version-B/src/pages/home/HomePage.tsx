@@ -88,7 +88,7 @@ class InputForm extends Component<RouteComponentProps, InputFormState> {
     loadResourceData(name): void {
         const
             resourcePlural = getPluralName(name),
-            resolve: LoadSWDataResolveFn = (function storeOptionalResourceData(this: InputForm, value: ResourceData): void {
+            resolve: LoadSWDataResolveFn = (function storeOptionalResourceData(this: InputForm, value: ResourceData[]): void {
 
                 const
                     resource = this.state[name],

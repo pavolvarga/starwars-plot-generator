@@ -1,15 +1,15 @@
-import React, { Component } from "react";
+import React, { Component, ReactElement } from "react";
 import { BrowserRouter as Router, Route, withRouter } from "react-router-dom";
 import { Spinner, Alert } from 'reactstrap';
 import { InputForm } from './pages/home/HomePage';
 import { Plot } from './pages/result/ResultPage';
-import { loadStarWarsData } from './common/load-data';
+import { loadStarWarsData, ResourceData } from './common/load-data';
 import { RESOURCES } from './common/const';
 
 const StarWarsForm = withRouter(InputForm);
 const StarWarsPlot = withRouter(Plot);
 
-function Header() {
+function Header(): ReactElement {
     return (
         <div className="text-center">
             <h1>Star Wars Plot Generator</h1>
@@ -17,7 +17,7 @@ function Header() {
     );
 }
 
-function Loader() {
+function Loader(): ReactElement {
     return (
         <div className="text-center">
             <h3>Please wait while star wars data is being loaded</h3>
@@ -26,7 +26,17 @@ function Loader() {
     );
 }
 
-class App extends Component<any, any> {
+type AppData = {
+    people: ResourceData[],
+    planets: ResourceData[],
+    [key: string]: ResourceData[]
+}
+type AppState = {
+    data: AppData,
+    peopleLoadEndedInError: boolean,
+    planetsLoadEndedInError: boolean
+}
+class App extends Component<{}, AppState> {
 
     constructor(props) {
         super(props);
@@ -45,21 +55,21 @@ class App extends Component<any, any> {
         this.handlePlanetsLoadError = this.handlePlanetsLoadError.bind(this);
     }
 
-    setPeople(people) {
+    setPeople(people: ResourceData[]): void {
         this.setState((state) => ({
             ...state,
             data: {...state.data, people}
         }));
     }
 
-    setPlanets(planets) {
+    setPlanets(planets: ResourceData[]): void {
         this.setState((state) => ({
             ...state,
             data: {...state.data, planets}
         }));
     }
 
-    handlePeopleLoadError(err) {
+    handlePeopleLoadError(err: Error): void {
         console.log('Initial loading of people has failed', err);
         this.setState((state) => ({
             ...state,
@@ -67,7 +77,7 @@ class App extends Component<any, any> {
         }));
     }
 
-    handlePlanetsLoadError(err) {
+    handlePlanetsLoadError(err: Error): void {
         console.log('Initial loading of planets has failed', err);
         this.setState((state) => ({
             ...state,
@@ -75,12 +85,12 @@ class App extends Component<any, any> {
         }));
     }
 
-    componentDidMount() {
+    componentDidMount(): void {
         loadStarWarsData(RESOURCES.PEOPLE.plural, this.setPeople, this.handlePeopleLoadError);
         loadStarWarsData(RESOURCES.PLANETS.plural, this.setPlanets, this.handlePlanetsLoadError);
     }
 
-    isLoadedInitialData() {
+    isLoadedInitialData(): boolean {
         return this.state.data.people.length > 0 && this.state.data.planets.length > 0;
     }
 

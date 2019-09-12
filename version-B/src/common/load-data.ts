@@ -94,7 +94,7 @@ function flat(data: SWAResult[][]): SWAResult[] {
  * @param resolve - resolve function
  * @param reject - reject function
  */
-function loadStarWarsResource(resource: string, resolve: any, reject: any): void {
+function loadStarWarsResource(resource: string, resolve: LoadSWDataResolveFn, reject: LoadSWDataRejectFn): void {
 
     fetch(resource)
         .then(response => response.json())
@@ -109,7 +109,7 @@ function loadStarWarsResource(resource: string, resolve: any, reject: any): void
         .catch(reject);
 }
 
-export type LoadSWDataResolveFn = (data: ResourceData ) => void;
+export type LoadSWDataResolveFn = (data: ResourceData[]) => void;
 export type LoadSWDataRejectFn = (err: Error) => void;
 export function loadStarWarsData(name: string, resolve: LoadSWDataResolveFn, reject: LoadSWDataRejectFn): void {
     loadStarWarsResource(starWarsResource(name), resolve, reject);
