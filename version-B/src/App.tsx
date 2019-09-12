@@ -26,7 +26,7 @@ function Loader() {
     );
 }
 
-class App extends Component {
+class App extends Component<any, any> {
 
     constructor(props) {
         super(props);
