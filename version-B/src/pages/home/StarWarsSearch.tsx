@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ReactElement} from 'react';
 import Autosuggest from 'react-autosuggest';
 import {Col, FormGroup, Label, Input} from "reactstrap";
 
@@ -34,7 +34,7 @@ function getSuggestionValue(suggestion: Suggestion): string {
     return suggestion.name;
 }
 
-function renderSuggestion(suggestion: any): any {
+function renderSuggestion(suggestion: Suggestion): ReactElement {
     return (
         <span>{suggestion.name}</span>
     );
@@ -46,7 +46,7 @@ type InputPropsType = {
     onChange: any
 
 };
-function renderInputComponent(inputProps: InputPropsType, id: string, name: string, disabled: boolean, valid: boolean | undefined): any {
+function renderInputComponent(inputProps: InputPropsType, id: string, name: string, disabled: boolean, valid: boolean | undefined): (ip: InputPropsType) => ReactElement {
     return (inputProps: InputPropsType) => (
         <Input
             {...inputProps}
