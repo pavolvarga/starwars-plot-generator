@@ -18,7 +18,7 @@ function upperCase(text) {
     return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
-class InputForm extends Component {
+class InputForm extends Component<any, any> {
 
     constructor(props) {
 
@@ -40,11 +40,11 @@ class InputForm extends Component {
         this.createInputProps = this.createInputProps.bind(this);
     }
 
-    isGenerateBntDisabled() {
+    isGenerateBntDisabled(): boolean {
         return !(!!this.state.person.selected && !!this.state.planet.selected);
     }
 
-    generatePlot() {
+    generatePlot(): void {
         const state = {};
         Object.keys(this.state).forEach(key => {
             state[key] = {selected: this.state[key].selected};
@@ -73,7 +73,7 @@ class InputForm extends Component {
     loadResourceData(name) {
         const
             resourcePlural = getPluralName(name),
-            resolve = (function storeOptionalResourceData(value) {
+            resolve = (function storeOptionalResourceData(this: InputForm, value) {
 
                 const
                     resource = this.state[name],
@@ -84,7 +84,7 @@ class InputForm extends Component {
                 this.setState(state => Object.assign(state, obj));
 
             }).bind(this),
-            reject = (function updateLoadFailed (err) {
+            reject = (function updateLoadFailed (this: InputForm, err) {
                 const
                     resource = this.state[name],
                     obj = {},
@@ -94,7 +94,7 @@ class InputForm extends Component {
                 this.setState(state => Object.assign(state, obj));
 
                 //clear alert after specified time, and allow user to try it again
-                setTimeout(function clearLoadFailed() {
+                setTimeout(function clearLoadFailed(this: InputForm) {
                     const cleared = Object.assign(resource, {visible: false, loadFailed: false});
                     obj[name] = cleared;
                     this.setState(state => Object.assign(state, obj));
@@ -105,7 +105,7 @@ class InputForm extends Component {
         loadStarWarsData(resourcePlural, resolve, reject);
     }
 
-    toggleVisibility(name) {
+    toggleVisibility(name: string): void {
 
         const
             resource = this.state[name],
@@ -124,7 +124,7 @@ class InputForm extends Component {
         this.setState(state => Object.assign(state, obj));
     }
 
-    createInputProps(name, label) {
+    createInputProps(name: string, label?: string) {
 
         const
             normalizedLabel = label ? label : name,
@@ -136,7 +136,7 @@ class InputForm extends Component {
             label: upperCasedLabel,
             placeholder: `Please enter a ${normalizedLabel}`,
             data: this.state[name].data,
-            setFn: (function setEnteredValue(selectedSuggestion) {
+            setFn: (function setEnteredValue(this: InputForm, selectedSuggestion) {
                 this.setSelectedValue(name, selectedSuggestion);
             }).bind(this),
             visible: this.state[name].visible

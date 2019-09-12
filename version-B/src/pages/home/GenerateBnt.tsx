@@ -2,7 +2,7 @@ import React from 'react';
 import {Button, Col} from "reactstrap";
 
 type GenerateBntProps = {
-    generatePlot: () => undefined,
+    generatePlot: () => void,
     isGenerateBntDisabled: () => boolean
 };
 const GenerateBnt: React.FunctionComponent<GenerateBntProps> = (props: GenerateBntProps) => {

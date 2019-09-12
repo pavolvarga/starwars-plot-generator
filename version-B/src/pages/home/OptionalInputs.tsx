@@ -7,9 +7,9 @@ const OPTIONAL_RESOURCES_SINGULAR: string[] = OPTIONAL_RESOURCES.map(r => r.sing
 type OptionalInputsProps = {
     visibles: boolean[],
     toggleVisibilityFn: (name: string) => void,
-    disabled: boolean
+    disabled: boolean[]
 };
-const OptionalInputs: React.FunctionComponent<OptionalInputsProps> = (props: OptionalInputsProps) => {
+const OptionalInputs: React.FC<OptionalInputsProps> = (props: OptionalInputsProps) => {
     const {visibles, toggleVisibilityFn, disabled} = props;
     return (
         <Col>
@@ -34,7 +34,7 @@ type OptionalInputBntProps = {
     visible: boolean,
     disabled: boolean
 };
-const OptionalInputBnt: React.FunctionComponent<OptionalInputBntProps> = (props: OptionalInputBntProps) => {
+const OptionalInputBnt: React.FC<OptionalInputBntProps> = (props: OptionalInputBntProps) => {
     const
         {name, toggleVisibilityFn, visible, disabled} = props,
         text = visible ? `Remove ${name}` : `Add ${name}`;
