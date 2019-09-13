@@ -1,4 +1,4 @@
-import React, { ReactElement, SyntheticEvent, Component } from 'react';
+import React, { ReactElement, Component } from 'react';
 import Autosuggest, { ChangeEvent } from 'react-autosuggest';
 import { Col, FormGroup, Label, Input } from "reactstrap";
 
