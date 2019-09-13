@@ -1,5 +1,5 @@
-import React from 'react';
-import {Button, Col} from "reactstrap";
+import React, { MouseEvent } from 'react';
+import { Button, Col } from "reactstrap";
 
 type GenerateBntProps = {
     generatePlot: () => void,
@@ -13,7 +13,7 @@ const GenerateBnt: React.FunctionComponent<GenerateBntProps> = (props: GenerateB
                 <Button
                     color="primary"
                     size="lg"
-                    onClick={e => generatePlot()}
+                    onClick={(e: MouseEvent) => generatePlot()}
                     disabled={isGenerateBntDisabled()}>
                     Generate Plot
                 </Button>
