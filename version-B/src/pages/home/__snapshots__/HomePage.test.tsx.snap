@@ -88,7 +88,6 @@ exports[`HomePage should render correctly in "debug" mode 1`] = `
                           }
                         }
                         multiSection={false}
-                        name="input-person"
                         onSuggestionsClearRequested={[Function]}
                         onSuggestionsFetchRequested={[Function]}
                         renderInputComponent={[Function]}
@@ -268,7 +267,6 @@ exports[`HomePage should render correctly in "debug" mode 1`] = `
                           }
                         }
                         multiSection={false}
-                        name="input-planet"
                         onSuggestionsClearRequested={[Function]}
                         onSuggestionsFetchRequested={[Function]}
                         renderInputComponent={[Function]}
