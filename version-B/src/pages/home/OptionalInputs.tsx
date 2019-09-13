@@ -1,5 +1,5 @@
-import React from 'react';
-import {Button, Col} from "reactstrap";
+import React, { MouseEvent } from 'react';
+import { Button, Col } from "reactstrap";
 import { OPTIONAL_RESOURCES } from '../../common/const';
 
 const OPTIONAL_RESOURCES_SINGULAR: string[] = OPTIONAL_RESOURCES.map(r => r.singular);
@@ -44,7 +44,7 @@ const OptionalInputBnt: React.FC<OptionalInputBntProps> = (props: OptionalInputB
                 <Button
                     color="secondary"
                     size="lg"
-                    onClick={e => toggleVisibilityFn(name)}
+                    onClick={(e: MouseEvent) => toggleVisibilityFn(name)}
                     disabled={disabled}
                 >
                     {text}
