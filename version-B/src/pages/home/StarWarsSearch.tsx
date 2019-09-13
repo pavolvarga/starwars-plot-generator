@@ -83,7 +83,7 @@ export class StarWarsSearch extends Component<StarWarsSearchProps, StarWarsSearc
     private data: Suggestion[];
     private setFn: (suggestion: Suggestion | undefined) => void;
 
-    constructor(props) {
+    constructor(props: StarWarsSearchProps) {
         super(props);
         this.state = {
             value: '',
