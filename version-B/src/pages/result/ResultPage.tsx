@@ -4,6 +4,7 @@ import { generatePlot } from "./plotGenerator";
 import dompurify from 'dompurify';
 import { Redirect } from "react-router-dom";
 import {RouteComponentProps} from "react-router";
+import {MouseEvent} from "react";
 
 type GenerateNewPlotBntProps = {
     generateNewPlot: () => void
@@ -13,7 +14,7 @@ const GenerateNewPlotBnt: React.FunctionComponent<GenerateNewPlotBntProps> = (pr
     return (
         <Col>
             <div className="text-center result-space">
-                <Button color="primary" size="lg" onClick={e => generateNewPlot()}>Generate New Plot</Button>
+                <Button color="primary" size="lg" onClick={(e: MouseEvent) => generateNewPlot()}>Generate New Plot</Button>
             </div>
         </Col>
     );
@@ -80,7 +81,7 @@ const Resources: React.FunctionComponent<ResourcesProps> = (props: ResourcesProp
 
 class Plot extends React.Component<RouteComponentProps, {}> {
 
-    constructor(props) {
+    constructor(props: RouteComponentProps) {
         super(props);
         this.generateNewPlot = this.generateNewPlot.bind(this);
     }
