@@ -1,13 +1,15 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Component } from 'react';
 import { Form, Container } from 'reactstrap';
+import { RouteComponentProps } from "react-router";
+
 import { loadStarWarsData, ResourceData, LoadSWDataResolveFn, LoadSWDataRejectFn } from '../../common/load-data';
 import { StarWarsSearch, Suggestion, StarWarsSearchProps } from "./StarWarsSearch";
 import { GenerateBnt } from "./GenerateBnt";
 import { OptionalInputs } from "./OptionalInputs";
 import { OPTIONAL_RESOURCES, FAILED_LOAD_COOL_DOWN } from '../../common/const';
 import { LoadFailedAlerts } from './LoadFailedAlerts';
-import { RouteComponentProps } from "react-router";
+import { AppData } from '../../App';
 
 const OPTIONAL_RESOURCES_SINGULAR: string[] = OPTIONAL_RESOURCES.map(r => r.singular);
 
@@ -33,10 +35,13 @@ type InputFormState = {
     vehicle: InputState,
     species: InputState,
 };
-//todo: find a way how to specify type for customProps
-class InputForm extends Component<RouteComponentProps, InputFormState> {
+type CustomProps = {
+    customProps: AppData
+};
+type InputFormProps = RouteComponentProps & CustomProps;
+class InputForm extends Component<InputFormProps, InputFormState> {
 
-    constructor(props) {
+    constructor(props: InputFormProps) {
 
         super(props);
 

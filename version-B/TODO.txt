@@ -1,3 +1,2 @@
 TODO:
 - tsconfig noImplicitAny set to true and fix compilation errors
-- HomePage - find a way how to specify type for customProps

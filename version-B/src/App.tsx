@@ -1,6 +1,7 @@
 import React, { Component, ReactElement } from "react";
 import { BrowserRouter as Router, Route, withRouter } from "react-router-dom";
 import { Spinner, Alert } from 'reactstrap';
+
 import { InputForm } from './pages/home/HomePage';
 import { Plot } from './pages/result/ResultPage';
 import { loadStarWarsData, ResourceData } from './common/load-data';
@@ -26,7 +27,7 @@ function Loader(): ReactElement {
     );
 }
 
-type AppData = {
+export type AppData = {
     people: ResourceData[],
     planets: ResourceData[],
     [key: string]: ResourceData[]
@@ -36,9 +37,9 @@ type AppState = {
     peopleLoadEndedInError: boolean,
     planetsLoadEndedInError: boolean
 }
-class App extends Component<{}, AppState> {
+class App extends Component<any, AppState> {
 
-    constructor(props) {
+    constructor(props: any) {
         super(props);
         this.state = {
             data: {
@@ -116,7 +117,7 @@ class App extends Component<{}, AppState> {
             );
         }
         else {
-            const customProps = {...this.state.data};
+            const customProps: AppData = {...this.state.data};
             return (
                 <div>
                     <Header/>
