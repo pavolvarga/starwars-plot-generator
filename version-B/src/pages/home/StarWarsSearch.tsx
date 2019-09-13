@@ -1,6 +1,6 @@
-import React, {ReactElement, SyntheticEvent, Component} from 'react';
-import Autosuggest from 'react-autosuggest';
-import {Col, FormGroup, Label, Input} from "reactstrap";
+import React, { ReactElement, SyntheticEvent, Component } from 'react';
+import Autosuggest, { ChangeEvent } from 'react-autosuggest';
+import { Col, FormGroup, Label, Input } from "reactstrap";
 
 type Theme = {
     container: string,
@@ -38,14 +38,10 @@ function renderSuggestion(suggestion: Suggestion): ReactElement {
     );
 }
 
-type OnChangePayload = {
-    newValue: string
-    type: string
-}
 type AutosuggestProps = {
     placeholder: string
     value: string,
-    onChange: (e: SyntheticEvent, p: OnChangePayload) => void
+    onChange: (e: React.FormEvent<any>, p: ChangeEvent) => void
 
 };
 function renderInputComponent(id: string, name: string, disabled: boolean, valid: boolean | undefined): (ip: any) => ReactElement {
@@ -102,7 +98,7 @@ export class StarWarsSearch extends Component<StarWarsSearchProps, StarWarsSearc
         this.setFn = () => {};
     }
 
-    onChange(event: SyntheticEvent, {newValue}: OnChangePayload): void {
+    onChange(event: React.FormEvent<any>, {newValue}: ChangeEvent): void {
         this.setState({
             value: newValue
         });
@@ -172,7 +168,6 @@ export class StarWarsSearch extends Component<StarWarsSearchProps, StarWarsSearc
                     <Label for="input-person" size="lg">{label}</Label>
                     <Autosuggest
                         id={id}
-                        name={name}
                         suggestions={this.state.suggestions}
                         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
                         onSuggestionsClearRequested={this.onSuggestionsClearRequested}
