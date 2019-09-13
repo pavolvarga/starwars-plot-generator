@@ -34,6 +34,7 @@ type InputFormState = {
     starship: InputState,
     vehicle: InputState,
     species: InputState,
+    [index: string]: any
 };
 type CustomProps = {
     customProps: AppData
@@ -66,7 +67,7 @@ class InputForm extends Component<InputFormProps, InputFormState> {
     }
 
     generatePlot(): void {
-        const state = {};
+        const state: {[index: string]: any} = {};
         Object.keys(this.state).forEach(key => {
             state[key] = {selected: this.state[key].selected};
         });
@@ -84,30 +85,30 @@ class InputForm extends Component<InputFormProps, InputFormState> {
         const
             resource = this.state[name],
             updated = Object.assign(resource, {selected: suggestion}),
-            obj = {};
+            obj: {[index: string]: any} = {};
 
         obj[name] = updated;
         this.setState(state => Object.assign(state, obj));
     }
 
-    loadResourceData(name): void {
+    loadResourceData(name: string): void {
         const
             resourcePlural = getPluralName(name),
             resolve: LoadSWDataResolveFn = (function storeOptionalResourceData(this: InputForm, value: ResourceData[]): void {
 
                 const
                     resource = this.state[name],
-                    obj = {},
+                    obj: {[index: string]: any} = {},
                     updated = Object.assign(resource, {loadingInProgress: false, data: value});
 
                 obj[name] = updated;
                 this.setState(state => Object.assign(state, obj));
 
             }).bind(this),
-            reject: LoadSWDataRejectFn = (function updateLoadFailed (this: InputForm, err): void {
+            reject: LoadSWDataRejectFn = (function updateLoadFailed (this: InputForm, err: Error): void {
                 const
                     resource = this.state[name],
-                    obj = {},
+                    obj: {[index: string]: any} = {},
                     updated = Object.assign(resource, {loadFailed: true, loadingInProgress: false});
 
                 obj[name] = updated;
@@ -129,7 +130,7 @@ class InputForm extends Component<InputFormProps, InputFormState> {
 
         const
             resource = this.state[name],
-            obj = {};
+            obj: {[index: string]: any} = {};
 
         let updated = Object.assign(resource, {visible: !resource.visible, selected: undefined});
 
