@@ -15,3 +15,4 @@ learn from it.
 * version-B
   * typescript
   * react (no state management library)
+  * reactstrap (for using bootstrap)
