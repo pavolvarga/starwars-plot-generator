@@ -1,6 +1,7 @@
 {
-  "name": "starwars-plot-generator",
-  "version": "0.1.1",
+  "name": "starwars-plot-generator-version-b",
+  "description": "Web application for generating new star wars plot\n. Build in typescript with react.",
+  "version": "0.2.0",
   "private": true,
   "jest": {
     "snapshotSerializers": [

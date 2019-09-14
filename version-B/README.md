@@ -2,7 +2,7 @@
 Web application for generating new star wars plot
 
 ## Used technologies
-  * javascript (ES5)
+  * typescript
   * react (no state management library)
   * reactstrap (for using bootstrap)
 
@@ -13,7 +13,7 @@ git clone https://github.com/pavolvarga/starwars-plot-generator.git
 ```
 Install it
 ```sh
-cd starwars-plot-generator/version-A
+cd starwars-plot-generator/version-B
 npm install
 ```
 Build it
@@ -32,12 +32,12 @@ http://localhost:5000
 ## How to run via docker
 Pull the image
 ```sh
-docker pull pavolvarga1024/starwars-plot-generator:v0.2.0-version-A
+docker pull pavolvarga1024/starwars-plot-generator:v0.2.0-version-B
 ```
 
 Run the image
 ```sh
-docker run -p 5000:5000 pavolvarga1024/starwars-plot-generator:v0.2.0-version-A
+docker run -p 5000:5000 pavolvarga1024/starwars-plot-generator:v0.2.0-version-B
 ```
 
 Type into browser's address bar:
