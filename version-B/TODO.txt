@@ -1,2 +1,0 @@
-TODO:
-- tsconfig noImplicitAny set to true and fix compilation errors
