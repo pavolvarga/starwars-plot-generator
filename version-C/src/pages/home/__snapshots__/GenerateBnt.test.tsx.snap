@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GenerateBnt should render correctly in "debug" mode 1`] = `
+<GenerateBnt
+  generatePlot={[Function]}
+  isGenerateBntDisabled={[Function]}
+>
+  <Col
+    tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    <div
+      className="col"
+    >
+      <div
+        className="text-center"
+      >
+        <Button
+          color="primary"
+          disabled={false}
+          onClick={[Function]}
+          size="lg"
+          tag="button"
+        >
+          <button
+            aria-label={null}
+            className="btn btn-primary btn-lg"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            Generate Plot
+          </button>
+        </Button>
+      </div>
+    </div>
+  </Col>
+</GenerateBnt>
+`;

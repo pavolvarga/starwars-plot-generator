@@ -1,0 +1,368 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Description should render correctly in "debug" mode 1`] = `
+<Description
+  description=""
+>
+  <Col
+    tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    <div
+      className="col"
+    >
+      <div
+        className="text-center result-space"
+      >
+        <p
+          className="plot-text"
+        >
+          <span
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "",
+              }
+            }
+          />
+        </p>
+      </div>
+    </div>
+  </Col>
+</Description>
+`;
+
+exports[`Plot should render correctly in "debug" mode 1`] = `
+<Plot
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "createHref": [Function],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "pathname": "/",
+        "search": "",
+        "state": Object {
+          "state": Object {},
+        },
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+  location={
+    Object {
+      "hash": "",
+      "pathname": "/",
+      "search": "",
+      "state": Object {
+        "state": Object {},
+      },
+    }
+  }
+  match={
+    Object {
+      "isExact": false,
+      "params": Object {},
+      "path": "/",
+      "url": "/",
+    }
+  }
+>
+  <div>
+    <Container
+      tag="div"
+    >
+      <div
+        className="container"
+      >
+        <Form
+          tag="form"
+        >
+          <form
+            className=""
+          >
+            <FormGroup
+              tag="div"
+            >
+              <div
+                className="form-group"
+              >
+                <Title
+                  title="Hero on the rescue mission again"
+                >
+                  <Col
+                    tag="div"
+                    widths={
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
+                    }
+                  >
+                    <div
+                      className="col"
+                    >
+                      <div
+                        className="text-center result-space"
+                      >
+                        <h2>
+                          Hero on the rescue mission again
+                        </h2>
+                      </div>
+                    </div>
+                  </Col>
+                </Title>
+                <Description
+                  description="
+            Our hero undefined does not have a minute of a rest.
+            One would think, that after saving the galaxy second time a moment of rest will be available, but no such luck.
+            After spending just one night on a planet undefined, considered by many to be an embodiment of a paradise,
+            our hero has realized that not everything is all right.
+            Against own will, our hero is dragend into a rescue mission of an unique organism, which is on the brink of destruction.
+            Its destruction could start a chain reaction with unimaginable consequences.
+        "
+                >
+                  <Col
+                    tag="div"
+                    widths={
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
+                    }
+                  >
+                    <div
+                      className="col"
+                    >
+                      <div
+                        className="text-center result-space"
+                      >
+                        <p
+                          className="plot-text"
+                        >
+                          <span
+                            dangerouslySetInnerHTML={
+                              Object {
+                                "__html": "
+            Our hero undefined does not have a minute of a rest.
+            One would think, that after saving the galaxy second time a moment of rest will be available, but no such luck.
+            After spending just one night on a planet undefined, considered by many to be an embodiment of a paradise,
+            our hero has realized that not everything is all right.
+            Against own will, our hero is dragend into a rescue mission of an unique organism, which is on the brink of destruction.
+            Its destruction could start a chain reaction with unimaginable consequences.
+        ",
+                              }
+                            }
+                          />
+                        </p>
+                      </div>
+                    </div>
+                  </Col>
+                </Description>
+                <Resources
+                  resources={Array []}
+                >
+                  <Col
+                    tag="div"
+                    widths={
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
+                    }
+                  >
+                    <div
+                      className="col"
+                    >
+                      <div
+                        className="text-center result-space"
+                      >
+                        <h3>
+                          Used resources
+                        </h3>
+                        <ul
+                          className="used-resources"
+                        />
+                      </div>
+                    </div>
+                  </Col>
+                </Resources>
+                <GenerateNewPlotBnt
+                  generateNewPlot={[Function]}
+                >
+                  <Col
+                    tag="div"
+                    widths={
+                      Array [
+                        "xs",
+                        "sm",
+                        "md",
+                        "lg",
+                        "xl",
+                      ]
+                    }
+                  >
+                    <div
+                      className="col"
+                    >
+                      <div
+                        className="text-center result-space"
+                      >
+                        <Button
+                          color="primary"
+                          onClick={[Function]}
+                          size="lg"
+                          tag="button"
+                        >
+                          <button
+                            aria-label={null}
+                            className="btn btn-primary btn-lg"
+                            onClick={[Function]}
+                            type="button"
+                          >
+                            Generate New Plot
+                          </button>
+                        </Button>
+                      </div>
+                    </div>
+                  </Col>
+                </GenerateNewPlotBnt>
+              </div>
+            </FormGroup>
+          </form>
+        </Form>
+      </div>
+    </Container>
+  </div>
+</Plot>
+`;
+
+exports[`ResourceLink should render correctly in "debug" mode 1`] = `
+<ResourceLink
+  url="http://..."
+>
+  <li>
+    <a
+      href="http://..."
+    >
+      http://...
+    </a>
+  </li>
+</ResourceLink>
+`;
+
+exports[`Resources should render correctly in "debug" mode 1`] = `
+<Resources
+  resources={
+    Array [
+      "http://0...",
+      "http://1...",
+    ]
+  }
+>
+  <Col
+    tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    <div
+      className="col"
+    >
+      <div
+        className="text-center result-space"
+      >
+        <h3>
+          Used resources
+        </h3>
+        <ul
+          className="used-resources"
+        >
+          <ResourceLink
+            key="0"
+            url="http://0..."
+          >
+            <li>
+              <a
+                href="http://0..."
+              >
+                http://0...
+              </a>
+            </li>
+          </ResourceLink>
+          <ResourceLink
+            key="1"
+            url="http://1..."
+          >
+            <li>
+              <a
+                href="http://1..."
+              >
+                http://1...
+              </a>
+            </li>
+          </ResourceLink>
+        </ul>
+      </div>
+    </div>
+  </Col>
+</Resources>
+`;
+
+exports[`Title should render correctly in "debug" mode 1`] = `
+<Title
+  title=""
+>
+  <Col
+    tag="div"
+    widths={
+      Array [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+      ]
+    }
+  >
+    <div
+      className="col"
+    >
+      <div
+        className="text-center result-space"
+      >
+        <h2 />
+      </div>
+    </div>
+  </Col>
+</Title>
+`;

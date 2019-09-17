@@ -20,3 +20,9 @@ learn from it.
     * classes
     * no state management library
   * reactstrap (for using bootstrap)
+* version-C
+  * typescript
+  * react
+    * hooks
+    * using context for state management
+  * reactstrap (for using bootstrap)

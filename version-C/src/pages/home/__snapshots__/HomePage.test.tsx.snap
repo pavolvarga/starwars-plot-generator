@@ -1,0 +1,644 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HomePage should render correctly in "debug" mode 1`] = `
+<InputForm
+  customProps={
+    Object {
+      "people": Array [],
+      "planets": Array [],
+    }
+  }
+  debug={true}
+>
+  <div>
+    <Container
+      tag="div"
+    >
+      <div
+        className="container"
+      >
+        <Form
+          tag="form"
+        >
+          <form
+            className=""
+          >
+            <StarWarsSearch
+              data={Array []}
+              id="input-person"
+              label="Character"
+              name="input-person"
+              placeholder="Please enter a character"
+              setFn={[Function]}
+              visible={true}
+            >
+              <Col
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <div
+                  className="col"
+                >
+                  <FormGroup
+                    tag="div"
+                  >
+                    <div
+                      className="form-group"
+                    >
+                      <Label
+                        for="input-person"
+                        size="lg"
+                        tag="label"
+                        widths={
+                          Array [
+                            "xs",
+                            "sm",
+                            "md",
+                            "lg",
+                            "xl",
+                          ]
+                        }
+                      >
+                        <label
+                          className="col-form-label-lg"
+                          htmlFor="input-person"
+                        >
+                          Character
+                        </label>
+                      </Label>
+                      <Autosuggest
+                        alwaysRenderSuggestions={false}
+                        focusInputOnSuggestionClick={true}
+                        getSuggestionValue={[Function]}
+                        highlightFirstSuggestion={false}
+                        id="input-person"
+                        inputProps={
+                          Object {
+                            "onChange": [Function],
+                            "placeholder": "Please enter a character",
+                            "value": "",
+                          }
+                        }
+                        multiSection={false}
+                        onSuggestionsClearRequested={[Function]}
+                        onSuggestionsFetchRequested={[Function]}
+                        renderInputComponent={[Function]}
+                        renderSuggestion={[Function]}
+                        renderSuggestionsContainer={[Function]}
+                        shouldRenderSuggestions={[Function]}
+                        suggestions={Array []}
+                        theme={
+                          Object {
+                            "container": "autosuggest",
+                            "input": "form-control",
+                            "suggestionHighlighted": "starwars-search__suggestion-highlighted",
+                            "suggestionsContainer": "dropdown",
+                            "suggestionsList": "dropdown-menu ",
+                          }
+                        }
+                      >
+                        <Autowhatever
+                          containerProps={Object {}}
+                          getSectionItems={[Function]}
+                          highlightedItemIndex={null}
+                          highlightedSectionIndex={null}
+                          id="input-person"
+                          inputProps={
+                            Object {
+                              "onBlur": [Function],
+                              "onChange": [Function],
+                              "onFocus": [Function],
+                              "onKeyDown": [Function],
+                              "placeholder": "Please enter a character",
+                              "value": "",
+                            }
+                          }
+                          itemProps={[Function]}
+                          items={Array []}
+                          multiSection={false}
+                          renderInputComponent={[Function]}
+                          renderItem={[Function]}
+                          renderItemData={
+                            Object {
+                              "query": "",
+                            }
+                          }
+                          renderItemsContainer={[Function]}
+                          renderSectionTitle={[Function]}
+                          theme={
+                            Object {
+                              "container": "autosuggest",
+                              "input": "form-control",
+                              "itemHighlighted": "starwars-search__suggestion-highlighted",
+                              "itemsContainer": "dropdown",
+                              "itemsList": "dropdown-menu ",
+                            }
+                          }
+                        >
+                          <div
+                            aria-expanded={false}
+                            aria-haspopup="listbox"
+                            aria-owns="react-autowhatever-input-person"
+                            className="autosuggest"
+                            key="react-autowhatever-input-person-container"
+                            role="combobox"
+                          >
+                            <Input
+                              aria-activedescendant={null}
+                              aria-autocomplete="list"
+                              aria-controls="react-autowhatever-input-person"
+                              autoComplete="off"
+                              bsSize="lg"
+                              className="form-control"
+                              disabled={true}
+                              id="input-person"
+                              key="react-autowhatever-input-person-input"
+                              name="input-person"
+                              onBlur={[Function]}
+                              onChange={[Function]}
+                              onFocus={[Function]}
+                              onKeyDown={[Function]}
+                              placeholder="Please enter a character"
+                              type="text"
+                              value=""
+                            >
+                              <input
+                                aria-activedescendant={null}
+                                aria-autocomplete="list"
+                                aria-controls="react-autowhatever-input-person"
+                                autoComplete="off"
+                                className="form-control form-control-lg form-control"
+                                disabled={true}
+                                id="input-person"
+                                name="input-person"
+                                onBlur={[Function]}
+                                onChange={[Function]}
+                                onFocus={[Function]}
+                                onKeyDown={[Function]}
+                                placeholder="Please enter a character"
+                                type="text"
+                                value=""
+                              />
+                            </Input>
+                            <div
+                              className="dropdown"
+                              id="react-autowhatever-input-person"
+                              key="react-autowhatever-input-person-items-container"
+                              role="listbox"
+                            />
+                          </div>
+                        </Autowhatever>
+                      </Autosuggest>
+                    </div>
+                  </FormGroup>
+                </div>
+              </Col>
+            </StarWarsSearch>
+            <StarWarsSearch
+              data={Array []}
+              id="input-planet"
+              label="Planet"
+              name="input-planet"
+              placeholder="Please enter a planet"
+              setFn={[Function]}
+              visible={true}
+            >
+              <Col
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <div
+                  className="col"
+                >
+                  <FormGroup
+                    tag="div"
+                  >
+                    <div
+                      className="form-group"
+                    >
+                      <Label
+                        for="input-person"
+                        size="lg"
+                        tag="label"
+                        widths={
+                          Array [
+                            "xs",
+                            "sm",
+                            "md",
+                            "lg",
+                            "xl",
+                          ]
+                        }
+                      >
+                        <label
+                          className="col-form-label-lg"
+                          htmlFor="input-person"
+                        >
+                          Planet
+                        </label>
+                      </Label>
+                      <Autosuggest
+                        alwaysRenderSuggestions={false}
+                        focusInputOnSuggestionClick={true}
+                        getSuggestionValue={[Function]}
+                        highlightFirstSuggestion={false}
+                        id="input-planet"
+                        inputProps={
+                          Object {
+                            "onChange": [Function],
+                            "placeholder": "Please enter a planet",
+                            "value": "",
+                          }
+                        }
+                        multiSection={false}
+                        onSuggestionsClearRequested={[Function]}
+                        onSuggestionsFetchRequested={[Function]}
+                        renderInputComponent={[Function]}
+                        renderSuggestion={[Function]}
+                        renderSuggestionsContainer={[Function]}
+                        shouldRenderSuggestions={[Function]}
+                        suggestions={Array []}
+                        theme={
+                          Object {
+                            "container": "autosuggest",
+                            "input": "form-control",
+                            "suggestionHighlighted": "starwars-search__suggestion-highlighted",
+                            "suggestionsContainer": "dropdown",
+                            "suggestionsList": "dropdown-menu ",
+                          }
+                        }
+                      >
+                        <Autowhatever
+                          containerProps={Object {}}
+                          getSectionItems={[Function]}
+                          highlightedItemIndex={null}
+                          highlightedSectionIndex={null}
+                          id="input-planet"
+                          inputProps={
+                            Object {
+                              "onBlur": [Function],
+                              "onChange": [Function],
+                              "onFocus": [Function],
+                              "onKeyDown": [Function],
+                              "placeholder": "Please enter a planet",
+                              "value": "",
+                            }
+                          }
+                          itemProps={[Function]}
+                          items={Array []}
+                          multiSection={false}
+                          renderInputComponent={[Function]}
+                          renderItem={[Function]}
+                          renderItemData={
+                            Object {
+                              "query": "",
+                            }
+                          }
+                          renderItemsContainer={[Function]}
+                          renderSectionTitle={[Function]}
+                          theme={
+                            Object {
+                              "container": "autosuggest",
+                              "input": "form-control",
+                              "itemHighlighted": "starwars-search__suggestion-highlighted",
+                              "itemsContainer": "dropdown",
+                              "itemsList": "dropdown-menu ",
+                            }
+                          }
+                        >
+                          <div
+                            aria-expanded={false}
+                            aria-haspopup="listbox"
+                            aria-owns="react-autowhatever-input-planet"
+                            className="autosuggest"
+                            key="react-autowhatever-input-planet-container"
+                            role="combobox"
+                          >
+                            <Input
+                              aria-activedescendant={null}
+                              aria-autocomplete="list"
+                              aria-controls="react-autowhatever-input-planet"
+                              autoComplete="off"
+                              bsSize="lg"
+                              className="form-control"
+                              disabled={true}
+                              id="input-planet"
+                              key="react-autowhatever-input-planet-input"
+                              name="input-planet"
+                              onBlur={[Function]}
+                              onChange={[Function]}
+                              onFocus={[Function]}
+                              onKeyDown={[Function]}
+                              placeholder="Please enter a planet"
+                              type="text"
+                              value=""
+                            >
+                              <input
+                                aria-activedescendant={null}
+                                aria-autocomplete="list"
+                                aria-controls="react-autowhatever-input-planet"
+                                autoComplete="off"
+                                className="form-control form-control-lg form-control"
+                                disabled={true}
+                                id="input-planet"
+                                name="input-planet"
+                                onBlur={[Function]}
+                                onChange={[Function]}
+                                onFocus={[Function]}
+                                onKeyDown={[Function]}
+                                placeholder="Please enter a planet"
+                                type="text"
+                                value=""
+                              />
+                            </Input>
+                            <div
+                              className="dropdown"
+                              id="react-autowhatever-input-planet"
+                              key="react-autowhatever-input-planet-items-container"
+                              role="listbox"
+                            />
+                          </div>
+                        </Autowhatever>
+                      </Autosuggest>
+                    </div>
+                  </FormGroup>
+                </div>
+              </Col>
+            </StarWarsSearch>
+            <StarWarsSearch
+              data={Array []}
+              id="input-starship"
+              label="Starship"
+              name="input-starship"
+              placeholder="Please enter a starship"
+              setFn={[Function]}
+              visible={false}
+            />
+            <StarWarsSearch
+              data={Array []}
+              id="input-vehicle"
+              label="Vehicle"
+              name="input-vehicle"
+              placeholder="Please enter a vehicle"
+              setFn={[Function]}
+              visible={false}
+            />
+            <StarWarsSearch
+              data={Array []}
+              id="input-species"
+              label="Species"
+              name="input-species"
+              placeholder="Please enter a species"
+              setFn={[Function]}
+              visible={false}
+            />
+            <OptionalInputs
+              disabled={
+                Array [
+                  false,
+                  false,
+                  false,
+                ]
+              }
+              toggleVisibilityFn={[Function]}
+              visibles={
+                Array [
+                  false,
+                  false,
+                  false,
+                ]
+              }
+            >
+              <Col
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <div
+                  className="col"
+                >
+                  <div
+                    className="row add-space button-row-space"
+                  >
+                    <OptionalInputBnt
+                      disabled={false}
+                      key="0"
+                      name="starship"
+                      toggleVisibilityFn={[Function]}
+                      visible={false}
+                    >
+                      <div
+                        className="col-sm-4"
+                      >
+                        <div
+                          className="text-center"
+                        >
+                          <Button
+                            color="secondary"
+                            disabled={false}
+                            onClick={[Function]}
+                            size="lg"
+                            tag="button"
+                          >
+                            <button
+                              aria-label={null}
+                              className="btn btn-secondary btn-lg"
+                              disabled={false}
+                              onClick={[Function]}
+                              type="button"
+                            >
+                              Add starship
+                            </button>
+                          </Button>
+                        </div>
+                      </div>
+                    </OptionalInputBnt>
+                    <OptionalInputBnt
+                      disabled={false}
+                      key="1"
+                      name="vehicle"
+                      toggleVisibilityFn={[Function]}
+                      visible={false}
+                    >
+                      <div
+                        className="col-sm-4"
+                      >
+                        <div
+                          className="text-center"
+                        >
+                          <Button
+                            color="secondary"
+                            disabled={false}
+                            onClick={[Function]}
+                            size="lg"
+                            tag="button"
+                          >
+                            <button
+                              aria-label={null}
+                              className="btn btn-secondary btn-lg"
+                              disabled={false}
+                              onClick={[Function]}
+                              type="button"
+                            >
+                              Add vehicle
+                            </button>
+                          </Button>
+                        </div>
+                      </div>
+                    </OptionalInputBnt>
+                    <OptionalInputBnt
+                      disabled={false}
+                      key="2"
+                      name="species"
+                      toggleVisibilityFn={[Function]}
+                      visible={false}
+                    >
+                      <div
+                        className="col-sm-4"
+                      >
+                        <div
+                          className="text-center"
+                        >
+                          <Button
+                            color="secondary"
+                            disabled={false}
+                            onClick={[Function]}
+                            size="lg"
+                            tag="button"
+                          >
+                            <button
+                              aria-label={null}
+                              className="btn btn-secondary btn-lg"
+                              disabled={false}
+                              onClick={[Function]}
+                              type="button"
+                            >
+                              Add species
+                            </button>
+                          </Button>
+                        </div>
+                      </div>
+                    </OptionalInputBnt>
+                  </div>
+                </div>
+              </Col>
+            </OptionalInputs>
+            <LoadFailedAlerts
+              visibles={
+                Array [
+                  false,
+                  false,
+                  false,
+                ]
+              }
+            >
+              <Col
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <div
+                  className="col"
+                >
+                  <div
+                    className="row"
+                  >
+                    <LoadFailedAlert
+                      key="0"
+                      name="starship"
+                      visible={false}
+                    />
+                    <LoadFailedAlert
+                      key="1"
+                      name="vehicle"
+                      visible={false}
+                    />
+                    <LoadFailedAlert
+                      key="2"
+                      name="species"
+                      visible={false}
+                    />
+                  </div>
+                </div>
+              </Col>
+            </LoadFailedAlerts>
+            <GenerateBnt
+              generatePlot={[Function]}
+              isGenerateBntDisabled={[Function]}
+            >
+              <Col
+                tag="div"
+                widths={
+                  Array [
+                    "xs",
+                    "sm",
+                    "md",
+                    "lg",
+                    "xl",
+                  ]
+                }
+              >
+                <div
+                  className="col"
+                >
+                  <div
+                    className="text-center"
+                  >
+                    <Button
+                      color="primary"
+                      disabled={true}
+                      onClick={[Function]}
+                      size="lg"
+                      tag="button"
+                    >
+                      <button
+                        aria-label={null}
+                        className="btn btn-primary btn-lg disabled"
+                        disabled={true}
+                        onClick={[Function]}
+                        type="button"
+                      >
+                        Generate Plot
+                      </button>
+                    </Button>
+                  </div>
+                </div>
+              </Col>
+            </GenerateBnt>
+          </form>
+        </Form>
+      </div>
+    </Container>
+  </div>
+</InputForm>
+`;
