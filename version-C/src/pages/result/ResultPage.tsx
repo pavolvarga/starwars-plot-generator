@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 import { Col, Form, FormGroup, Button, Container } from 'reactstrap';
 import { generatePlot } from "./plotGenerator";
 import dompurify from 'dompurify';
@@ -9,7 +9,7 @@ import {MouseEvent} from "react";
 type GenerateNewPlotBntProps = {
     generateNewPlot: () => void
 };
-const GenerateNewPlotBnt: React.FunctionComponent<GenerateNewPlotBntProps> = (props: GenerateNewPlotBntProps) => {
+const GenerateNewPlotBnt: FC<GenerateNewPlotBntProps> = (props: GenerateNewPlotBntProps) => {
     const {generateNewPlot} = props;
     return (
         <Col>
@@ -23,7 +23,7 @@ const GenerateNewPlotBnt: React.FunctionComponent<GenerateNewPlotBntProps> = (pr
 type DescriptionProps = {
    description: string
 };
-const Description: React.FunctionComponent<DescriptionProps> = (props: DescriptionProps) => {
+const Description: FC<DescriptionProps> = (props: DescriptionProps) => {
     const
         sanitizer = dompurify.sanitize,
         sanitizedMarkup = sanitizer(props.description),
@@ -42,7 +42,7 @@ const Description: React.FunctionComponent<DescriptionProps> = (props: Descripti
 type TitleProps = {
     title: string
 };
-const Title: React.FunctionComponent<TitleProps> = (props: TitleProps) => {
+const Title: FC<TitleProps> = (props: TitleProps) => {
     return (
         <Col>
             <div className="text-center result-space">
@@ -55,7 +55,7 @@ const Title: React.FunctionComponent<TitleProps> = (props: TitleProps) => {
 type ResourceLinkProps = {
     url: string
 };
-const ResourceLink: React.FunctionComponent<ResourceLinkProps> = (props: ResourceLinkProps) => {
+const ResourceLink: FC<ResourceLinkProps> = (props: ResourceLinkProps) => {
     return (
         <li>
             <a href={props.url}>{props.url}</a>
@@ -66,7 +66,7 @@ const ResourceLink: React.FunctionComponent<ResourceLinkProps> = (props: Resourc
 type ResourcesProps = {
    resources: string[]
 };
-const Resources: React.FunctionComponent<ResourcesProps> = (props: ResourcesProps) => {
+const Resources: FC<ResourcesProps> = (props: ResourcesProps) => {
     return (
         <Col>
             <div className="text-center result-space">
@@ -79,7 +79,7 @@ const Resources: React.FunctionComponent<ResourcesProps> = (props: ResourcesProp
     );
 };
 
-const Plot: React.FunctionComponent<RouteComponentProps> = (props: RouteComponentProps) => {
+const Plot: FC<RouteComponentProps> = (props: RouteComponentProps) => {
 
     function generateNewPlot() {
         props.history.push('/');

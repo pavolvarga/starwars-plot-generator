@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react';
+import React, { MouseEvent, FC } from 'react';
 import { Button, Col } from "reactstrap";
 import { OPTIONAL_RESOURCES } from '../../common/const';
 
@@ -9,7 +9,7 @@ type OptionalInputsProps = {
     toggleVisibilityFn: (name: string) => void,
     disabled: boolean[]
 };
-const OptionalInputs: React.FC<OptionalInputsProps> = (props: OptionalInputsProps) => {
+const OptionalInputs: FC<OptionalInputsProps> = (props: OptionalInputsProps) => {
     const {visibles, toggleVisibilityFn, disabled} = props;
     return (
         <Col>
@@ -34,7 +34,7 @@ type OptionalInputBntProps = {
     visible: boolean,
     disabled: boolean
 };
-const OptionalInputBnt: React.FC<OptionalInputBntProps> = (props: OptionalInputBntProps) => {
+const OptionalInputBnt: FC<OptionalInputBntProps> = (props: OptionalInputBntProps) => {
     const
         {name, toggleVisibilityFn, visible, disabled} = props,
         text = visible ? `Remove ${name}` : `Add ${name}`;

@@ -1,11 +1,11 @@
-import React, { MouseEvent } from 'react';
+import React, { MouseEvent, FC } from 'react';
 import { Button, Col } from "reactstrap";
 
 type GenerateBntProps = {
     generatePlot: () => void,
     isGenerateBntDisabled: () => boolean
 };
-const GenerateBnt: React.FunctionComponent<GenerateBntProps> = (props: GenerateBntProps) => {
+const GenerateBnt: FC<GenerateBntProps> = (props: GenerateBntProps) => {
     const {isGenerateBntDisabled, generatePlot} = props;
     return (
         <Col>
