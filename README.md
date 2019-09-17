@@ -10,9 +10,13 @@ learn from it.
 ## Versions
 * version-A
   * javascript (ES5)
-  * react (no state management library)
+  * react
+    * classes
+    * no state management library
   * reactstrap (for using bootstrap)
 * version-B
   * typescript
-  * react (no state management library)
+  * react
+    * classes
+    * no state management library
   * reactstrap (for using bootstrap)
