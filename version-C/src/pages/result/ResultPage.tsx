@@ -79,49 +79,41 @@ const Resources: React.FunctionComponent<ResourcesProps> = (props: ResourcesProp
     );
 };
 
-class Plot extends React.Component<RouteComponentProps, {}> {
+const Plot: React.FunctionComponent<RouteComponentProps> = (props: RouteComponentProps) => {
 
-    constructor(props: RouteComponentProps) {
-        super(props);
-        this.generateNewPlot = this.generateNewPlot.bind(this);
+    function generateNewPlot() {
+        props.history.push('/');
     }
 
-    generateNewPlot() {
-        this.props.history.push('/');
+    //user has directly entered /plot in address bar - redirect him / her back to home page
+    if (!props.history.location.state) {
+        return <Redirect to={{pathname: '/'}} />
     }
 
-    render() {
+    const
+        inputs = props.history.location.state,
+        data = Object
+            .values(inputs)
+            .map((r: any) => r.selected),
+        names = data.map(x => x ? x.name : undefined),
+        resources = data.map(x => x ? x.url : undefined).filter(x => x);
 
-        //user has directly entered /plot in address bar - redirect him / her back to home page
-        if (!this.props.history.location.state) {
-            return <Redirect to={{pathname: '/'}} />
-        }
+    const {title, description} = generatePlot(...(names as [string, string, string?, string?, string?]));
 
-        const
-            inputs = this.props.history.location.state,
-            data = Object
-                .values(inputs)
-                .map((r: any) => r.selected),
-            names = data.map(x => x ? x.name : undefined),
-            resources = data.map(x => x ? x.url : undefined).filter(x => x);
-
-        const {title, description} = generatePlot(...(names as [string, string, string?, string?, string?]));
-
-        return (
-            <div>
-                <Container>
-                    <Form>
-                        <FormGroup>
-                            <Title title={title} />
-                            <Description description={description}/>
-                            <Resources resources={resources} />
-                            <GenerateNewPlotBnt generateNewPlot={this.generateNewPlot} />
-                        </FormGroup>
-                    </Form>
-                </Container>
-            </div>
-        )
-    }
-}
+    return (
+        <div>
+            <Container>
+                <Form>
+                    <FormGroup>
+                        <Title title={title} />
+                        <Description description={description}/>
+                        <Resources resources={resources} />
+                        <GenerateNewPlotBnt generateNewPlot={generateNewPlot} />
+                    </FormGroup>
+                </Form>
+            </Container>
+        </div>
+    )
+};
 
 export { Description, Title, ResourceLink, Resources, Plot };
