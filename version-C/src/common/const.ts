@@ -16,9 +16,30 @@ const RESOURCES = {
     SPECIES: RESOURCE_SPECIES
 };
 
+function getPluralName(singular: string): string {
+    return Object
+        .values(RESOURCES)
+        .filter(r => (r.singular === singular))[0].plural;
+}
+
+type predicateType = (r: Resource) => boolean;
+
+const mandatoryPredicate: predicateType = (resource: Resource) => resource.mandatory;
+const optionalPredicate: predicateType = (resource: Resource) => !resource.mandatory;
+
+function getSingularResourceName(predicate: predicateType) {
+    return Object
+        .values(RESOURCES)
+        .filter(predicate)
+        .map(r => r.singular);
+}
+
+const getMandatoryResourceNames = () => getSingularResourceName(mandatoryPredicate);
+const getOptionalResourceNames = () => getSingularResourceName(optionalPredicate);
+
 /**
  * If load of an optional resource fails, prevent user from trying again util specific amount of seconds.
  */
 const FAILED_LOAD_COOL_DOWN = 5;
 
-export { STAR_WARS_API, RESOURCES, FAILED_LOAD_COOL_DOWN };
+export { STAR_WARS_API, RESOURCES, FAILED_LOAD_COOL_DOWN, getPluralName, getMandatoryResourceNames, getOptionalResourceNames };

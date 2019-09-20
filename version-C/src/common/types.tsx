@@ -13,7 +13,7 @@ export type InputState = {
     visible: boolean,
     selected: Suggestion | undefined,
     data: ResourceData[],
-    loadingInProgress?: boolean,
+    loadingInProgress: boolean,
     loadFailed: boolean
 };
 
@@ -24,7 +24,7 @@ export type InputFormState = {
     vehicle: InputState,
     species: InputState,
     //todo: use keyof - do not allow other that key to be used
-    [index: string]: any
+    [index: string]: InputState
 };
 
 export type Resource = {
@@ -33,7 +33,13 @@ export type Resource = {
     mandatory: boolean
 };
 
+export type LoadResDataFn = (n: string) => void;
+
 export type AppState = {
     state: InputFormState,
-    setSelectedSuggestion: (ifs: InputFormState, n: string, s: Suggestion | undefined) => void
+    setSelectedSuggestion: (n: string, s: Suggestion | undefined) => void,
+    loadResourceData: LoadResDataFn,
+    toggleVisibility: (n: string, lrd: LoadResDataFn) => void,
+    isLoadedMandatoryData: () => boolean,
+    loadMandatoryResourceData: () => void
 }
