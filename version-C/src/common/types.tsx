@@ -33,13 +33,10 @@ export type Resource = {
     mandatory: boolean
 };
 
-export type LoadResDataFn = (n: string) => void;
-
 export type AppState = {
     state: InputFormState,
     setSelectedSuggestion: (n: string, s: Suggestion | undefined) => void,
-    loadResourceData: LoadResDataFn,
-    toggleVisibility: (n: string, lrd: LoadResDataFn) => void,
+    loadResourceData: (n: string) => void,
     isLoadedMandatoryData: () => boolean,
     loadMandatoryResourceData: () => void
 }
