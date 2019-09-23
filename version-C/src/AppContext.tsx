@@ -7,8 +7,8 @@ import {LoadSWDataResolveFn, LoadSWDataRejectFn, loadStarWarsData} from "./commo
 export const AppContext = React.createContext<AppState | undefined>(undefined);
 
 const initialState: InputFormState = {
-    person: {visible: true, selected: undefined, data: [], loadingInProgress: false, loadFailed: false},
-    planet: {visible: true, selected: undefined, data: [], loadingInProgress: false, loadFailed: false},
+    person: {visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false},
+    planet: {visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false},
     starship: {visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false},
     vehicle: {visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false},
     species: {visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false}
@@ -49,7 +49,7 @@ export const AppStateProvider: FC = (props: any) => {
                 setAppState((prevState: InputFormState) => {
                     const
                         resource = prevState[name],
-                        updatedResource = {...resource, ...{loadingInProgress: false, data: value}};
+                        updatedResource = {...resource, ...{loadingInProgress: false, data: value, visible: true}};
                     return {...prevState, ...{[name]: updatedResource}};
                 });
             },
@@ -97,6 +97,10 @@ export const AppStateProvider: FC = (props: any) => {
         mandatory.forEach(n  => loadResourceData(n));
     }
 
+    function isVisible(name: string) {
+        return appState[name].visible;
+    }
+
     return (
         <AppContext.Provider
             value={{
@@ -104,7 +108,8 @@ export const AppStateProvider: FC = (props: any) => {
                 setSelectedSuggestion,
                 loadResourceData,
                 isLoadedMandatoryData,
-                loadMandatoryResourceData
+                loadMandatoryResourceData,
+                isVisible
             }}
         >
             {props.children}

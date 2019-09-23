@@ -35,8 +35,9 @@ export type Resource = {
 
 export type AppState = {
     state: InputFormState,
-    setSelectedSuggestion: (n: string, s: Suggestion | undefined) => void,
-    loadResourceData: (n: string) => void,
+    setSelectedSuggestion: (name: string, s: Suggestion | undefined) => void,
+    loadResourceData: (name: string) => void,
     isLoadedMandatoryData: () => boolean,
-    loadMandatoryResourceData: () => void
+    loadMandatoryResourceData: () => void,
+    isVisible: (name: string) => boolean
 }
