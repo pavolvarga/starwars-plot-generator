@@ -59,11 +59,6 @@ function renderInputComponent(id: string, name: string, disabled: boolean, valid
     }
 }
 
-type StarWarsSearchState = {
-    value: string,
-    suggestions: Suggestion[],
-    selectedFromData: boolean
-};
 export type StarWarsSearchProps = {
     resourceName: string,
     id: string,
