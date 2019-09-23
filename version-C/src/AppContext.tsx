@@ -72,8 +72,15 @@ export const AppStateProvider: FC = (props: any) => {
                 }, FAILED_LOAD_COOL_DOWN * 1000);
             };
 
-        //todo: set loadInProgress to true, before a request is sent to api
         //todo: test the error scenario
+
+        //set the flag for loading of data in progress to true
+        setAppState((prevState: InputFormState) => {
+            const
+                resource = prevState[name],
+                updatedResource = {...resource, ...{loadingInProgress: true}};
+            return {...prevState, ...{[name]: updatedResource}};
+        });
 
         loadStarWarsData(resourcePlural, resolve, reject);
     }
