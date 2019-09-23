@@ -26,7 +26,7 @@ const OptionalInputBnt: React.FC<OptionalInputBntProps> = (props: OptionalInputB
 
     const
         context = useContext(AppContext),
-        {isVisible, hasLoadFailed} = (context as AppState);
+        {isVisible, hasLoadFailed, toggleVisibility} = (context as AppState);
 
     const
         {name} = props,
@@ -40,7 +40,7 @@ const OptionalInputBnt: React.FC<OptionalInputBntProps> = (props: OptionalInputB
                 <Button
                     color="secondary"
                     size="lg"
-                    // onClick={(e: MouseEvent) => toggleVisibilityFn(name)}
+                    onClick={(e: MouseEvent) => toggleVisibility(name)}
                     disabled={disabled}
                     visible={visible}
                 >

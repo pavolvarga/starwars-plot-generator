@@ -116,6 +116,15 @@ export const AppStateProvider: FC = (props: any) => {
         return appState[name].loadFailed;
     }
 
+    function toggleVisibility(name: string) {
+        setAppState((prevState: InputFormState) => {
+            const
+                resource = prevState[name],
+                updatedResource = {...resource, ...{visible: !resource.visible}};
+            return {...prevState, ...{[name]: updatedResource}};
+        });
+    }
+
     return (
         <AppContext.Provider
             value={{
@@ -126,7 +135,8 @@ export const AppStateProvider: FC = (props: any) => {
                 loadMandatoryResourceData,
                 isVisible,
                 getData,
-                hasLoadFailed
+                hasLoadFailed,
+                toggleVisibility
             }}
         >
             {props.children}

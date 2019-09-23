@@ -41,5 +41,6 @@ export type AppState = {
     loadMandatoryResourceData: () => void,
     isVisible: (name: string) => boolean,
     getData: (name: string) => ResourceData[],
-    hasLoadFailed: (name: string) => boolean
+    hasLoadFailed: (name: string) => boolean,
+    toggleVisibility: (name: string) => void
 }
