@@ -118,9 +118,16 @@ export const AppStateProvider: FC = (props: any) => {
 
     function toggleVisibility(name: string) {
         setAppState((prevState: InputFormState) => {
-            const
-                resource = prevState[name],
-                updatedResource = {...resource, ...{visible: !resource.visible}};
+            const resource = prevState[name];
+
+            //load data for the input in other function, after the input became visible, if it hasn't been already loaded
+            if(!resource.loadingInProgress && resource.data.length === 0) {
+                setTimeout(() => loadResourceData(name), 1);
+                const updatedResource = {...resource, ...{loadingInProgress: true, visible: true}};
+                return {...prevState, ...{[name]: updatedResource}};
+            }
+
+            const updatedResource = {...resource, ...{visible: !resource.visible}};
             return {...prevState, ...{[name]: updatedResource}};
         });
     }
