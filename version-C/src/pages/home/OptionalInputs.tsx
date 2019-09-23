@@ -30,7 +30,7 @@ const OptionalInputBnt: React.FC<OptionalInputBntProps> = (props: OptionalInputB
 
     const
         {name} = props,
-        visible = isVisible(name),
+        visible = isVisible(name).toString(),
         disabled = hasLoadFailed(name),
         text = visible ? `Remove ${name}` : `Add ${name}`;
 
