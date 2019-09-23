@@ -40,5 +40,6 @@ export type AppState = {
     isLoadedMandatoryData: () => boolean,
     loadMandatoryResourceData: () => void,
     isVisible: (name: string) => boolean,
-    getData: (name: string) => ResourceData[]
+    getData: (name: string) => ResourceData[],
+    hasLoadFailed: (name: string) => boolean
 }

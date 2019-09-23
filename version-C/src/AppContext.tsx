@@ -112,6 +112,10 @@ export const AppStateProvider: FC = (props: any) => {
         return appState[name].data;
     }
 
+    function hasLoadFailed(name: string) {
+        return appState[name].loadFailed;
+    }
+
     return (
         <AppContext.Provider
             value={{
@@ -121,7 +125,8 @@ export const AppStateProvider: FC = (props: any) => {
                 isLoadedMandatoryData,
                 loadMandatoryResourceData,
                 isVisible,
-                getData
+                getData,
+                hasLoadFailed
             }}
         >
             {props.children}

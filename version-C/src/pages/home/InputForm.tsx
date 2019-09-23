@@ -4,6 +4,7 @@ import { Container, Form } from "reactstrap";
 import { AppContext } from "../../AppContext";
 import { AppState } from "../../common/types";
 import { StarWarsSearch, StarWarsSearchProps } from "./StarWarsSearch";
+import { OptionalInputs } from "./OptionalInputs";
 
 function upperCase(text: string): string {
     return text.charAt(0).toUpperCase() + text.slice(1);
@@ -53,6 +54,7 @@ export const InputForm: FC = () => {
                     <StarWarsSearch {...starshipProps} />
                     <StarWarsSearch {...vehicleProps} />
                     <StarWarsSearch {...speciesProps} />
+                    <OptionalInputs />
                 </Form>
             </Container>
         </div>
