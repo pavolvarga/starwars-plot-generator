@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { FC, useState } from 'react';
 
 import {AppState, InputFormState, Suggestion, ResourceData, InputState} from "./common/types";
 import {FAILED_LOAD_COOL_DOWN, getPluralName, getMandatoryResourceNames} from "./common/const";
@@ -14,9 +14,11 @@ const initialState: InputFormState = {
     species: {visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false}
 };
 
-export const AppStateProvider: any = (props: any) => {
+export const AppStateProvider: FC = (props: any) => {
 
     const [appState, setAppState] = useState(initialState);
+
+    //todo: updating state can be refactored into a helper method
 
     /**
      * Set value picked by user as a suggestion for a resource

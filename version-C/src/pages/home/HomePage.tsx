@@ -4,13 +4,15 @@ import { AppContext } from "../../AppContext";
 import { AppState } from "../../common/types";
 import { InputForm } from "./InputForm";
 import { Loader } from './Loader';
+import { RouteComponentProps } from "react-router";
 
-const HomePage: FC<any> = (props: any) => {
+const HomePage: FC<RouteComponentProps> = () => {
 
     const
         context = useContext(AppContext),
         {loadMandatoryResourceData} = (context as AppState);
 
+    //load mandatory resources at component did mount time
     useEffect(() => {
         loadMandatoryResourceData();
         // eslint-disable-next-line
@@ -18,8 +20,8 @@ const HomePage: FC<any> = (props: any) => {
 
     return (
         <Fragment>
-            <Loader/>
-            <InputForm/>
+            <Loader />
+            <InputForm />
         </Fragment>
     );
 };

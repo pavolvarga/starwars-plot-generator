@@ -3,7 +3,7 @@ import React, { FC, useContext } from 'react';
 import { AppContext } from "../../AppContext";
 import { AppState } from "../../common/types";
 
-export const InputForm: FC<any> = (props: any) => {
+export const InputForm: FC = () => {
 
     const
         context = useContext(AppContext),
