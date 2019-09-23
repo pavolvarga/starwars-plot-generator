@@ -1,8 +1,9 @@
-import React, { ReactElement, FC } from 'react';
+import React, {ReactElement, FC, useContext, useState} from 'react';
 import Autosuggest, { ChangeEvent } from 'react-autosuggest';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 
-import { Suggestion } from '../../common/types';
+import { AppState, Suggestion } from '../../common/types';
+import { AppContext } from "../../AppContext";
 
 type Theme = {
     container: string,
@@ -40,9 +41,8 @@ type AutosuggestProps = {
     placeholder: string
     value: string,
     onChange: (e: React.FormEvent<any>, p: ChangeEvent) => void
-
 };
-function renderInputComponent(id: string, name: string): (ip: any) => ReactElement {
+function renderInputComponent(id: string, name: string, disabled: boolean, valid: boolean | undefined): (ip: any) => ReactElement {
     //inputProps is provided by the Autosuggest component
     //see: https://github.com/moroshko/react-autosuggest#render-input-component-prop
     return (inputProps: any) => {
@@ -51,8 +51,8 @@ function renderInputComponent(id: string, name: string): (ip: any) => ReactEleme
                 {...inputProps}
                 id={id}
                 name={name}
-                // disabled={disabled}
-                // valid={valid}
+                disabled={disabled}
+                valid={valid}
                 bsSize="lg"
             />
         );
@@ -65,6 +65,7 @@ type StarWarsSearchState = {
     selectedFromData: boolean
 };
 export type StarWarsSearchProps = {
+    resourceName: string,
     id: string,
     name: string,
     label: string,
@@ -76,37 +77,63 @@ type SuggestionFetchRequest = {
     reason: string
 };
 
-export const StarWarsSearch: FC<StarWarsSearchProps> = ({id, name, label, placeholder, visible}: StarWarsSearchProps) => {
+export const StarWarsSearch: FC<StarWarsSearchProps> = ({resourceName, id, name, label, placeholder, visible}: StarWarsSearchProps) => {
+
+    const
+        context = useContext(AppContext),
+        {getData, setSelectedSuggestion} = (context as AppState),
+        resourceData = getData(resourceName);
+
+    const
+        [value, setValue] = useState(''),
+        [suggestions, setSuggestions] = useState<Suggestion[]>([]),
+        [selectedFromData, setSelectedFromData] = useState(false);
 
     if (!visible) {
         return null;
     }
 
     function onChange(event: React.FormEvent<any>, {newValue}: ChangeEvent): void {
-        //todo: finish
+        setValue(newValue);
+
+        const foundIdx = resourceData.findIndex(el => el.name === newValue);
+        if (foundIdx !== -1) {
+            setSelectedFromData(true);
+            //todo: type: 'type' is suspicious, check it again
+            setSelectedSuggestion(resourceName,{name: (resourceData[foundIdx]).name, type: 'type'});
+        } else {
+            setSelectedFromData(false);
+            setSelectedSuggestion(resourceName, undefined);
+        }
     }
 
-    function onSuggestionsFetchRequested(fetchReq: SuggestionFetchRequest): void {
-        //todo: finish
-        // this.setState({
-        //     suggestions: this.getSuggestions(fetchReq)
-        // });
+    function onSuggestionsFetchRequested(fetchRequest: SuggestionFetchRequest): void {
+        setSuggestions(getSuggestions(fetchRequest));
     }
 
     function onSuggestionsClearRequested(): void {
-        //todo: finish
-        // this.setState({
-        //     suggestions: []
-        // });
+        setSuggestions([]);
     }
 
-    const autosuggestInputProps: AutosuggestProps = {
-        placeholder,
-        value: '',
-        onChange: onChange
-    };
+    function getSuggestions({value, reason}: SuggestionFetchRequest): Suggestion[] {
+        const escapedValue = escapeRegexCharacters(value.trim());
 
-    const data: Suggestion[] = [];
+        if (escapedValue === '') {
+            return [];
+        }
+
+        const regex = new RegExp('^' + escapedValue, 'i');
+
+        return resourceData
+            .filter(x => regex.test(x.name))
+            .map(x => ({name: x.name, type: reason}));
+    }
+
+    const autosuggestInputProps: AutosuggestProps = {placeholder, value, onChange};
+
+    const
+        disabled = resourceData.length === 0,
+        valid = selectedFromData ? true : undefined;
 
     return (
         <Col>
@@ -114,120 +141,16 @@ export const StarWarsSearch: FC<StarWarsSearchProps> = ({id, name, label, placeh
                 <Label for="input-person" size="lg">{label}</Label>
                 <Autosuggest
                     id={id}
-                    suggestions={data}
+                    suggestions={suggestions}
                     onSuggestionsFetchRequested={onSuggestionsFetchRequested}
                     onSuggestionsClearRequested={onSuggestionsClearRequested}
                     getSuggestionValue={getSuggestionValue}
                     renderSuggestion={renderSuggestion}
                     inputProps={autosuggestInputProps}
-                    theme={createTheme(data.length)}
-                    renderInputComponent={renderInputComponent(id, name)}
+                    theme={createTheme(resourceData.length)}
+                    renderInputComponent={renderInputComponent(id, name, disabled, valid)}
                 />
             </FormGroup>
         </Col>
     );
 };
-
-// export class StarWarsSearch extends Component<StarWarsSearchProps, StarWarsSearchState> {
-//     private data: Suggestion[];
-//     private setFn: (suggestion: Suggestion | undefined) => void;
-//
-//     constructor(props: StarWarsSearchProps) {
-//         super(props);
-//         this.state = {
-//             value: '',
-//             suggestions: [],
-//             selectedFromData: false
-//         };
-//         this.onChange = this.onChange.bind(this);
-//         this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
-//         this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
-//         this.getSuggestions = this.getSuggestions.bind(this);
-//         this.data = [];
-//         this.setFn = () => {};
-//     }
-//
-//     onChange(event: React.FormEvent<any>, {newValue}: ChangeEvent): void {
-//         this.setState({
-//             value: newValue
-//         });
-//
-//         const foundIdx = this.data.findIndex(el => el.name === newValue);
-//         if (foundIdx !== -1) {
-//             this.setState(() => {
-//                 return {selectedFromData: true}
-//             });
-//             this.setFn(this.data[foundIdx]);
-//         } else {
-//             this.setState(() => {
-//                 return {selectedFromData: false}
-//             });
-//             this.setFn(undefined);
-//         }
-//     }
-//
-//     onSuggestionsFetchRequested(fetchReq: SuggestionFetchRequest): void {
-//         this.setState({
-//             suggestions: this.getSuggestions(fetchReq)
-//         });
-//     }
-//
-//     onSuggestionsClearRequested(): void {
-//         this.setState({
-//             suggestions: []
-//         });
-//     }
-//
-//     getSuggestions({value}: SuggestionFetchRequest): Suggestion[] {
-//         const escapedValue = escapeRegexCharacters(value.trim());
-//
-//         if (escapedValue === '') {
-//             return [];
-//         }
-//
-//         const regex = new RegExp('^' + escapedValue, 'i');
-//
-//         return this.data.filter(x => regex.test(x.name));
-//     }
-//
-//     render() {
-//
-//         const {id, name, label, placeholder, data, setFn, visible} = this.props;
-//
-//         this.data = data;
-//         this.setFn = setFn;
-//
-//         if (!visible) {
-//             return null;
-//         }
-//
-//         const autosuggestInputProps: AutosuggestProps = {
-//             placeholder,
-//             value: this.state.value,
-//             onChange: this.onChange
-//         };
-//
-//         const
-//             disabled = this.data.length === 0,
-//             valid = this.state.selectedFromData ? true : undefined;
-//
-//         return (
-//             <Col>
-//                 <FormGroup>
-//                     <Label for="input-person" size="lg">{label}</Label>
-//                     <Autosuggest
-//                         id={id}
-//                         suggestions={this.state.suggestions}
-//                         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-//                         onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-//                         getSuggestionValue={getSuggestionValue}
-//                         renderSuggestion={renderSuggestion}
-//                         inputProps={autosuggestInputProps}
-//                         theme={createTheme(this.data.length)}
-//                         renderInputComponent={renderInputComponent(id, name, disabled, valid)}
-//                     />
-//                 </FormGroup>
-//             </Col>
-//         );
-//     }
-// }

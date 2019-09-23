@@ -16,6 +16,7 @@ function createSearchInputProps(name: string, visible: boolean, label?: string):
         upperCasedLabel = upperCase(normalizedLabel);
 
     return {
+        resourceName: name,
         id: `input-${name}`,
         name: `input-${name}`,
         label: upperCasedLabel,

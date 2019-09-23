@@ -29,7 +29,7 @@ export const AppStateProvider: FC = (props: any) => {
         setAppState((prevState: InputFormState) => {
             const
                 resource = prevState[name],
-                updatedResource = {...resource, ...{loadingInProgress: false}};
+                updatedResource = {...resource, ...{loadingInProgress: false, selected: suggestion}};
             return {...prevState, ...{[name]: updatedResource}};
         });
     }
@@ -108,6 +108,10 @@ export const AppStateProvider: FC = (props: any) => {
         return appState[name].visible;
     }
 
+    function getData(name: string) {
+        return appState[name].data;
+    }
+
     return (
         <AppContext.Provider
             value={{
@@ -116,7 +120,8 @@ export const AppStateProvider: FC = (props: any) => {
                 loadResourceData,
                 isLoadedMandatoryData,
                 loadMandatoryResourceData,
-                isVisible
+                isVisible,
+                getData
             }}
         >
             {props.children}
