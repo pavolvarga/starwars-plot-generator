@@ -45,5 +45,6 @@ export type AppState = {
     getData: (name: string) => ResourceData[],
     hasLoadFailed: (name: string) => boolean,
     toggleVisibility: (name: string) => void,
-    getSelectedSuggestions: () => SelectedSuggestions
+    getSelectedSuggestions: () => SelectedSuggestions,
+    areMandatoryResourcesSelected: () => boolean
 }

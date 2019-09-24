@@ -11,7 +11,7 @@ const GenerateBnt: React.FunctionComponent<GenerateBntProps> = (props: GenerateB
 
     const
         context = useContext(AppContext),
-        {isLoadedMandatoryData} = (context as AppState);
+        {areMandatoryResourcesSelected} = (context as AppState);
 
     return (
         <Col>
@@ -20,7 +20,7 @@ const GenerateBnt: React.FunctionComponent<GenerateBntProps> = (props: GenerateB
                     color="primary"
                     size="lg"
                     onClick={(e: MouseEvent) => props.generatePlot()}
-                    disabled={!isLoadedMandatoryData()}>
+                    disabled={!areMandatoryResourcesSelected()}>
                     Generate Plot
                 </Button>
             </div>

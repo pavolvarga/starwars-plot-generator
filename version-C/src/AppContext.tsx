@@ -141,6 +141,17 @@ export const AppStateProvider: FC = (props: any) => {
         return obj;
     }
 
+    function areMandatoryResourcesSelected() {
+        const
+            mandatory = getMandatoryResourceNames(),
+            mandatoryResources: InputState[] = Object
+                .entries(appState)
+                .filter(e => mandatory.find(s => e[0] === s))
+                .map(e => e[1]);
+
+        return mandatoryResources.every(r => r.selected !== undefined);
+    }
+
     return (
         <AppContext.Provider
             value={{
@@ -153,7 +164,8 @@ export const AppStateProvider: FC = (props: any) => {
                 getData,
                 hasLoadFailed,
                 toggleVisibility,
-                getSelectedSuggestions
+                getSelectedSuggestions,
+                areMandatoryResourcesSelected
             }}
         >
             {props.children}
