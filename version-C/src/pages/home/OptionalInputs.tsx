@@ -30,7 +30,7 @@ const OptionalInputBnt: React.FC<OptionalInputBntProps> = (props: OptionalInputB
 
     const
         {name} = props,
-        visible = isVisible(name).toString(),
+        visible = isVisible(name),
         disabled = hasLoadFailed(name),
         text = visible ? `Remove ${name}` : `Add ${name}`;
 
@@ -42,7 +42,7 @@ const OptionalInputBnt: React.FC<OptionalInputBntProps> = (props: OptionalInputB
                     size="lg"
                     onClick={(e: MouseEvent) => toggleVisibility(name)}
                     disabled={disabled}
-                    visible={visible}
+                    visible={visible.toString()}
                 >
                     {text}
                 </Button>
