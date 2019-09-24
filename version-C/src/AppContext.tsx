@@ -1,8 +1,8 @@
 import React, { FC, useState } from 'react';
 
-import {AppState, InputFormState, Suggestion, ResourceData, InputState} from "./common/types";
-import {FAILED_LOAD_COOL_DOWN, getPluralName, getMandatoryResourceNames} from "./common/const";
-import {LoadSWDataResolveFn, LoadSWDataRejectFn, loadStarWarsData} from "./common/load-data";
+import { AppState, InputFormState, Suggestion, ResourceData, InputState } from "./common/types";
+import { FAILED_LOAD_COOL_DOWN, getPluralName, getMandatoryResourceNames } from "./common/const";
+import { LoadSWDataResolveFn, LoadSWDataRejectFn, loadStarWarsData } from "./common/load-data";
 
 export const AppContext = React.createContext<AppState | undefined>(undefined);
 
@@ -135,7 +135,7 @@ export const AppStateProvider: FC = (props: any) => {
     return (
         <AppContext.Provider
             value={{
-                state: appState,
+                appState,
                 setSelectedSuggestion,
                 loadResourceData,
                 isLoadedMandatoryData,
