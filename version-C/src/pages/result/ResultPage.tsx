@@ -8,7 +8,7 @@ import dompurify from 'dompurify';
 import { generatePlot } from "./plotGenerator";
 import { useContext } from "react";
 import { AppContext } from "../../AppContext";
-import { AppState } from "../../common/types";
+import { AppState, Suggestion } from "../../common/types";
 
 type GenerateNewPlotBntProps = {
     generateNewPlot: () => void
@@ -101,9 +101,9 @@ const Plot: FC<RouteComponentProps> = (props: RouteComponentProps) => {
 
     const
         inputs = props.history.location.state,
-        data = Object.values(inputs).map((r: any) => r), //todo: get rid off any
-        names = data.map(x => x ? x.name : undefined),
-        resources = data.map(x => x ? x.url : undefined).filter(x => x);
+        data = (Object.values(inputs).filter(x => x) as Suggestion[]),
+        names = data.map(x => x.name),
+        resources = data.map(x => x.url);
 
     const {title, description} = generatePlot(...(names as [string, string, string?, string?, string?]));
 

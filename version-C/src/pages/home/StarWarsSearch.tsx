@@ -94,8 +94,8 @@ export const StarWarsSearch: FC<StarWarsSearchProps> = ({resourceName, id, name,
         const foundIdx = resourceData.findIndex(el => el.name === newValue);
         if (foundIdx !== -1) {
             setSelectedFromData(true);
-            //todo: type: 'type' is suspicious, check it again
-            setSelectedSuggestion(resourceName,{name: (resourceData[foundIdx]).name, type: 'type'});
+            const {name, url} = resourceData[foundIdx];
+            setSelectedSuggestion(resourceName,{name, url});
         } else {
             setSelectedFromData(false);
             setSelectedSuggestion(resourceName, undefined);
@@ -121,7 +121,7 @@ export const StarWarsSearch: FC<StarWarsSearchProps> = ({resourceName, id, name,
 
         return resourceData
             .filter(x => regex.test(x.name))
-            .map(x => ({name: x.name, type: reason}));
+            .map(({name, url}) => ({name, url}));
     }
 
     const autosuggestInputProps: AutosuggestProps = {placeholder, value, onChange};

@@ -6,7 +6,7 @@ export type ResourceData = {
 
 export type Suggestion = {
     name: string,
-    type: string
+    url: string
 }
 
 export type InputState = {
