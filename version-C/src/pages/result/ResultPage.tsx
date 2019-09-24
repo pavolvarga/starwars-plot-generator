@@ -6,6 +6,9 @@ import { Col, Form, FormGroup, Button, Container } from 'reactstrap';
 import dompurify from 'dompurify';
 
 import { generatePlot } from "./plotGenerator";
+import { useContext } from "react";
+import { AppContext } from "../../AppContext";
+import { AppState } from "../../common/types";
 
 type GenerateNewPlotBntProps = {
     generateNewPlot: () => void
@@ -82,7 +85,12 @@ const Resources: FC<ResourcesProps> = (props: ResourcesProps) => {
 
 const Plot: FC<RouteComponentProps> = (props: RouteComponentProps) => {
 
+    const
+        context = useContext(AppContext),
+        {clearSelectedSuggestions} = (context as AppState);
+
     function generateNewPlot() {
+        clearSelectedSuggestions();
         props.history.push('/');
     }
 

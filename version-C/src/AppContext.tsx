@@ -152,9 +152,28 @@ export const AppStateProvider: FC = (props: any) => {
         return mandatoryResources.every(r => r.selected !== undefined);
     }
 
+    /**
+     * Clear the selected atttribute for all resources
+     */
+    function clearSelectedSuggestions() {
+        setAppState((prevState: InputFormState): InputFormState => {
+            return Object
+                .entries(prevState)
+                .map(([key, value]) => {
+                    const updatedResource = {...value, ...{selected: undefined}};
+                    return ([key, updatedResource] as [string, InputState]);
+                })
+                .reduce((acc: any, entry) => {
+                    acc[entry[0]] = entry[1];
+                    return acc;
+                }, {});
+        });
+    }
+
     return (
         <AppContext.Provider
             value={{
+                appState, //just for debugging - delete afterwards
                 setSelectedSuggestion,
                 loadResourceData,
                 isLoadedMandatoryData,
@@ -164,7 +183,8 @@ export const AppStateProvider: FC = (props: any) => {
                 hasLoadFailed,
                 toggleVisibility,
                 getSelectedSuggestions,
-                areMandatoryResourcesSelected
+                areMandatoryResourcesSelected,
+                clearSelectedSuggestions
             }}
         >
             {props.children}
