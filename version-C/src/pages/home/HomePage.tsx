@@ -6,7 +6,7 @@ import { InputForm } from "./InputForm";
 import { Loader } from './Loader';
 import { RouteComponentProps } from "react-router";
 
-const HomePage: FC<RouteComponentProps> = () => {
+const HomePage: FC<RouteComponentProps> = (props: RouteComponentProps) => {
 
     const
         context = useContext(AppContext),
@@ -21,7 +21,7 @@ const HomePage: FC<RouteComponentProps> = () => {
     return (
         <Fragment>
             <Loader />
-            <InputForm />
+            <InputForm {...props} />
         </Fragment>
     );
 };

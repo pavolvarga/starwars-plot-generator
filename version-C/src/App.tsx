@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, withRouter } from "react-router-dom";
 
 import { AppStateProvider } from './AppContext';
 import { HomePage } from "./pages/home/HomePage";
+import { Plot } from "./pages/result/ResultPage";
 
 const Header: FC = () => {
     return (
@@ -13,6 +14,7 @@ const Header: FC = () => {
 };
 
 const StarWarsHomePage = withRouter(HomePage);
+const StarWarsPlot = withRouter(Plot);
 
 export const App: FC = () => {
 
@@ -22,6 +24,7 @@ export const App: FC = () => {
                 <Header/>
                 <Router>
                     <Route exact path="/" render={(props) => <StarWarsHomePage {...props}/>} />
+                    <Route path="/plot" component={StarWarsPlot}/>
                 </Router>
             </>
         </AppStateProvider>

@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 
-import { AppState, InputFormState, Suggestion, ResourceData, InputState } from "./common/types";
+import { AppState, InputFormState, Suggestion, ResourceData, InputState, SelectedSuggestions } from "./common/types";
 import { FAILED_LOAD_COOL_DOWN, getPluralName, getMandatoryResourceNames } from "./common/const";
 import { LoadSWDataResolveFn, LoadSWDataRejectFn, loadStarWarsData } from "./common/load-data";
 
@@ -132,6 +132,15 @@ export const AppStateProvider: FC = (props: any) => {
         });
     }
 
+    function getSelectedSuggestions() {
+        //todo: index should not be a string but a resources key
+        const obj: SelectedSuggestions = {};
+        Object.keys(appState).forEach(key => {
+            obj[key] = appState[key].selected;
+        });
+        return obj;
+    }
+
     return (
         <AppContext.Provider
             value={{
@@ -143,7 +152,8 @@ export const AppStateProvider: FC = (props: any) => {
                 isVisible,
                 getData,
                 hasLoadFailed,
-                toggleVisibility
+                toggleVisibility,
+                getSelectedSuggestions
             }}
         >
             {props.children}
