@@ -205,7 +205,6 @@ export const AppStateProvider: FC = (props: any) => {
     return (
         <AppContext.Provider
             value={{
-                appState, //just for debugging - delete afterwards
                 setSelectedSuggestion,
                 loadResourceData,
                 isLoadedMandatoryData,
