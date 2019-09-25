@@ -149,15 +149,15 @@ export const AppStateProvider: FC = (props: any) => {
         return obj;
     }
 
-    function areMandatoryResourcesSelected() {
-        const
-            mandatory = getMandatoryResourceNames(),
-            mandatoryResources: InputState[] = Object
-                .entries(appState)
-                .filter(e => mandatory.find(s => e[0] === s))
-                .map(e => e[1]);
+    function getResources(names: string[]): InputState[] {
+        return Object
+            .entries(appState)
+            .filter(e => names.find(s => e[0] === s))
+            .map(e => e[1]);
+    }
 
-        return mandatoryResources.every(r => r.selected !== undefined);
+    function areMandatoryResourcesSelected() {
+        return getResources(getMandatoryResourceNames()).every(r => r.selected !== undefined);
     }
 
     /**
@@ -178,6 +178,10 @@ export const AppStateProvider: FC = (props: any) => {
         });
     }
 
+    function hasLoadingOfMandatoryDataFailed() {
+        return getResources(getMandatoryResourceNames()).every(r => r.loadFailed);
+    }
+
     return (
         <AppContext.Provider
             value={{
@@ -192,7 +196,8 @@ export const AppStateProvider: FC = (props: any) => {
                 toggleVisibility,
                 getSelectedSuggestions,
                 areMandatoryResourcesSelected,
-                clearSelectedSuggestions
+                clearSelectedSuggestions,
+                hasLoadingOfMandatoryDataFailed
             }}
         >
             {props.children}

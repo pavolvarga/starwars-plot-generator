@@ -47,5 +47,6 @@ export type AppState = {
     toggleVisibility: (name: string) => void,
     getSelectedSuggestions: () => SelectedSuggestions,
     areMandatoryResourcesSelected: () => boolean,
-    clearSelectedSuggestions: () => void
+    clearSelectedSuggestions: () => void,
+    hasLoadingOfMandatoryDataFailed: () => boolean
 }
