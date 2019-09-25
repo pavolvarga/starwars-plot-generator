@@ -3,11 +3,12 @@ import { Container, Form } from "reactstrap";
 import { RouteComponentProps } from "react-router";
 
 import { AppContext } from "../../AppContext";
-import { AppState } from "../../common/types";
+import {AppState, Resource} from "../../common/types";
 import { StarWarsSearch, StarWarsSearchProps } from "./StarWarsSearch";
 import { OptionalInputs } from "./OptionalInputs";
 import { GenerateBnt } from "./GenerateBnt";
 import { LoadFailedAlerts } from "./LoadFailedAlerts";
+import { getResourceNames, RESOURCES } from "../../common/const";
 
 function upperCase(text: string): string {
     return text.charAt(0).toUpperCase() + text.slice(1);
@@ -47,24 +48,17 @@ export const InputForm: FC<RouteComponentProps> = (props: RouteComponentProps) =
         return null;
     }
 
-    //todo: make this dynamic - iterate over mandatory and then over optional resources
-
     const
-        personProps = createSearchInputProps('person', isVisible('person'), 'character'),
-        planetProps = createSearchInputProps('planet', isVisible('planet')),
-        starshipProps = createSearchInputProps('starship', isVisible('starship')),
-        vehicleProps = createSearchInputProps('vehicle', isVisible('vehicle')),
-        speciesProps = createSearchInputProps('species', isVisible('species'));
+        resourceNames = getResourceNames(),
+        searchInputProps = resourceNames.map(n => createSearchInputProps(n, isVisible(n), RESOURCES[n].label));
 
     return (
         <div>
             <Container>
                 <Form>
-                    <StarWarsSearch {...personProps} />
-                    <StarWarsSearch {...planetProps} />
-                    <StarWarsSearch {...starshipProps} />
-                    <StarWarsSearch {...vehicleProps} />
-                    <StarWarsSearch {...speciesProps} />
+                    {
+                        searchInputProps.map((p, idx) => <StarWarsSearch key={idx} {...p} />)
+                    }
                     <OptionalInputs />
                     <LoadFailedAlerts />
                     <GenerateBnt generatePlot={generatePlot} />

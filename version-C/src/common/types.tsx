@@ -17,6 +17,16 @@ export type InputState = {
     loadFailed: boolean
 };
 
+export type Resources = {
+    person: Resource,
+    planet: Resource,
+    starship: Resource,
+    vehicle: Resource,
+    species: Resource,
+    //todo: use keyof - do not allow other that key to be used
+    [index: string]: Resource
+}
+
 export type InputFormState = {
     person: InputState,
     planet: InputState,
@@ -30,7 +40,8 @@ export type InputFormState = {
 export type Resource = {
     plural: string,
     singular: string,
-    mandatory: boolean
+    mandatory: boolean,
+    label: string | undefined
 };
 
 export type SelectedSuggestions = { [index: string]: Suggestion | undefined };

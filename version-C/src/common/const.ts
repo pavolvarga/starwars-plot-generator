@@ -1,19 +1,19 @@
-import { Resource } from "./types";
+import {Resource, Resources} from "./types";
 
 const STAR_WARS_API = 'https://swapi.co/api';
 
-const RESOURCE_PEOPLE: Resource = {plural: 'people', singular: 'person', mandatory: true};
-const RESOURCE_PLANETS: Resource = {plural: 'planets', singular: 'planet', mandatory: true};
-const RESOURCE_STARSHIPS: Resource = {plural: 'starships', singular: 'starship', mandatory: false};
-const RESOURCE_VEHICLES: Resource = {plural: 'vehicles', singular: 'vehicle', mandatory: false};
-const RESOURCE_SPECIES: Resource = {plural: 'species', singular: 'species', mandatory: false};
+const RESOURCE_PEOPLE: Resource = { plural: 'people', singular: 'person', mandatory: true, label: 'character'};
+const RESOURCE_PLANETS: Resource = { plural: 'planets', singular: 'planet', mandatory: true, label: undefined};
+const RESOURCE_STARSHIPS: Resource = {plural: 'starships', singular: 'starship', mandatory: false, label: undefined};
+const RESOURCE_VEHICLES: Resource = {plural: 'vehicles', singular: 'vehicle', mandatory: false, label: undefined};
+const RESOURCE_SPECIES: Resource = {plural: 'species', singular: 'species', mandatory: false, label: undefined};
 
-const RESOURCES = {
-    PEOPLE: RESOURCE_PEOPLE,
-    PLANETS: RESOURCE_PLANETS,
-    STARSHIPS: RESOURCE_STARSHIPS,
-    VEHICLES: RESOURCE_VEHICLES,
-    SPECIES: RESOURCE_SPECIES
+const RESOURCES: Resources = {
+    person: RESOURCE_PEOPLE,
+    planet: RESOURCE_PLANETS,
+    starship: RESOURCE_STARSHIPS,
+    vehicle: RESOURCE_VEHICLES,
+    species: RESOURCE_SPECIES
 };
 
 function getPluralName(singular: string): string {
@@ -34,6 +34,7 @@ function getSingularResourceName(predicate: predicateType) {
         .map(r => r.singular);
 }
 
+const getResourceNames = () => Object.keys(RESOURCES);
 const getMandatoryResourceNames = () => getSingularResourceName(mandatoryPredicate);
 const getOptionalResourceNames = () => getSingularResourceName(optionalPredicate);
 
@@ -42,4 +43,4 @@ const getOptionalResourceNames = () => getSingularResourceName(optionalPredicate
  */
 const FAILED_LOAD_COOL_DOWN = 5;
 
-export { STAR_WARS_API, RESOURCES, FAILED_LOAD_COOL_DOWN, getPluralName, getMandatoryResourceNames, getOptionalResourceNames };
+export { STAR_WARS_API, RESOURCES, FAILED_LOAD_COOL_DOWN, getPluralName, getMandatoryResourceNames, getOptionalResourceNames, getResourceNames };
