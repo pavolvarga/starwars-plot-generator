@@ -72,8 +72,6 @@ export const AppStateProvider: FC = (props: any) => {
                 }, FAILED_LOAD_COOL_DOWN * 1000);
             };
 
-        //todo: test the error scenario
-
         //set the flag for loading of data in progress to true
         setAppState((prevState: InputFormState) => {
             const resource = prevState[name];
