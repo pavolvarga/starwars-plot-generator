@@ -181,8 +181,11 @@ export const AppStateProvider: FC = (props: any) => {
         });
     }
 
+    /**
+     * Return true if not all mandatory resources were loaded
+     */
     function hasLoadingOfMandatoryDataFailed() {
-        return getResources(getMandatoryResourceNames()).every(r => r.loadFailed);
+        return getResources(getMandatoryResourceNames()).some(r => r.loadFailed);
     }
 
     /**
