@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 
 import { AppState, InputFormState, Suggestion, ResourceData, InputState, SelectedSuggestions } from "./common/types";
-import { FAILED_LOAD_COOL_DOWN, getPluralName, getMandatoryResourceNames } from "./common/const";
+import { FAILED_LOAD_COOL_DOWN, getPluralName, getMandatoryResourceNames, getOptionalResourceNames } from "./common/const";
 import { LoadSWDataResolveFn, LoadSWDataRejectFn, loadStarWarsData } from "./common/load-data";
 
 export const AppContext = React.createContext<AppState | undefined>(undefined);
@@ -156,6 +156,9 @@ export const AppStateProvider: FC = (props: any) => {
             .map(e => e[1]);
     }
 
+    /**
+     * Return true if all mandatory resources / fields were filled in
+     */
     function areMandatoryResourcesSelected() {
         return getResources(getMandatoryResourceNames()).every(r => r.selected !== undefined);
     }
@@ -182,6 +185,20 @@ export const AppStateProvider: FC = (props: any) => {
         return getResources(getMandatoryResourceNames()).every(r => r.loadFailed);
     }
 
+    /**
+     * Return list of names of optional resources which were not loaded
+     */
+    function failedLoadingOfOptionalData() {
+        const optional = getOptionalResourceNames();
+        return (
+            Object
+                .entries(appState)
+                .filter(e => optional.find(s => e[0] === s))
+                .map(([key, val]) => val.loadFailed ? key : undefined)
+                .filter(name => name !== undefined) as string[]
+        );
+    }
+
     return (
         <AppContext.Provider
             value={{
@@ -197,7 +214,8 @@ export const AppStateProvider: FC = (props: any) => {
                 getSelectedSuggestions,
                 areMandatoryResourcesSelected,
                 clearSelectedSuggestions,
-                hasLoadingOfMandatoryDataFailed
+                hasLoadingOfMandatoryDataFailed,
+                failedLoadingOfOptionalData
             }}
         >
             {props.children}

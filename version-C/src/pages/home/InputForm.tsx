@@ -7,6 +7,7 @@ import { AppState } from "../../common/types";
 import { StarWarsSearch, StarWarsSearchProps } from "./StarWarsSearch";
 import { OptionalInputs } from "./OptionalInputs";
 import { GenerateBnt } from "./GenerateBnt";
+import { LoadFailedAlerts } from "./LoadFailedAlerts";
 
 function upperCase(text: string): string {
     return text.charAt(0).toUpperCase() + text.slice(1);
@@ -65,7 +66,7 @@ export const InputForm: FC<RouteComponentProps> = (props: RouteComponentProps) =
                     <StarWarsSearch {...vehicleProps} />
                     <StarWarsSearch {...speciesProps} />
                     <OptionalInputs />
-                    {/*<LoadFailedAlerts {...alertsProps} />*/}
+                    <LoadFailedAlerts />
                     <GenerateBnt generatePlot={generatePlot} />
                 </Form>
             </Container>

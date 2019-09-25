@@ -48,5 +48,6 @@ export type AppState = {
     getSelectedSuggestions: () => SelectedSuggestions,
     areMandatoryResourcesSelected: () => boolean,
     clearSelectedSuggestions: () => void,
-    hasLoadingOfMandatoryDataFailed: () => boolean
+    hasLoadingOfMandatoryDataFailed: () => boolean,
+    failedLoadingOfOptionalData: () => string[]
 }
