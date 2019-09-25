@@ -53,7 +53,7 @@ export const AppStateProvider: FC = (props: any) => {
                     return {...prevState, ...{[name]: updatedResource}};
                 });
             },
-            reject: LoadSWDataRejectFn = function updateLoadFailed (err: Error): void {
+            reject: LoadSWDataRejectFn = function updateLoadFailed(err: Error): void {
                 setAppState((prevState: InputFormState) => {
                     const
                         resource = prevState[name],
@@ -76,13 +76,21 @@ export const AppStateProvider: FC = (props: any) => {
 
         //set the flag for loading of data in progress to true
         setAppState((prevState: InputFormState) => {
-            const
-                resource = prevState[name],
-                updatedResource = {...resource, ...{loadingInProgress: true}};
+            const resource = prevState[name];
+
+            //data already loaded - nothing to do
+            if (resource.data.length > 0) {
+                return prevState;
+            }
+
+            const updatedResource = {...resource, ...{loadingInProgress: true}};
             return {...prevState, ...{[name]: updatedResource}};
         });
 
-        loadStarWarsData(resourcePlural, resolve, reject);
+        //data already loaded - do not load them again
+        if (appState[name].data.length === 0) {
+            loadStarWarsData(resourcePlural, resolve, reject);
+        }
     }
 
     /**
