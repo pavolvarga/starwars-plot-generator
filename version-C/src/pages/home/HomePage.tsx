@@ -10,11 +10,13 @@ const HomePage: FC<RouteComponentProps> = (props: RouteComponentProps) => {
 
     const
         context = useContext(AppContext),
-        {loadMandatoryResourceData} = (context as AppState);
+        {isLoadedMandatoryData, loadMandatoryResourceData} = (context as AppState);
 
     //load mandatory resources at component did mount time
     useEffect(() => {
-        loadMandatoryResourceData();
+        if (!isLoadedMandatoryData()) {
+            loadMandatoryResourceData();
+        }
         // eslint-disable-next-line
     }, []);
 
