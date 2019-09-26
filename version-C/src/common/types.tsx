@@ -1,4 +1,6 @@
 
+//todo: rethink names of types
+
 export type ResourceData = {
     name: string,
     url: string
@@ -27,6 +29,7 @@ export type Resources = {
     [index: string]: Resource
 }
 
+//todo: use typeof for state declaration
 export type InputFormState = {
     person: InputState,
     planet: InputState,
