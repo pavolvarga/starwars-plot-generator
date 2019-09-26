@@ -18,7 +18,13 @@ export const AppStateProvider: FC = (props: any) => {
 
     const [appState, setAppState] = useState(initialState);
 
-    //todo: updating state can be refactored into a helper method
+    //todo: get rid off any
+    function updateResource(name: string, prevState: InputFormState, updatePayload: any) {
+        const
+            resource = prevState[name],
+            updatedResource = {...resource, ...updatePayload};
+        return {...prevState, ...{[name]: updatedResource}}
+    }
 
     /**
      * Set value picked by user as a suggestion for a resource
@@ -27,10 +33,7 @@ export const AppStateProvider: FC = (props: any) => {
      */
     function setSelectedSuggestion(name: string, suggestion: Suggestion | undefined): void {
         setAppState((prevState: InputFormState) => {
-            const
-                resource = prevState[name],
-                updatedResource = {...resource, ...{loadingInProgress: false, selected: suggestion}};
-            return {...prevState, ...{[name]: updatedResource}};
+            return updateResource(name, prevState, {loadingInProgress: false, selected: suggestion});
         });
     }
 
@@ -47,27 +50,18 @@ export const AppStateProvider: FC = (props: any) => {
             resourcePlural = getPluralName(name),
             resolve: LoadSWDataResolveFn = function storeResourceData(value: ResourceData[]): void {
                 setAppState((prevState: InputFormState) => {
-                    const
-                        resource = prevState[name],
-                        updatedResource = {...resource, ...{loadingInProgress: false, data: value, visible: true}};
-                    return {...prevState, ...{[name]: updatedResource}};
+                    return updateResource(name, prevState, {loadingInProgress: false, data: value, visible: true});
                 });
             },
             reject: LoadSWDataRejectFn = function updateLoadFailed(err: Error): void {
                 setAppState((prevState: InputFormState) => {
-                    const
-                        resource = prevState[name],
-                        updatedResource = {...resource, ...{loadingInProgress: false, loadFailed: true}};
-                    return {...prevState, ...{[name]: updatedResource}};
+                    return updateResource(name, prevState, {loadingInProgress: false, loadFailed: true});
                 });
 
                 //clear alert after specified time, and allow user to try it again
                 setTimeout(function clearLoadFailed() {
                     setAppState((prevState: InputFormState) => {
-                        const
-                            resource = prevState[name],
-                            updatedResource = {...resource, ...{visible: false, loadFailed: false}};
-                        return {...prevState, ...{[name]: updatedResource}};
+                        return updateResource(name, prevState, {visible: false, loadFailed: false});
                     });
                 }, FAILED_LOAD_COOL_DOWN * 1000);
             };
