@@ -1,5 +1,7 @@
 import React, { FC, useState } from 'react';
 
+import { initialFormState } from "./common/common";
+
 import {
     AppState,
     InputFormState,
@@ -8,22 +10,14 @@ import {
     SelectedSuggestions,
     ResourceKey
 } from "./common/types";
-import { FAILED_LOAD_COOL_DOWN, getPluralName, getMandatoryResourceNames, getOptionalResourceNames } from "./common/const";
+import { FAILED_LOAD_COOL_DOWN, getPluralName, getMandatoryResourceNames, getOptionalResourceNames } from "./common/common";
 import { LoadSWDataResolveFn, LoadSWDataRejectFn, loadStarWarsData } from "./common/load-data";
 
 export const AppContext = React.createContext<AppState | undefined>(undefined);
 
-const initialState: InputFormState = {
-    person: {visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false},
-    planet: {visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false},
-    starship: {visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false},
-    vehicle: {visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false},
-    species: {visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false}
-};
-
 export const AppStateProvider: FC = (props: any) => {
 
-    const [appState, setAppState] = useState(initialState);
+    const [appState, setAppState] = useState(initialFormState);
 
     function updateInputState(name: ResourceKey, prevState: InputFormState, updatePayload: Partial<InputState>) {
         const

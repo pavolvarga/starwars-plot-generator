@@ -1,6 +1,4 @@
 
-//todo: rethink names of types
-
 /**
  * What resources are used from StarWars API.
  * Each resource is represented as an autosuggest field on a screen.
@@ -20,7 +18,6 @@ export type InputState = {
     loadFailed: boolean
 };
 
-//todo: use typeof for state declaration
 export type InputFormState = {
     [index in ResourceKey]: InputState
 };

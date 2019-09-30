@@ -1,7 +1,7 @@
 import React, {MouseEvent, useContext} from 'react';
 import { Button, Col } from "reactstrap";
 
-import { getOptionalResourceNames } from '../../common/const';
+import { getOptionalResourceNames } from '../../common/common';
 import { AppContext } from "../../AppContext";
 import { AppState, ResourceKey } from "../../common/types";
 

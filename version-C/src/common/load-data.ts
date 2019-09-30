@@ -1,4 +1,4 @@
-import { STAR_WARS_API } from "./const";
+import { STAR_WARS_API } from "./common";
 
 type SWAResourceResp = {
     previous?: string,

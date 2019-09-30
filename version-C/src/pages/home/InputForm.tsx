@@ -8,7 +8,7 @@ import { StarWarsSearch, StarWarsSearchProps } from "./StarWarsSearch";
 import { OptionalInputs } from "./OptionalInputs";
 import { GenerateBnt } from "./GenerateBnt";
 import { LoadFailedAlerts } from "./LoadFailedAlerts";
-import { getResourceNames, RESOURCES } from "../../common/const";
+import { getResourceNames, RESOURCES } from "../../common/common";
 
 function upperCase(text: string): string {
     return text.charAt(0).toUpperCase() + text.slice(1);

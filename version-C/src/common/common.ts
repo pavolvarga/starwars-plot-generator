@@ -1,4 +1,4 @@
-import {Resource, ResourceKey, Resources} from "./types";
+import {InputFormState, Resource, ResourceKey, Resources} from "./types";
 
 const STAR_WARS_API = 'https://swapi.co/api';
 
@@ -8,6 +8,14 @@ const RESOURCES: Resources = {
     starship: { plural: 'starships', singular: 'starship', mandatory: false, label: undefined  },
     vehicle:  { plural: 'vehicles',  singular: 'vehicle',  mandatory: false, label: undefined  },
     species:  { plural: 'species',   singular: 'species',  mandatory: false, label: undefined  }
+};
+
+const initialFormState: InputFormState = {
+    person: {visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false},
+    planet: {visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false},
+    starship: {visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false},
+    vehicle: {visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false},
+    species: {visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false}
 };
 
 function getPluralName(singular: string): string {
@@ -37,4 +45,13 @@ const getOptionalResourceNames = () => (getSingularResourceName(optionalPredicat
  */
 const FAILED_LOAD_COOL_DOWN = 5;
 
-export { STAR_WARS_API, RESOURCES, FAILED_LOAD_COOL_DOWN, getPluralName, getMandatoryResourceNames, getOptionalResourceNames, getResourceNames };
+export {
+    STAR_WARS_API,
+    RESOURCES,
+    FAILED_LOAD_COOL_DOWN,
+    getPluralName,
+    getMandatoryResourceNames,
+    getOptionalResourceNames,
+    getResourceNames,
+    initialFormState
+};
