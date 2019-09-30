@@ -18,8 +18,7 @@ export const AppStateProvider: FC = (props: any) => {
 
     const [appState, setAppState] = useState(initialState);
 
-    //todo: get rid off any
-    function updateResource(name: string, prevState: InputFormState, updatePayload: any) {
+    function updateResource(name: string, prevState: InputFormState, updatePayload: Partial<InputState>) {
         const
             resource = prevState[name],
             updatedResource = {...resource, ...updatePayload};
