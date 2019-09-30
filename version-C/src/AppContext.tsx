@@ -4,7 +4,6 @@ import {
     AppState,
     InputFormState,
     Suggestion,
-    ResourceData,
     InputState,
     SelectedSuggestions,
     ResourceKey
@@ -55,7 +54,7 @@ export const AppStateProvider: FC = (props: any) => {
     function loadResourceData(name: ResourceKey): void {
         const
             resourceNamePlural = getPluralName(name),
-            resolve: LoadSWDataResolveFn = function storeResourceData(value: ResourceData[]): void {
+            resolve: LoadSWDataResolveFn = function storeResourceData(value: Suggestion[]): void {
                 setAppState((prevState: InputFormState) => {
                     return updateInputState(name, prevState, {loadingInProgress: false, data: value, visible: true});
                 });

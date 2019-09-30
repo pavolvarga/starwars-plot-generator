@@ -7,13 +7,6 @@
  */
 export type ResourceKey = 'person' | 'planet' | 'starship' | 'vehicle' | 'species';
 
-export type ResourceData = {
-    name: string,
-    url: string
-};
-
-//todo: merge ResourceData and Suggestion
-
 export type Suggestion = {
     name: string,
     url: string
@@ -22,7 +15,7 @@ export type Suggestion = {
 export type InputState = {
     visible: boolean,
     selected: Suggestion | undefined,
-    data: ResourceData[],
+    data: Suggestion[],
     loadingInProgress: boolean,
     loadFailed: boolean
 };
@@ -51,7 +44,7 @@ export type AppState = {
     isLoadedMandatoryData: () => boolean,
     loadMandatoryResourceData: () => void,
     isVisible: (name: ResourceKey) => boolean,
-    getData: (name: ResourceKey) => ResourceData[],
+    getData: (name: ResourceKey) => Suggestion[],
     hasLoadFailed: (name: ResourceKey) => boolean,
     toggleVisibility: (name: ResourceKey) => void,
     getSelectedSuggestions: () => SelectedSuggestions,
