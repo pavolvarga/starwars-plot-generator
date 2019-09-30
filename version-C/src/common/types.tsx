@@ -1,10 +1,18 @@
 
 //todo: rethink names of types
 
+/**
+ * What resources are used from StarWars API.
+ * Each resource is represented as an autosuggest field on a screen.
+ */
+export type ResourceKey = 'person' | 'planet' | 'starship' | 'vehicle' | 'species';
+
 export type ResourceData = {
     name: string,
     url: string
 };
+
+//todo: merge ResourceData and Suggestion
 
 export type Suggestion = {
     name: string,
@@ -19,25 +27,9 @@ export type InputState = {
     loadFailed: boolean
 };
 
-export type Resources = {
-    person: Resource,
-    planet: Resource,
-    starship: Resource,
-    vehicle: Resource,
-    species: Resource,
-    //todo: use keyof - do not allow other that key to be used
-    [index: string]: Resource
-}
-
 //todo: use typeof for state declaration
 export type InputFormState = {
-    person: InputState,
-    planet: InputState,
-    starship: InputState,
-    vehicle: InputState,
-    species: InputState,
-    //todo: use keyof - do not allow other that key to be used
-    [index: string]: InputState
+    [index in ResourceKey]: InputState
 };
 
 export type Resource = {
@@ -47,19 +39,23 @@ export type Resource = {
     label: string | undefined
 };
 
+export type Resources = {
+    [index in ResourceKey]: Resource;
+};
+
 export type SelectedSuggestions = { [index: string]: Suggestion | undefined };
 
 export type AppState = {
-    setSelectedSuggestion: (name: string, s: Suggestion | undefined) => void,
-    loadResourceData: (name: string) => void,
+    setSelectedSuggestion: (name: ResourceKey, s: Suggestion | undefined) => void,
+    loadResourceData: (name: ResourceKey) => void,
     isLoadedMandatoryData: () => boolean,
     loadMandatoryResourceData: () => void,
-    isVisible: (name: string) => boolean,
-    getData: (name: string) => ResourceData[],
-    hasLoadFailed: (name: string) => boolean,
-    toggleVisibility: (name: string) => void,
+    isVisible: (name: ResourceKey) => boolean,
+    getData: (name: ResourceKey) => ResourceData[],
+    hasLoadFailed: (name: ResourceKey) => boolean,
+    toggleVisibility: (name: ResourceKey) => void,
     getSelectedSuggestions: () => SelectedSuggestions,
-    areMandatoryResourcesSelected: () => boolean,
+    areMandatoryInputsSelected: () => boolean,
     clearSelectedSuggestions: () => void,
     hasLoadingOfMandatoryDataFailed: () => boolean,
     failedLoadingOfOptionalData: () => string[]

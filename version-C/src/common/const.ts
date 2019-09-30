@@ -1,4 +1,4 @@
-import {Resource, Resources} from "./types";
+import {Resource, ResourceKey, Resources} from "./types";
 
 const STAR_WARS_API = 'https://swapi.co/api';
 
@@ -34,9 +34,9 @@ function getSingularResourceName(predicate: predicateType) {
         .map(r => r.singular);
 }
 
-const getResourceNames = () => Object.keys(RESOURCES);
-const getMandatoryResourceNames = () => getSingularResourceName(mandatoryPredicate);
-const getOptionalResourceNames = () => getSingularResourceName(optionalPredicate);
+const getResourceNames = () => (Object.keys(RESOURCES) as ResourceKey[]);
+const getMandatoryResourceNames = () => (getSingularResourceName(mandatoryPredicate) as ResourceKey[]);
+const getOptionalResourceNames = () => (getSingularResourceName(optionalPredicate) as ResourceKey[]);
 
 /**
  * If load of an optional resource fails, prevent user from trying again util specific amount of seconds.

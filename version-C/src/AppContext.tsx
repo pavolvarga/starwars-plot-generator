@@ -1,6 +1,14 @@
 import React, { FC, useState } from 'react';
 
-import { AppState, InputFormState, Suggestion, ResourceData, InputState, SelectedSuggestions } from "./common/types";
+import {
+    AppState,
+    InputFormState,
+    Suggestion,
+    ResourceData,
+    InputState,
+    SelectedSuggestions,
+    ResourceKey
+} from "./common/types";
 import { FAILED_LOAD_COOL_DOWN, getPluralName, getMandatoryResourceNames, getOptionalResourceNames } from "./common/const";
 import { LoadSWDataResolveFn, LoadSWDataRejectFn, loadStarWarsData } from "./common/load-data";
 
@@ -18,7 +26,7 @@ export const AppStateProvider: FC = (props: any) => {
 
     const [appState, setAppState] = useState(initialState);
 
-    function updateInputState(name: string, prevState: InputFormState, updatePayload: Partial<InputState>) {
+    function updateInputState(name: ResourceKey, prevState: InputFormState, updatePayload: Partial<InputState>) {
         const
             inputState = prevState[name],
             updatedInputState = {...inputState, ...updatePayload};
@@ -30,7 +38,7 @@ export const AppStateProvider: FC = (props: any) => {
      * @param name  - name of a resource (person, plane, ...)
      * @param suggestion - selected value by user (or undefined if empty)
      */
-    function setSelectedSuggestion(name: string, suggestion: Suggestion | undefined): void {
+    function setSelectedSuggestion(name: ResourceKey, suggestion: Suggestion | undefined): void {
         setAppState((prevState: InputFormState) => {
             return updateInputState(name, prevState, {loadingInProgress: false, selected: suggestion});
         });
@@ -44,7 +52,7 @@ export const AppStateProvider: FC = (props: any) => {
      *
      * @param name - resource name
      */
-    function loadResourceData(name: string): void {
+    function loadResourceData(name: ResourceKey): void {
         const
             resourceNamePlural = getPluralName(name),
             resolve: LoadSWDataResolveFn = function storeResourceData(value: ResourceData[]): void {
@@ -99,23 +107,23 @@ export const AppStateProvider: FC = (props: any) => {
     }
 
     function loadMandatoryResourceData() {
-        const mandatory: string[] = getMandatoryResourceNames();
+        const mandatory = getMandatoryResourceNames();
         mandatory.forEach(n  => loadResourceData(n));
     }
 
-    function isVisible(name: string) {
+    function isVisible(name: ResourceKey) {
         return appState[name].visible;
     }
 
-    function getData(name: string) {
+    function getData(name: ResourceKey) {
         return appState[name].data;
     }
 
-    function hasLoadFailed(name: string) {
+    function hasLoadFailed(name: ResourceKey) {
         return appState[name].loadFailed;
     }
 
-    function toggleVisibility(name: string) {
+    function toggleVisibility(name: ResourceKey) {
         setAppState((prevState: InputFormState) => {
             const inputState = prevState[name];
 
@@ -132,10 +140,9 @@ export const AppStateProvider: FC = (props: any) => {
     }
 
     function getSelectedSuggestions() {
-        //todo: index should not be a string but a resources key
         const obj: SelectedSuggestions = {};
-        Object.keys(appState).forEach(key => {
-            obj[key] = appState[key].selected;
+        Object.keys(appState).forEach(key  => {
+            obj[key] = appState[key as ResourceKey].selected;
         });
         return obj;
     }
@@ -205,7 +212,7 @@ export const AppStateProvider: FC = (props: any) => {
                 hasLoadFailed,
                 toggleVisibility,
                 getSelectedSuggestions,
-                areMandatoryResourcesSelected: areMandatoryInputsSelected,
+                areMandatoryInputsSelected,
                 clearSelectedSuggestions,
                 hasLoadingOfMandatoryDataFailed,
                 failedLoadingOfOptionalData

@@ -3,7 +3,7 @@ import { Container, Form } from "reactstrap";
 import { RouteComponentProps } from "react-router";
 
 import { AppContext } from "../../AppContext";
-import {AppState, Resource} from "../../common/types";
+import { AppState, ResourceKey } from "../../common/types";
 import { StarWarsSearch, StarWarsSearchProps } from "./StarWarsSearch";
 import { OptionalInputs } from "./OptionalInputs";
 import { GenerateBnt } from "./GenerateBnt";
@@ -14,7 +14,7 @@ function upperCase(text: string): string {
     return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
-function createSearchInputProps(name: string, visible: boolean, label?: string): StarWarsSearchProps {
+function createSearchInputProps(name: ResourceKey, visible: boolean, label?: string): StarWarsSearchProps {
 
     const
         normalizedLabel = label ? label : name,

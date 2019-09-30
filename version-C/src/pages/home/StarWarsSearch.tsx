@@ -2,7 +2,7 @@ import React, {ReactElement, FC, useContext, useState} from 'react';
 import Autosuggest, { ChangeEvent } from 'react-autosuggest';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 
-import { AppState, Suggestion } from '../../common/types';
+import { AppState, ResourceKey, Suggestion } from '../../common/types';
 import { AppContext } from "../../AppContext";
 
 type Theme = {
@@ -60,7 +60,7 @@ function renderInputComponent(id: string, name: string, disabled: boolean, valid
 }
 
 export type StarWarsSearchProps = {
-    resourceName: string,
+    resourceName: ResourceKey,
     id: string,
     name: string,
     label: string,

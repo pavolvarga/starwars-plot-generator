@@ -3,7 +3,7 @@ import { Button, Col } from "reactstrap";
 
 import { getOptionalResourceNames } from '../../common/const';
 import { AppContext } from "../../AppContext";
-import { AppState } from "../../common/types";
+import { AppState, ResourceKey } from "../../common/types";
 
 const OptionalInputs: React.FC = () => {
     const optionalResourcesName = getOptionalResourceNames();
@@ -21,7 +21,7 @@ const OptionalInputs: React.FC = () => {
     );
 };
 
-type OptionalInputBntProps = { name: string };
+type OptionalInputBntProps = { name: ResourceKey };
 const OptionalInputBnt: React.FC<OptionalInputBntProps> = (props: OptionalInputBntProps) => {
 
     const
