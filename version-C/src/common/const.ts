@@ -2,18 +2,12 @@ import {Resource, ResourceKey, Resources} from "./types";
 
 const STAR_WARS_API = 'https://swapi.co/api';
 
-const RESOURCE_PEOPLE: Resource = { plural: 'people', singular: 'person', mandatory: true, label: 'character'};
-const RESOURCE_PLANETS: Resource = { plural: 'planets', singular: 'planet', mandatory: true, label: undefined};
-const RESOURCE_STARSHIPS: Resource = {plural: 'starships', singular: 'starship', mandatory: false, label: undefined};
-const RESOURCE_VEHICLES: Resource = {plural: 'vehicles', singular: 'vehicle', mandatory: false, label: undefined};
-const RESOURCE_SPECIES: Resource = {plural: 'species', singular: 'species', mandatory: false, label: undefined};
-
 const RESOURCES: Resources = {
-    person: RESOURCE_PEOPLE,
-    planet: RESOURCE_PLANETS,
-    starship: RESOURCE_STARSHIPS,
-    vehicle: RESOURCE_VEHICLES,
-    species: RESOURCE_SPECIES
+    person:   { plural: 'people',    singular: 'person',   mandatory: true,  label: 'character'},
+    planet:   { plural: 'planets',   singular: 'planet',   mandatory: true,  label: undefined  },
+    starship: { plural: 'starships', singular: 'starship', mandatory: false, label: undefined  },
+    vehicle:  { plural: 'vehicles',  singular: 'vehicle',  mandatory: false, label: undefined  },
+    species:  { plural: 'species',   singular: 'species',  mandatory: false, label: undefined  }
 };
 
 function getPluralName(singular: string): string {
