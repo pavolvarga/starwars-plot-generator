@@ -18,11 +18,11 @@ export const AppStateProvider: FC = (props: any) => {
 
     const [appState, setAppState] = useState(initialState);
 
-    function updateResource(name: string, prevState: InputFormState, updatePayload: Partial<InputState>) {
+    function updateInputState(name: string, prevState: InputFormState, updatePayload: Partial<InputState>) {
         const
-            resource = prevState[name],
-            updatedResource = {...resource, ...updatePayload};
-        return {...prevState, ...{[name]: updatedResource}}
+            inputState = prevState[name],
+            updatedInputState = {...inputState, ...updatePayload};
+        return {...prevState, ...{[name]: updatedInputState}}
     }
 
     /**
@@ -32,7 +32,7 @@ export const AppStateProvider: FC = (props: any) => {
      */
     function setSelectedSuggestion(name: string, suggestion: Suggestion | undefined): void {
         setAppState((prevState: InputFormState) => {
-            return updateResource(name, prevState, {loadingInProgress: false, selected: suggestion});
+            return updateInputState(name, prevState, {loadingInProgress: false, selected: suggestion});
         });
     }
 
@@ -46,41 +46,41 @@ export const AppStateProvider: FC = (props: any) => {
      */
     function loadResourceData(name: string): void {
         const
-            resourcePlural = getPluralName(name),
+            resourceNamePlural = getPluralName(name),
             resolve: LoadSWDataResolveFn = function storeResourceData(value: ResourceData[]): void {
                 setAppState((prevState: InputFormState) => {
-                    return updateResource(name, prevState, {loadingInProgress: false, data: value, visible: true});
+                    return updateInputState(name, prevState, {loadingInProgress: false, data: value, visible: true});
                 });
             },
             reject: LoadSWDataRejectFn = function updateLoadFailed(err: Error): void {
                 setAppState((prevState: InputFormState) => {
-                    return updateResource(name, prevState, {loadingInProgress: false, loadFailed: true});
+                    return updateInputState(name, prevState, {loadingInProgress: false, loadFailed: true});
                 });
 
                 //clear alert after specified time, and allow user to try it again
                 setTimeout(function clearLoadFailed() {
                     setAppState((prevState: InputFormState) => {
-                        return updateResource(name, prevState, {visible: false, loadFailed: false});
+                        return updateInputState(name, prevState, {visible: false, loadFailed: false});
                     });
                 }, FAILED_LOAD_COOL_DOWN * 1000);
             };
 
         //set the flag for loading of data in progress to true
         setAppState((prevState: InputFormState) => {
-            const resource = prevState[name];
+            const inputState = prevState[name];
 
             //data already loaded - nothing to do
-            if (resource.data.length > 0) {
+            if (inputState.data.length > 0) {
                 return prevState;
             }
 
-            const updatedResource = {...resource, ...{loadingInProgress: true}};
-            return {...prevState, ...{[name]: updatedResource}};
+            const updatedInputState = {...inputState, ...{loadingInProgress: true}};
+            return {...prevState, ...{[name]: updatedInputState}};
         });
 
         //data already loaded - do not load them again
         if (appState[name].data.length === 0) {
-            loadStarWarsData(resourcePlural, resolve, reject);
+            loadStarWarsData(resourceNamePlural, resolve, reject);
         }
     }
 
@@ -117,17 +117,17 @@ export const AppStateProvider: FC = (props: any) => {
 
     function toggleVisibility(name: string) {
         setAppState((prevState: InputFormState) => {
-            const resource = prevState[name];
+            const inputState = prevState[name];
 
             //load data for the input in other function, after the input became visible, if it hasn't been already loaded
-            if(!resource.loadingInProgress && resource.data.length === 0) {
+            if(!inputState.loadingInProgress && inputState.data.length === 0) {
                 setTimeout(() => loadResourceData(name), 1);
-                const updatedResource = {...resource, ...{loadingInProgress: true, visible: true}};
-                return {...prevState, ...{[name]: updatedResource}};
+                const updatedInputState = {...inputState, ...{loadingInProgress: true, visible: true}};
+                return {...prevState, ...{[name]: updatedInputState}};
             }
 
-            const updatedResource = {...resource, ...{visible: !resource.visible}};
-            return {...prevState, ...{[name]: updatedResource}};
+            const updatedInputState = {...inputState, ...{visible: !inputState.visible}};
+            return {...prevState, ...{[name]: updatedInputState}};
         });
     }
 
@@ -140,7 +140,7 @@ export const AppStateProvider: FC = (props: any) => {
         return obj;
     }
 
-    function getResources(names: string[]): InputState[] {
+    function getInputStates(names: string[]): InputState[] {
         return Object
             .entries(appState)
             .filter(e => names.find(s => e[0] === s))
@@ -150,8 +150,8 @@ export const AppStateProvider: FC = (props: any) => {
     /**
      * Return true if all mandatory resources / fields were filled in
      */
-    function areMandatoryResourcesSelected() {
-        return getResources(getMandatoryResourceNames()).every(r => r.selected !== undefined);
+    function areMandatoryInputsSelected() {
+        return getInputStates(getMandatoryResourceNames()).every(r => r.selected !== undefined);
     }
 
     /**
@@ -162,8 +162,8 @@ export const AppStateProvider: FC = (props: any) => {
             return Object
                 .entries(prevState)
                 .map(([key, value]) => {
-                    const updatedResource = {...value, ...{selected: undefined}};
-                    return ([key, updatedResource] as [string, InputState]);
+                    const updatedInputState = {...value, ...{selected: undefined}};
+                    return ([key, updatedInputState] as [string, InputState]);
                 })
                 .reduce((acc: any, entry) => {
                     acc[entry[0]] = entry[1];
@@ -176,7 +176,7 @@ export const AppStateProvider: FC = (props: any) => {
      * Return true if not all mandatory resources were loaded
      */
     function hasLoadingOfMandatoryDataFailed() {
-        return getResources(getMandatoryResourceNames()).some(r => r.loadFailed);
+        return getInputStates(getMandatoryResourceNames()).some(r => r.loadFailed);
     }
 
     /**
@@ -205,7 +205,7 @@ export const AppStateProvider: FC = (props: any) => {
                 hasLoadFailed,
                 toggleVisibility,
                 getSelectedSuggestions,
-                areMandatoryResourcesSelected,
+                areMandatoryResourcesSelected: areMandatoryInputsSelected,
                 clearSelectedSuggestions,
                 hasLoadingOfMandatoryDataFailed,
                 failedLoadingOfOptionalData
