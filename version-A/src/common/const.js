@@ -1,5 +1,5 @@
 
-const STAR_WARS_API = 'https://swapi.co/api';
+const STAR_WARS_API = 'https://swapi.dev/api';
 
 const RESOURCE_PEOPLE = {plural: 'people', singular: 'person', mandatory: true};
 const RESOURCE_PLANETS = {plural: 'planets', singular: 'planet', mandatory: true};

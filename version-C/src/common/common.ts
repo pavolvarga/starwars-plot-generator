@@ -1,6 +1,6 @@
 import {InputFormState, Resource, ResourceKey, Resources} from "./types";
 
-const STAR_WARS_API = 'https://swapi.co/api';
+const STAR_WARS_API = 'https://swapi.dev/api';
 
 const RESOURCES: Resources = {
     person:   { plural: 'people',    singular: 'person',   mandatory: true,  label: 'character'},

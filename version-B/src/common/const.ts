@@ -1,5 +1,5 @@
 
-const STAR_WARS_API = 'https://swapi.co/api';
+const STAR_WARS_API = 'https://swapi.dev/api';
 
 type Resource = {
     plural: string,
