@@ -26,3 +26,9 @@ learn from it.
     * hooks
     * using context for state management
   * reactstrap (for using bootstrap)
+* version-D
+  * typescript
+  * react
+  * redux
+    * for state management
+  * reactstrap (for using bootstrap)
