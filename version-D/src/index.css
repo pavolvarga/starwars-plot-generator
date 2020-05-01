@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.App {
+  text-align: center;
+}
+
+.button-row-space {
+  margin-bottom:20px;
+}
+
+.result-space {
+  margin-top:30px;
+  margin-bottom:30px;
+}
+
+.used-resources {
+  font-family: 'Comic Sans, Comic Sans MS, cursive;', serif;
+  font-size: larger;
+  list-style: none;
+}
+
+.plot-text {
+  font-size: large;
+  font-family: 'Comic Sans, Comic Sans MS, cursive;', serif;
+  color: yellow;
+  background: black;
+  text-align: justify;
+  padding: 10px;
+}
+
+.starwars-search__suggestion-highlighted {
+  background-color: lightskyblue;
+}
+
+.highlight-word {
+  color: orangered;
+}
