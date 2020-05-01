@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import { BrowserRouter as Router, Route, withRouter } from "react-router-dom";
 
-import { AppStateProvider } from './AppContext';
 import { HomePage } from "./pages/home/HomePage";
 import { Plot } from "./pages/result/ResultPage";
 
@@ -19,14 +18,12 @@ const StarWarsPlot = withRouter(Plot);
 export const App: FC = () => {
 
     return (
-        <AppStateProvider>
-            <>
-                <Header/>
-                <Router>
-                    <Route exact path="/" render={(props) => <StarWarsHomePage {...props}/>} />
-                    <Route path="/plot" component={StarWarsPlot}/>
-                </Router>
-            </>
-        </AppStateProvider>
+        <>
+            <Header/>
+            <Router>
+                <Route exact path="/" render={(props) => <StarWarsHomePage {...props}/>} />
+                <Route path="/plot" component={StarWarsPlot}/>
+            </Router>
+        </>
     );
 };

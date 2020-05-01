@@ -7,7 +7,6 @@ import dompurify from 'dompurify';
 
 import { generatePlot } from "./plotGenerator";
 import { useContext } from "react";
-import { AppContext } from "../../AppContext";
 import { AppState, Suggestion } from "../../common/types";
 
 type GenerateNewPlotBntProps = {
@@ -85,15 +84,6 @@ const Resources: FC<ResourcesProps> = (props: ResourcesProps) => {
 
 const Plot: FC<RouteComponentProps> = (props: RouteComponentProps) => {
 
-    const
-        context = useContext(AppContext),
-        {clearSelectedSuggestions} = (context as AppState);
-
-    function generateNewPlot() {
-        clearSelectedSuggestions();
-        props.history.push('/');
-    }
-
     //user has directly entered /plot in address bar - redirect him / her back to home page
     if (!props.history.location.state) {
         return <Redirect to={{pathname: '/'}} />
@@ -115,7 +105,6 @@ const Plot: FC<RouteComponentProps> = (props: RouteComponentProps) => {
                         <Title title={title} />
                         <Description description={description}/>
                         <Resources resources={resources} />
-                        <GenerateNewPlotBnt generateNewPlot={generateNewPlot} />
                     </FormGroup>
                 </Form>
             </Container>
