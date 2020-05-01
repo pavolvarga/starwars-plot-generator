@@ -16,6 +16,13 @@ export function starWarsResource(name: string): string {
     return `${STAR_WARS_API}/${name}/`;
 }
 
+function calculatePageCount(total: number, current: number): number {
+    if ((total % current === 0)) {
+        return total / current
+    }
+    return Math.floor(total / current) + 1;
+}
+
 /**
  * Creates an array of urls for fetching paged data
  *
@@ -33,7 +40,7 @@ export function createPages(resource: string, totalCount: number, retrievedItems
 
     const
         pages: string[] = [],
-        pagesCount: number = Math.floor(totalCount / retrievedItemsCount) + 1;
+        pagesCount: number = calculatePageCount(totalCount, retrievedItemsCount);
 
     let i: number = 1;
 

@@ -4,6 +4,13 @@ function starWarsResource(name) {
     return `${STAR_WARS_API}/${name}/`;
 }
 
+function calculatePageCount(total, current) {
+    if ((total % current === 0)) {
+        return total / current
+    }
+    return Math.floor(total / current) + 1;
+}
+
 /**
  * Creates an array of urls for fetching paged data
  *
@@ -21,7 +28,7 @@ function createPages(resource, totalCount, retrievedItemsCount) {
 
     const
         pages = [],
-        pagesCount = Math.floor(totalCount / retrievedItemsCount) + 1;
+        pagesCount = calculatePageCount(totalCount, retrievedItemsCount);
 
     let i = 1;
 
