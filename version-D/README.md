@@ -6,6 +6,8 @@ Web application for generating new star wars plot
   * react
   * redux
     * for state management
+  * redux-thunk
+      * asynchronous updates
   * reactstrap (for using bootstrap)
 
 # Work In Progress

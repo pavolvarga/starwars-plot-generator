@@ -31,4 +31,6 @@ learn from it.
   * react
   * redux
     * for state management
+  * redux-thunk
+    * asynchronous updates
   * reactstrap (for using bootstrap)
