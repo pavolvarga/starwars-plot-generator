@@ -100,9 +100,9 @@ function flat(data: SWAResult[][]): SWAResult[] {
  * @param resolve - resolve function
  * @param reject - reject function
  */
-function loadStarWarsResource(resource: string, resolve: LoadSWDataResolveFn, reject: LoadSWDataRejectFn): void {
+function loadStarWarsResource(resource: string): any {
 
-    fetch(resource)
+    return fetch(resource)
         .then(response => response.json())
         .then(firstRequestResponse => createRequestUrlsAndSaveFirstResults(firstRequestResponse, resource))
         .then(readAllPages)
@@ -111,12 +111,10 @@ function loadStarWarsResource(resource: string, resolve: LoadSWDataResolveFn, re
         .then(flat)
         .then(extractValues)
         .then(names => names.sort())
-        .then(resolve)
-        .catch(reject);
 }
 
 export type LoadSWDataResolveFn = (data: ResourceData[]) => void;
 export type LoadSWDataRejectFn = (err: Error) => void;
-export function loadStarWarsData(name: string, resolve: LoadSWDataResolveFn, reject: LoadSWDataRejectFn): void {
-    loadStarWarsResource(starWarsResource(name), resolve, reject);
+export function loadStarWarsData(name: string): any {
+    return loadStarWarsResource(starWarsResource(name));
 }

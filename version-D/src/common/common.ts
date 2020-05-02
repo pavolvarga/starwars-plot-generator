@@ -10,14 +10,6 @@ const RESOURCES: Resources = {
     species:  { plural: 'species',   singular: 'species',  mandatory: false, label: undefined  }
 };
 
-const initialFormState: InputFormState = {
-    person: {visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false},
-    planet: {visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false},
-    starship: {visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false},
-    vehicle: {visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false},
-    species: {visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false}
-};
-
 function getPluralName(singular: string): string {
     return Object
         .values(RESOURCES)
@@ -52,6 +44,5 @@ export {
     getPluralName,
     getMandatoryResourceNames,
     getOptionalResourceNames,
-    getResourceNames,
-    initialFormState
+    getResourceNames
 };

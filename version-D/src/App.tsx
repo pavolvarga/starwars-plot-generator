@@ -1,8 +1,11 @@
-import React, { FC } from 'react';
+import React, {FC, useEffect} from 'react';
 import { BrowserRouter as Router, Route, withRouter } from "react-router-dom";
+import { connect } from 'react-redux'
 
 import { HomePage } from "./pages/home/HomePage";
 import { Plot } from "./pages/result/ResultPage";
+import {loadPersons} from "./actions/person";
+
 
 const Header: FC = () => {
     return (
@@ -15,7 +18,12 @@ const Header: FC = () => {
 const StarWarsHomePage = withRouter(HomePage);
 const StarWarsPlot = withRouter(Plot);
 
-export const App: FC = () => {
+const App: FC = (props: any) => {
+
+    useEffect(() => {
+        const { dispatch } = props;
+        dispatch(loadPersons());
+    }, []);
 
     return (
         <>
@@ -27,3 +35,6 @@ export const App: FC = () => {
         </>
     );
 };
+
+const ConnectedApp = connect()(App);
+export { ConnectedApp as App };
