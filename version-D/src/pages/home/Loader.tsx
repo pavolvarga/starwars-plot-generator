@@ -1,10 +1,14 @@
 import React, { FC } from 'react';
 import { Spinner } from 'reactstrap';
+import { connect } from "react-redux";
+
+import { InputFormState } from "../../common/types";
 
 type LoaderProps = {
     mandatoryDataLoaded: boolean
 }
-export const Loader: FC<LoaderProps> = ({mandatoryDataLoaded}: LoaderProps) => {
+
+const Loader: FC<LoaderProps> = ({mandatoryDataLoaded}: LoaderProps) => {
 
     if (!mandatoryDataLoaded) {
         return (
@@ -17,3 +21,14 @@ export const Loader: FC<LoaderProps> = ({mandatoryDataLoaded}: LoaderProps) => {
 
     return null;
 };
+
+function mapStateToProps(state: InputFormState) {
+    const personsLoaded = !state.person.loadingInProgress && !state.person.loadFailed;
+    const planetsLoaded = !state.planet.loadingInProgress && !state.planet.loadFailed;
+    return {
+        mandatoryDataLoaded: personsLoaded && planetsLoaded
+    };
+}
+
+const ConnectedLoader = connect(mapStateToProps)(Loader);
+export { ConnectedLoader as Loader };
