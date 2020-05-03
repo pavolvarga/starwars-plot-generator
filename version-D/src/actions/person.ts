@@ -1,5 +1,5 @@
-import {loadStarWarsData} from "../common/load-data";
-import {RESOURCES} from "../common/common";
+import { loadStarWarsData } from "../common/load-data";
+import { RESOURCES } from "../common/common";
 
 export const SAVE_PERSONS = 'SAVE_PERSONS';
 export const LOAD_STARTED_PERSONS = 'LOAD_STARTED_PERSONS';

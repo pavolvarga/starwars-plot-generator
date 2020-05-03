@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 
 import { HomePage } from "./pages/home/HomePage";
 import { Plot } from "./pages/result/ResultPage";
-import {loadPersons} from "./actions/person";
-
+import { loadPersons } from "./actions/person";
+import { loadPlanets } from "./actions/planet";
 
 const Header: FC = () => {
     return (
@@ -18,12 +18,10 @@ const Header: FC = () => {
 const StarWarsHomePage = withRouter(HomePage);
 const StarWarsPlot = withRouter(Plot);
 
-const App: FC = (props: any) => {
+const App: FC = ({dispatch}: any) => {
 
-    useEffect(() => {
-        const { dispatch } = props;
-        dispatch(loadPersons());
-    }, []);
+    useEffect(() => {dispatch(loadPersons())}, []);
+    useEffect(() => {dispatch(loadPlanets())}, []);
 
     return (
         <>
