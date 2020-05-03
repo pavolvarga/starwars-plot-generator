@@ -1,6 +1,6 @@
-import {InputFormState, InputState} from "../common/types";
-import {LOAD_STARTED_PERSONS, SAVE_PERSONS} from "../actions/person";
-import {initialFormState} from "./reducer";
+import { InputState } from "../common/types";
+import { LOAD_STARTED_PERSONS, SAVE_PERSONS } from "../actions/person";
+import { initialFormState } from "./reducer";
 
 function loadStartedPersons(person: InputState): InputState {
     return {

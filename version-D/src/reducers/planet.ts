@@ -1,4 +1,4 @@
-import { InputFormState, InputState } from "../common/types";
+import { InputState } from "../common/types";
 import { LOAD_STARTED_PLANETS, SAVE_PLANETS } from "../actions/planet";
 import {initialFormState} from "./reducer";
 
