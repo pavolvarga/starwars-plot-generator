@@ -1,4 +1,4 @@
-import {InputFormState, Resource, ResourceKey, Resources} from "./types";
+import { Resource, ResourceKey, Resources } from "./types";
 
 const STAR_WARS_API = 'https://swapi.dev/api';
 

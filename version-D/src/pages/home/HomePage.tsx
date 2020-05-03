@@ -1,25 +1,30 @@
-import React, { FC, useContext, useEffect, Fragment } from 'react';
-
+import React, { FC, Fragment } from 'react';
 import { RouteComponentProps } from "react-router";
-import  {Alert } from "reactstrap";
+import { connect } from "react-redux";
 
-const InitialLoadFailedAlert: FC = () => {
-    return (
-        <div className="text-center">
-            <Alert color="danger">
-                Loading of initial data failed, please try again later.
-            </Alert>
-        </div>
-    );
-};
+import { Loader } from './Loader';
+import { InputForm } from "./InputForm";
+import { InputFormState } from "../../common/types";
 
-const HomePage: FC<RouteComponentProps> = (props: RouteComponentProps) => {
+type HomePageProps = RouteComponentProps & {mandatoryDataLoaded: boolean};
+
+const HomePage: FC<HomePageProps> = ({mandatoryDataLoaded}: HomePageProps) => {
 
     return (
         <Fragment>
-            <h1>Version D</h1>
+            <Loader mandatoryDataLoaded={mandatoryDataLoaded} />
+            <InputForm mandatoryDataLoaded={mandatoryDataLoaded} />
         </Fragment>
     );
 };
 
-export { HomePage };
+function mapStateToProps(state: InputFormState) {
+    const personsLoaded = !state.person.loadingInProgress && !state.person.loadFailed;
+    const planetsLoaded = !state.planet.loadingInProgress && !state.planet.loadFailed;
+    return {
+        mandatoryDataLoaded: personsLoaded && planetsLoaded
+    };
+}
+
+const ConnectedHomePage = connect(mapStateToProps)(HomePage)
+export { ConnectedHomePage as HomePage };
