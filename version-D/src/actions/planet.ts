@@ -3,6 +3,7 @@ import { RESOURCES } from "../common/common";
 
 export const SAVE_PLANETS = 'SAVE_PLANETS';
 export const LOAD_STARTED_PLANETS = 'LOAD_STARTED_PLANETS';
+export const SET_SELECTED_PLANET = 'SET_SELECTED_PLANET';
 
 export function loadStartedPlanets() {
     return {

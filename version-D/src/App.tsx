@@ -1,6 +1,6 @@
 import React, {FC, useEffect} from 'react';
 import { BrowserRouter as Router, Route, withRouter } from "react-router-dom";
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
 import { HomePage } from "./pages/home/HomePage";
 import { Plot } from "./pages/result/ResultPage";

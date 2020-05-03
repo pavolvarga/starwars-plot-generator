@@ -1,8 +1,10 @@
-import React, {ReactElement, FC, useContext, useState} from 'react';
+import React, {ReactElement, FC, useState} from 'react';
 import Autosuggest, { ChangeEvent } from 'react-autosuggest';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
+import { connect } from 'react-redux';
 
-import { AppState, ResourceKey, Suggestion } from '../../common/types';
+import { InputFormState, ResourceKey, Suggestion } from '../../common/types';
+import {setSelectedResource} from "../../actions/actions";
 
 type Theme = {
     container: string,
@@ -72,9 +74,9 @@ type SuggestionFetchRequest = {
     reason: string
 };
 
-export const StarWarsSearch: FC<StarWarsSearchProps> = (props: StarWarsSearchProps) => {
+const StarWarsSearch: FC<StarWarsSearchProps & {dispatch: any}> = (props: StarWarsSearchProps & {dispatch: any}) => {
 
-    const { resourceName, id, name, label, placeholder, visible, data } = props;
+    const { dispatch, resourceName, id, name, label, placeholder, visible, data } = props;
 
     const
         [value, setValue] = useState(''),
@@ -85,22 +87,17 @@ export const StarWarsSearch: FC<StarWarsSearchProps> = (props: StarWarsSearchPro
         return null;
     }
 
-    // function onChange(event: React.FormEvent<any>, {newValue}: ChangeEvent): void {
-    //     setValue(newValue);
-    //
-    //     const foundIdx = resourceData.findIndex(el => el.name === newValue);
-    //     if (foundIdx !== -1) {
-    //         setSelectedFromData(true);
-    //         const {name, url} = resourceData[foundIdx];
-    //         setSelectedSuggestion(resourceName,{name, url});
-    //     } else {
-    //         setSelectedFromData(false);
-    //         setSelectedSuggestion(resourceName, undefined);
-    //     }
-    // }
+    function onChange(event: React.FormEvent<any>, {newValue}: ChangeEvent): void {
+        setValue(newValue);
 
-    function onChange(event: React.FormEvent<any>, { newValue }: ChangeEvent): void {
-        return;
+        const foundIdx = data.findIndex(el => el.name === newValue);
+        if (foundIdx !== -1) {
+            setSelectedFromData(true);
+            dispatch(setSelectedResource(resourceName, data[foundIdx]));
+        } else {
+            setSelectedFromData(false);
+            dispatch(setSelectedResource(resourceName, undefined));
+        }
     }
 
     function onSuggestionsFetchRequested(fetchRequest: SuggestionFetchRequest): void {
@@ -150,3 +147,6 @@ export const StarWarsSearch: FC<StarWarsSearchProps> = (props: StarWarsSearchPro
         </Col>
     );
 };
+
+const StarWarsSearchConnected = connect()(StarWarsSearch);
+export { StarWarsSearchConnected as StarWarsSearch };

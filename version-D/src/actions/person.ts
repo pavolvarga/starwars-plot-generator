@@ -3,6 +3,7 @@ import { RESOURCES } from "../common/common";
 
 export const SAVE_PERSONS = 'SAVE_PERSONS';
 export const LOAD_STARTED_PERSONS = 'LOAD_STARTED_PERSONS';
+export const SET_SELECTED_PERSON = 'SET_SELECTED_PERSON';
 
 export function loadStartedPersons() {
     return {
