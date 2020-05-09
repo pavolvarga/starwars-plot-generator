@@ -1,29 +1,38 @@
 import { InputState } from "../common/types";
 import { initialFormState } from "./reducer";
-import { LOAD_STARTED_STARSHIPS, SAVE_STARSHIPS } from "../actions/starship";
+import {LOAD_STARTED_STARSHIPS, SAVE_STARSHIPS, TOGGLE_STARSHIP_VISIBLE} from "../actions/starship";
 
-function loadStartedStarships(starships: InputState): InputState {
+function loadStartedStarships(starship: InputState): InputState {
     return {
-        ...starships,
+        ...starship,
         loadingInProgress: true
     };
 }
 
-function saveStarships(starships: InputState, speciesData: any): InputState {
+function saveStarships(starships: InputState, starshipsData: any): InputState {
     return {
         ...starships,
         loadingInProgress: false,
-        data: speciesData
+        data: starshipsData
     };
 }
 
-export function reducerStarship(species: InputState = initialFormState.species, action: any): InputState {
+function toggleStarshipVisible(starship: InputState): InputState {
+    return {
+        ...starship,
+        visible: !starship.visible
+    }
+}
+
+export function reducerStarship(starship: InputState = initialFormState.species, action: any): InputState {
     switch (action.type) {
         case LOAD_STARTED_STARSHIPS:
-            return loadStartedStarships(species);
+            return loadStartedStarships(starship);
         case SAVE_STARSHIPS:
-            return saveStarships(species, action.persons);
+            return saveStarships(starship, action.persons);
+        case TOGGLE_STARSHIP_VISIBLE:
+            return toggleStarshipVisible(starship);
         default:
-            return species;
+            return starship;
     }
 }

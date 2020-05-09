@@ -3,13 +3,15 @@ import { Button, Col } from "reactstrap";
 import { connect } from "react-redux";
 
 import { InputFormState, ResourceKey } from "../../common/types";
+import { toggleResourceVisible } from "../../actions/actions";
 
 type OptionalInputBntProps = {
     visible: boolean,
     disabled: boolean,
-    name: string
+    name: string,
+    dispatch: any
 }
-const OptionalInputBnt: FC<OptionalInputBntProps> = ({visible, disabled, name}: OptionalInputBntProps) => {
+const OptionalInputBnt: FC<OptionalInputBntProps> = ({visible, disabled, name, dispatch}: OptionalInputBntProps) => {
     const text = visible ? `Remove ${name}` : `Add ${name}`;
     return (
         <div className="col-sm-4">
@@ -17,7 +19,7 @@ const OptionalInputBnt: FC<OptionalInputBntProps> = ({visible, disabled, name}: 
                 <Button
                     color="secondary"
                     size="lg"
-                    // onClick={(e: MouseEvent) => toggleVisibility(name)}
+                    onClick={() => dispatch(toggleResourceVisible(name))}
                     disabled={disabled}
                     visible={visible.toString()}
                 >
@@ -32,14 +34,14 @@ type OwnProps = {
     resourceNames: ResourceKey[]
 }
 const OptionalInputs: React.FC<any> = (props: any) => {
-    const { resourceNames, resources } = props;
+    const { resourceNames, resources, dispatch } = props;
     return (
         <Col>
             <div className="row add-space button-row-space">
                 { resourceNames.map(
                     (optionalResName: string, idx: number) => {
                         const optionalButtonProps = resources[optionalResName];
-                        return <OptionalInputBnt key={idx} name={optionalResName} {...optionalButtonProps} />;
+                        return <OptionalInputBnt key={idx} name={optionalResName} dispatch={dispatch} {...optionalButtonProps} />;
                     }
                 )}
             </div>
@@ -49,10 +51,11 @@ const OptionalInputs: React.FC<any> = (props: any) => {
 
 function mapStateToProps(state: InputFormState, ownProps: OwnProps) {
     const { resourceNames } = ownProps;
+    //todo: dynamically
     const obj = resourceNames.reduce((acc: any, name: ResourceKey) => {
         acc[name] = {
             visible: state[name].visible,
-            disabled: !state[name].loadFailed
+            disabled: state.person.selected === undefined || state.planet.selected === undefined
         }
         return acc;
     }, {});

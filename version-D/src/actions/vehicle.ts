@@ -1,6 +1,7 @@
 import { loadStarWarsData } from "../common/load-data";
 import { RESOURCES } from "../common/common";
 
+export const TOGGLE_VEHICLE_VISIBLE = 'TOGGLE_VEHICLE_VISIBLE';
 export const SAVE_VEHICLES = 'SAVE_VEHICLES';
 export const LOAD_STARTED_VEHICLES = 'LOAD_STARTED_VEHICLES';
 

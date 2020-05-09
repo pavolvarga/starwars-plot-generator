@@ -5,3 +5,9 @@ export function setSelectedResource(resourceName: string, payload: {name: string
         payload
     }
 }
+
+export function toggleResourceVisible(resourceName: string) {
+    return {
+        type: `TOGGLE_${resourceName.toUpperCase()}_VISIBLE`
+    }
+}
