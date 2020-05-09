@@ -1,5 +1,5 @@
 import { InputState, Suggestion } from "../common/types";
-import {LOAD_PERSONS_FAILED, LOAD_STARTED_PERSONS, SAVE_PERSONS, SET_SELECTED_PERSON} from "../actions/person";
+import { LOAD_PERSONS_FAILED, LOAD_STARTED_PERSONS, SAVE_PERSONS, SET_SELECTED_PERSON } from "../actions/person";
 import { initialFormState } from "./reducer";
 
 function loadStartedPersons(person: InputState): InputState {
@@ -13,7 +13,8 @@ function savePersons(person: InputState, persons: any): InputState {
     return {
         ...person,
         loadingInProgress: false,
-        data: persons
+        data: persons,
+        visible: true
     };
 }
 

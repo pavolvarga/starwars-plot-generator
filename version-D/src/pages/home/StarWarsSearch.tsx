@@ -3,7 +3,7 @@ import Autosuggest, { ChangeEvent } from 'react-autosuggest';
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 import { connect } from 'react-redux';
 
-import { InputFormState, ResourceKey, Suggestion } from '../../common/types';
+import { ResourceKey, Suggestion } from '../../common/types';
 import {setSelectedResource} from "../../actions/actions";
 
 type Theme = {

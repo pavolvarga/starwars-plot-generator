@@ -1,11 +1,12 @@
 import { InputState, Suggestion } from "../common/types";
-import {LOAD_PLANETS_FAILED, LOAD_STARTED_PLANETS, SAVE_PLANETS, SET_SELECTED_PLANET} from "../actions/planet";
+import { LOAD_PLANETS_FAILED, LOAD_STARTED_PLANETS, SAVE_PLANETS, SET_SELECTED_PLANET } from "../actions/planet";
 import { initialFormState } from "./reducer";
 
 function loadStartedPlanets(planet: InputState): InputState {
     return {
         ...planet,
-        loadingInProgress: true
+        loadingInProgress: true,
+        visible: true
     };
 }
 

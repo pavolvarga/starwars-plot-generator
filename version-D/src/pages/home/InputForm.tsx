@@ -2,15 +2,14 @@ import React, { FC } from "react";
 import { connect } from "react-redux";
 
 import { Container, Form } from "reactstrap";
-import {getOptionalResourceNames, RESOURCES} from "../../common/common";
+import { getMandatoryResourceNames, getOptionalResourceNames, getResourceNames, RESOURCES } from "../../common/common";
 import { StarWarsSearch, StarWarsSearchProps } from "./StarWarsSearch";
 import { InputFormState, ResourceKey, Suggestion } from "../../common/types";
-import {OptionalInputs} from "./OptionalInputs";
+import { OptionalInputs } from "./OptionalInputs";
 
 type InputFormProps = {
     mandatoryDataLoaded: boolean,
-    persons: Suggestion[],
-    planets: Suggestion[]
+    resources: any
 }
 
 function upperCase(text: string): string {
@@ -36,21 +35,23 @@ function createSearchInputProps(name: ResourceKey, visible: boolean, data: Sugge
 
 const InputForm: FC<InputFormProps> = (props: InputFormProps) => {
 
-    const { mandatoryDataLoaded, persons, planets } = props;
+    const { mandatoryDataLoaded, resources } = props;
 
     if (!mandatoryDataLoaded) {
         return null;
     }
 
-    const personSearchInputProps = createSearchInputProps('person', true, persons, RESOURCES.person.label);
-    const planetSearchInputProps = createSearchInputProps('planet', true, planets, RESOURCES.planet.label);
+    const searchInputProps = getResourceNames().map((name) => {
+        return createSearchInputProps(name, resources[name].visible, resources[name].data, RESOURCES[name].label);
+    })
 
     return (
         <div>
             <Container>
                 <Form>
-                    <StarWarsSearch {...personSearchInputProps} />
-                    <StarWarsSearch {...planetSearchInputProps} />
+                    {
+                        searchInputProps.map((p, idx) => <StarWarsSearch key={idx} {...p} />)
+                    }
                     <OptionalInputs resourceNames={getOptionalResourceNames() }/>
                 </Form>
             </Container>
@@ -59,12 +60,19 @@ const InputForm: FC<InputFormProps> = (props: InputFormProps) => {
 };
 
 function mapStateToProps(state: InputFormState) {
-    const personsLoaded = !state.person.loadingInProgress && !state.person.loadFailed;
-    const planetsLoaded = !state.planet.loadingInProgress && !state.planet.loadFailed;
+    const mandatoryDataLoaded = getMandatoryResourceNames().reduce((acc, name) => {
+        return acc && !state[name].loadingInProgress && !state[name].loadFailed;
+    }, true);
+    const resources = getResourceNames().reduce((acc: any, name: ResourceKey) => {
+        acc[name] = {
+            data: state[name].data,
+            visible: state[name].visible
+        }
+        return acc;
+    }, {});
     return {
-        mandatoryDataLoaded: personsLoaded && planetsLoaded,
-        persons: state.person.data,
-        planets: state.planet.data
+        mandatoryDataLoaded,
+        resources
     };
 }
 
