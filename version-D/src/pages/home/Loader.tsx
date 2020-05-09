@@ -23,8 +23,8 @@ const Loader: FC<LoaderProps> = ({mandatoryDataLoaded}: LoaderProps) => {
 };
 
 function mapStateToProps(state: InputFormState) {
-    const personsLoaded = !state.person.loadingInProgress && !state.person.loadFailed;
-    const planetsLoaded = !state.planet.loadingInProgress && !state.planet.loadFailed;
+    const personsLoaded = !state.person.loadingInProgress;
+    const planetsLoaded = !state.planet.loadingInProgress;
     return {
         mandatoryDataLoaded: personsLoaded && planetsLoaded
     };

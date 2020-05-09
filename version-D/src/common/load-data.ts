@@ -97,8 +97,6 @@ function flat(data: SWAResult[][]): SWAResult[] {
  * Fetches all data for a resource.
  *
  * @param resource - resource
- * @param resolve - resolve function
- * @param reject - reject function
  */
 function loadStarWarsResource(resource: string): any {
 
@@ -113,8 +111,6 @@ function loadStarWarsResource(resource: string): any {
         .then(names => names.sort())
 }
 
-export type LoadSWDataResolveFn = (data: ResourceData[]) => void;
-export type LoadSWDataRejectFn = (err: Error) => void;
 export function loadStarWarsData(name: string): any {
     return loadStarWarsResource(starWarsResource(name));
 }
