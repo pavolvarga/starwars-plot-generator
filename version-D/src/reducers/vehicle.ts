@@ -1,6 +1,6 @@
 import { InputState } from "../common/types";
 import { initialFormState } from "./reducer";
-import { LOAD_STARTED_VEHICLES, SAVE_VEHICLES, TOGGLE_VEHICLE_VISIBLE } from "../actions/vehicle";
+import { LOAD_STARTED_VEHICLES, LOAD_VEHICLES_FAILED, SAVE_VEHICLES, TOGGLE_VEHICLE_VISIBLE } from "../actions/vehicle";
 
 function loadStartedVehicles(vehicle: InputState): InputState {
     return {
@@ -24,14 +24,24 @@ function toggleVehicleVisible(vehicle: InputState): InputState {
     }
 }
 
+function loadVehiclesFailed(vehicle: InputState): InputState {
+    return {
+        ...vehicle,
+        loadingInProgress: false,
+        loadFailed: true
+    };
+}
+
 export function reducerVehicle(vehicle: InputState = initialFormState.species, action: any): InputState {
     switch (action.type) {
         case LOAD_STARTED_VEHICLES:
             return loadStartedVehicles(vehicle);
         case SAVE_VEHICLES:
-            return saveVehicles(vehicle, action.persons);
+            return saveVehicles(vehicle, action.vehicles);
         case TOGGLE_VEHICLE_VISIBLE:
             return toggleVehicleVisible(vehicle);
+        case LOAD_VEHICLES_FAILED:
+            return loadVehiclesFailed(vehicle);
         default:
             return vehicle;
     }

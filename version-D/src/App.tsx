@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 
 import { HomePage } from "./pages/home/HomePage";
 import { Plot } from "./pages/result/ResultPage";
-import { loadPersons } from "./actions/person";
-import { loadPlanets } from "./actions/planet";
+import {getMandatoryResourceNames} from "./common/common";
+import {selectLoadActionCreator} from "./actions/actions";
 
 const Header: FC = () => {
     return (
@@ -20,8 +20,10 @@ const StarWarsPlot = withRouter(Plot);
 
 const App: FC = ({dispatch}: any) => {
 
-    useEffect(() => {dispatch(loadPersons())}, []);
-    useEffect(() => {dispatch(loadPlanets())}, []);
+    useEffect(() => {
+       getMandatoryResourceNames()
+           .forEach(name => dispatch(selectLoadActionCreator(name)()))
+    });
 
     return (
         <>

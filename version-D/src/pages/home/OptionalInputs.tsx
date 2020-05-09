@@ -3,7 +3,7 @@ import { Button, Col } from "reactstrap";
 import { connect } from "react-redux";
 
 import { InputFormState, ResourceKey } from "../../common/types";
-import { toggleResourceVisible } from "../../actions/actions";
+import { selectLoadActionCreator, toggleResourceVisible } from "../../actions/actions";
 
 type OptionalInputBntProps = {
     visible: boolean,
@@ -19,7 +19,10 @@ const OptionalInputBnt: FC<OptionalInputBntProps> = ({visible, disabled, name, d
                 <Button
                     color="secondary"
                     size="lg"
-                    onClick={() => dispatch(toggleResourceVisible(name))}
+                    onClick={() => {
+                        dispatch(toggleResourceVisible(name));
+                        dispatch(selectLoadActionCreator(name)());
+                    }}
                     disabled={disabled}
                     visible={visible.toString()}
                 >
@@ -29,6 +32,7 @@ const OptionalInputBnt: FC<OptionalInputBntProps> = ({visible, disabled, name, d
         </div>
     );
 };
+
 
 type OwnProps = {
     resourceNames: ResourceKey[]
@@ -41,7 +45,14 @@ const OptionalInputs: React.FC<any> = (props: any) => {
                 { resourceNames.map(
                     (optionalResName: string, idx: number) => {
                         const optionalButtonProps = resources[optionalResName];
-                        return <OptionalInputBnt key={idx} name={optionalResName} dispatch={dispatch} {...optionalButtonProps} />;
+                        return (
+                            <OptionalInputBnt
+                                key={idx}
+                                name={optionalResName}
+                                dispatch={dispatch}
+                                {...optionalButtonProps}
+                            />
+                        );
                     }
                 )}
             </div>

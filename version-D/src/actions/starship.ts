@@ -4,6 +4,7 @@ import { RESOURCES } from "../common/common";
 export const TOGGLE_STARSHIP_VISIBLE = 'TOGGLE_STARSHIP_VISIBLE';
 export const SAVE_STARSHIPS = 'SAVE_STARSHIPS';
 export const LOAD_STARTED_STARSHIPS = 'LOAD_STARTED_STARSHIPS';
+export const LOAD_STARSHIPS_FAILED = 'LOAD_STARSHIPS_FAILED';
 
 export function loadStartedStarships() {
     return {
@@ -14,7 +15,13 @@ export function loadStartedStarships() {
 export function saveStarships(data: any) {
     return {
         type: SAVE_STARSHIPS,
-        starship: data
+        starships: data
+    };
+}
+
+function loadStarshipsFailed() {
+    return {
+        type: LOAD_STARSHIPS_FAILED
     };
 }
 
@@ -22,6 +29,7 @@ export function loadStarships() {
     return function (dispatch: any) {
         dispatch(loadStartedStarships());
         return loadStarWarsData(RESOURCES.starship.plural)
-            .then((data: any) => dispatch(saveStarships(data)));
+            .then((data: any) => dispatch(saveStarships(data)))
+            .catch(() => dispatch(loadStarshipsFailed()));
     };
 }

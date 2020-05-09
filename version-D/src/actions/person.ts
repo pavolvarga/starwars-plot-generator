@@ -31,7 +31,5 @@ export function loadPersons() {
         return loadStarWarsData(RESOURCES.person.plural)
             .then((data: any) => dispatch(savePersons(data)))
             .catch(() => dispatch(loadPersonsFailed()));
-
     }
-};
-
+}
