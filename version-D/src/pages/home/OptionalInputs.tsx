@@ -9,9 +9,11 @@ type OptionalInputBntProps = {
     visible: boolean,
     disabled: boolean,
     name: string,
-    dispatch: any
+    dispatch: any,
+    dataLoaded: boolean
 }
-const OptionalInputBnt: FC<OptionalInputBntProps> = ({visible, disabled, name, dispatch}: OptionalInputBntProps) => {
+const OptionalInputBnt: FC<OptionalInputBntProps> = (props: OptionalInputBntProps) => {
+    const { visible, disabled, name, dispatch, dataLoaded } = props;
     const text = visible ? `Remove ${name}` : `Add ${name}`;
     return (
         <div className="col-sm-4">
@@ -21,7 +23,9 @@ const OptionalInputBnt: FC<OptionalInputBntProps> = ({visible, disabled, name, d
                     size="lg"
                     onClick={() => {
                         dispatch(toggleResourceVisible(name));
-                        dispatch(selectLoadActionCreator(name)());
+                        if (!dataLoaded) {
+                            dispatch(selectLoadActionCreator(name)());
+                        }
                     }}
                     disabled={disabled}
                     visible={visible.toString()}
@@ -62,16 +66,17 @@ const OptionalInputs: React.FC<any> = (props: any) => {
 
 function mapStateToProps(state: InputFormState, ownProps: OwnProps) {
     const { resourceNames } = ownProps;
-    //todo: dynamically
-    const obj = resourceNames.reduce((acc: any, name: ResourceKey) => {
+    const resources = resourceNames.reduce((acc: any, name: ResourceKey) => {
         acc[name] = {
             visible: state[name].visible,
-            disabled: state.person.selected === undefined || state.planet.selected === undefined
+            //todo: use - mandatory resource names
+            disabled: state.person.selected === undefined || state.planet.selected === undefined,
+            dataLoaded: state[name].data.length > 0
         }
         return acc;
     }, {});
     return {
-        resources: obj
+        resources
     };
 }
 
