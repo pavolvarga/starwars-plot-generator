@@ -1,6 +1,6 @@
 import { RESOURCES } from "../common/common";
 import { loadVehicles } from "./vehicle";
-import { loadSpecies } from "./species";
+import {loadSpecies, REVERT_LOAD_SPECIES} from "./species";
 import { loadStarships } from "./starship";
 import { loadPersons } from "./person";
 import { loadPlanets } from "./planet";
@@ -44,6 +44,13 @@ export function resetSelectedResources() {
         type: RESET_SELECTED_RESOURCES
     }
 }
+
+export function revertLoad(resourceName: string) {
+    return {
+        type: `REVERT_LOAD_${resourceName.toUpperCase()}`
+    };
+}
+
 
 export function selectLoadActionCreator(resourceName: string) {
     switch (resourceName) {
