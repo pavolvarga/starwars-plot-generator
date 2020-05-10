@@ -2,7 +2,7 @@ import {InputState, Suggestion} from "../common/types";
 import { initialFormState } from "./reducer";
 import {
     LOAD_STARTED_VEHICLE,
-    LOAD_VEHICLES_FAILED, REVERT_LOAD_VEHICLES,
+    LOAD_VEHICLE_FAILED, REVERT_LOAD_VEHICLES,
     SAVE_VEHICLE,
     SET_SELECTED_VEHICLE,
     TOGGLE_VEHICLE_VISIBLE
@@ -63,7 +63,7 @@ export function reducerVehicle(vehicle: InputState = initialFormState.species, a
             return setSelectedVehicle(vehicle, action.payload);
         case TOGGLE_VEHICLE_VISIBLE:
             return toggleVehicleVisible(vehicle);
-        case LOAD_VEHICLES_FAILED:
+        case LOAD_VEHICLE_FAILED:
             return loadVehiclesFailed(vehicle);
         case REVERT_LOAD_VEHICLES:
             return revertLoadVehicles(vehicle);
