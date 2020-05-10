@@ -1,12 +1,14 @@
 import React, { FC } from "react";
 import { connect } from "react-redux";
 import { Container, Form } from "reactstrap";
+import { RouteComponentProps } from "react-router";
 
 import { getMandatoryResourceNames, getOptionalResourceNames, getResourceNames, RESOURCES } from "../../common/common";
 import { StarWarsSearch, StarWarsSearchProps } from "./StarWarsSearch";
-import { InputFormState, ResourceKey, Suggestion } from "../../common/types";
+import { InputFormState, ResourceKey, SelectedSuggestions, Suggestion } from "../../common/types";
 import { OptionalInputs } from "./OptionalInputs";
 import { LoadFailedAlerts } from "./LoadFailedAlerts";
+import { GenerateBnt } from "./GenerateBnt";
 
 function upperCase(text: string): string {
     return text.charAt(0).toUpperCase() + text.slice(1);
@@ -31,14 +33,22 @@ function createSearchInputProps(name: ResourceKey, visible: boolean, data: Sugge
 
 type InputFormProps = {
     mandatoryDataLoaded: boolean,
-    resources: any
+    resources: any,
+    selectedSuggestions: SelectedSuggestions
 }
-const InputForm: FC<InputFormProps> = (props: InputFormProps) => {
+const InputForm: FC<InputFormProps & RouteComponentProps> = (props: InputFormProps & RouteComponentProps) => {
 
-    const { mandatoryDataLoaded, resources } = props;
+    const { mandatoryDataLoaded, resources, selectedSuggestions } = props;
 
     if (!mandatoryDataLoaded) {
         return null;
+    }
+
+    function generatePlot() {
+        props.history.push({
+            pathname: '/plot',
+            state: selectedSuggestions
+        });
     }
 
     const searchInputProps = getResourceNames().map((name) => {
@@ -54,6 +64,7 @@ const InputForm: FC<InputFormProps> = (props: InputFormProps) => {
                     }
                     <OptionalInputs resourceNames={getOptionalResourceNames() }/>
                     <LoadFailedAlerts />
+                    <GenerateBnt generatePlot={generatePlot} />
                 </Form>
             </Container>
         </div>
@@ -71,9 +82,14 @@ function mapStateToProps(state: InputFormState) {
         }
         return acc;
     }, {});
+    const selectedSuggestions: SelectedSuggestions = {};
+    Object.keys(state).forEach(key  => {
+        selectedSuggestions[key] = state[key as ResourceKey].selected;
+    });
     return {
         mandatoryDataLoaded,
-        resources
+        resources,
+        selectedSuggestions
     };
 }
 

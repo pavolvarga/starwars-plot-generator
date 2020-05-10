@@ -5,14 +5,12 @@ import { Loader } from './Loader';
 import { InputForm } from "./InputForm";
 import { InitialLoadFailedAlert } from "./InitialLoadFailedAlert";
 
-type HomePageProps = RouteComponentProps;
-
-export const HomePage: FC<HomePageProps> = () => {
+export const HomePage: FC<RouteComponentProps> = (props: RouteComponentProps) => {
     return (
         <Fragment>
             <InitialLoadFailedAlert />
             <Loader />
-            <InputForm />
+            <InputForm {...props} />
         </Fragment>
     );
 };
