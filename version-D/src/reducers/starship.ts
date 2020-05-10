@@ -4,7 +4,7 @@ import {
     LOAD_STARSHIPS_FAILED,
     LOAD_STARTED_STARSHIP,
     REVERT_LOAD_STARSHIPS,
-    SAVE_STARSHIPS, SET_SELECTED_STARSHIP,
+    SAVE_STARSHIP, SET_SELECTED_STARSHIP,
     TOGGLE_STARSHIP_VISIBLE
 } from "../actions/starship";
 
@@ -15,11 +15,11 @@ function loadStartedStarships(starship: InputState): InputState {
     };
 }
 
-function saveStarships(starships: InputState, starshipsData: any): InputState {
+function saveStarships(starships: InputState, data: any): InputState {
     return {
         ...starships,
         loadingInProgress: false,
-        data: starshipsData
+        data
     };
 }
 
@@ -57,8 +57,8 @@ export function reducerStarship(starship: InputState = initialFormState.species,
     switch (action.type) {
         case LOAD_STARTED_STARSHIP:
             return loadStartedStarships(starship);
-        case SAVE_STARSHIPS:
-            return saveStarships(starship, action.starships);
+        case SAVE_STARSHIP:
+            return saveStarships(starship, action.data);
         case SET_SELECTED_STARSHIP:
             return setSelectedStarship(starship, action.payload);
         case TOGGLE_STARSHIP_VISIBLE:

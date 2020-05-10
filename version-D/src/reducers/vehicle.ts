@@ -3,7 +3,7 @@ import { initialFormState } from "./reducer";
 import {
     LOAD_STARTED_VEHICLE,
     LOAD_VEHICLES_FAILED, REVERT_LOAD_VEHICLES,
-    SAVE_VEHICLES,
+    SAVE_VEHICLE,
     SET_SELECTED_VEHICLE,
     TOGGLE_VEHICLE_VISIBLE
 } from "../actions/vehicle";
@@ -15,11 +15,11 @@ function loadStartedVehicles(vehicle: InputState): InputState {
     };
 }
 
-function saveVehicles(vehicle: InputState, vehiclesData: any): InputState {
+function saveVehicles(vehicle: InputState, data: any): InputState {
     return {
         ...vehicle,
         loadingInProgress: false,
-        data: vehiclesData
+        data
     };
 }
 
@@ -57,8 +57,8 @@ export function reducerVehicle(vehicle: InputState = initialFormState.species, a
     switch (action.type) {
         case LOAD_STARTED_VEHICLE:
             return loadStartedVehicles(vehicle);
-        case SAVE_VEHICLES:
-            return saveVehicles(vehicle, action.vehicles);
+        case SAVE_VEHICLE:
+            return saveVehicles(vehicle, action.data);
         case SET_SELECTED_VEHICLE:
             return setSelectedVehicle(vehicle, action.payload);
         case TOGGLE_VEHICLE_VISIBLE:

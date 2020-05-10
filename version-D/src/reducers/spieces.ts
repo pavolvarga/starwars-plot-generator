@@ -15,11 +15,11 @@ function loadStartedSpecies(species: InputState): InputState {
     };
 }
 
-function saveSpecies(species: InputState, speciesData: any): InputState {
+function saveSpecies(species: InputState, data: any): InputState {
     return {
         ...species,
         loadingInProgress: false,
-        data: speciesData
+        data
     };
 }
 
@@ -58,7 +58,7 @@ export function reducerSpecies(species: InputState = initialFormState.species, a
         case LOAD_STARTED_SPECIES:
             return loadStartedSpecies(species);
         case SAVE_SPECIES:
-            return saveSpecies(species, action.species);
+            return saveSpecies(species, action.data);
         case SET_SELECTED_SPECIES:
             return setSelectedSpecies(species, action.payload);
         case TOGGLE_SPECIES_VISIBLE:
