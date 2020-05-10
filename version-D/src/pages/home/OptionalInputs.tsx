@@ -3,7 +3,7 @@ import { Button, Col } from "reactstrap";
 import { connect } from "react-redux";
 
 import { InputFormState, ResourceKey } from "../../common/types";
-import { load, toggleResourceVisible } from "../../actions/actions";
+import { load, toggleVisible } from "../../actions/actions";
 import { getMandatoryResourceNames, RESOURCES } from "../../common/common";
 
 type OptionalInputBntProps = {
@@ -23,7 +23,7 @@ const OptionalInputBnt: FC<OptionalInputBntProps> = (props: OptionalInputBntProp
                     color="secondary"
                     size="lg"
                     onClick={() => {
-                        dispatch(toggleResourceVisible(name));
+                        dispatch(toggleVisible(name));
                         if (!dataLoaded) {
                             dispatch(load(name,false))
                         }

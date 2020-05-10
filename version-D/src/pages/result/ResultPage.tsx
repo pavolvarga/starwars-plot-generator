@@ -8,7 +8,7 @@ import dompurify from 'dompurify';
 import { generatePlot } from "./plotGenerator";
 import { Suggestion } from "../../common/types";
 import {connect} from "react-redux";
-import {resetSelectedResources} from "../../actions/actions";
+import {resetSelected} from "../../actions/actions";
 
 type GenerateNewPlotBntProps = {
     generateNewPlot: () => void
@@ -96,7 +96,7 @@ const Plot: FC<RouteComponentProps & PlotProps> = (props: RouteComponentProps & 
     }
 
     function generateNewPlot() {
-        dispatch(resetSelectedResources());
+        dispatch(resetSelected());
         props.history.push('/');
     }
 

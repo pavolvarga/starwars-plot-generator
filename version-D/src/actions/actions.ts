@@ -23,20 +23,20 @@ export function loadFailed(resourceName: string) {
     };
 }
 
-export function setSelectedResource(resourceName: string, payload: {name: string, url: string} | undefined) {
+export function setSelected(resourceName: string, payload: {name: string, url: string} | undefined) {
     return {
         type: `SET_SELECTED_${resourceName.toUpperCase()}`,
         payload
     }
 }
 
-export function toggleResourceVisible(resourceName: string) {
+export function toggleVisible(resourceName: string) {
     return {
         type: `TOGGLE_${resourceName.toUpperCase()}_VISIBLE`
     }
 }
 
-export function resetSelectedResources() {
+export function resetSelected() {
     return {
         type: RESET_SELECTED_RESOURCES
     }

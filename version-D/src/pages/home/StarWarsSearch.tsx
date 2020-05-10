@@ -4,7 +4,7 @@ import { Col, FormGroup, Label, Input } from 'reactstrap';
 import { connect } from 'react-redux';
 
 import { ResourceKey, Suggestion } from '../../common/types';
-import {setSelectedResource} from "../../actions/actions";
+import {setSelected} from "../../actions/actions";
 
 type Theme = {
     container: string,
@@ -93,10 +93,10 @@ const StarWarsSearch: FC<StarWarsSearchProps & {dispatch: any}> = (props: StarWa
         const foundIdx = data.findIndex(el => el.name === newValue);
         if (foundIdx !== -1) {
             setSelectedFromData(true);
-            dispatch(setSelectedResource(resourceName, data[foundIdx]));
+            dispatch(setSelected(resourceName, data[foundIdx]));
         } else {
             setSelectedFromData(false);
-            dispatch(setSelectedResource(resourceName, undefined));
+            dispatch(setSelected(resourceName, undefined));
         }
     }
 
