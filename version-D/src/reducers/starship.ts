@@ -1,9 +1,9 @@
-import { InputState } from "../common/types";
+import {InputState, Suggestion} from "../common/types";
 import { initialFormState } from "./reducer";
 import {
     LOAD_STARSHIPS_FAILED,
     LOAD_STARTED_STARSHIPS,
-    SAVE_STARSHIPS,
+    SAVE_STARSHIPS, SET_SELECTED_STARSHIP,
     TOGGLE_STARSHIP_VISIBLE
 } from "../actions/starship";
 
@@ -37,6 +37,12 @@ function loadStarshipsFailed(starship: InputState): InputState {
     };
 }
 
+function setSelectedStarship(starship: InputState, payload: Suggestion | undefined): InputState {
+    return {
+        ...starship,
+        selected: payload
+    };
+}
 
 export function reducerStarship(starship: InputState = initialFormState.species, action: any): InputState {
     switch (action.type) {
@@ -44,6 +50,8 @@ export function reducerStarship(starship: InputState = initialFormState.species,
             return loadStartedStarships(starship);
         case SAVE_STARSHIPS:
             return saveStarships(starship, action.starships);
+        case SET_SELECTED_STARSHIP:
+            return setSelectedStarship(starship, action.payload);
         case TOGGLE_STARSHIP_VISIBLE:
             return toggleStarshipVisible(starship);
         case LOAD_STARSHIPS_FAILED:

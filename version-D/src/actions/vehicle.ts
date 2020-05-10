@@ -5,6 +5,7 @@ export const TOGGLE_VEHICLE_VISIBLE = 'TOGGLE_VEHICLE_VISIBLE';
 export const SAVE_VEHICLES = 'SAVE_VEHICLES';
 export const LOAD_STARTED_VEHICLES = 'LOAD_STARTED_VEHICLES';
 export const LOAD_VEHICLES_FAILED = 'LOAD_VEHICLES_FAILED';
+export const SET_SELECTED_VEHICLE = 'SET_SELECTED_VEHICLE';
 
 export function loadStartedVehicles() {
     return {
