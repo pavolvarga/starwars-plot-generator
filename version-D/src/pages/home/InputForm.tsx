@@ -1,16 +1,12 @@
 import React, { FC } from "react";
 import { connect } from "react-redux";
-
 import { Container, Form } from "reactstrap";
+
 import { getMandatoryResourceNames, getOptionalResourceNames, getResourceNames, RESOURCES } from "../../common/common";
 import { StarWarsSearch, StarWarsSearchProps } from "./StarWarsSearch";
 import { InputFormState, ResourceKey, Suggestion } from "../../common/types";
 import { OptionalInputs } from "./OptionalInputs";
-
-type InputFormProps = {
-    mandatoryDataLoaded: boolean,
-    resources: any
-}
+import { LoadFailedAlerts } from "./LoadFailedAlerts";
 
 function upperCase(text: string): string {
     return text.charAt(0).toUpperCase() + text.slice(1);
@@ -33,6 +29,10 @@ function createSearchInputProps(name: ResourceKey, visible: boolean, data: Sugge
     };
 }
 
+type InputFormProps = {
+    mandatoryDataLoaded: boolean,
+    resources: any
+}
 const InputForm: FC<InputFormProps> = (props: InputFormProps) => {
 
     const { mandatoryDataLoaded, resources } = props;
@@ -53,6 +53,7 @@ const InputForm: FC<InputFormProps> = (props: InputFormProps) => {
                         searchInputProps.map((p, idx) => <StarWarsSearch key={idx} {...p} />)
                     }
                     <OptionalInputs resourceNames={getOptionalResourceNames() }/>
+                    <LoadFailedAlerts />
                 </Form>
             </Container>
         </div>
