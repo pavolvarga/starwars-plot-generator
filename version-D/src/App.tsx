@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { HomePage } from "./pages/home/HomePage";
 import { Plot } from "./pages/result/ResultPage";
-import { getMandatoryResourceNames, RESOURCES } from "./common/common";
+import { getMandatoryResourceNames } from "./common/common";
 import { load } from "./actions/actions";
 
 const Header: FC = () => {

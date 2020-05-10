@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import { InputFormState, ResourceKey } from "../../common/types";
 import { load, toggleVisible } from "../../actions/actions";
-import { getMandatoryResourceNames, RESOURCES } from "../../common/common";
+import { getMandatoryResourceNames } from "../../common/common";
 
 type OptionalInputBntProps = {
     visible: boolean,
