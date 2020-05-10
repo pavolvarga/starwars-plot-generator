@@ -10,12 +10,6 @@ const RESOURCES: Resources = {
     species:  { plural: 'species',   singular: 'species',  mandatory: false, label: undefined  }
 };
 
-function getPluralName(singular: string): string {
-    return Object
-        .values(RESOURCES)
-        .filter(r => (r.singular === singular))[0].plural;
-}
-
 type predicateType = (r: Resource) => boolean;
 
 const mandatoryPredicate: predicateType = (resource: Resource) => resource.mandatory;
@@ -41,7 +35,6 @@ export {
     STAR_WARS_API,
     RESOURCES,
     FAILED_LOAD_COOL_DOWN,
-    getPluralName,
     getMandatoryResourceNames,
     getOptionalResourceNames,
     getResourceNames

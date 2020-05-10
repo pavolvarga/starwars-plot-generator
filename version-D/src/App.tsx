@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 
 import { HomePage } from "./pages/home/HomePage";
 import { Plot } from "./pages/result/ResultPage";
-import {getMandatoryResourceNames} from "./common/common";
-import {selectLoadActionCreator} from "./actions/actions";
+import { getMandatoryResourceNames, RESOURCES } from "./common/common";
+import { load } from "./actions/actions";
 
 const Header: FC = () => {
     return (
@@ -22,7 +22,7 @@ const App: FC = ({dispatch}: any) => {
 
     useEffect(() => {
        getMandatoryResourceNames()
-           .forEach(name => dispatch(selectLoadActionCreator(name)()))
+           .forEach(name => dispatch(load(name, false)))
     });
 
     return (
