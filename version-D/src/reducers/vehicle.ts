@@ -2,7 +2,7 @@ import {InputState, Suggestion} from "../common/types";
 import { initialFormState } from "./reducer";
 import {
     LOAD_STARTED_VEHICLES,
-    LOAD_VEHICLES_FAILED,
+    LOAD_VEHICLES_FAILED, REVERT_LOAD_VEHICLES,
     SAVE_VEHICLES,
     SET_SELECTED_VEHICLE,
     TOGGLE_VEHICLE_VISIBLE
@@ -45,6 +45,14 @@ function setSelectedVehicle(vehicle: InputState, payload: Suggestion | undefined
     };
 }
 
+function revertLoadVehicles(vehicle: InputState): InputState {
+    return {
+        ...vehicle,
+        visible: false,
+        loadFailed: false
+    };
+}
+
 export function reducerVehicle(vehicle: InputState = initialFormState.species, action: any): InputState {
     switch (action.type) {
         case LOAD_STARTED_VEHICLES:
@@ -57,6 +65,8 @@ export function reducerVehicle(vehicle: InputState = initialFormState.species, a
             return toggleVehicleVisible(vehicle);
         case LOAD_VEHICLES_FAILED:
             return loadVehiclesFailed(vehicle);
+        case REVERT_LOAD_VEHICLES:
+            return revertLoadVehicles(vehicle);
         default:
             return vehicle;
     }

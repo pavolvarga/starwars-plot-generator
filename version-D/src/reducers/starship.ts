@@ -3,6 +3,7 @@ import { initialFormState } from "./reducer";
 import {
     LOAD_STARSHIPS_FAILED,
     LOAD_STARTED_STARSHIPS,
+    REVERT_LOAD_STARSHIPS,
     SAVE_STARSHIPS, SET_SELECTED_STARSHIP,
     TOGGLE_STARSHIP_VISIBLE
 } from "../actions/starship";
@@ -44,6 +45,14 @@ function setSelectedStarship(starship: InputState, payload: Suggestion | undefin
     };
 }
 
+function revertLoadStarships(starship: InputState): InputState {
+    return {
+        ...starship,
+        visible: false,
+        loadFailed: false
+    };
+}
+
 export function reducerStarship(starship: InputState = initialFormState.species, action: any): InputState {
     switch (action.type) {
         case LOAD_STARTED_STARSHIPS:
@@ -56,6 +65,8 @@ export function reducerStarship(starship: InputState = initialFormState.species,
             return toggleStarshipVisible(starship);
         case LOAD_STARSHIPS_FAILED:
             return loadStarshipsFailed(starship);
+        case REVERT_LOAD_STARSHIPS:
+            return revertLoadStarships(starship);
         default:
             return starship;
     }
