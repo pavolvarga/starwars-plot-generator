@@ -1,5 +1,12 @@
 import { InputState, Suggestion } from "../common/types";
-import { LOAD_PERSON_FAILED, LOAD_STARTED_PERSON, SAVE_PERSON, SET_SELECTED_PERSON } from "../actions/person";
+import {
+    LOAD_PERSON_FAILED,
+    LOAD_STARTED_PERSON,
+    REVERT_LOAD_PERSON,
+    SAVE_PERSON,
+    SET_SELECTED_PERSON,
+    TOGGLE_PERSON_VISIBLE
+} from "../actions/person";
 import { initialFormState } from "./reducer";
 
 function loadStartedPersons(person: InputState): InputState {
@@ -33,6 +40,21 @@ function loadPersonsFailed(person: InputState): InputState {
     };
 }
 
+function togglePersonVisible(person: InputState): InputState {
+    return {
+        ...person,
+        visible: !person.visible
+    };
+}
+
+function revertLoadPerson(person: InputState): InputState {
+    return {
+        ...person,
+        visible: false,
+        loadFailed: false
+    };
+}
+
 export function reducerPerson(person: InputState = initialFormState.person, action: any): InputState {
     switch (action.type) {
         case LOAD_STARTED_PERSON:
@@ -43,6 +65,10 @@ export function reducerPerson(person: InputState = initialFormState.person, acti
             return setSelectedPerson(person, action.payload);
         case LOAD_PERSON_FAILED:
             return loadPersonsFailed(person);
+        case TOGGLE_PERSON_VISIBLE:
+            return togglePersonVisible(person);
+        case REVERT_LOAD_PERSON:
+            return revertLoadPerson(person);
         default:
             return person;
     }
