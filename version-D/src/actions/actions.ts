@@ -1,9 +1,11 @@
-import {RESOURCES} from "../common/common";
+import { RESOURCES } from "../common/common";
 import { loadVehicles } from "./vehicle";
 import { loadSpecies } from "./species";
 import { loadStarships } from "./starship";
 import { loadPersons } from "./person";
 import { loadPlanets } from "./planet";
+
+export const RESET_SELECTED_RESOURCES = 'RESET_SELECTED_RESOURCES';
 
 export function setSelectedResource(resourceName: string, payload: {name: string, url: string} | undefined) {
     return {
@@ -15,6 +17,12 @@ export function setSelectedResource(resourceName: string, payload: {name: string
 export function toggleResourceVisible(resourceName: string) {
     return {
         type: `TOGGLE_${resourceName.toUpperCase()}_VISIBLE`
+    }
+}
+
+export function resetSelectedResources() {
+    return {
+        type: RESET_SELECTED_RESOURCES
     }
 }
 

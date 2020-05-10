@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Redirect } from "react-router-dom";
 import { RouteComponentProps } from "react-router";
 import { FC, MouseEvent } from "react";
@@ -6,8 +6,9 @@ import { Col, Form, FormGroup, Button, Container } from 'reactstrap';
 import dompurify from 'dompurify';
 
 import { generatePlot } from "./plotGenerator";
-import { useContext } from "react";
-import { AppState, Suggestion } from "../../common/types";
+import { Suggestion } from "../../common/types";
+import {connect} from "react-redux";
+import {resetSelectedResources} from "../../actions/actions";
 
 type GenerateNewPlotBntProps = {
     generateNewPlot: () => void
@@ -82,11 +83,21 @@ const Resources: FC<ResourcesProps> = (props: ResourcesProps) => {
     );
 };
 
-const Plot: FC<RouteComponentProps> = (props: RouteComponentProps) => {
+type PlotProps = {
+    dispatch: any
+}
+const Plot: FC<RouteComponentProps & PlotProps> = (props: RouteComponentProps & PlotProps) => {
+
+    const { dispatch } = props;
 
     //user has directly entered /plot in address bar - redirect him / her back to home page
     if (!props.history.location.state) {
         return <Redirect to={{pathname: '/'}} />
+    }
+
+    function generateNewPlot() {
+        dispatch(resetSelectedResources());
+        props.history.push('/');
     }
 
     const
@@ -105,6 +116,7 @@ const Plot: FC<RouteComponentProps> = (props: RouteComponentProps) => {
                         <Title title={title} />
                         <Description description={description}/>
                         <Resources resources={resources} />
+                        <GenerateNewPlotBnt generateNewPlot={generateNewPlot} />
                     </FormGroup>
                 </Form>
             </Container>
@@ -112,4 +124,5 @@ const Plot: FC<RouteComponentProps> = (props: RouteComponentProps) => {
     )
 };
 
-export { Description, Title, ResourceLink, Resources, Plot };
+const ConnectedPlot = connect()(Plot);
+export { ConnectedPlot as Plot };
