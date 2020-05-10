@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 import { InputFormState, ResourceKey } from "../../common/types";
 import { selectLoadActionCreator, toggleResourceVisible } from "../../actions/actions";
+import {getMandatoryResourceNames} from "../../common/common";
 
 type OptionalInputBntProps = {
     visible: boolean,
@@ -66,11 +67,12 @@ const OptionalInputs: React.FC<any> = (props: any) => {
 
 function mapStateToProps(state: InputFormState, ownProps: OwnProps) {
     const { resourceNames } = ownProps;
+    const enabled = getMandatoryResourceNames()
+        .reduce((acc, name) => acc && state[name].selected !== undefined, true);
     const resources = resourceNames.reduce((acc: any, name: ResourceKey) => {
         acc[name] = {
             visible: state[name].visible,
-            //todo: use - mandatory resource names
-            disabled: state.person.selected === undefined || state.planet.selected === undefined,
+            disabled: !enabled,
             dataLoaded: state[name].data.length > 0
         }
         return acc;
