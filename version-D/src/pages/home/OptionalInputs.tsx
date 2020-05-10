@@ -10,11 +10,12 @@ type OptionalInputBntProps = {
     visible: boolean,
     disabled: boolean,
     name: string,
-    dispatch: any,
-    dataLoaded: boolean
+    dataLoaded: boolean,
+    toggleVisible: any,
+    load: any
 }
 const OptionalInputBnt: FC<OptionalInputBntProps> = (props: OptionalInputBntProps) => {
-    const { visible, disabled, name, dispatch, dataLoaded } = props;
+    const { visible, disabled, name, dataLoaded, toggleVisible, load } = props;
     const text = visible ? `Remove ${name}` : `Add ${name}`;
     return (
         <div className="col-sm-4">
@@ -23,9 +24,9 @@ const OptionalInputBnt: FC<OptionalInputBntProps> = (props: OptionalInputBntProp
                     color="secondary"
                     size="lg"
                     onClick={() => {
-                        dispatch(toggleVisible(name));
+                        toggleVisible(name);
                         if (!dataLoaded) {
-                            dispatch(load(name,false))
+                            load(name, false);
                         }
                     }}
                     disabled={disabled}
@@ -43,7 +44,7 @@ type OwnProps = {
     resourceNames: ResourceKey[]
 }
 const OptionalInputs: React.FC<any> = (props: any) => {
-    const { resourceNames, resources, dispatch } = props;
+    const { resourceNames, resources, toggleVisible, load } = props;
     return (
         <Col>
             <div className="row add-space button-row-space">
@@ -54,7 +55,8 @@ const OptionalInputs: React.FC<any> = (props: any) => {
                             <OptionalInputBnt
                                 key={idx}
                                 name={optionalResName}
-                                dispatch={dispatch}
+                                toggleVisible={toggleVisible}
+                                load={load}
                                 {...optionalButtonProps}
                             />
                         );
@@ -82,5 +84,12 @@ function mapStateToProps(state: InputFormState, ownProps: OwnProps) {
     };
 }
 
-const ConnectedOptionalInputs = connect(mapStateToProps)(OptionalInputs);
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        toggleVisible: (name: string) => dispatch(toggleVisible(name)),
+        load: (name: string, clearAfterFailure: boolean) => dispatch(load(name, clearAfterFailure))
+    };
+}
+
+const ConnectedOptionalInputs = connect(mapStateToProps, mapDispatchToProps)(OptionalInputs);
 export { ConnectedOptionalInputs as OptionalInputs };

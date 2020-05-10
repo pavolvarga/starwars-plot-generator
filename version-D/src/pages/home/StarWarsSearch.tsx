@@ -4,7 +4,7 @@ import { Col, FormGroup, Label, Input } from 'reactstrap';
 import { connect } from 'react-redux';
 
 import { ResourceKey, Suggestion } from '../../common/types';
-import {setSelected} from "../../actions/actions";
+import { setSelected } from "../../actions/actions";
 
 type Theme = {
     container: string,
@@ -74,9 +74,9 @@ type SuggestionFetchRequest = {
     reason: string
 };
 
-const StarWarsSearch: FC<StarWarsSearchProps & {dispatch: any}> = (props: StarWarsSearchProps & {dispatch: any}) => {
+const StarWarsSearch: FC<StarWarsSearchProps & {setSelected: any}> = (props: StarWarsSearchProps & {setSelected: any}) => {
 
-    const { dispatch, resourceName, id, name, label, placeholder, visible, data } = props;
+    const { setSelected, resourceName, id, name, label, placeholder, visible, data } = props;
 
     const
         [value, setValue] = useState(''),
@@ -93,10 +93,10 @@ const StarWarsSearch: FC<StarWarsSearchProps & {dispatch: any}> = (props: StarWa
         const foundIdx = data.findIndex(el => el.name === newValue);
         if (foundIdx !== -1) {
             setSelectedFromData(true);
-            dispatch(setSelected(resourceName, data[foundIdx]));
+            setSelected(resourceName, data[foundIdx]);
         } else {
             setSelectedFromData(false);
-            dispatch(setSelected(resourceName, undefined));
+            setSelected(resourceName, undefined);
         }
     }
 
@@ -148,5 +148,11 @@ const StarWarsSearch: FC<StarWarsSearchProps & {dispatch: any}> = (props: StarWa
     );
 };
 
-const StarWarsSearchConnected = connect()(StarWarsSearch);
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        setSelected: (resourceName: string, suggestion: Suggestion) => dispatch(setSelected(resourceName, suggestion))
+    };
+}
+
+const StarWarsSearchConnected = connect(null, mapDispatchToProps)(StarWarsSearch);
 export { StarWarsSearchConnected as StarWarsSearch };

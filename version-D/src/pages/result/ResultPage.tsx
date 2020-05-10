@@ -4,11 +4,11 @@ import { RouteComponentProps } from "react-router";
 import { FC, MouseEvent } from "react";
 import { Col, Form, FormGroup, Button, Container } from 'reactstrap';
 import dompurify from 'dompurify';
+import { connect } from "react-redux";
 
 import { generatePlot } from "./plotGenerator";
 import { Suggestion } from "../../common/types";
-import {connect} from "react-redux";
-import {resetSelected} from "../../actions/actions";
+import { resetSelected } from "../../actions/actions";
 
 type GenerateNewPlotBntProps = {
     generateNewPlot: () => void
@@ -84,11 +84,11 @@ const Resources: FC<ResourcesProps> = (props: ResourcesProps) => {
 };
 
 type PlotProps = {
-    dispatch: any
+    resetSelected: any
 }
 const Plot: FC<RouteComponentProps & PlotProps> = (props: RouteComponentProps & PlotProps) => {
 
-    const { dispatch } = props;
+    const { resetSelected } = props;
 
     //user has directly entered /plot in address bar - redirect him / her back to home page
     if (!props.history.location.state) {
@@ -96,7 +96,7 @@ const Plot: FC<RouteComponentProps & PlotProps> = (props: RouteComponentProps & 
     }
 
     function generateNewPlot() {
-        dispatch(resetSelected());
+        resetSelected();
         props.history.push('/');
     }
 
@@ -124,5 +124,11 @@ const Plot: FC<RouteComponentProps & PlotProps> = (props: RouteComponentProps & 
     )
 };
 
-const ConnectedPlot = connect()(Plot);
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        resetSelected: () => dispatch(resetSelected())
+    };
+}
+
+const ConnectedPlot = connect(null, mapDispatchToProps)(Plot);
 export { ConnectedPlot as Plot };

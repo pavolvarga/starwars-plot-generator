@@ -18,11 +18,11 @@ const Header: FC = () => {
 const StarWarsHomePage = withRouter(HomePage);
 const StarWarsPlot = withRouter(Plot);
 
-const App: FC = ({dispatch}: any) => {
+const App: FC = ({load}: any) => {
 
     useEffect(() => {
        getMandatoryResourceNames()
-           .forEach(name => dispatch(load(name, false)))
+           .forEach(name => load(name, false))
     });
 
     return (
@@ -36,5 +36,11 @@ const App: FC = ({dispatch}: any) => {
     );
 };
 
-const ConnectedApp = connect()(App);
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        load: (name: string, clearAfterFailure: boolean) => dispatch(load(name, clearAfterFailure))
+    };
+}
+
+const ConnectedApp = connect(null, mapDispatchToProps)(App);
 export { ConnectedApp as App };
