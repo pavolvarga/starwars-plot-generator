@@ -7,6 +7,12 @@ import { loadPlanets } from "./planet";
 
 export const RESET_SELECTED_RESOURCES = 'RESET_SELECTED_RESOURCES';
 
+export function loadStarted(resourceName: string) {
+    return {
+        type: `LOAD_STARTED_${resourceName.toUpperCase()}`
+    }
+}
+
 export function setSelectedResource(resourceName: string, payload: {name: string, url: string} | undefined) {
     return {
         type: `SET_SELECTED_${resourceName.toUpperCase()}`,

@@ -1,7 +1,7 @@
 import {InputState, Suggestion} from "../common/types";
 import { initialFormState } from "./reducer";
 import {
-    LOAD_STARTED_VEHICLES,
+    LOAD_STARTED_VEHICLE,
     LOAD_VEHICLES_FAILED, REVERT_LOAD_VEHICLES,
     SAVE_VEHICLES,
     SET_SELECTED_VEHICLE,
@@ -55,7 +55,7 @@ function revertLoadVehicles(vehicle: InputState): InputState {
 
 export function reducerVehicle(vehicle: InputState = initialFormState.species, action: any): InputState {
     switch (action.type) {
-        case LOAD_STARTED_VEHICLES:
+        case LOAD_STARTED_VEHICLE:
             return loadStartedVehicles(vehicle);
         case SAVE_VEHICLES:
             return saveVehicles(vehicle, action.vehicles);

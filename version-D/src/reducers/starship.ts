@@ -2,7 +2,7 @@ import {InputState, Suggestion} from "../common/types";
 import { initialFormState } from "./reducer";
 import {
     LOAD_STARSHIPS_FAILED,
-    LOAD_STARTED_STARSHIPS,
+    LOAD_STARTED_STARSHIP,
     REVERT_LOAD_STARSHIPS,
     SAVE_STARSHIPS, SET_SELECTED_STARSHIP,
     TOGGLE_STARSHIP_VISIBLE
@@ -55,7 +55,7 @@ function revertLoadStarships(starship: InputState): InputState {
 
 export function reducerStarship(starship: InputState = initialFormState.species, action: any): InputState {
     switch (action.type) {
-        case LOAD_STARTED_STARSHIPS:
+        case LOAD_STARTED_STARSHIP:
             return loadStartedStarships(starship);
         case SAVE_STARSHIPS:
             return saveStarships(starship, action.starships);

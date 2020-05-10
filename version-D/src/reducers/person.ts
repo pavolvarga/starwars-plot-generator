@@ -1,5 +1,5 @@
 import { InputState, Suggestion } from "../common/types";
-import { LOAD_PERSONS_FAILED, LOAD_STARTED_PERSONS, SAVE_PERSONS, SET_SELECTED_PERSON } from "../actions/person";
+import { LOAD_PERSONS_FAILED, LOAD_STARTED_PERSON, SAVE_PERSONS, SET_SELECTED_PERSON } from "../actions/person";
 import { initialFormState } from "./reducer";
 
 function loadStartedPersons(person: InputState): InputState {
@@ -35,7 +35,7 @@ function loadPersonsFailed(person: InputState): InputState {
 
 export function reducerPerson(person: InputState = initialFormState.person, action: any): InputState {
     switch (action.type) {
-        case LOAD_STARTED_PERSONS:
+        case LOAD_STARTED_PERSON:
             return loadStartedPersons(person);
         case SAVE_PERSONS:
             return savePersons(person, action.persons);

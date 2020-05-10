@@ -1,5 +1,5 @@
 import { InputState, Suggestion } from "../common/types";
-import { LOAD_PLANETS_FAILED, LOAD_STARTED_PLANETS, SAVE_PLANETS, SET_SELECTED_PLANET } from "../actions/planet";
+import { LOAD_PLANETS_FAILED, LOAD_STARTED_PLANET, SAVE_PLANETS, SET_SELECTED_PLANET } from "../actions/planet";
 import { initialFormState } from "./reducer";
 
 function loadStartedPlanets(planet: InputState): InputState {
@@ -35,7 +35,7 @@ function loadPlanetsFailed(planet: InputState): InputState {
 
 export function reducerPlanet(planet: InputState = initialFormState.planet, action: any): InputState {
     switch (action.type) {
-        case LOAD_STARTED_PLANETS:
+        case LOAD_STARTED_PLANET:
             return loadStartedPlanets(planet);
         case SAVE_PLANETS:
             return savePlanets(planet, action.planets);

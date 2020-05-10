@@ -1,18 +1,13 @@
 import { loadStarWarsData } from "../common/load-data";
 import {FAILED_LOAD_COOL_DOWN, RESOURCES} from "../common/common";
+import {loadStarted} from "./actions";
 
 export const TOGGLE_STARSHIP_VISIBLE = 'TOGGLE_STARSHIP_VISIBLE';
 export const SAVE_STARSHIPS = 'SAVE_STARSHIPS';
-export const LOAD_STARTED_STARSHIPS = 'LOAD_STARTED_STARSHIPS';
+export const LOAD_STARTED_STARSHIP = 'LOAD_STARTED_STARSHIP';
 export const LOAD_STARSHIPS_FAILED = 'LOAD_STARSHIPS_FAILED';
 export const SET_SELECTED_STARSHIP = 'SET_SELECTED_STARSHIP';
 export const REVERT_LOAD_STARSHIPS = 'REVERT_LOAD_STARSHIPS';
-
-export function loadStartedStarships() {
-    return {
-        type: LOAD_STARTED_STARSHIPS
-    }
-}
 
 export function saveStarships(data: any) {
     return {
@@ -35,7 +30,7 @@ function revertLoadStarships() {
 
 export function loadStarships() {
     return function (dispatch: any) {
-        dispatch(loadStartedStarships());
+        dispatch(loadStarted(RESOURCES.starship.singular));
         return loadStarWarsData(RESOURCES.starship.plural)
             .then((data: any) => dispatch(saveStarships(data)))
             .catch(() => {
