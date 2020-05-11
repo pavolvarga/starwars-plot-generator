@@ -1,3 +1,0 @@
-1. Load data for a single field and store them in redux store
-2. Load data for second mandatory field and store them in redux store
-3. Show a loader until the mandatory data is loaded
