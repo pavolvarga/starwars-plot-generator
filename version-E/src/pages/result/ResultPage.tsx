@@ -17,7 +17,7 @@ const GenerateNewPlotBnt: FC<GenerateNewPlotBntProps> = (props: GenerateNewPlotB
     return (
         <div>
             <div className="text-center result-space">
-                <button className="btn btn-primary" onClick={(e: MouseEvent) => generateNewPlot()}>Generate New Plot</button>
+                <button className="btn btn-primary btn-lg" onClick={(e: MouseEvent) => generateNewPlot()}>Generate New Plot</button>
             </div>
         </div>
     );
@@ -108,8 +108,8 @@ const Plot: FC<RouteComponentProps & PlotProps> = (props: RouteComponentProps & 
     const {title, description} = generatePlot(...(names as [string, string, string?, string?, string?]));
 
     return (
-        <div>
-            <div className="card">
+        <div className="container">
+            <div>
                 <form>
                     <div className="form-group">
                         <Title title={title} />
