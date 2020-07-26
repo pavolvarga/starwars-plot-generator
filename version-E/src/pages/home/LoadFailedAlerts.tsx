@@ -1,5 +1,4 @@
 import React, { FC} from 'react';
-import { Alert, Col } from 'reactstrap';
 import { connect } from "react-redux";
 
 import { InputFormState } from "../../common/types";
@@ -9,9 +8,9 @@ type LoadFailedAlertProps = { name: string };
 const LoadFailedAlert: FC<LoadFailedAlertProps> = (props: LoadFailedAlertProps) => {
     return (
         <div className="text-center">
-            <Alert color="danger">
+            <div className="alert alert-danger" role="alert">
                 {`Loading of ${props.name} failed, please try again later.`}
-            </Alert>
+            </div>
         </div>
     );
 };
@@ -22,13 +21,13 @@ type LoadFailedAlertsProps = {
 const LoadFailedAlerts: FC<LoadFailedAlertsProps> = (props: LoadFailedAlertsProps) => {
     const { loadFailedOptionalRes } = props;
     return (
-        <Col>
+        <div>
             <div className="row">
                 {
                     loadFailedOptionalRes.map((name, idx) => <LoadFailedAlert key={idx} name={name}/>)
                 }
             </div>
-        </Col>
+        </div>
     );
 };
 

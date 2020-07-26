@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import { Spinner } from 'reactstrap';
 import { connect } from "react-redux";
 
 import { InputFormState } from "../../common/types";
@@ -14,7 +13,9 @@ const Loader: FC<LoaderProps> = ({mandatoryDataLoaded}: LoaderProps) => {
         return (
             <div className="text-center">
                 <h3>Please wait while star wars data is being loaded</h3>
-                <Spinner style={{ width: '5rem', height: '5rem' }} />{' '}
+                <div className="spinner-border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </div>
             </div>
         );
     }

@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { connect } from "react-redux";
-import { Alert } from "reactstrap";
 
 import { InputFormState } from "../../common/types";
 
@@ -13,9 +12,9 @@ const InitialLoadFailedAlert: FC<InitialLoadFailedAlertProps> = ({mandatoryDataL
     if (mandatoryDataLoadFailed) {
         return (
             <div className="text-center">
-                <Alert color="danger">
+                <div className="alert alert-danger" role="alert">
                     Loading of initial data failed, please try again later.
-                </Alert>
+                </div>
             </div>
         );
     }

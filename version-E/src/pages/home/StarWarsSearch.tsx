@@ -1,6 +1,5 @@
 import React, {ReactElement, FC, useState} from 'react';
 import Autosuggest, { ChangeEvent } from 'react-autosuggest';
-import { Col, FormGroup, Label, Input } from 'reactstrap';
 import { connect } from 'react-redux';
 
 import { ResourceKey, Suggestion } from '../../common/types';
@@ -48,13 +47,11 @@ function renderInputComponent(id: string, name: string, disabled: boolean, valid
     //see: https://github.com/moroshko/react-autosuggest#render-input-component-prop
     return (inputProps: any) => {
         return (
-            <Input
+            <input
                 {...inputProps}
                 id={id}
                 name={name}
                 disabled={disabled}
-                valid={valid}
-                bsSize="lg"
             />
         );
     }
@@ -129,9 +126,9 @@ const StarWarsSearch: FC<StarWarsSearchProps & {setSelected: any}> = (props: Sta
         valid = selectedFromData ? true : undefined;
 
     return (
-        <Col>
-            <FormGroup>
-                <Label for="input-person" size="lg">{label}</Label>
+        <div>
+            <div className="form-group">
+                <label>{label}</label>
                 <Autosuggest
                     id={id}
                     suggestions={suggestions}
@@ -143,8 +140,8 @@ const StarWarsSearch: FC<StarWarsSearchProps & {setSelected: any}> = (props: Sta
                     theme={createTheme(data.length)}
                     renderInputComponent={renderInputComponent(id, name, disabled, valid)}
                 />
-            </FormGroup>
-        </Col>
+            </div>
+        </div>
     );
 };
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button, Col } from "reactstrap";
 import { connect } from "react-redux";
 
 import { InputFormState } from "../../common/types";
@@ -12,17 +11,16 @@ type GenerateBntProps = {
 const GenerateBnt: React.FunctionComponent<GenerateBntProps> = (props: GenerateBntProps) => {
     const { generatePlot, mandatoryInputsSelected } = props;
     return (
-        <Col>
+        <div>
             <div className="text-center">
-                <Button
-                    color="primary"
-                    size="lg"
+                <button
+                    className="btn btn-primary"
                     onClick={() => generatePlot()}
                     disabled={!mandatoryInputsSelected}>
                     Generate Plot
-                </Button>
+                </button>
             </div>
-        </Col>
+        </div>
     );
 };
 

@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import { connect } from "react-redux";
-import { Container, Form } from "reactstrap";
 import { RouteComponentProps } from "react-router";
 
 import { getMandatoryResourceNames, getOptionalResourceNames, getResourceNames, RESOURCES } from "../../common/common";
@@ -57,16 +56,16 @@ const InputForm: FC<InputFormProps & RouteComponentProps> = (props: InputFormPro
 
     return (
         <div>
-            <Container>
-                <Form>
+            <div className="card">
+                <form>
                     {
                         searchInputProps.map((p, idx) => <StarWarsSearch key={idx} {...p} />)
                     }
                     <OptionalInputs resourceNames={getOptionalResourceNames() }/>
                     <LoadFailedAlerts />
                     <GenerateBnt generatePlot={generatePlot} />
-                </Form>
-            </Container>
+                </form>
+            </div>
         </div>
     )
 };

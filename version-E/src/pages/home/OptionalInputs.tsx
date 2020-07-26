@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import { Button, Col } from "reactstrap";
 import { connect } from "react-redux";
 
 import { InputFormState, ResourceKey } from "../../common/types";
@@ -20,9 +19,9 @@ const OptionalInputBnt: FC<OptionalInputBntProps> = (props: OptionalInputBntProp
     return (
         <div className="col-sm-4">
             <div className="text-center">
-                <Button
-                    color="secondary"
-                    size="lg"
+                <button
+                    type="button"
+                    className="btn btn-secondary"
                     onClick={() => {
                         toggleVisible(name);
                         if (!dataLoaded) {
@@ -30,10 +29,10 @@ const OptionalInputBnt: FC<OptionalInputBntProps> = (props: OptionalInputBntProp
                         }
                     }}
                     disabled={disabled}
-                    visible={visible.toString()}
+                    // visible={visible.toString()}
                 >
                     {text}
-                </Button>
+                </button>
             </div>
         </div>
     );
@@ -46,7 +45,7 @@ type OwnProps = {
 const OptionalInputs: React.FC<any> = (props: any) => {
     const { resourceNames, resources, toggleVisible, load } = props;
     return (
-        <Col>
+        <div>
             <div className="row add-space button-row-space">
                 { resourceNames.map(
                     (optionalResName: string, idx: number) => {
@@ -63,7 +62,7 @@ const OptionalInputs: React.FC<any> = (props: any) => {
                     }
                 )}
             </div>
-        </Col>
+        </div>
     );
 };
 

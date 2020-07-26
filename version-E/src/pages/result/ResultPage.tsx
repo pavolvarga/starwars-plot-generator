@@ -2,7 +2,6 @@ import React from 'react';
 import { Redirect } from "react-router-dom";
 import { RouteComponentProps } from "react-router";
 import { FC, MouseEvent } from "react";
-import { Col, Form, FormGroup, Button, Container } from 'reactstrap';
 import dompurify from 'dompurify';
 import { connect } from "react-redux";
 
@@ -16,11 +15,11 @@ type GenerateNewPlotBntProps = {
 const GenerateNewPlotBnt: FC<GenerateNewPlotBntProps> = (props: GenerateNewPlotBntProps) => {
     const {generateNewPlot} = props;
     return (
-        <Col>
+        <div>
             <div className="text-center result-space">
-                <Button color="primary" size="lg" onClick={(e: MouseEvent) => generateNewPlot()}>Generate New Plot</Button>
+                <button className="btn btn-primary" onClick={(e: MouseEvent) => generateNewPlot()}>Generate New Plot</button>
             </div>
-        </Col>
+        </div>
     );
 };
 
@@ -33,13 +32,13 @@ const Description: FC<DescriptionProps> = (props: DescriptionProps) => {
         sanitizedMarkup = sanitizer(props.description),
         markup = {__html: sanitizedMarkup};
     return (
-        <Col>
+        <div>
             <div className="text-center result-space">
                 <p className="plot-text">
                     <span dangerouslySetInnerHTML={markup}/>
                 </p>
             </div>
-        </Col>
+        </div>
     );
 };
 
@@ -48,11 +47,11 @@ type TitleProps = {
 };
 const Title: FC<TitleProps> = (props: TitleProps) => {
     return (
-        <Col>
+        <div>
             <div className="text-center result-space">
                 <h2>{props.title}</h2>
             </div>
-        </Col>
+        </div>
     );
 };
 
@@ -72,14 +71,14 @@ type ResourcesProps = {
 };
 const Resources: FC<ResourcesProps> = (props: ResourcesProps) => {
     return (
-        <Col>
+        <div>
             <div className="text-center result-space">
                 <h3>Used resources</h3>
                 <ul className="used-resources">
                     {props.resources.map((url, idx) => <ResourceLink key={idx} url={url}/>)}
                 </ul>
             </div>
-        </Col>
+        </div>
     );
 };
 
@@ -110,16 +109,16 @@ const Plot: FC<RouteComponentProps & PlotProps> = (props: RouteComponentProps & 
 
     return (
         <div>
-            <Container>
-                <Form>
-                    <FormGroup>
+            <div className="card">
+                <form>
+                    <div className="form-group">
                         <Title title={title} />
                         <Description description={description}/>
                         <Resources resources={resources} />
                         <GenerateNewPlotBnt generateNewPlot={generateNewPlot} />
-                    </FormGroup>
-                </Form>
-            </Container>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 };
