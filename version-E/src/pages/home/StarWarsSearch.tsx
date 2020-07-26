@@ -1,4 +1,4 @@
-import React, {ReactElement, FC, useState} from 'react';
+import React, { ReactElement, FC, useState } from 'react';
 import Autosuggest, { ChangeEvent } from 'react-autosuggest';
 import { connect } from 'react-redux';
 
@@ -45,13 +45,25 @@ type AutosuggestProps = {
 function renderInputComponent(id: string, name: string, disabled: boolean, valid: boolean | undefined): (ip: any) => ReactElement {
     //inputProps is provided by the Autosuggest component
     //see: https://github.com/moroshko/react-autosuggest#render-input-component-prop
+
+    // for what ever reason the class name is not passed down, therefore styles representing form-control-lg
+    // are passed directly
+    const style = {
+        'height': "calc(1.5em + 1rem + 2px)",
+        'padding': ".5rem 1rem",
+        'font-size': "1.25rem",
+        'line-height': "1.5",
+        'border-radius': ".3rem"
+    };
     return (inputProps: any) => {
         return (
             <input
+                style={style}
                 {...inputProps}
                 id={id}
                 name={name}
                 disabled={disabled}
+                // valid={valid} todo: fix
             />
         );
     }
@@ -123,24 +135,23 @@ const StarWarsSearch: FC<StarWarsSearchProps & {setSelected: any}> = (props: Sta
 
     const
         disabled = data.length === 0,
-        valid = selectedFromData ? true : undefined;
+        valid = selectedFromData ? true : undefined,
+        htmlFor = `input-${label.toLowerCase()}`;
 
     return (
-        <div>
-            <div className="form-group">
-                <label>{label}</label>
-                <Autosuggest
-                    id={id}
-                    suggestions={suggestions}
-                    onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-                    onSuggestionsClearRequested={onSuggestionsClearRequested}
-                    getSuggestionValue={getSuggestionValue}
-                    renderSuggestion={renderSuggestion}
-                    inputProps={autosuggestInputProps}
-                    theme={createTheme(data.length)}
-                    renderInputComponent={renderInputComponent(id, name, disabled, valid)}
-                />
-            </div>
+        <div className="form-group">
+            <label htmlFor={htmlFor} className="col-form-label-lg">{label}</label>
+            <Autosuggest
+                id={id}
+                suggestions={suggestions}
+                onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+                onSuggestionsClearRequested={onSuggestionsClearRequested}
+                getSuggestionValue={getSuggestionValue}
+                renderSuggestion={renderSuggestion}
+                inputProps={autosuggestInputProps}
+                theme={createTheme(data.length)}
+                renderInputComponent={renderInputComponent(id, name, disabled, valid)}
+            />
         </div>
     );
 };

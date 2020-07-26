@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from 'react';
+import React, { FC } from 'react';
 import { RouteComponentProps } from "react-router";
 
 import { Loader } from './Loader';
@@ -7,10 +7,10 @@ import { InitialLoadFailedAlert } from "./InitialLoadFailedAlert";
 
 export const HomePage: FC<RouteComponentProps> = (props: RouteComponentProps) => {
     return (
-        <Fragment>
+        <div className="container">
             <InitialLoadFailedAlert />
             <Loader />
             <InputForm {...props} />
-        </Fragment>
+        </div>
     );
 };

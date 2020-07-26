@@ -14,7 +14,7 @@ const GenerateBnt: React.FunctionComponent<GenerateBntProps> = (props: GenerateB
         <div>
             <div className="text-center">
                 <button
-                    className="btn btn-primary"
+                    className="btn btn-primary btn-lg"
                     onClick={() => generatePlot()}
                     disabled={!mandatoryInputsSelected}>
                     Generate Plot

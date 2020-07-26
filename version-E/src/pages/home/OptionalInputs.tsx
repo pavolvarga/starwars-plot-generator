@@ -21,7 +21,7 @@ const OptionalInputBnt: FC<OptionalInputBntProps> = (props: OptionalInputBntProp
             <div className="text-center">
                 <button
                     type="button"
-                    className="btn btn-secondary"
+                    className="btn btn-secondary btn-lg"
                     onClick={() => {
                         toggleVisible(name);
                         if (!dataLoaded) {
@@ -29,7 +29,7 @@ const OptionalInputBnt: FC<OptionalInputBntProps> = (props: OptionalInputBntProp
                         }
                     }}
                     disabled={disabled}
-                    // visible={visible.toString()}
+                    //visible={visible.toString()}
                 >
                     {text}
                 </button>
