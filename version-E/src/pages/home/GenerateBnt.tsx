@@ -11,8 +11,8 @@ type GenerateBntProps = {
 const GenerateBnt: React.FunctionComponent<GenerateBntProps> = (props: GenerateBntProps) => {
     const { generatePlot, mandatoryInputsSelected } = props;
     return (
-        <div>
-            <div className="text-center">
+        <div className="row">
+            <div className="col-lg-12">
                 <button
                     className="btn btn-primary btn-lg"
                     onClick={() => generatePlot()}

@@ -152,19 +152,21 @@ const StarWarsSearch: FC<StarWarsSearchProps & {setSelected: any}> = (props: Sta
         htmlFor = `input-${label.toLowerCase()}`;
 
     return (
-        <div className="form-group">
-            <label htmlFor={htmlFor} className="col-form-label-lg">{label}</label>
-            <Autosuggest
-                id={id}
-                suggestions={suggestions}
-                onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-                onSuggestionsClearRequested={onSuggestionsClearRequested}
-                getSuggestionValue={getSuggestionValue}
-                renderSuggestion={renderSuggestion}
-                inputProps={autosuggestInputProps}
-                theme={createTheme(data.length)}
-                renderInputComponent={renderInputComponent(id, name, disabled, valid)}
-            />
+        <div className="form-group row">
+            <div className="col-lg-12">
+                <label htmlFor={htmlFor} className="col-form-label-lg">{label}</label>
+                <Autosuggest
+                    id={id}
+                    suggestions={suggestions}
+                    onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+                    onSuggestionsClearRequested={onSuggestionsClearRequested}
+                    getSuggestionValue={getSuggestionValue}
+                    renderSuggestion={renderSuggestion}
+                    inputProps={autosuggestInputProps}
+                    theme={createTheme(data.length)}
+                    renderInputComponent={renderInputComponent(id, name, disabled, valid)}
+                />
+            </div>
         </div>
     );
 };

@@ -7,9 +7,11 @@ import { getOptionalResourceNames } from "../../common/common";
 type LoadFailedAlertProps = { name: string };
 const LoadFailedAlert: FC<LoadFailedAlertProps> = (props: LoadFailedAlertProps) => {
     return (
-        <div className="text-center">
-            <div className="alert alert-danger" role="alert">
-                {`Loading of ${props.name} failed, please try again later.`}
+        <div className="row">
+            <div className="col-lg-12">
+                <div className="alert alert-danger" role="alert">
+                    {`Loading of ${props.name} failed, please try again later.`}
+                </div>
             </div>
         </div>
     );

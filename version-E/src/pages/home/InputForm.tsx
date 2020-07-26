@@ -55,16 +55,14 @@ const InputForm: FC<InputFormProps & RouteComponentProps> = (props: InputFormPro
     })
 
     return (
-        <div>
-            <form>
-                {
-                    searchInputProps.map((p, idx) => <StarWarsSearch key={idx} {...p} />)
-                }
-                <OptionalInputs resourceNames={getOptionalResourceNames() }/>
-                <LoadFailedAlerts />
-                <GenerateBnt generatePlot={generatePlot} />
-            </form>
-        </div>
+        <form>
+            {
+                searchInputProps.map((p, idx) => <StarWarsSearch key={idx} {...p} />)
+            }
+            <OptionalInputs resourceNames={getOptionalResourceNames() }/>
+            <LoadFailedAlerts />
+            <GenerateBnt generatePlot={generatePlot} />
+        </form>
     )
 };
 

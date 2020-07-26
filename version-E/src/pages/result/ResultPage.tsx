@@ -15,8 +15,8 @@ type GenerateNewPlotBntProps = {
 const GenerateNewPlotBnt: FC<GenerateNewPlotBntProps> = (props: GenerateNewPlotBntProps) => {
     const {generateNewPlot} = props;
     return (
-        <div>
-            <div className="text-center result-space">
+        <div className="row">
+            <div className="col-lg-12">
                 <button className="btn btn-primary btn-lg" onClick={(e: MouseEvent) => generateNewPlot()}>Generate New Plot</button>
             </div>
         </div>
@@ -32,8 +32,8 @@ const Description: FC<DescriptionProps> = (props: DescriptionProps) => {
         sanitizedMarkup = sanitizer(props.description),
         markup = {__html: sanitizedMarkup};
     return (
-        <div>
-            <div className="text-center result-space">
+        <div className="row">
+            <div className="col-lg-12">
                 <p className="plot-text">
                     <span dangerouslySetInnerHTML={markup}/>
                 </p>
@@ -47,8 +47,8 @@ type TitleProps = {
 };
 const Title: FC<TitleProps> = (props: TitleProps) => {
     return (
-        <div>
-            <div className="text-center result-space">
+        <div className="row">
+            <div className="col-lg-12">
                 <h2>{props.title}</h2>
             </div>
         </div>
@@ -71,8 +71,8 @@ type ResourcesProps = {
 };
 const Resources: FC<ResourcesProps> = (props: ResourcesProps) => {
     return (
-        <div>
-            <div className="text-center result-space">
+        <div className="row">
+            <div className="col-lg-12">
                 <h3>Used resources</h3>
                 <ul className="used-resources">
                     {props.resources.map((url, idx) => <ResourceLink key={idx} url={url}/>)}
@@ -108,18 +108,12 @@ const Plot: FC<RouteComponentProps & PlotProps> = (props: RouteComponentProps & 
     const {title, description} = generatePlot(...(names as [string, string, string?, string?, string?]));
 
     return (
-        <div className="container">
-            <div>
-                <form>
-                    <div className="form-group">
-                        <Title title={title} />
-                        <Description description={description}/>
-                        <Resources resources={resources} />
-                        <GenerateNewPlotBnt generateNewPlot={generateNewPlot} />
-                    </div>
-                </form>
-            </div>
-        </div>
+        <>
+            <Title title={title} />
+            <Description description={description}/>
+            <Resources resources={resources} />
+            <GenerateNewPlotBnt generateNewPlot={generateNewPlot} />
+        </>
     )
 };
 

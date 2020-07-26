@@ -18,21 +18,19 @@ const OptionalInputBnt: FC<OptionalInputBntProps> = (props: OptionalInputBntProp
     const text = visible ? `Remove ${name}` : `Add ${name}`;
     return (
         <div className="col-sm-4">
-            <div className="text-center">
-                <button
-                    type="button"
-                    className="btn btn-secondary btn-lg"
-                    onClick={() => {
-                        toggleVisible(name);
-                        if (!dataLoaded) {
-                            load(name, false);
-                        }
-                    }}
-                    disabled={disabled}
-                >
-                    {text}
-                </button>
-            </div>
+            <button
+                type="button"
+                className="btn btn-secondary btn-lg"
+                onClick={() => {
+                    toggleVisible(name);
+                    if (!dataLoaded) {
+                        load(name, false);
+                    }
+                }}
+                disabled={disabled}
+            >
+                {text}
+            </button>
         </div>
     );
 };
@@ -44,23 +42,21 @@ type OwnProps = {
 const OptionalInputs: React.FC<any> = (props: any) => {
     const { resourceNames, resources, toggleVisible, load } = props;
     return (
-        <div>
-            <div className="row add-space button-row-space">
-                { resourceNames.map(
-                    (optionalResName: string, idx: number) => {
-                        const optionalButtonProps = resources[optionalResName];
-                        return (
-                            <OptionalInputBnt
-                                key={idx}
-                                name={optionalResName}
-                                toggleVisible={toggleVisible}
-                                load={load}
-                                {...optionalButtonProps}
-                            />
-                        );
-                    }
-                )}
-            </div>
+        <div className="form-group row">
+            { resourceNames.map(
+                (optionalResName: string, idx: number) => {
+                    const optionalButtonProps = resources[optionalResName];
+                    return (
+                        <OptionalInputBnt
+                            key={idx}
+                            name={optionalResName}
+                            toggleVisible={toggleVisible}
+                            load={load}
+                            {...optionalButtonProps}
+                        />
+                    );
+                }
+            )}
         </div>
     );
 };

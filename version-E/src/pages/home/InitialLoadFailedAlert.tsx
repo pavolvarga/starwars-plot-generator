@@ -11,9 +11,11 @@ const InitialLoadFailedAlert: FC<InitialLoadFailedAlertProps> = ({mandatoryDataL
 
     if (mandatoryDataLoadFailed) {
         return (
-            <div className="text-center">
-                <div className="alert alert-danger" role="alert">
-                    Loading of initial data failed, please try again later.
+            <div className="row">
+                <div className="col-lg-12">
+                    <div className="alert alert-danger" role="alert">
+                        Loading of initial data failed, please try again later.
+                    </div>
                 </div>
             </div>
         );

@@ -12,19 +12,6 @@ code {
     monospace;
 }
 
-.App {
-  text-align: center;
-}
-
-.button-row-space {
-  margin-bottom:20px;
-}
-
-.result-space {
-  margin-top:30px;
-  margin-bottom:30px;
-}
-
 .used-resources {
   font-family: 'Comic Sans, Comic Sans MS, cursive;', serif;
   font-size: larger;

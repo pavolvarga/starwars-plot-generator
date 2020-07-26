@@ -9,8 +9,10 @@ import { load } from "./actions/actions";
 
 const Header: FC = () => {
     return (
-        <div className="text-center">
-            <h1>Star Wars Plot Generator</h1>
+        <div className="row">
+            <div className="col-lg-12">
+                <h1>Star Wars Plot Generator</h1>
+            </div>
         </div>
     );
 };
@@ -26,13 +28,14 @@ const App: FC = ({load}: any) => {
     });
 
     return (
-        <>
+        <div className="container-lg">
             <Header/>
             <Router>
                 <Route exact path="/" render={(props) => <StarWarsHomePage {...props}/>} />
                 <Route path="/plot" component={StarWarsPlot}/>
             </Router>
-        </>
+
+        </div>
     );
 };
 

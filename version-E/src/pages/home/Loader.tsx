@@ -11,10 +11,12 @@ const Loader: FC<LoaderProps> = ({mandatoryDataLoaded}: LoaderProps) => {
 
     if (!mandatoryDataLoaded) {
         return (
-            <div className="text-center">
-                <h3>Please wait while star wars data is being loaded</h3>
-                <div className="spinner-border" role="status" style={{width: "5rem", height: "5rem"}}>
-                    <span className="sr-only">Loading...</span>
+            <div className="row">
+                <div className="col-lg-12">
+                    <h3>Please wait while star wars data is being loaded</h3>
+                    <div className="spinner-border" role="status" style={{width: "5rem", height: "5rem"}}>
+                        <span className="sr-only">Loading...</span>
+                    </div>
                 </div>
             </div>
         );
