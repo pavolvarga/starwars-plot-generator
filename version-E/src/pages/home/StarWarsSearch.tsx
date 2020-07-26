@@ -153,7 +153,7 @@ const StarWarsSearch: FC<StarWarsSearchProps & {setSelected: any}> = (props: Sta
 
     return (
         <div className="form-group row">
-            <div className="col-lg-12">
+            <div className="col-lg-12 text-left">
                 <label htmlFor={htmlFor} className="col-form-label-lg">{label}</label>
                 <Autosuggest
                     id={id}

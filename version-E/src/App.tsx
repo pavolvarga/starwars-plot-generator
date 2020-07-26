@@ -28,7 +28,7 @@ const App: FC = ({load}: any) => {
     });
 
     return (
-        <div className="container-lg">
+        <div className="container-lg text-center">
             <Header/>
             <Router>
                 <Route exact path="/" render={(props) => <StarWarsHomePage {...props}/>} />
