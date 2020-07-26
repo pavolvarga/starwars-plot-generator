@@ -37,6 +37,29 @@ function renderSuggestion(suggestion: Suggestion): ReactElement {
     );
 }
 
+/**
+ * Using bootstraps class names is not working when passing down to the input used by the autosuggest component.
+ * Therefore pass down inline styles
+ */
+function createInputBootstrapStyle(valid: boolean | undefined): Object {
+    const style = {
+        'height': "calc(1.5em + 1rem + 2px)",
+        'padding': ".5rem 1rem",
+        'font-size': "1.25rem",
+        'line-height': "1.5",
+        'border-radius': ".3rem"
+    };
+    const isValid = {
+        'border-color': "#28a745",
+        'padding-right': "calc(1.5em + .75rem)",
+        'background-image': "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath fill='%2328a745' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e\")",
+        'background-repeat': "no-repeat",
+        'background-position': "right calc(.375em + .1875rem) center",
+        'background-size': "calc(.75em + .375rem) calc(.75em + .375rem)",
+    };
+    return valid ? Object.assign(style, isValid) : style;
+}
+
 type AutosuggestProps = {
     placeholder: string
     value: string,
@@ -46,24 +69,14 @@ function renderInputComponent(id: string, name: string, disabled: boolean, valid
     //inputProps is provided by the Autosuggest component
     //see: https://github.com/moroshko/react-autosuggest#render-input-component-prop
 
-    // for what ever reason the class name is not passed down, therefore styles representing form-control-lg
-    // are passed directly
-    const style = {
-        'height': "calc(1.5em + 1rem + 2px)",
-        'padding': ".5rem 1rem",
-        'font-size': "1.25rem",
-        'line-height': "1.5",
-        'border-radius': ".3rem"
-    };
     return (inputProps: any) => {
         return (
             <input
-                style={style}
+                style={createInputBootstrapStyle(valid)}
                 {...inputProps}
                 id={id}
                 name={name}
                 disabled={disabled}
-                // valid={valid} todo: fix
             />
         );
     }
