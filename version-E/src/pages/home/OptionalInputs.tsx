@@ -29,7 +29,6 @@ const OptionalInputBnt: FC<OptionalInputBntProps> = (props: OptionalInputBntProp
                         }
                     }}
                     disabled={disabled}
-                    //visible={visible.toString()}
                 >
                     {text}
                 </button>
