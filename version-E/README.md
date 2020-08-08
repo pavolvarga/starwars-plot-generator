@@ -17,7 +17,7 @@ git clone https://github.com/pavolvarga/starwars-plot-generator.git
 ```
 Install it
 ```sh
-cd starwars-plot-generator/version-D
+cd starwars-plot-generator/version-E
 npm install
 ```
 Build it
