@@ -34,3 +34,11 @@ learn from it.
   * redux-thunk
     * asynchronous updates
   * reactstrap (for using bootstrap)
+* version-E
+  * typescript
+  * react
+  * redux
+    * for state management
+  * redux-thunk
+    * asynchronous updates
+  * bootstrap 4.4.1

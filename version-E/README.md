@@ -8,6 +8,4 @@ Web application for generating new star wars plot
     * for state management
   * redux-thunk
     * asynchronous updates
-  * bootstrap 4
-
-# WIP
+  * bootstrap 4.4.1
