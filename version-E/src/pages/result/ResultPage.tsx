@@ -15,7 +15,7 @@ type GenerateNewPlotBntProps = {
 const GenerateNewPlotBnt: FC<GenerateNewPlotBntProps> = (props: GenerateNewPlotBntProps) => {
     const {generateNewPlot} = props;
     return (
-        <div className="row">
+        <div className="row m-sm-2">
             <div className="col-lg-12">
                 <button className="btn btn-primary btn-lg" onClick={(e: MouseEvent) => generateNewPlot()}>Generate New Plot</button>
             </div>
@@ -47,7 +47,7 @@ type TitleProps = {
 };
 const Title: FC<TitleProps> = (props: TitleProps) => {
     return (
-        <div className="row">
+        <div className="row m-sm-3">
             <div className="col-lg-12">
                 <h2>{props.title}</h2>
             </div>
@@ -71,7 +71,7 @@ type ResourcesProps = {
 };
 const Resources: FC<ResourcesProps> = (props: ResourcesProps) => {
     return (
-        <div className="row">
+        <div className="row m-sm-3">
             <div className="col-lg-12">
                 <h3>Used resources</h3>
                 <ul className="used-resources">

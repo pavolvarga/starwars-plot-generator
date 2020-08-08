@@ -34,3 +34,9 @@ code {
 .highlight-word {
   color: orangered;
 }
+
+@media (min-width: 768px) {
+  .container-lg {
+    max-width: 720px;
+  }
+}
