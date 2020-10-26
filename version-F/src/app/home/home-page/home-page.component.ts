@@ -16,4 +16,8 @@ export class HomePageComponent {
     return this.appStateService.getVisibleInputs();
   }
 
+  getOptionalInputs() {
+    return this.appStateService.getOptionalInputs();
+  }
+
 }

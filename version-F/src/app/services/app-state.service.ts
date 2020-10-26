@@ -28,4 +28,8 @@ export class AppStateService {
     return [ ...Object.values(this.state).filter(s => s.visible) ];
   }
 
+  getOptionalInputs() {
+    return [ ... Object.values(this.state).filter(s => !s.mandatory) ];
+  }
+
 }
