@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { AppStateService } from '../../services/app-state.service';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.css']
+  styleUrls: ['./home-page.component.css'],
 })
-export class HomePageComponent implements OnInit {
+export class HomePageComponent {
 
-  constructor() { }
+  constructor(private appStateService: AppStateService) {
 
-  ngOnInit(): void {
+  }
+
+  getInputs() {
+    return this.appStateService.getVisibleInputs();
   }
 
 }
