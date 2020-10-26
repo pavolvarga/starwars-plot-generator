@@ -24,6 +24,10 @@ export class AppStateService {
     current.visible = !current.visible;
   }
 
+  isInputVisible(name: ResourceKey) {
+    return this.state[name].visible;
+  }
+
   getVisibleInputs() {
     return [ ...Object.values(this.state).filter(s => s.visible) ];
   }

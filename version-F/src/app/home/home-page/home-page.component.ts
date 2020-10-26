@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AppStateService } from '../../services/app-state.service';
+import {ResourceKey} from '../../services/types';
 
 @Component({
   selector: 'app-home-page',
@@ -18,6 +19,15 @@ export class HomePageComponent {
 
   getOptionalInputs() {
     return this.appStateService.getOptionalInputs();
+  }
+
+  getOptionalButtonLabel(name: ResourceKey) {
+    const visible = this.appStateService.isInputVisible(name);
+    return visible ? `Remove ${name}` : `Add ${name}`;
+  }
+
+  toggleVisibility(name: ResourceKey) {
+    this.appStateService.toggleVisibility(name);
   }
 
 }
