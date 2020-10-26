@@ -1,2 +1,51 @@
 <h1>Home Page</h1>
-<a routerLink="/plot">Generate</a>
+<form>
+  <div class="form-group row">
+    <div class="col-md-12 text-left">
+      <label class="col-form-label-lg" for="character">Character</label>
+      <input type="text" id="character" class="form-control" placeholder="Please enter a character">
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-12 text-left">
+      <label class="col-form-label-lg" for="planet">Planet</label>
+      <input type="text" id="planet" class="form-control" placeholder="Please enter a planet">
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-12 text-left">
+      <label class="col-form-label-lg" for="planet">Starship</label>
+      <input type="text" id="starship" class="form-control" placeholder="Please enter a starship">
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-12 text-left">
+      <label class="col-form-label-lg" for="planet">Vehicle</label>
+      <input type="text" id="vehicle" class="form-control" placeholder="Please enter a vehicle">
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-12 text-left">
+      <label class="col-form-label-lg" for="planet">Species</label>
+      <input type="text" id="species" class="form-control" placeholder="Please enter a species">
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-4">
+      <button type="button" class="btn btn-primary btn-lg">Add Starship</button>
+    </div>
+    <div class="col-md-4">
+      <button type="button" class="btn btn-primary btn-lg">Add Vehicle</button>
+    </div>
+    <div class="col-md-4">
+      <button type="button" class="btn btn-primary btn-lg">Add Species</button>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-12">
+      <a routerLink="/plot">
+        <button type="button" class="btn btn-primary btn-lg">Generate</button>
+      </a>
+    </div>
+  </div>
+</form>
