@@ -1,21 +1,75 @@
 import { Injectable } from '@angular/core';
+
 import { InputFormState, ResourceKey } from './types';
+import { ResourceService } from './resource.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppStateService {
 
-  state: InputFormState;
+  private readonly state: InputFormState;
+  private resourceService: ResourceService;
 
-  constructor() {
+  constructor(resourceService: ResourceService) {
 
+    this.resourceService = resourceService;
     this.state = {
-      person: { name: 'person', visible: true, selected: undefined, data: [], loadingInProgress: false, loadFailed: false, mandatory: true, label: 'character'},
-      planet: { name: 'planet', visible: true, selected: undefined, data: [], loadingInProgress: false, loadFailed: false, mandatory: true, label: 'planet'},
-      starship: { name: 'starship', visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false, mandatory: false, label: 'starship'},
-      vehicle: { name: 'vehicle', visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false, mandatory: false, label: 'vehicle'},
-      species: { name: 'species', visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false, mandatory: false, label: 'species'}
+      person: {
+        name: 'person',
+        plural: 'people',
+        visible: true,
+        selected: undefined,
+        data: [],
+        loadingInProgress: false,
+        loadFailed: false,
+        mandatory: true,
+        label: 'character'
+      },
+      planet: {
+        name: 'planet',
+        plural: 'planets',
+        visible: true,
+        selected: undefined,
+        data: [],
+        loadingInProgress: false,
+        loadFailed: false,
+        mandatory: true,
+        label: 'planet'
+      },
+      starship: {
+        name: 'starship',
+        plural: 'starships',
+        visible: false,
+        selected: undefined,
+        data: [],
+        loadingInProgress: false,
+        loadFailed: false,
+        mandatory: false,
+        label: 'starship'
+      },
+      vehicle: {
+        name: 'vehicle',
+        plural: 'vehicles',
+        visible: false,
+        selected: undefined,
+        data: [],
+        loadingInProgress: false,
+        loadFailed: false,
+        mandatory: false,
+        label: 'vehicle'
+      },
+      species: {
+        name: 'species',
+        plural: 'species',
+        visible: false,
+        selected: undefined,
+        data: [],
+        loadingInProgress: false,
+        loadFailed: false,
+        mandatory: false,
+        label: 'species'
+      }
     };
   }
 
@@ -34,6 +88,30 @@ export class AppStateService {
 
   getOptionalInputs() {
     return [ ... Object.values(this.state).filter(s => !s.mandatory) ];
+  }
+
+  load() {
+    function flat(data: any): any[] {
+      return ([] as any[]).concat.apply([], data);
+    }
+
+    const mandatory = Object.values(this.state).filter(s => s.mandatory);
+    mandatory.forEach(s => {
+      s.loadingInProgress = true;
+      const result = [];
+      this.resourceService
+        .loadStarWarsData(s.plural)
+        .subscribe(
+        (input: any) => result.push(input),
+        (error: any) => console.log(error),
+        () => {
+          s.loadingInProgress = false;
+          s.data = flat(result);
+          console.log('!!', s.data);
+        }
+      );
+    });
+
   }
 
 }

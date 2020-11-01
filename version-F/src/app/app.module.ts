@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HomePageComponent } from './home/home-page/home-page.component';
 import { ResultPageComponent } from './result/result-page/result-page.component';
 import { HeaderComponent } from './common/header/header.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { HeaderComponent } from './common/header/header.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [],

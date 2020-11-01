@@ -12,6 +12,7 @@ export type Suggestion = {
 
 export type InputState = {
   name: ResourceKey;
+  plural: string;
   visible: boolean;
   selected: Suggestion | undefined;
   data: Suggestion[];
@@ -25,13 +26,15 @@ export type InputFormState = {
   [index in ResourceKey]: InputState;
 };
 
-export type Resource = {
-  plural: string;
-  singular: string;
-  mandatory: boolean;
-  label: string | undefined;
+export type SWAResourceResp = {
+  previous?: string;
+  next?: string;
+  results: SWAResult[];
+  count: number;
 };
 
-export type Resources = {
-  [index in ResourceKey]: Resource;
+export type SWAResult = {
+  name: string;
+  url: string;
+  [key: string]: any;
 };

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AppStateService } from '../../services/app-state.service';
-import {ResourceKey} from '../../services/types';
+import { ResourceKey } from '../../services/types';
 
 @Component({
   selector: 'app-home-page',
@@ -9,8 +9,14 @@ import {ResourceKey} from '../../services/types';
 })
 export class HomePageComponent {
 
-  constructor(private appStateService: AppStateService) {
+  appStateService: AppStateService;
 
+  constructor(appStateService: AppStateService) {
+    this.appStateService = appStateService;
+  }
+
+  ngOnInit() {
+    this.appStateService.load();
   }
 
   getInputs() {
