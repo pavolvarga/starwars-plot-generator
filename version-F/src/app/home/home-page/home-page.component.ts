@@ -36,4 +36,8 @@ export class HomePageComponent {
     this.appStateService.toggleVisibility(name);
   }
 
+  isMandatoryDataLoaded() {
+    return this.appStateService.isMandatoryDataLoaded();
+  }
+
 }

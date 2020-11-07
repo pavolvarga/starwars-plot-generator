@@ -1,6 +1,5 @@
 <h1>Home Page</h1>
-<form>
-
+<form *ngIf="isMandatoryDataLoaded()">
   <div class="form-group row" *ngFor="let input of getInputs()">
     <div class="col-md-12 text-left">
       <label class="col-form-label-lg" for="{{input.name}}">{{input.label | titlecase}}</label>
@@ -22,3 +21,11 @@
     </div>
   </div>
 </form>
+<div class="row" *ngIf="!isMandatoryDataLoaded()">
+  <div class="col-md-12">
+    <h3>Please wait while star wars data is being loaded</h3>
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</div>

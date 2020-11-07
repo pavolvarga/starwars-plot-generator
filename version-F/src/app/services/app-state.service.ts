@@ -12,7 +12,6 @@ export class AppStateService {
   private resourceService: ResourceService;
 
   constructor(resourceService: ResourceService) {
-
     this.resourceService = resourceService;
     this.state = {
       person: {
@@ -96,7 +95,7 @@ export class AppStateService {
     }
 
     const mandatory = Object.values(this.state).filter(s => s.mandatory);
-    mandatory.forEach(s => {
+    mandatory.forEach((s, i) => {
       s.loadingInProgress = true;
       const result = [];
       this.resourceService
@@ -111,7 +110,11 @@ export class AppStateService {
         }
       );
     });
+  }
 
+  isMandatoryDataLoaded() {
+    const mandatory = Object.values(this.state).filter(s => s.mandatory);
+    return mandatory.every(r => r.data.length > 0);
   }
 
 }
