@@ -72,6 +72,14 @@ export class AppStateService {
     };
   }
 
+  private getMandatory() {
+    return Object.values(this.state).filter(s => s.mandatory);
+  }
+
+  private getOptional() {
+    return Object.values(this.state).filter(s => !s.mandatory);
+  }
+
   toggleVisibility(name: ResourceKey) {
     const current = this.state[name];
     current.visible = !current.visible;
@@ -86,7 +94,7 @@ export class AppStateService {
   }
 
   getOptionalInputs() {
-    return [ ... Object.values(this.state).filter(s => !s.mandatory) ];
+    return [ ... this.getOptional() ];
   }
 
   load() {
@@ -94,8 +102,7 @@ export class AppStateService {
       return ([] as any[]).concat.apply([], data);
     }
 
-    const mandatory = Object.values(this.state).filter(s => s.mandatory);
-    mandatory.forEach((s, i) => {
+    this.getMandatory().forEach((s, i) => {
       s.loadingInProgress = true;
       const result = [];
       this.resourceService
@@ -112,8 +119,7 @@ export class AppStateService {
   }
 
   isMandatoryDataLoaded() {
-    const mandatory = Object.values(this.state).filter(s => s.mandatory);
-    return mandatory.every(r => r.data.length > 0);
+    return this.getMandatory().every(r => r.data.length > 0);
   }
 
   selectItem(resourceName: string, value: string) {
@@ -121,7 +127,11 @@ export class AppStateService {
   }
 
   resetItem(resourceName: string) {
-    this.state[resourceName].selected = '';
+    this.state[resourceName].selected = undefined;
+  }
+
+  areMandatoryFieldsSelected() {
+    return this.getMandatory().every(s => s.selected !== undefined);
   }
 
 }

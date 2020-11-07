@@ -3,6 +3,7 @@
     [data]="data"
     [searchKeyword]="keyword"
     (selected)='selectEvent($event)'
+    (inputCleared)="resetEvent($event)"
     [itemTemplate]="itemTemplate"
     [notFoundTemplate]="notFoundTemplate"
     placeHolder="Please enter a {{label}}"

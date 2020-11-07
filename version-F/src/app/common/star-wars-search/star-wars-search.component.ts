@@ -26,10 +26,8 @@ export class StarWarsSearchComponent implements OnInit {
     this.appStateService.selectItem(this.resourceName, item);
   }
 
-  onChangeSearch(val: string) {
-    if(val === '') {
-      this.appStateService.resetItem(this.resourceName);
-    }
+  resetEvent() {
+    this.appStateService.resetItem(this.resourceName);
   }
 
 }
