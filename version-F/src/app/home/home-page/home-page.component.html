@@ -6,7 +6,6 @@
       <app-star-wars-search
         id="{{input.name}}"
         [label]="input.label"
-        [data]="input.data"
         [resourceName]="input.name"
       >
       </app-star-wars-search>
@@ -17,7 +16,7 @@
       <button
         type="button"
         class="btn btn-primary btn-lg"
-        (click)="toggleVisibility(input.name)"
+        (click)="loadData(input.name)"
         [disabled]="!areMandatoryFieldsSelected()"
       >
         {{getOptionalButtonLabel(input.name)}}

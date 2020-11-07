@@ -16,7 +16,7 @@ export class HomePageComponent {
   }
 
   ngOnInit() {
-    this.appStateService.load();
+    this.appStateService.loadMandatoryData();
   }
 
   getInputs() {
@@ -32,7 +32,8 @@ export class HomePageComponent {
     return visible ? `Remove ${name}` : `Add ${name}`;
   }
 
-  toggleVisibility(name: ResourceKey) {
+  loadData(name: ResourceKey) {
+    this.appStateService.loadResourceData(name);
     this.appStateService.toggleVisibility(name);
   }
 
@@ -41,7 +42,6 @@ export class HomePageComponent {
   }
 
   areMandatoryFieldsSelected() {
-    return this.appStateService.areMandatoryFieldsSelected();
+    return this.appStateService.areMandatoryItemsSelected();
   }
-
 }

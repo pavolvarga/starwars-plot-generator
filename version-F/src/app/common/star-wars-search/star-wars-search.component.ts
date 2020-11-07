@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+
 import { AppStateService } from '../../services/app-state.service';
+import { ResourceKey, Suggestion } from '../../services/types';
 
 @Component({
   selector: 'app-star-wars-search',
@@ -9,9 +11,9 @@ import { AppStateService } from '../../services/app-state.service';
 export class StarWarsSearchComponent implements OnInit {
   keyword = 'name';
 
-  @Input() data;
-  @Input() resourceName;
-  @Input() label;
+  @Input() data: Suggestion[];
+  @Input() resourceName: ResourceKey;
+  @Input() label: string;
 
   appStateService: AppStateService;
 
@@ -30,4 +32,11 @@ export class StarWarsSearchComponent implements OnInit {
     this.appStateService.resetItem(this.resourceName);
   }
 
+  isDataLoaded() {
+    return this.appStateService.isDataLoaded(this.resourceName);
+  }
+
+  getData() {
+    return this.appStateService.getData(this.resourceName);
+  }
 }

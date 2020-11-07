@@ -16,7 +16,6 @@ export type InputState = {
   visible: boolean;
   selected: Suggestion | undefined;
   data: Suggestion[];
-  loadingInProgress: boolean;
   loadFailed: boolean;
   mandatory: boolean;
   label: string;

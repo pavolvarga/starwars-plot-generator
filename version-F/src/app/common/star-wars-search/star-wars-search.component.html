@@ -1,12 +1,13 @@
 <div class="ng-autocomplete">
   <ng-autocomplete
-    [data]="data"
+    [data]="getData()"
     [searchKeyword]="keyword"
     (selected)='selectEvent($event)'
-    (inputCleared)="resetEvent($event)"
+    (inputCleared)="resetEvent()"
     [itemTemplate]="itemTemplate"
     [notFoundTemplate]="notFoundTemplate"
     placeHolder="Please enter a {{label}}"
+    [disabled]="!isDataLoaded()"
   >
   </ng-autocomplete>
 

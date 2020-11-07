@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { InputFormState, ResourceKey } from './types';
+import { InputFormState, ResourceKey, Suggestion } from './types';
 import { ResourceService } from './resource.service';
 
 @Injectable({
@@ -20,7 +20,6 @@ export class AppStateService {
         visible: true,
         selected: undefined,
         data: [],
-        loadingInProgress: false,
         loadFailed: false,
         mandatory: true,
         label: 'character'
@@ -31,7 +30,6 @@ export class AppStateService {
         visible: true,
         selected: undefined,
         data: [],
-        loadingInProgress: false,
         loadFailed: false,
         mandatory: true,
         label: 'planet'
@@ -42,7 +40,6 @@ export class AppStateService {
         visible: false,
         selected: undefined,
         data: [],
-        loadingInProgress: false,
         loadFailed: false,
         mandatory: false,
         label: 'starship'
@@ -53,7 +50,6 @@ export class AppStateService {
         visible: false,
         selected: undefined,
         data: [],
-        loadingInProgress: false,
         loadFailed: false,
         mandatory: false,
         label: 'vehicle'
@@ -64,7 +60,6 @@ export class AppStateService {
         visible: false,
         selected: undefined,
         data: [],
-        loadingInProgress: false,
         loadFailed: false,
         mandatory: false,
         label: 'species'
@@ -78,6 +73,28 @@ export class AppStateService {
 
   private getOptional() {
     return Object.values(this.state).filter(s => !s.mandatory);
+  }
+
+  loadResourceData(name: ResourceKey) {
+    function flat(data: any): any[] {
+      return ([] as any[]).concat.apply([], data);
+    }
+
+    // do not load data, if loaded previously
+    if (this.state[name].data.length > 0) {
+      return;
+    }
+
+    const result = [];
+    this.resourceService
+      .loadStarWarsData(this.state[name].plural)
+      .subscribe(
+        (input: any) => result.push(input),
+        (error: any) => console.log(error),
+        () => {
+          this.state[name].data = flat(result);
+        }
+      );
   }
 
   toggleVisibility(name: ResourceKey) {
@@ -97,24 +114,9 @@ export class AppStateService {
     return [ ... this.getOptional() ];
   }
 
-  load() {
-    function flat(data: any): any[] {
-      return ([] as any[]).concat.apply([], data);
-    }
-
-    this.getMandatory().forEach((s, i) => {
-      s.loadingInProgress = true;
-      const result = [];
-      this.resourceService
-        .loadStarWarsData(s.plural)
-        .subscribe(
-        (input: any) => result.push(input),
-        (error: any) => console.log(error),
-        () => {
-          s.loadingInProgress = false;
-          s.data = flat(result);
-        }
-      );
+  loadMandatoryData() {
+    this.getMandatory().forEach(s => {
+      this.loadResourceData(s.name)
     });
   }
 
@@ -122,16 +124,23 @@ export class AppStateService {
     return this.getMandatory().every(r => r.data.length > 0);
   }
 
-  selectItem(resourceName: string, value: string) {
-    this.state[resourceName].selected = value;
+  isDataLoaded(name: ResourceKey) {
+    return this.state[name].data.length > 0;
   }
 
-  resetItem(resourceName: string) {
-    this.state[resourceName].selected = undefined;
+  selectItem(name: ResourceKey, value: Suggestion) {
+    this.state[name].selected = value;
   }
 
-  areMandatoryFieldsSelected() {
+  resetItem(name: ResourceKey) {
+    this.state[name].selected = undefined;
+  }
+
+  getData(name: ResourceKey) {
+    return [...this.state[name].data];
+  }
+
+  areMandatoryItemsSelected() {
     return this.getMandatory().every(s => s.selected !== undefined);
   }
-
 }
