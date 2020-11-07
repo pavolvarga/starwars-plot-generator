@@ -2,8 +2,15 @@
 <form *ngIf="isMandatoryDataLoaded()">
   <div class="form-group row" *ngFor="let input of getInputs()">
     <div class="col-md-12 text-left">
+
       <label class="col-form-label-lg" for="{{input.name}}">{{input.label | titlecase}}</label>
-      <input type="text" id="{{input.name}}" class="form-control" placeholder="Please enter a {{input.label}}">
+      <app-star-wars-search
+        id="{{input.name}}"
+        [label]="input.label"
+        [data]="input.data"
+        [resourceName]="input.name"
+      >
+      </app-star-wars-search>
     </div>
   </div>
   <div class="form-group row">

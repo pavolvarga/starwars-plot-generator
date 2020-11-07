@@ -106,7 +106,6 @@ export class AppStateService {
         () => {
           s.loadingInProgress = false;
           s.data = flat(result);
-          console.log('!!', s.data);
         }
       );
     });
@@ -115,6 +114,14 @@ export class AppStateService {
   isMandatoryDataLoaded() {
     const mandatory = Object.values(this.state).filter(s => s.mandatory);
     return mandatory.every(r => r.data.length > 0);
+  }
+
+  selectItem(resourceName: string, value: string) {
+    this.state[resourceName].selected = value;
+  }
+
+  resetItem(resourceName: string) {
+    this.state[resourceName].selected = '';
   }
 
 }
