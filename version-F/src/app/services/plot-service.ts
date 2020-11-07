@@ -132,7 +132,7 @@ export class PlotService {
   }
 
   private highlight(value: string | undefined): string | undefined {
-    return value ? `<span class="highlight-word">${value}</span>` : value;
+    return value ? `<span class="highlight-word" ">${value}</span>` : value;
   }
 
   private generate(person: string, planet: string, starship?: string, vehicle?: string, species?: string): Plot {

@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { AppStateService } from '../../services/app-state.service';
 import { PlotService } from '../../services/plot-service';
-import { generatePlot } from '../../../../../version-E/src/pages/result/plotGenerator';
 import { Plot } from '../../services/types';
 
 @Component({
   selector: 'app-result-page',
   templateUrl: './result-page.component.html',
-  styleUrls: ['./result-page.component.css']
+  styleUrls: ['./result-page.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ResultPageComponent implements OnInit {
 
@@ -25,7 +25,7 @@ export class ResultPageComponent implements OnInit {
 
   private generatePlot() {
     const selectedItems = this.appStateService.getSelectedItems();
-    this.plot = generatePlot(...(selectedItems.map(i => i.name) as [string, string, string?, string?, string?]));
+    this.plot = this.plotService.generatePlot(...(selectedItems.map(i => i.value.name) as [string, string, string?, string?, string?]));
     this.usedResources = selectedItems.map(s => s.value.url);
   }
 

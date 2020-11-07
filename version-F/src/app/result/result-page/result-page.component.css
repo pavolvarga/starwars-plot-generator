@@ -12,3 +12,7 @@
   text-align: justify;
   padding: 10px;
 }
+
+.highlight-word {
+  color: orangered;
+}
