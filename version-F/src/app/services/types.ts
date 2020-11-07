@@ -37,3 +37,8 @@ export type SWAResult = {
   url: string;
   [key: string]: any;
 };
+
+export type Plot = {
+  title: string,
+  description: string
+};

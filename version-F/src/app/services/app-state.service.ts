@@ -143,4 +143,8 @@ export class AppStateService {
   areMandatoryItemsSelected() {
     return this.getMandatory().every(s => s.selected !== undefined);
   }
+
+  getSelectedItems() {
+    return Object.values(this.state).filter(s => s.selected).map(s => ({name: s.name, value: s.selected}));
+  }
 }

@@ -1,2 +1,34 @@
-<h1>Result Page</h1>
-<a routerLink="/home">Generate New Plot</a>
+<div class="row">
+  <div class="col-md-12">
+    <h2>{{plot.title}}</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <p class="plot-text">
+      <span [innerHTML]="plot.description"></span>
+    </p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <h3>Used resources</h3>
+    <ul class="used-resources" *ngFor="let url of usedResources">
+      <li>
+        <a [href]="url">{{url}}</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <a routerLink="/home">
+      <button
+        type="button"
+        class="btn btn-primary btn-lg"
+      >
+        Generate New Plot
+      </button>
+    </a>
+  </div>
+</div>

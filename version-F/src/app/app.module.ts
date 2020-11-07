@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { HomePageComponent } from './home/home-page/home-page.component';
 import { ResultPageComponent } from './result/result-page/result-page.component';
 import { HeaderComponent } from './common/header/header.component';
-import { StarWarsSearchComponent } from './common/star-wars-search/star-wars-search.component';
+import { StarWarsSearchComponent } from './home/star-wars-search/star-wars-search.component';
 
 @NgModule({
   declarations: [
