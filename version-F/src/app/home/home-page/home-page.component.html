@@ -14,7 +14,7 @@
     <div class="col-md-4" *ngFor="let input of getOptionalInputs()">
       <button
         type="button"
-        class="btn btn-primary btn-lg"
+        class="btn btn-secondary btn-lg"
         (click)="loadData(input.name)"
         [disabled]="!areMandatoryFieldsSelected()"
       >
@@ -37,7 +37,7 @@
           class="btn btn-primary btn-lg"
           [disabled]="!areMandatoryFieldsSelected()"
         >
-          Generate
+          Generate Plot
         </button>
       </a>
     </div>
