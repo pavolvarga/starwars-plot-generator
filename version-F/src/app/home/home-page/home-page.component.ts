@@ -33,7 +33,12 @@ export class HomePageComponent {
   }
 
   loadData(name: ResourceKey) {
-    this.appStateService.loadResourceData(name);
+    if (!this.appStateService.isInputVisible(name)) {
+      this.appStateService.loadResourceData(name);
+    }
+    else {
+      this.appStateService.resetLoadFailed(name);
+    }
     this.appStateService.toggleVisibility(name);
   }
 
@@ -47,5 +52,13 @@ export class HomePageComponent {
 
   hasFailedLoadOfMandatoryData() {
     return this.appStateService.hasFailedLoadOfMandatoryData();
+  }
+
+  hasFailedLoadOfResourceData(name: ResourceKey) {
+    return this.appStateService.hasFailedLoadOfResourceData(name);
+  }
+
+  getFailedOptionalResourceData() {
+    return this.appStateService.getFailedOptionalResourceData();
   }
 }

@@ -153,4 +153,18 @@ export class AppStateService {
   hasFailedLoadOfMandatoryData() {
     return this.getMandatory().some(r => r.loadFailed);
   }
+
+  hasFailedLoadOfResourceData(name: ResourceKey) {
+    return this.state[name].loadFailed;
+  }
+
+  getFailedOptionalResourceData() {
+    console.log('!!', 'getFailedOptionalResourceData', this.getOptional().filter(r => r.loadFailed));
+    return [...this.getOptional().filter(r => r.loadFailed)];
+  }
+
+  resetLoadFailed(name: ResourceKey) {
+    console.log('!!', 'resetLoadFailed', name);
+    this.state[name].loadFailed = false;
+  }
 }

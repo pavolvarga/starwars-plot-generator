@@ -22,6 +22,13 @@
       </button>
     </div>
   </div>
+  <div class="form-group row" *ngIf="getFailedOptionalResourceData().length > 0">
+    <div class="col-md-12" *ngFor="let input of getFailedOptionalResourceData()">
+      <div class="alert alert-danger" role="alert">
+        Loading of {{input.name}} failed, please try again later.
+      </div>
+    </div>
+  </div>
   <div class="form-group row">
     <div class="col-md-12">
       <a routerLink="/plot">
