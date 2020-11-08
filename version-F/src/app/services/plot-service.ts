@@ -1,5 +1,6 @@
-import {Injectable} from '@angular/core';
-import {Plot} from '../../../../version-E/src/pages/result/plotGenerator';
+import { Injectable } from '@angular/core';
+
+import { Plot } from './types';
 
 @Injectable({
   providedIn: 'root'
