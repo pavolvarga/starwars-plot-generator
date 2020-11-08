@@ -90,7 +90,9 @@ export class AppStateService {
       .loadStarWarsData(this.state[name].plural)
       .subscribe(
         (input: any) => result.push(input),
-        (error: any) => console.log(error),
+        (error: any) => {
+          this.state[name].loadFailed = true;
+        },
         () => {
           this.state[name].data = flat(result);
         }
@@ -146,5 +148,9 @@ export class AppStateService {
 
   getSelectedItems() {
     return Object.values(this.state).filter(s => s.selected).map(s => ({name: s.name, value: s.selected}));
+  }
+
+  hasFailedLoadOfMandatoryData() {
+    return this.getMandatory().some(r => r.loadFailed);
   }
 }

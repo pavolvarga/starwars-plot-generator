@@ -44,4 +44,8 @@ export class HomePageComponent {
   areMandatoryFieldsSelected() {
     return this.appStateService.areMandatoryItemsSelected();
   }
+
+  hasFailedLoadOfMandatoryData() {
+    return this.appStateService.hasFailedLoadOfMandatoryData();
+  }
 }
