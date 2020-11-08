@@ -42,3 +42,8 @@ learn from it.
   * redux-thunk
     * asynchronous updates
   * bootstrap 4.4.1
+* version-F
+  * typescript
+  * angular 10
+    * no state management library
+  * bootstrap 4.4.1
