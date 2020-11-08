@@ -138,8 +138,8 @@ export class AppStateService {
     this.state[name].selected = undefined;
   }
 
-  getData(name: ResourceKey) {
-    return [...this.state[name].data];
+  getData(name: ResourceKey, filter: string) {
+    return [...this.state[name].data.filter(d => d.name.toLowerCase().startsWith(filter.toLowerCase()))];
   }
 
   areMandatoryItemsSelected() {

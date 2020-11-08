@@ -11,14 +11,16 @@ import { ResourceKey, Suggestion } from '../../services/types';
 export class StarWarsSearchComponent implements OnInit {
   keyword = 'name';
 
-  @Input() data: Suggestion[];
   @Input() resourceName: ResourceKey;
   @Input() label: string;
+
+  enteredValue: string
 
   appStateService: AppStateService;
 
   constructor(appStateService: AppStateService) {
     this.appStateService = appStateService;
+    this.enteredValue = '';
   }
 
   ngOnInit(): void {
@@ -37,6 +39,10 @@ export class StarWarsSearchComponent implements OnInit {
   }
 
   getData() {
-    return this.appStateService.getData(this.resourceName);
+    return this.appStateService.getData(this.resourceName, this.enteredValue);
+  }
+
+  handleChange(value: string) {
+    this.enteredValue = value;
   }
 }

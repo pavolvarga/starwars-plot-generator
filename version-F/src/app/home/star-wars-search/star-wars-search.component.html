@@ -8,6 +8,7 @@
     [notFoundTemplate]="notFoundTemplate"
     placeHolder="Please enter a {{label}}"
     [disabled]="!isDataLoaded()"
+    (inputChanged)="handleChange($event)"
   >
   </ng-autocomplete>
 
