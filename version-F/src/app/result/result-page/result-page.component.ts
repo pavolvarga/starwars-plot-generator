@@ -29,6 +29,10 @@ export class ResultPageComponent implements OnInit {
     this.usedResources = selectedItems.map(s => s.value.url);
   }
 
+  resetSelectedItems() {
+    this.appStateService.resetSelectedItems();
+  }
+
   ngOnInit(): void {
     this.generatePlot();
   }

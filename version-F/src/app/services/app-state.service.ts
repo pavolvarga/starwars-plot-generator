@@ -159,12 +159,16 @@ export class AppStateService {
   }
 
   getFailedOptionalResourceData() {
-    console.log('!!', 'getFailedOptionalResourceData', this.getOptional().filter(r => r.loadFailed));
     return [...this.getOptional().filter(r => r.loadFailed)];
   }
 
   resetLoadFailed(name: ResourceKey) {
-    console.log('!!', 'resetLoadFailed', name);
     this.state[name].loadFailed = false;
+  }
+
+  resetSelectedItems() {
+    Object.values(this.state).forEach(r => {
+      r.selected = undefined;
+    });
   }
 }
