@@ -1,6 +1,11 @@
 <template>
   <div class="container-lg text-center">
     <the-header></the-header>
+    <div class="row">
+      <div class="col-md-12">
+        <router-view></router-view>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -9,7 +14,7 @@ import TheHeader from './components/TheHeader';
 
 export default {
   components: {
-    TheHeader
+    TheHeader,
   }
 }
 </script>
