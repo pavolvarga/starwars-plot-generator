@@ -3,11 +3,13 @@
 </template>
 
 <script>
-module.exports = {
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   data() {
     return {};
   }
-}
+})
 </script>
 
 <style scoped>

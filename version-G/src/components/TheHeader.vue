@@ -5,13 +5,15 @@
 </template>
 
 <script>
-module.exports = {
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   data: function() {
     return {
       header: 'Star Wars Plot Generator'
     }
   }
-}
+})
 </script>
 
 <style scoped>

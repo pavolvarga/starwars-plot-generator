@@ -10,13 +10,14 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
 import TheHeader from './components/TheHeader';
 
-export default {
+export default defineComponent({
   components: {
     TheHeader,
   }
-}
+})
 </script>
 
 <style>
