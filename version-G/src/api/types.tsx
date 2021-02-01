@@ -6,15 +6,14 @@
 export type ResourceKey = 'person' | 'planet' | 'starship' | 'vehicle' | 'species';
 
 export type Suggestion = {
-  name: string,
-  url: string
+    name: string,
+    url: string
 }
 
 export type Resource = {
     plural: string,
     singular: string,
     mandatory: boolean,
-    label: string | undefined
 };
 
 export type Resources = {

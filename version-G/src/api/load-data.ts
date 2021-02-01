@@ -1,4 +1,5 @@
-import { STAR_WARS_API } from "./api";
+import {RESOURCES, STAR_WARS_API} from './api';
+import {ResourceKey} from '@/api/types';
 
 type SWAResourceResp = {
     previous?: string,
@@ -117,6 +118,6 @@ function loadStarWarsResource(resource: string, resolve: LoadSWDataResolveFn, re
 
 export type LoadSWDataResolveFn = (data: ResourceData[]) => void;
 export type LoadSWDataRejectFn = (err: Error) => void;
-export function loadStarWarsData(name: string, resolve: LoadSWDataResolveFn, reject: LoadSWDataRejectFn): void {
-    loadStarWarsResource(starWarsResource(name), resolve, reject);
+export function loadStarWarsData(name: ResourceKey, resolve: LoadSWDataResolveFn, reject: LoadSWDataRejectFn): void {
+    loadStarWarsResource(starWarsResource(RESOURCES[name].plural), resolve, reject);
 }

@@ -1,19 +1,19 @@
 import { InjectionKey } from 'vue'
 import { createStore, Store } from 'vuex'
-import { ResourceKey, Suggestion } from '@/api/types';
+import { ResourceKey } from '@/api/types';
 import { InputFormState } from '@/store/types';
-import {loadStarWarsData} from '@/api/load-data';
-import {getMandatoryResourceNames, getPluralName} from '@/api/api';
+import { loadStarWarsData } from '@/api/load-data';
+import { getMandatoryResourceNames } from '@/api/api';
 
 // define injection key
 export const key: InjectionKey<Store<InputFormState>> = Symbol()
 
 const state: InputFormState = {
-  person: {visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false},
-  planet: {visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false},
-  starship: {visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false},
-  vehicle: {visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false},
-  species: {visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false}
+  person:   { name: 'person',   visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false, label: 'Character' },
+  planet:   { name: 'planet',   visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false, label: 'Planet'    },
+  starship: { name: 'starship', visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false, label: 'Starship'  },
+  vehicle:  { name: 'vehicle',  visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false, label: 'Vehicle'   },
+  species:  { name: 'species',  visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false, label: 'Species'   }
 };
 
 const mutations = {
@@ -21,6 +21,7 @@ const mutations = {
     state[name].data = data;
     state[name].loadingInProgress = false;
     state[name].loadFailed = false;
+    state[name].visible = true;
   },
   startLoading(state: any, { name }: any) {
     state[name].loadingInProgress = true;
@@ -28,6 +29,9 @@ const mutations = {
   confirmLoadFailed(state: any, { name }: any) {
     state[name].loadingInProgress = false;
     state[name].loadFailed = true;
+  },
+  toggleVisibility(state: any, { name }: any) {
+    state[name].visible = !state[name].visible;
   }
 };
 
@@ -40,8 +44,10 @@ const actions = {
   loadResource(context: any, payload: any) {
     const { name } = payload;
     loadStarWarsData(
-      getPluralName(name),
-      (data) => context.commit("setData", { name, data }),
+      name as ResourceKey,
+      (data) => {
+        context.commit("setData", { name, data });
+      },
       (err) => {
         console.log(name, err);
         context.commit("confirmLoadFailed", { name });
@@ -56,7 +62,12 @@ const getters = {
   },
   hasLoadingOfMandatoryDataFailed(state: InputFormState) {
     return getMandatoryResourceNames().some(name => state[name].loadFailed);
+  },
+  getVisibleInputs(state: InputFormState) {
+    console.log('!! store#getVisibleInputs', Object.values(state));
+    return [ ...Object.values(state).filter(s => s.visible) ];
   }
+
 };
 
 export const store = createStore({

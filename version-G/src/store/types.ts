@@ -1,11 +1,13 @@
 import { ResourceKey, Suggestion } from '@/api/types';
 
 export type InputState = {
-  visible: boolean,
-  selected: Suggestion | undefined,
-  data: Suggestion[],
-  loadingInProgress: boolean,
-  loadFailed: boolean
+  name: string;
+  visible: boolean;
+  selected: Suggestion | undefined;
+  data: Suggestion[];
+  loadingInProgress: boolean;
+  loadFailed: boolean;
+  label: string;
 };
 
 export type InputFormState = {

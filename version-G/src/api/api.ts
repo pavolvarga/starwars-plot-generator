@@ -3,18 +3,12 @@ import { Resource, ResourceKey, Resources } from "./types";
 const STAR_WARS_API = 'https://swapi.dev/api';
 
 const RESOURCES: Resources = {
-    person:   { plural: 'people',    singular: 'person',   mandatory: true,  label: 'character'},
-    planet:   { plural: 'planets',   singular: 'planet',   mandatory: true,  label: undefined  },
-    starship: { plural: 'starships', singular: 'starship', mandatory: false, label: undefined  },
-    vehicle:  { plural: 'vehicles',  singular: 'vehicle',  mandatory: false, label: undefined  },
-    species:  { plural: 'species',   singular: 'species',  mandatory: false, label: undefined  }
+    person:   { plural: 'people',    singular: 'person',   mandatory: true   },
+    planet:   { plural: 'planets',   singular: 'planet',   mandatory: true   },
+    starship: { plural: 'starships', singular: 'starship', mandatory: false  },
+    vehicle:  { plural: 'vehicles',  singular: 'vehicle',  mandatory: false  },
+    species:  { plural: 'species',   singular: 'species',  mandatory: false  }
 };
-
-function getPluralName(singular: string): string {
-    return Object
-        .values(RESOURCES)
-        .filter(r => (r.singular === singular))[0].plural;
-}
 
 type predicateType = (r: Resource) => boolean;
 
@@ -41,7 +35,6 @@ export {
     STAR_WARS_API,
     RESOURCES,
     FAILED_LOAD_COOL_DOWN,
-    getPluralName,
     getMandatoryResourceNames,
     getOptionalResourceNames,
     getResourceNames,

@@ -1,21 +1,11 @@
 <template>
   <form v-if="isMandatoryDataLoaded()">
-    <div class="form-group row">
-      <div class="col-md-12 text-left">
-        <label class="col-form-label-lg" for="character">Character</label>
-        <input
-          id="character"
-        />
-      </div>
-    </div>
-    <div class="form-group row">
-      <div class="col-md-12 text-left">
-        <label class="col-form-label-lg" for="planet">Planet</label>
-        <input
-          id="planet"
-        />
-      </div>
-    </div>
+    <star-wars-search
+      v-for="input in getVisibleInputs()"
+      :key="input.name"
+      :name="input.name"
+      :label="input.label">
+    </star-wars-search>
   </form>
   <div class="row" v-if="hasLoadingOfMandatoryDataFailed()">
     <div class="col-lg-12">
@@ -38,13 +28,20 @@
 import { defineComponent } from 'vue';
 import { useStore } from 'vuex'
 import { key } from "@/store/store";
+import StarWarsSearch from "@/components/StarWarsSearch";
 
 export default defineComponent({
   name: 'HomePage',
+  components: {
+    StarWarsSearch
+  },
   setup() {
     const store = useStore(key);
     store.dispatch("loadMandatoryResources");
 
+    function getVisibleInputs() {
+      return store.getters.getVisibleInputs;
+    }
     function isMandatoryDataLoaded() {
       return store.getters.isMandatoryDataLoaded;
     }
@@ -53,12 +50,10 @@ export default defineComponent({
     }
 
     return {
-      isMandatoryDataLoaded,
       hasLoadingOfMandatoryDataFailed,
+      isMandatoryDataLoaded,
+      getVisibleInputs
     }
-  },
-  data() {
-    return {};
   }
 })
 </script>

@@ -11,11 +11,11 @@
 
 <script>
 import { defineComponent } from 'vue';
-import TheHeader from './components/TheHeader';
+import TheHeader from '@/components/TheHeader';
 
 export default defineComponent({
   components: {
-    TheHeader,
+    TheHeader
   }
 })
 </script>
