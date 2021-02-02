@@ -155,6 +155,11 @@ const getters = {
       .filter(inputState => inputState.loadFailed)
       .map(inputState => inputState.name);
   },
+  getSelected(formState: InputFormState) {
+    return function(name: ResourceKey) {
+      return formState[name].selected;
+    }
+  }
 };
 
 export const store = createStore({

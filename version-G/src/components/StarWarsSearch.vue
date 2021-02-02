@@ -9,8 +9,18 @@
         v-bind:name="name"
         v-on:change="select"
         v-bind:disabled="isDisabled()">
-        <option selected value>-- Select {{label}} --</option>
-        <option v-for="option in getOptions()" v-bind:value="option.url" v-bind:key="option.name">{{option.name}}</option>
+        <option
+          :selected="getSelected() === undefined"
+          value>
+          -- Select {{label}} --
+        </option>
+        <option
+          v-for="option in getOptions()"
+          v-bind:value="option.url"
+          v-bind:key="option.name"
+          :selected="getSelected() === name">
+          {{option.name}}
+        </option>
       </select>
     </div>
   </div>
@@ -50,11 +60,15 @@ export default defineComponent({
     function isDisabled() {
       return store.getters.isLoadingInProgress(name) || store.getters.hasLoadFailed(name);
     }
+    function getSelected() {
+      return store.getters.getSelected(name);
+    }
 
     return {
       getOptions,
       select,
       isDisabled,
+      getSelected,
     }
   }
 });

@@ -8,7 +8,7 @@
         v-bind:id="name"
         type="button"
         class="btn btn-secondary btn-lg"
-        v-bind:disabled="!areMandatoryInputSelected() || hasLoadFailed(name)"
+        v-bind:disabled="hasLoadFailed(name)"
         v-on:click="onClick(name)"
       >
         {{getOptionalButtonLabel(name)}}
@@ -51,6 +51,7 @@ export default defineComponent({
       }
       else {
         store.dispatch("toggleVisibility", { name });
+        // store.dispatch("selectValue", { name, suggestion: undefined });
       }
     }
 
