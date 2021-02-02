@@ -5,9 +5,11 @@
       :key="name"
       class="col-md-4" >
       <button
+        v-bind:id="name"
         type="button"
         class="btn btn-secondary btn-lg"
         v-bind:disabled="!areMandatoryInputSelected()"
+        v-on:click="onClick(name)"
       >
         {{getOptionalButtonLabel(name)}}
       </button>
@@ -35,11 +37,20 @@ export default defineComponent({
     function areMandatoryInputSelected() {
       return store.getters.areMandatoryInputSelected;
     }
+    function onClick(name) {
+      if (!store.getters.isInputDataLoaded(name)) {
+        store.dispatch("loadResource", { name });
+      }
+      else {
+        store.dispatch("toggleVisibility", { name });
+      }
+    }
 
     return {
       getOptionalNames,
       getOptionalButtonLabel,
-      areMandatoryInputSelected
+      areMandatoryInputSelected,
+      onClick,
     };
   }
 });

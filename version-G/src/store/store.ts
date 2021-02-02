@@ -2,7 +2,7 @@ import { InjectionKey } from 'vue'
 import { createStore, Store } from 'vuex'
 import { ResourceKey } from '@/api/types';
 import { InputFormState, InputState } from '@/store/types';
-import { loadStarWarsData } from '@/api/load-data';
+import {loadStarWarsData, ResourceData} from '@/api/load-data';
 
 // define injection key
 export const key: InjectionKey<Store<InputFormState>> = Symbol();
@@ -25,42 +25,46 @@ function getOptionalInputs(inputFormState: InputFormState): InputState[] {
 }
 
 const mutations = {
-  setData(state: any, { name, data }: any) {
-    state[name].data = data;
-    state[name].loadingInProgress = false;
-    state[name].loadFailed = false;
-    state[name].visible = true;
+  setData(formState: InputFormState, { name, data }: any) {
+    formState[name as ResourceKey].data = data;
   },
-  startLoading(state: any, { name }: any) {
-    state[name].loadingInProgress = true;
+  setLoadingInProgress(formState: InputFormState, { name, loadingInProgress }: any) {
+    formState[name as ResourceKey].loadingInProgress = loadingInProgress;
   },
-  confirmLoadFailed(state: any, { name }: any) {
-    state[name].loadingInProgress = false;
-    state[name].loadFailed = true;
+  setVisibility(formState: InputFormState, { name, visibility }: any) {
+    formState[name as ResourceKey].visible = visibility;
   },
-  toggleVisibility(state: any, { name }: any) {
-    state[name].visible = !state[name].visible;
-  }
+  setLoadFailed(formState: InputFormState, { name, loadFailed }: any) {
+    formState[name as ResourceKey].loadFailed = loadFailed;
+  },
 };
 
 const actions = {
   loadMandatoryResources(context: any) {
-    mandatory.forEach(name => context.commit("startLoading", { name }));
     mandatory.forEach(name => context.dispatch("loadResource", { name }));
   },
   loadResource(context: any, payload: any) {
     const { name } = payload;
-    loadStarWarsData(
-      name as ResourceKey,
-      (data) => {
-        context.commit("setData", { name, data });
-      },
-      (err) => {
-        console.log(name, err);
-        context.commit("confirmLoadFailed", { name });
-      }
-    );
+    function resolve(data: ResourceData[]) {
+      context.commit("setData", { name, data });
+      context.commit("setVisibility", { name, visibility: true });
+      context.commit("setLoadingInProgress", { name, loadingInProgress: false });
+      context.commit("setLoadFailed", { name, loadFailed: false });
+    }
+    function reject(err: Error) {
+      console.log(name, err);
+      context.commit("setLoadingInProgress", { name, loadingInProgress: false });
+      context.commit("setLoadFailed", { name, loadFailed: true });
+    }
+    context.commit("setLoadingInProgress", { name, loadingInProgress: true });
+    loadStarWarsData(name as ResourceKey, resolve, reject);
+  },
+  toggleVisibility(context: any, payload: any) {
+    const { name } = payload;
+    const visible = context.state[name].visible;
+    context.commit("setVisibility", { name, visibility: !visible });
   }
+
 };
 
 const getters = {
@@ -76,15 +80,19 @@ const getters = {
   getOptionalInputs(formState: InputFormState) {
     return getOptionalInputs(formState);
   },
+  areMandatoryInputSelected(formState: InputFormState) {
+    return getMandatoryInputs(formState).every(inputState => inputState.selected);
+  },
   isInputVisible(formState: InputFormState) {
     return function(name: ResourceKey) {
       return formState[name].visible;
     }
   },
-  areMandatoryInputSelected(formState: InputFormState) {
-    return getMandatoryInputs(formState).every(inputState => inputState.selected);
+  isInputDataLoaded(formState: InputFormState) {
+    return function(name: ResourceKey) {
+      return formState[name].data.length > 0;
+    }
   }
-
 };
 
 export const store = createStore({
