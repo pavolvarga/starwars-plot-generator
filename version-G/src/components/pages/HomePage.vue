@@ -6,6 +6,7 @@
       :name="input.name"
       :label="input.label">
     </star-wars-search>
+    <optional-inputs />
   </form>
   <div class="row" v-if="hasLoadingOfMandatoryDataFailed()">
     <div class="col-lg-12">
@@ -29,11 +30,13 @@ import { defineComponent } from 'vue';
 import { useStore } from 'vuex'
 import { key } from "@/store/store";
 import StarWarsSearch from "@/components/StarWarsSearch";
+import OptionalInputs from "@/components/OptionalInputs";
 
 export default defineComponent({
   name: 'HomePage',
   components: {
-    StarWarsSearch
+    StarWarsSearch,
+    OptionalInputs,
   },
   setup() {
     const store = useStore(key);

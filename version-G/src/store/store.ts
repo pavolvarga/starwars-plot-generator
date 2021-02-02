@@ -20,7 +20,7 @@ const optional  = Object.values(initState).filter(v => !v.mandatory).map(v => v.
 function getMandatoryInputs(inputFormState: InputFormState): InputState[] {
   return Object.values(inputFormState).filter(inputState => mandatory.includes(inputState.name));
 }
-function getOptionInputs(inputFormState: InputFormState): InputState[] {
+function getOptionalInputs(inputFormState: InputFormState): InputState[] {
   return Object.values(inputFormState).filter(inputState => optional.includes(inputState.name));
 }
 
@@ -70,8 +70,19 @@ const getters = {
   hasLoadingOfMandatoryDataFailed(formState: InputFormState) {
     return getMandatoryInputs(formState).some(inputState => inputState.loadFailed);
   },
-  getVisibleInputs(state: InputFormState) {
-    return Object.values(state).filter(s => s.visible);
+  getVisibleInputs(formState: InputFormState) {
+    return Object.values(formState).filter(s => s.visible);
+  },
+  getOptionalInputs(formState: InputFormState) {
+    return getOptionalInputs(formState);
+  },
+  isInputVisible(formState: InputFormState) {
+    return function(name: ResourceKey) {
+      return formState[name].visible;
+    }
+  },
+  areMandatoryInputSelected(formState: InputFormState) {
+    return getMandatoryInputs(formState).every(inputState => inputState.selected);
   }
 
 };
