@@ -1,6 +1,6 @@
 import { InjectionKey } from 'vue'
 import { createStore, Store } from 'vuex'
-import { ResourceKey } from '@/api/types';
+import {ResourceKey, Suggestion} from '@/api/types';
 import { InputFormState, InputState } from '@/store/types';
 import {loadStarWarsData, ResourceData} from '@/api/load-data';
 
@@ -14,57 +14,73 @@ const initState: InputFormState = {
   vehicle:  { name: 'vehicle',  visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false, label: 'Vehicle',   mandatory: false },
   species:  { name: 'species',  visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false, label: 'Species',   mandatory: false }
 };
-const mandatory = Object.values(initState).filter(v => v.mandatory).map(v => v.name);
-const optional  = Object.values(initState).filter(v => !v.mandatory).map(v => v.name);
+const mandatory = Object.values(initState).filter(v => v.mandatory).map(v => v.name as ResourceKey);
+const optional  = Object.values(initState).filter(v => !v.mandatory).map(v => v.name as ResourceKey);
 
 function getMandatoryInputs(inputFormState: InputFormState): InputState[] {
-  return Object.values(inputFormState).filter(inputState => mandatory.includes(inputState.name));
+  return Object.values(inputFormState).filter(inputState => mandatory.includes(inputState.name as ResourceKey));
 }
 function getOptionalInputs(inputFormState: InputFormState): InputState[] {
-  return Object.values(inputFormState).filter(inputState => optional.includes(inputState.name));
+  return Object.values(inputFormState).filter(inputState => optional.includes(inputState.name as ResourceKey));
 }
 
+type Payload = {
+  name: ResourceKey;
+};
+type MutationPayload = Payload & Partial<Pick<InputState, 'data' | 'loadingInProgress' | 'visible' | 'loadFailed' | 'selected'>>;
+
 const mutations = {
-  setData(formState: InputFormState, { name, data }: any) {
-    formState[name as ResourceKey].data = data;
+  setData(formState: InputFormState, payload: MutationPayload) {
+    const { name, data } = payload;
+    formState[name].data = data!;
   },
-  setLoadingInProgress(formState: InputFormState, { name, loadingInProgress }: any) {
-    formState[name as ResourceKey].loadingInProgress = loadingInProgress;
+  setLoadingInProgress(formState: InputFormState, payload: MutationPayload) {
+    const { name, loadingInProgress } = payload;
+    formState[name].loadingInProgress = loadingInProgress!;
   },
-  setVisibility(formState: InputFormState, { name, visibility }: any) {
-    formState[name as ResourceKey].visible = visibility;
+  setVisibility(formState: InputFormState, payload: MutationPayload) {
+    const { name, visible } = payload;
+    formState[name].visible = visible!;
   },
-  setLoadFailed(formState: InputFormState, { name, loadFailed }: any) {
-    formState[name as ResourceKey].loadFailed = loadFailed;
+  setLoadFailed(formState: InputFormState, payload: MutationPayload) {
+    const { name, loadFailed } = payload;
+    formState[name].loadFailed = loadFailed!;
   },
+  setSelected(formState: InputFormState, payload: MutationPayload) {
+    const { name, selected } = payload;
+    formState[name].selected = selected;
+  }
 };
 
 const actions = {
   loadMandatoryResources(context: any) {
     mandatory.forEach(name => context.dispatch("loadResource", { name }));
   },
-  loadResource(context: any, payload: any) {
+  loadResource(context: any, payload: Payload) {
     const { name } = payload;
     function resolve(data: ResourceData[]) {
       context.commit("setData", { name, data });
-      context.commit("setVisibility", { name, visibility: true });
+      context.commit("setVisibility", { name, visible: true });
       context.commit("setLoadingInProgress", { name, loadingInProgress: false });
       context.commit("setLoadFailed", { name, loadFailed: false });
     }
     function reject(err: Error) {
-      console.log(name, err);
+      console.error(name, err);
       context.commit("setLoadingInProgress", { name, loadingInProgress: false });
       context.commit("setLoadFailed", { name, loadFailed: true });
     }
     context.commit("setLoadingInProgress", { name, loadingInProgress: true });
     loadStarWarsData(name as ResourceKey, resolve, reject);
   },
-  toggleVisibility(context: any, payload: any) {
+  toggleVisibility(context: any, payload: Payload) {
     const { name } = payload;
     const visible = context.state[name].visible;
-    context.commit("setVisibility", { name, visibility: !visible });
-  }
-
+    context.commit("setVisibility", { name, visible: !visible });
+  },
+  selectValue(context: any, payload: Payload & { selected: Suggestion | undefined }) {
+    const { name, selected } = payload;
+    context.commit("setSelected", { name, selected});
+  },
 };
 
 const getters = {
@@ -75,7 +91,7 @@ const getters = {
     return getMandatoryInputs(formState).some(inputState => inputState.loadFailed);
   },
   getVisibleInputs(formState: InputFormState) {
-    return Object.values(formState).filter(s => s.visible);
+    return Object.values(formState).filter(inputState => inputState.visible);
   },
   getOptionalInputs(formState: InputFormState) {
     return getOptionalInputs(formState);

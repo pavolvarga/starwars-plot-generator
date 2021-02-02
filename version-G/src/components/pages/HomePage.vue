@@ -6,7 +6,7 @@
       :name="input.name"
       :label="input.label">
     </star-wars-search>
-    <optional-inputs />
+    <optional-inputs v-if="getVisibleInputs().length > 0"></optional-inputs>
   </form>
   <div class="row" v-if="hasLoadingOfMandatoryDataFailed()">
     <div class="col-lg-12">
