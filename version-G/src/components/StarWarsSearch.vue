@@ -48,7 +48,7 @@ export default defineComponent({
       store.dispatch("selectValue", { name, selected: suggestion });
     }
     function isDisabled() {
-      return store.getters.isLoadingInProgress(name);
+      return store.getters.isLoadingInProgress(name) || store.getters.hasLoadFailed(name);
     }
 
     return {

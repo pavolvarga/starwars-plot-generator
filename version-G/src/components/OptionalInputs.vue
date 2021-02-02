@@ -8,7 +8,7 @@
         v-bind:id="name"
         type="button"
         class="btn btn-secondary btn-lg"
-        v-bind:disabled="!areMandatoryInputSelected()"
+        v-bind:disabled="!areMandatoryInputSelected() || hasLoadFailed(name)"
         v-on:click="onClick(name)"
       >
         {{getOptionalButtonLabel(name)}}
@@ -41,6 +41,9 @@ export default defineComponent({
     function areMandatoryInputSelected() {
       return store.getters.areMandatoryInputSelected;
     }
+    function hasLoadFailed(name) {
+      return store.getters.hasLoadFailed(name);
+    }
     function onClick(name) {
       if (!store.getters.isInputDataLoaded(name)) {
         store.dispatch("setVisibility", { name, visible: true });
@@ -56,6 +59,7 @@ export default defineComponent({
       getOptionalButtonLabel,
       areMandatoryInputSelected,
       onClick,
+      hasLoadFailed,
     };
   }
 });

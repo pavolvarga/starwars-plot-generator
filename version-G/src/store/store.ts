@@ -4,6 +4,11 @@ import {ResourceKey, Suggestion} from '@/api/types';
 import { InputFormState, InputState } from '@/store/types';
 import {loadStarWarsData, ResourceData} from '@/api/load-data';
 
+/**
+ * Time after it is possible again trying to load optional resource data
+ */
+const COOL_DOWN = 5000;
+
 // define injection key
 export const key: InjectionKey<Store<InputFormState>> = Symbol();
 
@@ -38,7 +43,7 @@ const mutations = {
     const { name, loadingInProgress } = payload;
     formState[name].loadingInProgress = loadingInProgress!;
   },
-  setVisibility(formState: InputFormState, payload: MutationPayload) {
+  setVisible(formState: InputFormState, payload: MutationPayload) {
     const { name, visible } = payload;
     formState[name].visible = visible!;
   },
@@ -60,7 +65,7 @@ const actions = {
     const { name } = payload;
     function resolve(data: ResourceData[]) {
       context.commit("setData", { name, data });
-      context.commit("setVisibility", { name, visible: true });
+      context.commit("setVisible", { name, visible: true });
       context.commit("setLoadingInProgress", { name, loadingInProgress: false });
       context.commit("setLoadFailed", { name, loadFailed: false });
     }
@@ -68,6 +73,9 @@ const actions = {
       console.error(name, err);
       context.commit("setLoadingInProgress", { name, loadingInProgress: false });
       context.commit("setLoadFailed", { name, loadFailed: true });
+      setTimeout(() => {
+        context.dispatch("resetLoadFailure", { name });
+      }, COOL_DOWN);
     }
     context.commit("setLoadingInProgress", { name, loadingInProgress: true });
     loadStarWarsData(name as ResourceKey, resolve, reject);
@@ -75,16 +83,22 @@ const actions = {
   toggleVisibility(context: any, payload: Payload) {
     const { name } = payload;
     const visible = context.state[name].visible;
-    context.commit("setVisibility", { name, visible: !visible });
+    context.commit("setVisible", { name, visible: !visible });
   },
   setVisibility(context: any, payload: Payload & { visible: boolean }) {
     const { name, visible } = payload;
-    context.commit("setVisibility", { name, visible: visible });
+    context.commit("setVisible", { name, visible: visible });
   },
   selectValue(context: any, payload: Payload & { selected: Suggestion | undefined }) {
     const { name, selected } = payload;
     context.commit("setSelected", { name, selected });
   },
+  resetLoadFailure(context: any, payload: Payload) {
+    const { name } = payload;
+    context.commit("setLoadingInProgress", { name, loadingInProgress: false });
+    context.commit("setLoadFailed", { name, loadFailed: false });
+    context.commit("setVisible", { name, visible: false });
+  }
 };
 
 const getters = {
@@ -117,6 +131,16 @@ const getters = {
     return function(name: ResourceKey) {
       return formState[name].loadingInProgress;
     }
+  },
+  hasLoadFailed(formState: InputFormState) {
+    return function(name: ResourceKey) {
+      return formState[name].loadFailed;
+    }
+  },
+  getFailedOptionalInputNames(formState: InputFormState) {
+    return getOptionalInputs(formState)
+      .filter(inputState => inputState.loadFailed)
+      .map(inputState => inputState.name);
   },
 };
 

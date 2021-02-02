@@ -8,6 +8,7 @@
       :data="input.data">
     </star-wars-search>
     <optional-inputs v-if="getVisibleInputs().length > 0"></optional-inputs>
+    <load-failed-alerts></load-failed-alerts>
   </form>
   <div class="row" v-if="hasLoadingOfMandatoryDataFailed()">
     <div class="col-lg-12">
@@ -32,12 +33,14 @@ import { useStore } from 'vuex'
 import { key } from "@/store/store";
 import StarWarsSearch from "@/components/StarWarsSearch";
 import OptionalInputs from "@/components/OptionalInputs";
+import LoadFailedAlerts from "@/components/LoadFailedAlerts";
 
 export default defineComponent({
   name: 'HomePage',
   components: {
     StarWarsSearch,
     OptionalInputs,
+    LoadFailedAlerts,
   },
   setup() {
     const store = useStore(key);
