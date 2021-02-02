@@ -1,20 +1,28 @@
 import { InjectionKey } from 'vue'
 import { createStore, Store } from 'vuex'
 import { ResourceKey } from '@/api/types';
-import { InputFormState } from '@/store/types';
+import { InputFormState, InputState } from '@/store/types';
 import { loadStarWarsData } from '@/api/load-data';
-import { getMandatoryResourceNames } from '@/api/api';
 
 // define injection key
-export const key: InjectionKey<Store<InputFormState>> = Symbol()
+export const key: InjectionKey<Store<InputFormState>> = Symbol();
 
-const state: InputFormState = {
-  person:   { name: 'person',   visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false, label: 'Character' },
-  planet:   { name: 'planet',   visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false, label: 'Planet'    },
-  starship: { name: 'starship', visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false, label: 'Starship'  },
-  vehicle:  { name: 'vehicle',  visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false, label: 'Vehicle'   },
-  species:  { name: 'species',  visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false, label: 'Species'   }
+const initState: InputFormState = {
+  person:   { name: 'person',   visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false, label: 'Character', mandatory: true  },
+  planet:   { name: 'planet',   visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false, label: 'Planet',    mandatory: true  },
+  starship: { name: 'starship', visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false, label: 'Starship',  mandatory: false },
+  vehicle:  { name: 'vehicle',  visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false, label: 'Vehicle',   mandatory: false },
+  species:  { name: 'species',  visible: false, selected: undefined, data: [], loadingInProgress: false, loadFailed: false, label: 'Species',   mandatory: false }
 };
+const mandatory = Object.values(initState).filter(v => v.mandatory).map(v => v.name);
+const optional  = Object.values(initState).filter(v => !v.mandatory).map(v => v.name);
+
+function getMandatoryInputs(inputFormState: InputFormState): InputState[] {
+  return Object.values(inputFormState).filter(inputState => mandatory.includes(inputState.name));
+}
+function getOptionInputs(inputFormState: InputFormState): InputState[] {
+  return Object.values(inputFormState).filter(inputState => optional.includes(inputState.name));
+}
 
 const mutations = {
   setData(state: any, { name, data }: any) {
@@ -37,7 +45,6 @@ const mutations = {
 
 const actions = {
   loadMandatoryResources(context: any) {
-    const mandatory = getMandatoryResourceNames();
     mandatory.forEach(name => context.commit("startLoading", { name }));
     mandatory.forEach(name => context.dispatch("loadResource", { name }));
   },
@@ -57,11 +64,11 @@ const actions = {
 };
 
 const getters = {
-  isMandatoryDataLoaded(state: InputFormState) {
-    return getMandatoryResourceNames().every(name => !state[name].loadFailed && !state[name].loadingInProgress);
+  isMandatoryDataLoaded(formState: InputFormState) {
+    return getMandatoryInputs(formState).every(inputState => !inputState.loadFailed && !inputState.loadingInProgress);
   },
-  hasLoadingOfMandatoryDataFailed(state: InputFormState) {
-    return getMandatoryResourceNames().some(name => state[name].loadFailed);
+  hasLoadingOfMandatoryDataFailed(formState: InputFormState) {
+    return getMandatoryInputs(formState).some(inputState => inputState.loadFailed);
   },
   getVisibleInputs(state: InputFormState) {
     return Object.values(state).filter(s => s.visible);
@@ -70,7 +77,7 @@ const getters = {
 };
 
 export const store = createStore({
-  state,
+  state: initState,
   getters,
   actions,
   mutations

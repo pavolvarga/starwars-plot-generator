@@ -8,6 +8,7 @@ export type InputState = {
   loadingInProgress: boolean;
   loadFailed: boolean;
   label: string;
+  mandatory: boolean;
 };
 
 export type InputFormState = {
