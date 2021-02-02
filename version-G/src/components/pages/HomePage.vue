@@ -9,6 +9,7 @@
     </star-wars-search>
     <optional-inputs v-if="getVisibleInputs().length > 0"></optional-inputs>
     <load-failed-alerts></load-failed-alerts>
+    <the-generate-button></the-generate-button>
   </form>
   <div class="row" v-if="hasLoadingOfMandatoryDataFailed()">
     <div class="col-lg-12">
@@ -34,6 +35,7 @@ import { key } from "@/store/store";
 import StarWarsSearch from "@/components/StarWarsSearch";
 import OptionalInputs from "@/components/OptionalInputs";
 import LoadFailedAlerts from "@/components/LoadFailedAlerts";
+import TheGenerateButton from "@/components/TheGenerateButton";
 
 export default defineComponent({
   name: 'HomePage',
@@ -41,9 +43,12 @@ export default defineComponent({
     StarWarsSearch,
     OptionalInputs,
     LoadFailedAlerts,
+    TheGenerateButton,
   },
   setup() {
     const store = useStore(key);
+    // if returning from the /result page, reset selected values to start from the beginning
+    store.dispatch("resetSelected");
     store.dispatch("loadMandatoryResources");
 
     function getVisibleInputs() {

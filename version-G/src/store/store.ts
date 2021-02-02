@@ -59,7 +59,12 @@ const mutations = {
 
 const actions = {
   loadMandatoryResources(context: any) {
-    mandatory.forEach(name => context.dispatch("loadResource", { name, visible: false }));
+    mandatory.forEach(name => {
+      // if data were once loaded, do not load them again
+      if (context.state[name].data.length === 0) {
+        context.dispatch("loadResource", { name, visible: false })
+      }
+    });
   },
   loadResource(context: any, payload: Payload) {
     const { name } = payload;
@@ -98,6 +103,14 @@ const actions = {
     context.commit("setLoadingInProgress", { name, loadingInProgress: false });
     context.commit("setLoadFailed", { name, loadFailed: false });
     context.commit("setVisible", { name, visible: false });
+  },
+  resetSelected(context: any) {
+    Object
+      .values(context.state as InputState[])
+      .map((inputState: InputState) => inputState.name)
+      .forEach(name => {
+        context.commit("setSelected", { name, suggestion: undefined });
+      });
   }
 };
 
