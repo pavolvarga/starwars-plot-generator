@@ -31,6 +31,10 @@ export default defineComponent({
       return store.getters.getOptionalInputs.map(input => input.name);
     }
     function getOptionalButtonLabel(name) {
+      const loadingInProgress = store.getters.isLoadingInProgress(name);
+      if (loadingInProgress) {
+        return `Loading ${name}`;
+      }
       const visible = store.getters.isInputVisible(name);
       return visible ? `Remove ${name}` : `Add ${name}`;
     }
@@ -39,6 +43,7 @@ export default defineComponent({
     }
     function onClick(name) {
       if (!store.getters.isInputDataLoaded(name)) {
+        store.dispatch("setVisibility", { name, visible: true });
         store.dispatch("loadResource", { name });
       }
       else {

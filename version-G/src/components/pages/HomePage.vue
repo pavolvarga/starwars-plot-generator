@@ -4,7 +4,8 @@
       v-for="input in getVisibleInputs()"
       :key="input.name"
       :name="input.name"
-      :label="input.label">
+      :label="input.label"
+      :data="input.data">
     </star-wars-search>
     <optional-inputs v-if="getVisibleInputs().length > 0"></optional-inputs>
   </form>

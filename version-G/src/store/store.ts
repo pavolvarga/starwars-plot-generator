@@ -54,7 +54,7 @@ const mutations = {
 
 const actions = {
   loadMandatoryResources(context: any) {
-    mandatory.forEach(name => context.dispatch("loadResource", { name }));
+    mandatory.forEach(name => context.dispatch("loadResource", { name, visible: false }));
   },
   loadResource(context: any, payload: Payload) {
     const { name } = payload;
@@ -77,9 +77,13 @@ const actions = {
     const visible = context.state[name].visible;
     context.commit("setVisibility", { name, visible: !visible });
   },
+  setVisibility(context: any, payload: Payload & { visible: boolean }) {
+    const { name, visible } = payload;
+    context.commit("setVisibility", { name, visible: visible });
+  },
   selectValue(context: any, payload: Payload & { selected: Suggestion | undefined }) {
     const { name, selected } = payload;
-    context.commit("setSelected", { name, selected});
+    context.commit("setSelected", { name, selected });
   },
 };
 
@@ -108,7 +112,12 @@ const getters = {
     return function(name: ResourceKey) {
       return formState[name].data.length > 0;
     }
-  }
+  },
+  isLoadingInProgress(formState: InputFormState) {
+    return function(name: ResourceKey) {
+      return formState[name].loadingInProgress;
+    }
+  },
 };
 
 export const store = createStore({
