@@ -64,8 +64,7 @@ const getters = {
     return getMandatoryResourceNames().some(name => state[name].loadFailed);
   },
   getVisibleInputs(state: InputFormState) {
-    console.log('!! store#getVisibleInputs', Object.values(state));
-    return [ ...Object.values(state).filter(s => s.visible) ];
+    return Object.values(state).filter(s => s.visible);
   }
 
 };
