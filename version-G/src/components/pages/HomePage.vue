@@ -3,9 +3,7 @@
     <star-wars-search
       v-for="input in getVisibleInputs()"
       :key="input.name"
-      :name="input.name"
-      :label="input.label"
-      :data="input.data">
+      :name="input.name">
     </star-wars-search>
     <optional-inputs v-if="getVisibleInputs().length > 0"></optional-inputs>
     <load-failed-alerts></load-failed-alerts>

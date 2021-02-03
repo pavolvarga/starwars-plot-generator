@@ -159,6 +159,16 @@ const getters = {
     return function(name: ResourceKey) {
       return formState[name].selected;
     }
+  },
+  getLabel(formState: InputFormState) {
+    return function(name: ResourceKey) {
+      return formState[name].label;
+    }
+  },
+  getData(formState: InputFormState) {
+    return function(name: ResourceKey) {
+      return formState[name].data;
+    }
   }
 };
 

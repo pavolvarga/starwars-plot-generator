@@ -1,7 +1,7 @@
 <template>
   <div class="form-group row">
     <div class="col-md-12 text-left">
-      <label class="col-form-label-lg" v-bind:for="name">{{ label }}</label>
+      <label class="col-form-label-lg" v-bind:for="name">{{ getLabel() }}</label>
       <!-- Currently (02.02.2021) there is no viable auto-complete component for VUE 3, fall back to simple but working select -->
       <select
         class="form-control"
@@ -12,7 +12,7 @@
         <option
           :selected="getSelected() === undefined"
           value>
-          -- Select {{label}} --
+          -- Select {{ getLabel() }} --
         </option>
         <option
           v-for="option in getOptions()"
@@ -35,26 +35,15 @@ export default defineComponent({
   name: 'StarWarsSearch',
   props: {
     name: String,
-    label: String,
-    data: Array,
   },
   setup(props) {
     const store = useStore(key);
-
     // eslint-disable-next-line vue/no-setup-props-destructure
-    const { name, data } = props;
+    const { name } = props;
 
-    // get rid of proxy wrapping and just get the data
-    const suggestions = Object
-      .values(Object.assign({}, data))
-      .map(v => Object.assign({}, v));
-
-    function getOptions() {
-      return suggestions;
-    }
     function select(event) {
       const url = event.target.value;
-      const suggestion = suggestions.find(s => s.url === url);
+      const suggestion = getOptions().find(s => s.url === url);
       store.dispatch("selectValue", { name, selected: suggestion });
     }
     function isDisabled() {
@@ -63,12 +52,23 @@ export default defineComponent({
     function getSelected() {
       return store.getters.getSelected(name);
     }
+    function getLabel() {
+      return store.getters.getLabel(name);
+    }
+    function getOptions() {
+      const data = store.getters.getData(name);
+      // get rid of proxy wrapping and just get the data
+      return Object
+        .values(Object.assign({}, data))
+        .map(v => Object.assign({}, v));
+    }
 
     return {
       getOptions,
       select,
       isDisabled,
       getSelected,
+      getLabel,
     }
   }
 });
