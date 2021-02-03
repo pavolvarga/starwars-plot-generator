@@ -47,3 +47,10 @@ learn from it.
   * angular 10
     * no state management library
   * bootstrap 4.4.1
+* version-G
+  * typescript
+  * VUE 3
+    * composition API
+  * VUEX 4
+    * for state management
+  * bootstrap 4.4.1
