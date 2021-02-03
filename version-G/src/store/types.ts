@@ -14,3 +14,8 @@ export type InputState = {
 export type InputFormState = {
   [index in ResourceKey]: InputState
 };
+
+export type Payload = {
+  name: ResourceKey;
+};
+export type MutationPayload = Payload & Partial<Pick<InputState, 'data' | 'loadingInProgress' | 'visible' | 'loadFailed' | 'selected'>>;

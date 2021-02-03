@@ -31,21 +31,21 @@ export default defineComponent({
       return store.getters.getOptionalInputs.map(input => input.name);
     }
     function getOptionalButtonLabel(name) {
-      const loadingInProgress = store.getters.isLoadingInProgress(name);
+      const loadingInProgress = store.getters.getLoadingInProgress(name);
       if (loadingInProgress) {
         return `Loading ${name}`;
       }
-      const visible = store.getters.isInputVisible(name);
+      const visible = store.getters.getVisible(name);
       return visible ? `Remove ${name}` : `Add ${name}`;
     }
     function areMandatoryInputSelected() {
       return store.getters.areMandatoryInputSelected;
     }
     function hasLoadFailed(name) {
-      return store.getters.hasLoadFailed(name);
+      return store.getters.getLoadFailed(name);
     }
     function onClick(name) {
-      if (!store.getters.isInputDataLoaded(name)) {
+      if (!store.getters.getDataLoaded(name)) {
         store.dispatch("setVisibility", { name, visible: true });
         store.dispatch("loadResource", { name });
       }
