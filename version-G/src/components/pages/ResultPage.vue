@@ -42,8 +42,7 @@ import { generatePlot } from "@/utils/plotGenerator";
 
 export default defineComponent({
   name: 'ResultPage',
-
-  data() {
+  setup() {
     const store = useStore(key);
     const router = useRouter()
 
@@ -70,7 +69,7 @@ export default defineComponent({
 })
 </script>
 
-<style scoped>
+<style>
 .used-resources {
   font-family: 'Comic Sans, Comic Sans MS, cursive;', serif;
   font-size: larger;
