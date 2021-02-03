@@ -1,7 +1,7 @@
 import { InputState, Payload } from '@/store/types';
 import { loadStarWarsData, ResourceData } from '@/api/load-data';
 import { ResourceKey, Suggestion } from '@/api/types';
-import { COOL_DOWN, mandatory } from '@/store/store';
+import {COOL_DOWN, getOptionalInputs, mandatory, optional} from '@/store/store';
 
 export const actions = {
   loadMandatoryResources(context: any) {
@@ -57,5 +57,8 @@ export const actions = {
       .forEach(name => {
         context.commit("setSelected", { name, suggestion: undefined });
       });
+  },
+  hideOptionalInputs(context: any) {
+    optional.forEach(name => context.commit("setVisible", { name, visible: false }));
   }
 };

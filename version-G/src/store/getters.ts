@@ -23,6 +23,12 @@ export const getters = {
       .filter(inputState => inputState.loadFailed)
       .map(inputState => inputState.name);
   },
+  getSelectedSuggestions(formState: InputFormState) {
+    return Object
+      .values(formState)
+      .filter(inputState => inputState.selected)
+      .map(s => ({name: s.name, value: s.selected}));
+  },
 
   getLoadFailed(formState: InputFormState) {
     return function(name: ResourceKey) {

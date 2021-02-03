@@ -6,7 +6,8 @@ import ResultPage from './components/pages/ResultPage.vue';
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: '/', component: HomePage },
+    { path: '/', redirect: '/home' },
+    { path: '/home', component: HomePage },
     { path: '/result', component: ResultPage }
   ]
 });

@@ -45,8 +45,6 @@ export default defineComponent({
   },
   setup() {
     const store = useStore(key);
-    // if returning from the /result page, reset selected values to start from the beginning
-    store.dispatch("resetSelected");
     store.dispatch("loadMandatoryResources");
 
     function getVisibleInputs() {
