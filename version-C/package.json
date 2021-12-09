@@ -18,14 +18,14 @@
     "@types/react-router-dom": "4.3.5",
     "@types/reactstrap": "8.0.0",
     "bootstrap": "4.3.1",
-    "dompurify": "^2.2.6",
+    "dompurify": "2.2.6",
     "react": "16.8.6",
     "react-autosuggest": "9.4.3",
     "react-dom": "16.8.6",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.1",
+    "react-router-dom": "5.2.1",
+    "react-scripts": "4.0.3",
     "reactstrap": "8.0.0",
-    "serve": "^11.3.2",
+    "serve": "13.0.2",
     "typescript": "3.6.2"
   },
   "scripts": {
