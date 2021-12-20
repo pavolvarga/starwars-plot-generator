@@ -1,5 +1,7 @@
 {
-  "name": "version-h",
+  "name": "starwars-plot-generator",
+  "description": "Web application for generating new star wars plot\n. Build in next.js using typescript and tailwindcss",
+  "version": "0.7.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -19,7 +21,7 @@
     "eslint": "8.4.1",
     "eslint-config-next": "12.0.7",
     "postcss": "8.4.4",
-    "tailwindcss": "3.0.0",
+    "tailwindcss": "3.0.7",
     "typescript": "4.5.2"
   }
 }
