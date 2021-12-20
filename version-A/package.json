@@ -15,7 +15,7 @@
     "react-autosuggest": "9.4.3",
     "react-dom": "16.8.6",
     "react-router-dom": "5.2.1",
-    "react-scripts": "4.0.3",
+    "react-scripts": "5.0.0",
     "reactstrap": "8.0.0",
     "serve": "13.0.2"
   },
