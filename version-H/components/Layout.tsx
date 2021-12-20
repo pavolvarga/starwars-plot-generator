@@ -11,7 +11,7 @@ export const Layout: NextComponentType = ({ children }) => {
         <title>SW Gen Version H</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="container mx-auto">
+      <div className="container mx-auto w-6/12">
         {children}
       </div>
     </div>
