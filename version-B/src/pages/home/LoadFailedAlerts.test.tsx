@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme/build';
+import { mount } from 'enzyme';
 import { LoadFailedAlert, LoadFailedAlerts } from "./LoadFailedAlerts";
 
 describe('LoadFailedAlerts', () => {

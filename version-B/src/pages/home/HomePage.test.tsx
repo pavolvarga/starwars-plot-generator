@@ -1,11 +1,12 @@
 import React from 'react';
-import { mount } from 'enzyme/build';
+import { mount } from 'enzyme';
 
 import { InputForm } from './HomePage';
 
 describe('HomePage', () => {
     function createInputForm() {
         const customProps = {people: [], planets: []};
+        // @ts-ignore
         return mount(<InputForm debug customProps={customProps}/>)
     }
 
@@ -25,6 +26,7 @@ describe('HomePage', () => {
                planet: {selected: 'Tatooine'}
            });
 
+           // @ts-ignore
            const result = component.instance().isGenerateBntDisabled();
 
            expect(result).toEqual(false);
@@ -37,6 +39,7 @@ describe('HomePage', () => {
                planet: {selected: undefined}
            });
 
+           // @ts-ignore
            const result = component.instance().isGenerateBntDisabled();
 
            expect(result).toEqual(true);
@@ -51,6 +54,7 @@ describe('HomePage', () => {
                 }
             });
 
+            // @ts-ignore
             const result = component.instance().isGenerateBntDisabled();
 
             expect(result).toEqual(true);

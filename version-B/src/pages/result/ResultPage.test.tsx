@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme/build';
+import { mount } from 'enzyme';
 import { Description, Title, ResourceLink, Resources, Plot } from "./ResultPage";
 import { createBrowserHistory } from 'history';
 
