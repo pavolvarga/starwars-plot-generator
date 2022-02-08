@@ -1,3 +1,5 @@
+import {Resources} from '@/common/types';
+
 const STAR_WARS_API = 'https://swapi.dev/api';
 
 type SWAResourceResp = {
@@ -111,6 +113,23 @@ function loadStarWarsResource(resource: string): any {
         .then(names => names.sort())
 }
 
-export function loadStarWarsData(name: string): any {
-    return loadStarWarsResource(starWarsResource(name));
+export async function loadStarWarsData() {
+
+  const resources: Resources = {
+    person:   { plural: 'people',    singular: 'person',   mandatory: true,  label: 'character', suggestions: null, },
+    planet:   { plural: 'planets',   singular: 'planet',   mandatory: true,  label: null, suggestions: null  },
+    starship: { plural: 'starships', singular: 'starship', mandatory: false, label: null, suggestions: null  },
+    vehicle:  { plural: 'vehicles',  singular: 'vehicle',  mandatory: false, label: null, suggestions: null  },
+    species:  { plural: 'species',   singular: 'species',  mandatory: false, label: null, suggestions: null  }
+  };
+
+  const data = await Promise.all(
+    Object.values(resources).map(r => r.plural).map(name => loadStarWarsResource(starWarsResource(name)))
+  );
+
+  Object.values(resources).forEach((r, i) => {
+    r.suggestions = data[i];
+  })
+
+  return resources;
 }
