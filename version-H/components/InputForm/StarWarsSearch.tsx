@@ -63,30 +63,24 @@ type SuggestionFetchRequest = {
 export type StarWarsSearchProps = InputState & {
   data: Suggestion[];
   name: string;
+  setSelectedSuggestion: (name: string, value: Suggestion | undefined) => void;
 };
 export const StarWarsSearch: FC<StarWarsSearchProps> = props => {
-  const { data, visible, name, label } = props;
-  const
-      [value, setValue] = useState(''),
-      [suggestions, setSuggestions] = useState<Suggestion[]>(data),
-      [selectedFromData, setSelectedFromData] = useState(false);
+  const { data, visible, name, label, setSelectedSuggestion } = props;
+  const [value, setValue] = useState('');
+  const [suggestions, setSuggestions] = useState<Suggestion[]>(data);
+  const placeholder = `Please enter ${label}`
+  const disabled = data.length === 0;
+  const valid = value !== undefined && value !== '';
 
   if (!visible) {
       return null;
   }
 
   function onChange(event: React.FormEvent<any>, {newValue}: ChangeEvent): void {
-      setValue(newValue);
-
-      console.log('!! onChange');
-
-      const foundIdx = data.findIndex(el => el.name === newValue);
-      if (foundIdx !== -1) {
-          setSelectedFromData(true);
-          const {name, url} = data[foundIdx];
-      } else {
-          setSelectedFromData(false);
-      }
+    setValue(newValue);
+    const foundIdx = data.findIndex(el => el.name === newValue);
+    setSelectedSuggestion(name, foundIdx ? data[foundIdx] : undefined);
   }
 
   function onSuggestionsFetchRequested(fetchRequest: SuggestionFetchRequest): void {
@@ -110,10 +104,6 @@ export const StarWarsSearch: FC<StarWarsSearchProps> = props => {
           .filter(x => regex.test(x.name))
           .map(({name, url}) => ({name, url}));
   }
-
-  const placeholder = `Please enter ${label}`
-  const disabled = data.length === 0;
-  const valid = selectedFromData ? true : undefined;
 
   return (
       <Autosuggest

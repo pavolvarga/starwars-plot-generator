@@ -1,5 +1,5 @@
 import {cloneDeep} from 'lodash';
-import {InputFormState, InputState, Resources} from '@/common/types';
+import {InputFormState, InputState, Resources, Suggestion} from '@/common/types';
 
 export function createInitState(resources: Resources): InputFormState {
   return Object
@@ -16,7 +16,7 @@ export function createInitState(resources: Resources): InputFormState {
     }, {}) as InputFormState;
 }
 
-type Action = ToggleVisibilityAction;
+type Action = ToggleVisibilityAction | SetSelectedValueAction;
 
 type ToggleVisibilityActionPayload = {
   name: string;
@@ -26,14 +26,31 @@ type ToggleVisibilityAction = {
   payload: ToggleVisibilityActionPayload,
 }
 
+type SetSelectedValueActionPayload = {
+  name: string;
+  value: Suggestion | undefined;
+};
+type SetSelectedValueAction = {
+  type: 'SET_SELECTED_VALUE_ACTION',
+  payload: SetSelectedValueActionPayload,
+};
+
 export function reducer(state: InputFormState, action: Action): InputFormState {
   const { type, payload } = action;
   switch (type) {
     case 'TOGGLE_VISIBILITY_ACTION':
       return handleToggleVisibilityAction(state, payload as unknown as ToggleVisibilityActionPayload);
+    case 'SET_SELECTED_VALUE_ACTION':
+      return handleSetSelectedValueAction(state, payload as unknown as SetSelectedValueActionPayload);
     default:
       throw new Error(`Unknown ${type}`);
   }
+}
+
+function handleSetSelectedValueAction(state: InputFormState, { name, value }: SetSelectedValueActionPayload): InputFormState {
+  const newState = cloneDeep(state);
+  newState[name].selected = value;
+  return newState;
 }
 
 function handleToggleVisibilityAction(state: InputFormState, { name }: ToggleVisibilityActionPayload): InputFormState {
@@ -41,5 +58,3 @@ function handleToggleVisibilityAction(state: InputFormState, { name }: ToggleVis
   newState[name].visible = !newState[name].visible;
   return newState;
 }
-
-
