@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import {Layout} from '@/components/Layout';
-import {InputForm} from '@/components/InputForm';
+import {InputForm} from '@/components/InputForm/InputForm';
 import {Resources} from '@/common/types';
 
 type HomePageComponentProps = {
