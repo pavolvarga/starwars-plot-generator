@@ -1,9 +1,9 @@
 import React, {FC, useReducer} from 'react';
 import classNames from 'classnames';
-import {StarWarsSearch} from '@/components/StarWarsSearch';
-import {Button} from '@/components/Button';
+import {Button} from '@/components/InputForm/Button';
 import {ResourceKey, Resources} from '@/common/types';
 import {createInitState, reducer} from '@/components/InputForm/state';
+import {StarWarsSearch} from '@/components/InputForm/StarWarsSearch';
 
 type InputFormProps = {
   resources: Resources;
@@ -14,7 +14,15 @@ export const InputForm: FC<InputFormProps> = ({ resources }) => {
   const disabled = true;
   return (
     <div className="w-full">
-      {Object.values(state).map(r => <StarWarsSearch key={`field-${r.label}`} {...r} />)}
+      {Object.entries(state).map(([k, state]) => (
+        <StarWarsSearch
+          key={`field-${state.label}`}
+          data={state.data}
+          id={`id-${k}`}
+          name={k}
+          {...state}
+        />
+      ))}
       <div className="flex justify-between my-4">
         {Object
           .values(resources)
@@ -43,5 +51,3 @@ export const InputForm: FC<InputFormProps> = ({ resources }) => {
     </div>
   );
 };
-
-
