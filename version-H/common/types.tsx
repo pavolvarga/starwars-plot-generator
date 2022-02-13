@@ -36,17 +36,5 @@ export type Resources = {
 export type SelectedSuggestions = { [index: string]: Suggestion | undefined };
 
 export type AppState = {
-    setSelectedSuggestion: (name: ResourceKey, s: Suggestion | undefined) => void,
-    loadResourceData: (name: ResourceKey) => void,
-    isLoadedMandatoryData: () => boolean,
-    loadMandatoryResourceData: () => void,
-    isVisible: (name: ResourceKey) => boolean,
-    getData: (name: ResourceKey) => Suggestion[],
-    hasLoadFailed: (name: ResourceKey) => boolean,
-    toggleVisibility: (name: ResourceKey) => void,
-    getSelectedSuggestions: () => SelectedSuggestions,
-    areMandatoryInputsSelected: () => boolean,
-    clearSelectedSuggestions: () => void,
-    hasLoadingOfMandatoryDataFailed: () => boolean,
-    failedLoadingOfOptionalData: () => string[]
-}
+  [index in ResourceKey]: Suggestion | undefined;
+};
