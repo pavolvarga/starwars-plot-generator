@@ -15,8 +15,8 @@ function createTheme(count: number): Theme {
     container: 'autosuggest',
     input: 'border w-full h-8',
     suggestionsContainer: 'dropdown',
-    suggestionsList: `dropdown-menu ${count ? 'show' : ''}`,
-    suggestionHighlighted: 'starwars-search__suggestion-highlighted'
+    suggestionsList: `bg-neutral-100`,
+    suggestionHighlighted: 'bg-blue-100'
   };
 }
 
@@ -31,7 +31,7 @@ function getSuggestionValue(suggestion: Suggestion): string {
 
 function renderSuggestion(suggestion: Suggestion): ReactElement {
     return (
-        <span>{suggestion.name}</span>
+        <span className="w-full">{suggestion.name}</span>
     );
 }
 
@@ -48,7 +48,7 @@ function renderInputComponent(id: string, name: string, disabled: boolean, valid
               name={name}
               disabled={disabled}
               {...inputProps}
-              className="border w-full h-10"
+              className="border w-full h-10 focus:outline-none focus:ring focus:ring-blue-100"
             />
           </div>
         );
