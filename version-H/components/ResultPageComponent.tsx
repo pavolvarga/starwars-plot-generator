@@ -33,7 +33,7 @@ const ResultPageComponent: FC = () => {
         <h1 className="text-center text-3xl my-2">Resources</h1>
         <ul className="my-2">
           {resources.map((url) => (
-            <li className="my-1"><a className="text-blue-600 focus:outline-none focus:ring focus:ring-blue-100" href={url}>{url}</a></li>)
+            <li key={`resource-url-${new Date().getTime()}`} className="my-1"><a className="text-blue-600 focus:outline-none focus:ring focus:ring-blue-100" href={url}>{url}</a></li>)
           )}
         </ul>
       </div>

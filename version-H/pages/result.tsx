@@ -1,4 +1,4 @@
-import type { NextPage } from 'next'
+import {NextPage} from 'next';
 import ResultPageComponent from '@/components/ResultPageComponent';
 
 const ResultPage: NextPage = () => {

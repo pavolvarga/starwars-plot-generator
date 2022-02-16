@@ -36,23 +36,24 @@ function renderSuggestion(suggestion: Suggestion): ReactElement {
 }
 
 function renderInputComponent(id: string, name: string, disabled: boolean, valid: boolean | undefined, label: string): (ip: any) => ReactElement {
-    //inputProps is provided by the Autosuggest component
-    //see: https://github.com/moroshko/react-autosuggest#render-input-component-prop
-    return (inputProps: any) => {
-        return (
-          <div className="w-full my-4 text-xl">
-            <label className="w-full block mb-2">{capitalize(label)}</label>
-            <input
-              type="text"
-              id={id}
-              name={name}
-              disabled={disabled}
-              {...inputProps}
-              className="border w-full h-10 focus:outline-none focus:ring focus:ring-blue-100"
-            />
-          </div>
-        );
-    }
+  //inputProps is provided by the Autosuggest component
+  //see: https://github.com/moroshko/react-autosuggest#render-input-component-prop
+  // @ts-ignore
+  return function input(inputProps: any) {
+    return (
+      <div className="w-full my-4 text-xl">
+        <label className="w-full block mb-2">{capitalize(label)}</label>
+        <input
+          type="text"
+          id={id}
+          name={name}
+          disabled={disabled}
+          {...inputProps}
+          className="border w-full h-10 focus:outline-none focus:ring focus:ring-blue-100"
+        />
+      </div>
+    );
+  }
 }
 
 type SuggestionFetchRequest = {
@@ -63,6 +64,7 @@ type SuggestionFetchRequest = {
 export type StarWarsSearchProps = InputState & {
   data: Suggestion[];
   name: string;
+  id: string;
   setSelectedSuggestion: (name: string, value: Suggestion | undefined) => void;
 };
 export const StarWarsSearch: FC<StarWarsSearchProps> = props => {

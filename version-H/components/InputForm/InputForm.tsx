@@ -29,17 +29,17 @@ export const InputForm: FC<InputFormProps> = ({ resources }) => {
       {Object.entries(state).map(([k, state]) => (
         <StarWarsSearch
           key={`field-${state.label}`}
-          data={state.data}
           id={`id-${k}`}
           name={k}
-          {...state}
           setSelectedSuggestion={(name: string, value: Suggestion | undefined) => {
             dispatch({type: 'SET_SELECTED_VALUE_ACTION', payload: { name, value }});
           }}
+          {...state}
         />
       ))}
       <div className="flex justify-between my-4">
         {optional
+          // @ts-ignore
           .map(r => [r, state[r]])
           .map(([name, { visible }]) => (
             <Button

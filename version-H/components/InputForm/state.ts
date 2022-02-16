@@ -49,12 +49,14 @@ export function reducer(state: InputFormState, action: Action): InputFormState {
 
 function handleSetSelectedValueAction(state: InputFormState, { name, value }: SetSelectedValueActionPayload): InputFormState {
   const newState = cloneDeep(state);
+  // @ts-ignore
   newState[name].selected = value;
   return newState;
 }
 
 function handleToggleVisibilityAction(state: InputFormState, { name }: ToggleVisibilityActionPayload): InputFormState {
   const newState = cloneDeep(state);
+  // @ts-ignore
   newState[name].visible = !newState[name].visible;
   return newState;
 }
