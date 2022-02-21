@@ -1,12 +1,12 @@
 {
   "name": "starwars-plot-generator",
   "description": "Web application for generating new star wars plot\n. Build in next.js using typescript and tailwindcss",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 5000",
     "lint": "next lint"
   },
   "dependencies": {

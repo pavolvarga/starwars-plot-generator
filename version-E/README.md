@@ -36,12 +36,12 @@ http://localhost:5000
 ## How to run via docker
 Pull the image
 ```sh
-docker pull pavolvarga1024/starwars-plot-generator:v0.7.0-version-E
+docker pull pavolvarga1024/starwars-plot-generator:v0.8.0-version-E
 ```
 
 Run the image
 ```sh
-docker run -p 5000:5000 pavolvarga1024/starwars-plot-generator:v0.7.0-version-E
+docker run -p 5000:5000 pavolvarga1024/starwars-plot-generator:v0.8.0-version-E
 ```
 
 Type into browser's address bar:

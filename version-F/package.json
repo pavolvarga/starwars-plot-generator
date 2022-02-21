@@ -1,7 +1,7 @@
 {
   "name": "starwars-plot-generator",
   "description": "Web application for generating new star wars plot\n. Build in typescript with angular 10.",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

@@ -1,7 +1,7 @@
 {
   "name": "starwars-plot-generator",
   "description": "Web application for generating new star wars plot\n. Build in typescript with VUE 3",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
