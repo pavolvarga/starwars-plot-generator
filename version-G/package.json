@@ -1,5 +1,5 @@
 {
-  "name": "starwars-plot-generator",
+  "name": "starwars-plot-generator-version-g",
   "description": "Web application for generating new star wars plot\n. Build in typescript with VUE 3",
   "version": "0.8.0",
   "private": true,

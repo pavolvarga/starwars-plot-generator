@@ -1,5 +1,5 @@
 {
-  "name": "starwars-plot-generator-version-c",
+  "name": "starwars-plot-generator-version-d",
   "description": "Web application for generating new star wars plot\n. Build in typescript with react & redux.",
   "version": "0.8.0",
   "private": true,

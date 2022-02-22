@@ -19,7 +19,7 @@ npm install
 ```
 Build it
 ```sh
-ng build
+npm run build
 ```
 Run it
 ```sh

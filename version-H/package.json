@@ -1,5 +1,5 @@
 {
-  "name": "starwars-plot-generator",
+  "name": "starwars-plot-generator-version-h",
   "description": "Web application for generating new star wars plot\n. Build in next.js using typescript and tailwindcss",
   "version": "0.8.0",
   "private": true,
