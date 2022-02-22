@@ -10,7 +10,7 @@ ADD . /starwars-plot-generator
 
 # build the application
 RUN npm install
-RUN npm run build
+RUN npm run build-docker
 
 EXPOSE 5000
 
