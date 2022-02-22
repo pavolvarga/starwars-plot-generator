@@ -54,3 +54,8 @@ learn from it.
   * VUEX 4
     * for state management
   * bootstrap 4.4.1
+* version-H
+  * next.js
+  * typescript
+  * tailwindcss
+  * useReducer & useContext for state management
