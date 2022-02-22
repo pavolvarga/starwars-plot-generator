@@ -23,7 +23,7 @@ ng build
 ```
 Run it
 ```sh
-node ./node_modules/serve/bin/serve.js -s dist/starwars-plot-generator
+node ./node_modules/serve/bin/serve.js -l 5000 -s dist/starwars-plot-generator
 ```
 Type into browser's address bar:
 ```

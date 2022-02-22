@@ -12,8 +12,7 @@ ADD . /starwars-plot-generator
 RUN npm install
 RUN npm run build
 
-# expose the default port used by serve
 EXPOSE 5000
 
 # start serve (static site server)
-CMD ["node", "./node_modules/serve/bin/serve.js", "-s", "dist"]
+CMD ["node", "./node_modules/serve/bin/serve.js", "-l", "5000", "-s", "dist"]

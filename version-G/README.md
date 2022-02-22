@@ -25,7 +25,7 @@ npm run build
 ```
 Run it
 ```sh
-node ./node_modules/serve/bin/serve.js -s dist
+node ./node_modules/serve/bin/serve.js -l 5000 -s dist
 ```
 Type into browser's address bar:
 ```
