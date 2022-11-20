@@ -59,3 +59,7 @@ learn from it.
   * typescript
   * tailwindcss
   * useReducer & useContext for state management
+* version-I
+  * svelte.js
+  * typescript
+  * tailwindcss
