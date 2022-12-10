@@ -1,4 +1,4 @@
-import type { Resources } from './types';
+import type { Resource, Resources } from './types';
 
 const STAR_WARS_API = 'https://swapi.dev/api';
 
@@ -13,11 +13,9 @@ type SWAResult = {
     url: string,
     [key: string]: any
 }
-
 export function starWarsResource(name: string): string {
     return `${STAR_WARS_API}/${name}/`;
 }
-
 function calculatePageCount(total: number, current: number): number {
     if ((total % current === 0)) {
         return total / current
@@ -80,7 +78,6 @@ function createRequestUrlsAndSaveFirstResults(firstRequestResponse: SWAResourceR
     const {results, count} = firstRequestResponse;
     return createPages(resource, count, results.length);
 }
-
 export type ResourceData = {name: string, url: string};
 function extractValues(data: SWAResult[]): ResourceData[] {
     return data.map((obj: SWAResult) => {
@@ -112,7 +109,6 @@ function loadStarWarsResource(resource: string): any {
         .then(extractValues)
         .then(names => names.sort())
 }
-
 export async function loadStarWarsData() {
 
   const resources: Resources = {
@@ -124,10 +120,10 @@ export async function loadStarWarsData() {
   };
 
   const data = await Promise.all(
-    Object.values(resources).map(r => r.plural).map(name => loadStarWarsResource(starWarsResource(name)))
+    Object.values(resources).map((r: Resource) => r.plural).map(name => loadStarWarsResource(starWarsResource(name)))
   );
 
-  Object.values(resources).forEach((r, i) => {
+  Object.values(resources).forEach((r: Resource, i: number) => {
     r.suggestions = data[i];
   })
 
