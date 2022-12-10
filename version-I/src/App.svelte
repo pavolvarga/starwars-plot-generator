@@ -1,9 +1,19 @@
 <script lang="ts">
-  import { Router, Link, Route } from "svelte-routing";
+  import { onMount } from 'svelte';
+  import { Router, Route } from "svelte-routing";
   import Home from './pages/home/Home.svelte';
   import Result from './pages/result/Result.svelte';
+  import { loadStarWarsData} from './common/load-data';
 
   export let url = "";
+
+  export let isLoading = true;
+
+  onMount(async () => {
+    const result = await loadStarWarsData();
+    isLoading = false;
+  });
+
 </script>
 
 <svelte:head>
@@ -13,13 +23,21 @@
   <title>SW Gen Version I</title>
 </svelte:head>
 
-<Router url="{url}">
-  <div>
-    <Route path="home" component="{Home}" />
-    <Route path="result" component="{Result}" />
-    <Route path="/"><Home /></Route>
+{#if isLoading}
+  <div class="container mx-auto">
+    <div class="flex flex-col items-center justify-center">
+      <h1 class="text-center text-4xl my-8">Loading ...</h1>
+    </div>
   </div>
-</Router>
+{:else}
+  <Router url="{url}">
+    <div>
+      <Route path="home" component="{Home}" />
+      <Route path="result" component="{Result}" />
+      <Route path="/"><Home /></Route>
+    </div>
+  </Router>
+{/if}
 
 <style>
 </style>
