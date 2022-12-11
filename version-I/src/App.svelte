@@ -4,7 +4,8 @@
   import Home from './pages/home/Home.svelte';
   import Result from './pages/result/Result.svelte';
   import { loadStarWarsData} from './common/load-data';
-  import { dataStore } from './common/data-store';
+  import { resourcesStore } from './common/resources-store';
+  import { inputFormStore } from './common/inputForm-store';
 
   export let url = "";
 
@@ -12,7 +13,8 @@
 
   onMount(async () => {
     const result = await loadStarWarsData();
-    dataStore.init(result);
+    resourcesStore.init(result);
+    inputFormStore.init(result);
     isLoading = false;
   });
 

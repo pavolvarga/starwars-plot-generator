@@ -11,6 +11,8 @@ export type Suggestion = {
 }
 
 export type InputState = {
+    resourceKey: ResourceKey,
+    mandatory: boolean,
     visible: boolean,
     selected: Suggestion | undefined,
     data: Suggestion[],
