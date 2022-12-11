@@ -1,6 +1,6 @@
 import { cloneDeep } from 'lodash';
 import { writable } from 'svelte/store';
-import type { InputFormState, InputState, ResourceKey, Resources } from './types';
+import type { InputState, ResourceKey, Resources, Suggestion } from './types';
 
 const store = writable<InputState[]>([]);
 
@@ -20,7 +20,7 @@ function setUp(data: Resources) {
 
 export const inputFormStore = {
   subscribe: store.subscribe,
-  init: function init(data: Resources) {
+  init(data: Resources) {
     store.set(setUp(data));
   },
   toggleVisibility(resourceKey: ResourceKey) {
@@ -28,7 +28,14 @@ export const inputFormStore = {
       const cloned = cloneDeep(data);
       const item = cloned.find((item: InputState) => item.resourceKey === resourceKey);
       item.visible = !item.visible;
-      console.log('!!', cloned);
+      return cloned;
+    });
+  },
+  selectValue(resourceKey: ResourceKey, value: Suggestion | undefined) {
+    store.update(data => {
+      const cloned = cloneDeep(data);
+      const item = cloned.find((item: InputState) => item.resourceKey === resourceKey);
+      item.selected = value;
       return cloned;
     });
   }

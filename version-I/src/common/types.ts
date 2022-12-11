@@ -19,10 +19,6 @@ export type InputState = {
     label: string,
 };
 
-export type InputFormState = {
-    [index in ResourceKey]: InputState
-};
-
 export type Resource = {
     plural: string,
     singular: string,

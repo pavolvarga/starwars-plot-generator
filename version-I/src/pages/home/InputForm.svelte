@@ -3,6 +3,7 @@
   import { inputFormStore } from "../../common/inputForm-store";
   import SWInput from "./SWInput.svelte";
   import SWButton from "./SWButton.svelte";
+  import ResultButton from "./ResultButton.svelte";
 
   let inputs;
   let buttons;
@@ -27,5 +28,8 @@
     {#each buttons as button}
       <SWButton resourceKey={button} />
     {/each}
+  </div>
+  <div class="flex justify-center my-8">
+    <ResultButton />
   </div>
 </div>
