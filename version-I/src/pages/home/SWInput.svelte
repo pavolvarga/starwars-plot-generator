@@ -1,7 +1,7 @@
 <script>
   import AutoComplete from "simple-svelte-autocomplete"
-  import {inputFormStore} from "../../common/inputForm-store";
-  import {onDestroy} from "svelte";
+  import { inputFormStore } from "../../common/inputForm-store";
+  import { onDestroy } from "svelte";
 
   let inputForm;
   const unsubscribe = inputFormStore.subscribe(it => inputForm = it);

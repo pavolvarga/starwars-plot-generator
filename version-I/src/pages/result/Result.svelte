@@ -1,8 +1,8 @@
 
 <script>
-  import { navigate } from "svelte-routing";
-  import { onDestroy } from "svelte";
   import DOMPurify from 'isomorphic-dompurify';
+  import { navigate } from "svelte-routing"
+  import { onDestroy } from "svelte";
   import { inputFormStore } from "../../common/inputForm-store";
   import { generatePlot } from "../../common/plotGenerator";
 
