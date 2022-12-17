@@ -109,7 +109,7 @@ function loadStarWarsResource(resource: string): any {
         .then(extractValues)
         .then(names => names.sort())
 }
-export async function loadStarWarsData() {
+export async function loadStarWarsData(): Resources | Error {
 
   const resources: Resources = {
     person:   { plural: 'people',    singular: 'person',   mandatory: true,  label: 'character', suggestions: null, },
@@ -121,7 +121,11 @@ export async function loadStarWarsData() {
 
   const data = await Promise.all(
     Object.values(resources).map((r: Resource) => r.plural).map(name => loadStarWarsResource(starWarsResource(name)))
-  );
+  ).catch(error => error);
+
+  if (data instanceof Error) {
+    return data;
+  }
 
   Object.values(resources).forEach((r: Resource, i: number) => {
     r.suggestions = data[i];
