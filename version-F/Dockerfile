@@ -9,7 +9,7 @@ WORKDIR starwars-plot-generator
 ADD . /starwars-plot-generator
 
 # build the application
-RUN npm install
+RUN npm install --legacy-peer-deps
 RUN npm run build-docker
 
 EXPOSE 5000
