@@ -2,7 +2,8 @@
 Web application for generating new star wars plot
 
 ## Used technologies
-  * next.js
+  * react 17
+  * next.js 12
   * typescript
   * tailwindcss
   * useReducer & useContext for state management
