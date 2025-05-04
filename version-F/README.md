@@ -2,8 +2,8 @@
 Web application for generating new star wars plot
 
 ## Used technologies
-  * typescript
-  * angular 10
+  * typescript 4.0.2
+  * angular 10.1.4
     * no state management library
   * bootstrap 4.4.1
 

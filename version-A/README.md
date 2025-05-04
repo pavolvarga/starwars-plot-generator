@@ -3,7 +3,7 @@ Web application for generating new star wars plot
 
 ## Used technologies
   * javascript (ES5)
-  * react
+  * react 16.8.6
     * classes
     * no state management library
   * reactstrap (for using bootstrap)

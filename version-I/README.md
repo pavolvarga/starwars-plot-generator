@@ -2,9 +2,9 @@
 Web application for generating new star wars plot
 
 ## Used technologies
-  * svelte.js
-  * typescript
-  * tailwindcss
+  * svelte 3.52.0
+  * typescript 4.6.4
+  * tailwindcss 3.1.5
 
 ## How to run
 Clone the repository

@@ -10,56 +10,57 @@ learn from it.
 ## Versions
 * version-A
   * javascript (ES5)
-  * react
+  * react 16.8.6
     * classes
     * no state management library
   * reactstrap (for using bootstrap)
 * version-B
-  * typescript
-  * react
+  * typescript 3.6.2
+  * react 16.8.6
     * classes
     * no state management library
   * reactstrap (for using bootstrap)
 * version-C
-  * typescript
-  * react
+  * typescript 3.6.2
+  * react 16.8.6
     * hooks
     * using context for state management
   * reactstrap (for using bootstrap)
 * version-D
-  * typescript
-  * react
-  * redux
+  * typescript 3.8.3
+  * react 16.13.1
+  * redux 4.0.5
     * for state management
-  * redux-thunk
+  * redux-thunk 2.3.0
     * asynchronous updates
   * reactstrap (for using bootstrap)
 * version-E
-  * typescript
-  * react
-  * redux
+  * typescript 3.8.3
+  * react 16.13.1
+  * redux 4.0.5
     * for state management
-  * redux-thunk
+  * redux-thunk 2.3.0
     * asynchronous updates
   * bootstrap 4.4.1
 * version-F
-  * typescript
-  * angular 10
+  * typescript 4.0.2
+  * angular 10.1.4
     * no state management library
   * bootstrap 4.4.1
 * version-G
-  * typescript
-  * VUE 3
+  * typescript 3.9.3
+  * VUE 3.0.11
     * composition API
-  * VUEX 4
+  * VUEX 4.0.2
     * for state management
   * bootstrap 4.4.1
 * version-H
-  * next.js
-  * typescript
-  * tailwindcss
-  * useReducer & useContext for state management
+  * react 17.0.2
+    * useReducer & useContext for state management
+  * next.js 12.0.7
+  * typescript 4.5.2
+  * tailwindcss 3.0.7
 * version-I
-  * svelte.js
-  * typescript
-  * tailwindcss
+  * svelte 3.52.0
+  * typescript 4.6.4
+  * tailwindcss 3.1.5

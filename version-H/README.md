@@ -2,11 +2,11 @@
 Web application for generating new star wars plot
 
 ## Used technologies
-  * react 17
-  * next.js 12
-  * typescript
-  * tailwindcss
-  * useReducer & useContext for state management
+  * react 17.0.2
+    * useReducer & useContext for state management
+  * next.js 12.0.7
+  * typescript 4.5.2
+  * tailwindcss 3.0.7
 
 ## How to run
 Clone the repository

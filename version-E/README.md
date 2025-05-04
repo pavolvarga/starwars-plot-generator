@@ -2,11 +2,11 @@
 Web application for generating new star wars plot
 
 ## Used technologies
-  * typescript
-  * react
-  * redux
+  * typescript 3.8.3
+  * react 16.13.1
+  * redux 4.0.5
     * for state management
-  * redux-thunk
+  * redux-thunk 2.3.0
     * asynchronous updates
   * bootstrap 4.4.1
 

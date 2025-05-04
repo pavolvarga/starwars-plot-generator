@@ -2,10 +2,10 @@
 Web application for generating new star wars plot
 
 ## Used technologies
-  * typescript
-  * VUE 3
+  * typescript 3.9.3
+  * VUE 3.0.11
     * composition API
-  * VUEX 4
+  * VUEX 4.0.2
     * for state management
   * bootstrap 4.4.1
 

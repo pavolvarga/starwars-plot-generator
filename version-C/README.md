@@ -2,8 +2,8 @@
 Web application for generating new star wars plot
 
 ## Used technologies
-  * typescript
-  * react
+  * typescript 3.6.2
+  * react 16.8.6
     * hooks
     * using context for state management
   * reactstrap (for using bootstrap)
